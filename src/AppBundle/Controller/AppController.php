@@ -56,7 +56,9 @@ class AppController extends BaseController
         } catch (EventsException $e) {
             $this->setFailedMessage($e->getMessage());
         }
-        return $this->makeJsonResponse();
+        $jsonResponse = $this->makeJsonResponse();
+        $jsonResponse->headers->set('Access-Control-Allow-Origin', '*');
+        return $jsonResponse;
     }
 
     /**

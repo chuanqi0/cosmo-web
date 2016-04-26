@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Common\EventsException;
+use AppBundle\Entity\Mikeal;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -29,6 +30,25 @@ class AppController extends BaseController
             $guomao = $guomaoRepo->find($id);
             $guomao->setVotes($guomao->getVotes() + 1);
             $guomaoRepo->saveGuomao($guomao);
+            $this->setSuccess();
+        } catch (EventsException $e) {
+            $this->setFailedMessage($e->getMessage());
+        }
+        return $this->makeJsonResponse();
+    }
+
+    /**
+     * @Route("/api/mikeal/vote/{id}/{telephone}/{name}")
+     */
+    public function mikealVoteAction(Request $request, $id, $telephone, $name)
+    {
+        try {
+            $mikealRepo = $this->getDoctrine()->getRepository('AppBundle:Mikeal');
+            $mikeal = new Mikeal();
+            $mikeal->setName($name);
+            $mikeal->setTelephone($telephone);
+            $mikeal->setVote($id);
+            $mikealRepo->saveMikeal($mikeal);
             $this->setSuccess();
         } catch (EventsException $e) {
             $this->setFailedMessage($e->getMessage());

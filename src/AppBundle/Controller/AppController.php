@@ -6,6 +6,7 @@ use AppBundle\Common\EventsException;
 use AppBundle\Entity\Mikeal;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AppController extends BaseController
 {
@@ -34,7 +35,9 @@ class AppController extends BaseController
         } catch (EventsException $e) {
             $this->setFailedMessage($e->getMessage());
         }
-        return $this->makeJsonResponse();
+        $jsonResponse = $this->makeJsonResponse();
+        $jsonResponse->headers->set('Access-Control-Allow-Origin', '*');
+        return $jsonResponse;
     }
 
     /**

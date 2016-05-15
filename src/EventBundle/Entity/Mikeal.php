@@ -1,14 +1,14 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 use AppBundle\Entity\Base;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Entity\MikealRepository")
- * @ORM\Table(name="mikeal")
+ * @ORM\Entity(repositoryClass="EventBundle\Entity\MikealRepository")
+ * @ORM\Table(name="event_mikeal")
  */
 class Mikeal extends Base
 {

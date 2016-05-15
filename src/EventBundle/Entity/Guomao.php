@@ -1,14 +1,14 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 use AppBundle\Entity\Base;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Entity\GuomaoRepository")
- * @ORM\Table(name="guomao")
+ * @ORM\Entity(repositoryClass="EventBundle\Entity\GuomaoRepository")
+ * @ORM\Table(name="event_guomao")
  */
 class Guomao extends Base
 {
@@ -28,8 +28,6 @@ class Guomao extends Base
      * @ORM\Column(name="votes", type="integer", nullable=false)
      */
     private $votes;
-
-
 
     /**
      * Get id

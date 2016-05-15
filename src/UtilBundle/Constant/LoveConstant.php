@@ -2,7 +2,7 @@
 
 namespace UtilBundle\Constant;
 
-class EventsConstant
+class LoveConstant
 {
     // 提示信息
     const STATUS_SUCCESS = 0;

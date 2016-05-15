@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use UtilBundle\Constant\EventsConstant;
+use UtilBundle\Constant\LoveConstant;
 
 class BaseController extends Controller
 {
@@ -15,8 +15,8 @@ class BaseController extends Controller
 
     function __construct()
     {
-        $this->status = EventsConstant::STATUS_FAILED;
-        $this->message = EventsConstant::MESSAGE_FAILED;
+        $this->status = LoveConstant::STATUS_FAILED;
+        $this->message = LoveConstant::MESSAGE_FAILED;
         $this->data = array();
     }
 
@@ -35,10 +35,10 @@ class BaseController extends Controller
         $this->message = $message;
     }
 
-    protected function setSuccess($data = array(), $message = EventsConstant::MESSAGE_SUCCESS)
+    protected function setSuccess($data = array(), $message = LoveConstant::MESSAGE_SUCCESS)
     {
-        $this->status = EventsConstant::STATUS_SUCCESS;
-        $this->message = EventsConstant::MESSAGE_SUCCESS;
+        $this->status = LoveConstant::STATUS_SUCCESS;
+        $this->message = LoveConstant::MESSAGE_SUCCESS;
         $this->data = $data;
     }
 }

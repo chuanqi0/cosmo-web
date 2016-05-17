@@ -14,6 +14,6 @@ class FantasticController extends BaseController
      */
     public function homeAction()
     {
-        return $this->makeJsonResponse();
+        return $this->render('FantasticBundle::home.html.twig');
     }
 }

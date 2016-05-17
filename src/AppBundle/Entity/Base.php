@@ -27,7 +27,7 @@ class Base
     public function __construct()
     {
         $current = UtilService::getCurrentTime();
-        $this->valid = false;
+        $this->valid = true;
         $this->updateTime = $current;
         $this->createTime = $current;
     }

@@ -5,9 +5,8 @@ namespace FantasticBundle\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
 use AppBundle\Controller\BaseController;
-use AppBundle\Common\LoveException;
 
-class FantasticController extends BaseController
+class FantasticViewController extends BaseController
 {
     /**
      * @Route("/")

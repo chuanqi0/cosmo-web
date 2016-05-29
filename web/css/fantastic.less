@@ -51,6 +51,10 @@ a:hover {
   text-decoration: none;
 }
 
+.fe-width {
+  width: 100%;
+}
+
 // 公共组件
 .fe-header {
   height: 30px;
@@ -136,6 +140,40 @@ a:hover {
     right: -16px;
     .fe-join {
       height: 88px;
+    }
+  }
+}
+
+// 首页
+.fe-video {
+  background-color: @gray-1;
+  .container {
+    background: @white;
+    .fe-video-title-area {
+      text-align: center;
+      padding-top: 25px;
+      padding-bottom: 5px;
+      .fe-video-title {
+        width: 325px;
+      }
+    }
+    .fe-video-subtitle-area {
+      text-align: center;
+      color: @gray-2;
+      font-size: 12px;
+      padding-bottom: 25px;
+    }
+    .fe-video-row {
+      padding: 0 8px;
+      &.bottom {
+        margin-top: 16px;
+      }
+      .col-md-6 {
+        padding: 0 8px;
+        img {
+          height: 245px;
+        }
+      }
     }
   }
 }

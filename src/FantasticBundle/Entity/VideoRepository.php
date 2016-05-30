@@ -6,7 +6,6 @@ use Doctrine\ORM\EntityRepository;
 
 class VideoRepository extends EntityRepository
 {
-
     public function findVideoByGuid($videoGuid)
     {
         return $this->findOneBy(array('guid' => $videoGuid));
@@ -16,5 +15,30 @@ class VideoRepository extends EntityRepository
     {
         $this->getEntityManager()->persist($video);
         $this->getEntityManager()->flush();
+    }
+
+    public function getLatestVideoList()
+    {
+        return $this->findBy(array('valid' => true), array('createTime' => 'DESC'), 5, 0);
+    }
+
+    public function getTotalVideoNumber()
+    {
+        $queryStr = "select count(v) from FantasticBundle:Video v where v.valid = true";
+        $query = $this->getEntityManager()->createQuery($queryStr);
+        $result = $query->getResult();
+        if ($result[0][1]) {
+            return $result[0][1];
+        } else {
+            return 0;
+        }
+    }
+
+    public function listToArray($videoList) {
+        $videoListArray = array();
+        foreach ($videoList as $video) {
+            array_push($videoListArray, $video->toArray());
+        }
+        return $videoListArray;
     }
 }

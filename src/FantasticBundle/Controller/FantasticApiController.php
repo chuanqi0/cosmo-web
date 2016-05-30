@@ -39,4 +39,27 @@ class FantasticApiController extends BaseController
         $jsonResponse = $this->makeJsonResponse();
         return $jsonResponse;
     }
+
+    /**
+     * @Route("/api/test")
+     * @Method({"GET"})
+     */
+    public function testAction()
+    {
+        try {
+            $videoRepository = $this->getDoctrine()->getRepository('FantasticBundle:Video');
+            $videoList = $videoRepository->getLatestVideoList();
+            $totalVideoNumber = $videoRepository->getTotalVideoNumber();
+            $dataOut = array(
+                'index' => 'home',
+                'videoList' => $videoRepository->listToArray($videoList),
+                'totalVideoNumber' => $totalVideoNumber
+            );
+            $this->setSuccess($dataOut);
+        } catch (LoveException $e) {
+            $this->setFailedMessage($e->getMessage());
+        }
+        $jsonResponse = $this->makeJsonResponse();
+        return $jsonResponse;
+    }
 }

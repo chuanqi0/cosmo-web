@@ -13,7 +13,15 @@ class FantasticViewController extends BaseController
      */
     public function homeAction()
     {
-        return $this->render('FantasticBundle::home.html.twig', array('index' => 'home'));
+        $videoRepository = $this->getDoctrine()->getRepository('FantasticBundle:Video');
+        $videoList = $videoRepository->getLatestVideoList();
+        $totalVideoNumber = $videoRepository->getTotalVideoNumber();
+        $dataOut = array(
+            'index' => 'home',
+            'totalVideoNumber' => $totalVideoNumber,
+            'videoList' => $videoRepository->listToArray($videoList)
+        );
+        return $this->render('FantasticBundle::home.html.twig', $dataOut);
     }
 
     /**

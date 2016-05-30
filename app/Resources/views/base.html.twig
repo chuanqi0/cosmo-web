@@ -20,8 +20,14 @@
             <a class="fe-logo-area" href="/">
                 <img class="fe-logo" src="{{ asset('img/fantastic/common/logo_1.png') }}" alt="Logo" />
             </a>
+            <a class="fe-login-area register" href="/register">
+                注册
+            </a>
+            <a class="fe-login-area split" href="javascript:void(0)">
+                &nbsp;/&nbsp;
+            </a>
             <a class="fe-login-area" href="javascript:void(0)">
-                登录 / 注册
+                登录
             </a>
         </div>
         <div class="fe-top">
@@ -44,19 +50,24 @@
             <div class="container">
                 <div class="row">
                     <ul class="fe-navbar">
-                        <li>
+                        <li {% if index == 'home' %} class="active" {% endif %}>
+                            <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>首页 HOME</div>
                         </li>
                         <li>
+                            <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>关于大赛 INFO</div>
                         </li>
                         <li>
+                            <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>奖项设置 AWARDS</div>
                         </li>
                         <li>
+                            <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>热门方案 WORKS</div>
                         </li>
                         <li>
+                            <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>颁奖典礼 CEREMONY</div>
                         </li>
                     </ul>
@@ -67,6 +78,12 @@
             </div>
         </div>
         {% block body %}{% endblock %}
+        <div class="fe-footer">
+
+        </div>
+        <div class="fe-bottom">
+
+        </div>
         <script src="//cdn.bootcss.com/jquery/1.12.1/jquery.min.js"></script>
         <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>

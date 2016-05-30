@@ -1,9 +1,10 @@
 // 公共颜色
 @white: #ffffff;
 @gray-1: #f2f2f2;
-@gray-2: #9e9e9e;
-@gray-3: #e6e6e6;
-@gray-4: #c8c8c8;
+@gray-2: #e2e2e2;
+@gray-3: #9e9e9e;
+@gray-4: #e6e6e6;
+@gray-5: #c8c8c8;
 @blue-1: #1c9bec;
 @blue-2: #0d3168;
 @blue-3: #0c203f;
@@ -47,10 +48,6 @@
   width: 1030px;
 }
 
-a:hover {
-  text-decoration: none;
-}
-
 .fe-width {
   width: 100%;
 }
@@ -58,7 +55,7 @@ a:hover {
 // 公共组件
 .fe-header {
   height: 30px;
-  background-color: @gray-3;
+  background-color: @gray-4;
   .fe-logo-area {
     float: left;
     height: 30px;
@@ -72,9 +69,15 @@ a:hover {
     float: right;
     height: 30px;
     line-height: 10px;
-    padding: 10px 20px;
+    padding: 10px 0;
     font-size: 12px;
     color: @blue-2;
+    &.split {
+      text-decoration: none;
+    }
+    &.register {
+      padding-right: 20px;
+    }
   }
 }
 
@@ -92,11 +95,12 @@ a:hover {
   }
   .fe-intro {
     float: right;
-    color: @gray-2;
+    color: @gray-3;
     font-size: 14px;
     line-height: 20px;
     text-align: right;
     padding: 88px 0 12px 0;
+    text-decoration: none;
   }
   .fe-title-area {
     float: right;
@@ -120,16 +124,28 @@ a:hover {
     margin: 0;
     li {
       float: left;
+      &.active, &:hover {
+        background-color: @blue-3;
+        .triangle {
+          display: block;
+        }
+      }
+      .triangle {
+        display: none;
+        width: 12px;
+        position: absolute;
+        &.first {
+          margin-left: 44px;
+        }
+      }
       div {
+        positon: relative;
         cursor: pointer;
         color: @white;
         height: 36px;
         line-height: 36px;
         font-size: 10px;
         padding: 0 20px;
-        &:hover {
-          background-color: @blue-3;
-        }
       }
     }
   }
@@ -144,36 +160,148 @@ a:hover {
   }
 }
 
+.fe-footer {
+  height: 200px;
+  background-color: @blue-2;
+}
+
+.fe-bottom {
+  height: 100px;
+  background-color: @black;
+}
+
 // 首页
-.fe-video {
+.fe-video-area {
   background-color: @gray-1;
   .container {
     background: @white;
-    .fe-video-title-area {
+    .fe-video-topic-area {
       text-align: center;
       padding-top: 25px;
       padding-bottom: 5px;
-      .fe-video-title {
+      .fe-video-topic {
         width: 325px;
       }
     }
-    .fe-video-subtitle-area {
+    .fe-video-subtopic-area {
       text-align: center;
       color: @gray-2;
-      font-size: 12px;
+      font-size: 14px;
       padding-bottom: 25px;
     }
     .fe-video-row {
       padding: 0 8px;
       &.bottom {
         margin-top: 16px;
+        margin-bottom: 25px;
       }
-      .col-md-6 {
+      .col-md-4 {
         padding: 0 8px;
         img {
-          height: 245px;
+          height: 240px;
         }
       }
+    }
+  }
+}
+
+.fe-case-area {
+  background-color: @gray-1;
+  .container {
+    background: @white;
+    .fe-case-topic-area {
+      text-align: center;
+      padding-top: 25px;
+      padding-bottom: 5px;
+      .fe-case-topic {
+        width: 325px;
+      }
+    }
+    .fe-case-subtopic-area {
+      text-align: center;
+      color: @gray-3;
+      font-size: 14px;
+      padding-bottom: 25px;
+    }
+    .fe-case-row {
+      padding: 0 8px 10px 0;
+      .col-md-4 {
+        padding: 0 8px;
+        .fe-case {
+          &.middle {
+            margin-top: 20px;
+          }
+          .fe-case-title {
+            font-size: 20px;
+            color: @blue-2;
+            line-height: 36px;
+            font-weight: bold;
+          }
+          .fe-case-description {
+            font-size: 14px;
+            color: @gray-3;
+            line-height: 20px;
+            padding-bottom: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 注册
+.fe-register {
+  background-color: @gray-1;
+  .container {
+    padding: 25px 160px 100px 160px;
+    background: @white;
+    .fe-register-title {
+      font-size: 20px;
+      color: @blue-2;
+      font-weight: bold;
+    }
+    .fe-register-description {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid @gray-2;
+    }
+  }
+}
+
+// 表单
+.fe-form {
+  .col-md-6 {
+    &.left {
+      padding: 10px 8px 10px 0;
+    }
+    &.right {
+      padding: 10px 0 10px 8px;
+    }
+  }
+  .col-md-12 {
+    padding: 10px 0;
+  }
+  .fe-form-top {
+    color: @blue-1;
+    font-size: 14px;
+  }
+  .fe-form-bottom {
+    padding-top: 10px;
+    input {
+      width: 100%;
+      height: 45px;
+      border-radius: 4px;
+      border: 1px solid @gray-2;
+      padding: 10px;
+      font-size: 14px;
+    }
+    textarea {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid @gray-2;
+      padding: 10px;
+      font-size: 14px;
+      resize: none;
     }
   }
 }

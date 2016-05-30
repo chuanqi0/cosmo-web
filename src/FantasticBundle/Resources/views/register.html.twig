@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The Fantastic Event{% endblock %}
+
+{% block body %}
+    <div class="fe-register">
+        <div class="container">
+            <div class="row fe-register-title">
+                大赛注册
+            </div>
+            <div class="row fe-register-description">
+                以下为<strong>必填信息</strong>, 我们不会将您的信息泄漏于他人或用作商业用途
+            </div>
+            <div class="row fe-form">
+                <div class="col-md-6 left">
+                    <div class="fe-form-top">姓名</div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入姓名" />
+                    </div>
+                </div>
+                <div class="col-md-6 right">
+                    <div class="fe-form-top">身份证号</div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入身份证号" />
+                    </div>
+                </div>
+                <div class="col-md-6 left">
+                    <div class="fe-form-top">手机号</div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入手机号" />
+                    </div>
+                </div>
+                <div class="col-md-6 right">
+                    <div class="fe-form-top">验证码</div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="接收到的验证码" />
+                    </div>
+                </div>
+                <div class="col-md-6 left">
+                    <div class="fe-form-top">登录密码</div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入登录密码" />
+                    </div>
+                </div>
+                <div class="col-md-6 right">
+                    <div class="fe-form-top">微信号</div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入微信号" />
+                    </div>
+                </div>
+            </div>
+            <div class="row fe-register-description">
+                以下为<strong>选项信息</strong>
+            </div>
+            <div class="row fe-form">
+                <div class="col-md-6 left">
+                    <div class="fe-form-top">公司名称</div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入公司名称" />
+                    </div>
+                </div>
+                <div class="col-md-6 right">
+                    <div class="fe-form-top">公司所在地</div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入公司所在地" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="fe-form-top">公司简介</div>
+                    <div class="fe-form-bottom">
+                        <textarea placeholder="在这里输入公司所在地" rows="6"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

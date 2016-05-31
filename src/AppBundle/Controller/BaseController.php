@@ -38,7 +38,7 @@ class BaseController extends Controller
     protected function setSuccess($data = array(), $message = LoveConstant::MESSAGE_SUCCESS)
     {
         $this->status = LoveConstant::STATUS_SUCCESS;
-        $this->message = LoveConstant::MESSAGE_SUCCESS;
+        $this->message = $message;
         $this->data = $data;
     }
 }

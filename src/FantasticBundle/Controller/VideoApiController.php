@@ -2,26 +2,27 @@
 
 namespace FantasticBundle\Controller;
 
-use FantasticBundle\Entity\Video;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Controller\BaseController;
+use FantasticBundle\Entity\Video;
 
-class FantasticApiController extends BaseController
+class VideoApiController extends BaseController
 {
     /**
-     * @Route("/api/fantastic/video/add")
+     * @Route("/api/fantastic/video/publish")
      * @Method({"POST"})
      */
-    public function videoAddAction(Request $request)
+    public function videoPublishAction(Request $request)
     {
         try {
             $videoGuid = $request->get("videoGuid");
             $title = $request->get("title");
             $cover = $request->get("cover");
             $url = $request->get("url");
+            // 处理业务
             $videoRepository = $this->getDoctrine()->getRepository('FantasticBundle:Video');
             $video = $videoRepository->findVideoByGuid($videoGuid);
             if (!$video) {
@@ -33,30 +34,7 @@ class FantasticApiController extends BaseController
             $videoRepository->saveVideo($video);
             // 设置返回数据
             $this->setSuccess($video->toArray());
-        } catch (LoveException $e) {
-            $this->setFailedMessage($e->getMessage());
-        }
-        $jsonResponse = $this->makeJsonResponse();
-        return $jsonResponse;
-    }
-
-    /**
-     * @Route("/api/test")
-     * @Method({"GET"})
-     */
-    public function testAction()
-    {
-        try {
-            $videoRepository = $this->getDoctrine()->getRepository('FantasticBundle:Video');
-            $videoList = $videoRepository->getLatestVideoList();
-            $totalVideoNumber = $videoRepository->getTotalVideoNumber();
-            $dataOut = array(
-                'index' => 'home',
-                'videoList' => $videoRepository->listToArray($videoList),
-                'totalVideoNumber' => $totalVideoNumber
-            );
-            $this->setSuccess($dataOut);
-        } catch (LoveException $e) {
+        } catch (\Exception $e) {
             $this->setFailedMessage($e->getMessage());
         }
         $jsonResponse = $this->makeJsonResponse();

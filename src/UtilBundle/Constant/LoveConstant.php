@@ -10,4 +10,13 @@ class LoveConstant
 
     const MESSAGE_SUCCESS = '请求执行成功';
     const MESSAGE_FAILED = '请求执行失败';
+    const MESSAGE_USER_REGISTER_SUCCESS = '用户注册成功';
+    const MESSAGE_USER_LOGIN_SUCCESS = '用户登录成功';
+    const MESSAGE_USER_UPDATE_SUCCESS = '用户更新成功';
+
+    const ERROR_TELEPHONE_EXIST = '手机号已注册';
+    const ERROR_TELEPHONE_NOT_EXIST = '手机号未注册';
+    const ERROR_USER_PASSWORD = '密码不正确';
+    const ERROR_USER_NOT_EXIST = '用户不存在';
+    const ERROR_AWARD_NOT_EXIST = '奖项不存在';
 }

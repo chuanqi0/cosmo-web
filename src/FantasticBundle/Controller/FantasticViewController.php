@@ -25,6 +25,14 @@ class FantasticViewController extends BaseController
     }
 
     /**
+     * @Route("/join")
+     */
+    public function joinAction()
+    {
+        return $this->render('FantasticBundle::join.html.twig', array('index' => 'join'));
+    }
+
+    /**
      * @Route("/register")
      */
     public function registerAction()

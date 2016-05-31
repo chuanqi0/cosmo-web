@@ -3,6 +3,7 @@
 namespace FantasticBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use UtilBundle\Service\UtilService;
 
 class VideoRepository extends EntityRepository
 {
@@ -13,6 +14,7 @@ class VideoRepository extends EntityRepository
 
     public function saveVideo($video)
     {
+        $video->setUpdateTime(UtilService::getCurrentTime());
         $this->getEntityManager()->persist($video);
         $this->getEntityManager()->flush();
     }

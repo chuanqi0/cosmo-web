@@ -1,10 +1,8 @@
 // 公共颜色
 @white: #ffffff;
 @gray-1: #f2f2f2;
-@gray-2: #e2e2e2;
+@gray-2: #e3e3e3;
 @gray-3: #9e9e9e;
-@gray-4: #e6e6e6;
-@gray-5: #c8c8c8;
 @blue-1: #1c9bec;
 @blue-2: #0d3168;
 @blue-3: #0c203f;
@@ -55,7 +53,7 @@
 // 公共组件
 .fe-header {
   height: 30px;
-  background-color: @gray-4;
+  background-color: @gray-2;
   .fe-logo-area {
     float: left;
     height: 30px;
@@ -117,7 +115,7 @@
   .container {
     position: relative;
   }
-  .fe-navbar {
+  ul {
     float: left;
     list-style: none;
     padding: 0;
@@ -185,7 +183,7 @@
     }
     .fe-video-subtopic-area {
       text-align: center;
-      color: @gray-2;
+      color: @gray-3;
       font-size: 14px;
       padding-bottom: 25px;
     }
@@ -265,6 +263,37 @@
       padding-bottom: 10px;
       border-bottom: 1px solid @gray-2;
     }
+  }
+}
+
+// 报名
+.fe-join {
+  .fe-join-left {
+    padding: 0;
+    background-color: @gray-2;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        height: 60px;
+        color: @black;
+        &.active, &:hover {
+          color: @white;
+          background-color: @blue-1;
+        }
+        div {
+          cursor: pointer;
+          height: 60px;
+          line-height: 60px;
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .fe-join-right {
+
   }
 }
 

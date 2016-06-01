@@ -7,9 +7,9 @@ use UtilBundle\Service\UtilService;
 
 class UserRepository extends EntityRepository
 {
-    public function findUserByGuid($userGuid)
+    public function findUserByGuid($guid)
     {
-        return $this->findOneBy(array('guid' => $userGuid, 'valid' => true));
+        return $this->findOneBy(array('guid' => $guid, 'valid' => true));
     }
 
     public function findUserByTelephone($telephone)

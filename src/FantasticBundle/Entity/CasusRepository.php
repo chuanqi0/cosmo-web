@@ -7,6 +7,10 @@ use UtilBundle\Service\UtilService;
 
 class CasusRepository extends EntityRepository
 {
+    public function findCasusByGuid($guid) {
+        return $this->findOneBy(array('guid' => $guid));
+    }
+
     public function saveCasus($casus)
     {
         $casus->setUpdateTime(UtilService::getCurrentTime());

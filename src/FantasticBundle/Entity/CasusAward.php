@@ -35,9 +35,9 @@ class CasusAward extends Base
     private $awardName;
 
     /**
-     * @ORM\Column(name="award_price", type="decimal", scale=2, nullable=false)
+     * @ORM\Column(name="award_fee", type="decimal", scale=2, nullable=false)
      */
-    private $awardPrice;
+    private $awardFee;
 
     public function __construct()
     {
@@ -124,25 +124,25 @@ class CasusAward extends Base
     }
 
     /**
-     * Set awardPrice
+     * Set awardFee
      *
-     * @param string $awardPrice
+     * @param string $awardFee
      * @return CasusAward
      */
-    public function setAwardPrice($awardPrice)
+    public function setAwardFee($awardFee)
     {
-        $this->awardPrice = $awardPrice;
+        $this->awardFee = $awardFee;
 
         return $this;
     }
 
     /**
-     * Get awardPrice
+     * Get awardFee
      *
      * @return string 
      */
-    public function getAwardPrice()
+    public function getAwardFee()
     {
-        return $this->awardPrice;
+        return $this->awardFee;
     }
 }

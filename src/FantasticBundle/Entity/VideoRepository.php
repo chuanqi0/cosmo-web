@@ -7,9 +7,9 @@ use UtilBundle\Service\UtilService;
 
 class VideoRepository extends EntityRepository
 {
-    public function findVideoByGuid($videoGuid)
+    public function findVideoByGuid($guid)
     {
-        return $this->findOneBy(array('guid' => $videoGuid));
+        return $this->findOneBy(array('guid' => $guid));
     }
 
     public function saveVideo($video)

@@ -3,10 +3,9 @@
 namespace FantasticBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\JoinColumn;
 
 use AppBundle\Entity\Base;
+use UtilBundle\Service\UtilService;
 
 /**
  * @ORM\Entity(repositoryClass="FantasticBundle\Entity\CasusRepository")
@@ -27,8 +26,7 @@ class Casus extends Base
     private $guid;
 
     /**
-     * @ManyToOne(targetEntity="User")
-     * @JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
     private $userId;
 
@@ -77,6 +75,16 @@ class Casus extends Base
      */
     private $paid;
 
+    /**
+     * @ORM\Column(name="public", type="boolean", nullable=false)
+     */
+    private $public;
+
+    /**
+     * @ORM\Column(name="cover", type="string", length=100, nullable=false)
+     */
+    private $cover;
+
     public function __construct()
     {
         parent::__construct();
@@ -84,6 +92,10 @@ class Casus extends Base
         $this->guid = UtilService::getGUID();
         $this->content = '';
         $this->paid = false;
+        $this->awardNumber = 0;
+        $this->totalFee = 0.00;
+        $this->public = false;
+        $this->cover = '';
     }
 
     /**
@@ -347,5 +359,60 @@ class Casus extends Base
     public function getPaid()
     {
         return $this->paid;
+    }
+
+    /**
+     * Set public
+     *
+     * @param boolean $public
+     * @return Casus
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return boolean
+     */
+    public function getPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param string $cover
+     * @return Casus
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return string
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+
+    public function toArray() {
+        return array(
+            "guid" => $this->guid,
+            "title" => $this->title,
+            'description' => $this->description,
+            'cover' => $this->cover
+        );
     }
 }

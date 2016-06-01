@@ -13,6 +13,8 @@ class LoveConstant
     const MESSAGE_USER_REGISTER_SUCCESS = '用户注册成功';
     const MESSAGE_USER_LOGIN_SUCCESS = '用户登录成功';
     const MESSAGE_USER_UPDATE_SUCCESS = '用户更新成功';
+    const MESSAGE_CASUS_PUBLISH_SUCCESS = '案例发布成功';
+    const MEESAGE_CASUS_UPDATE_SUCCESS = '案例更新成功';
 
     const ERROR_TELEPHONE_EXIST = '手机号已注册';
     const ERROR_TELEPHONE_NOT_EXIST = '手机号未注册';

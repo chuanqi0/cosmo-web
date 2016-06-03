@@ -149,7 +149,7 @@
   }
   .fe-join-area {
     position: absolute;
-    z-index: 100;
+    z-index: 1000;
     top: -16px;
     right: -16px;
     .fe-join {
@@ -267,9 +267,11 @@
 }
 
 // 报名
-.fe-join {
-  .fe-join-left {
-    padding: 0;
+.fe-apply {
+  background-color: @gray-1;
+  .fe-apply-left {
+    width: 170px;
+    float: left;
     background-color: @gray-2;
     ul {
       list-style: none;
@@ -292,8 +294,11 @@
       }
     }
   }
-  .fe-join-right {
-
+  .fe-apply-right {
+    background: @white;
+    width: 860px;
+    padding: 50px;
+    float: left;
   }
 }
 

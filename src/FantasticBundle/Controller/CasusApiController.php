@@ -16,6 +16,32 @@ use UtilBundle\Constant\LoveConstant;
 class CasusApiController extends BaseController
 {
     /**
+     * @Route("/api/fantastic/casus/edit")
+     * @Method({"POST"})
+     */
+    public function casusEditAction(Request $request)
+    {
+        try {
+            $casusGuid = $request->get('casusGuid');
+            $content = $request->get('content');
+            // 处理业务
+            $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+            $casus = $casusRepository->findCasusByGuid($casusGuid);
+            if (!$casus) {
+                throw new LoveException(LoveConstant::ERROR_CASUS_NOT_EXIST);
+            }
+            $casus->setContent($content);
+            $casusRepository->saveCasus($casus);
+            // 设置返回数据
+            $this->setSuccess($casus->toArray(), LoveConstant::MEESAGE_CASUS_EDIT_SUCCESS);
+        } catch (\Exception $e) {
+            $this->setFailedMessage($e->getMessage());
+        }
+        $jsonResponse = $this->makeJsonResponse();
+        return $jsonResponse;
+    }
+
+    /**
      * @Route("/api/fantastic/casus/publish")
      * @Method({"POST"})
      */

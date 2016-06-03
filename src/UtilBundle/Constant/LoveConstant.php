@@ -15,10 +15,12 @@ class LoveConstant
     const MESSAGE_USER_UPDATE_SUCCESS = '用户更新成功';
     const MESSAGE_CASUS_PUBLISH_SUCCESS = '案例发布成功';
     const MEESAGE_CASUS_UPDATE_SUCCESS = '案例更新成功';
+    const MEESAGE_CASUS_EDIT_SUCCESS = '案例编辑成功';
 
     const ERROR_TELEPHONE_EXIST = '手机号已注册';
     const ERROR_TELEPHONE_NOT_EXIST = '手机号未注册';
     const ERROR_USER_PASSWORD = '密码不正确';
     const ERROR_USER_NOT_EXIST = '用户不存在';
+    const ERROR_CASUS_NOT_EXIST = '案例不存在';
     const ERROR_AWARD_NOT_EXIST = '奖项不存在';
 }

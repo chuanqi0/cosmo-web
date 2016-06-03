@@ -2,11 +2,15 @@
 
 {% block title %}The Fantastic Event{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/umeditor/css/umeditor.min.css') }}" />
+{% endblock %}
+
 {% block body %}
-    <div class="fe-join">
+    <div class="fe-apply">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 fe-join-left">
+                <div class="fe-apply-left">
                     <ul>
                         <li class="active"><div>1. 案例信息</div></li>
                         <li><div>2. 案例图文</div></li>
@@ -14,10 +18,19 @@
                         <li><div>4. 报名成功</div></li>
                     </ul>
                 </div>
-                <div class="col-md-10 fe-join-right">
-
+                <div class="fe-apply-right">
+                    <script type="text/plain" id="fe-editor" style="width: 760px">
+                        <p>请上传和填写案例的图文...</p>
+                    </script>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/umeditor/umeditor.config.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/umeditor/umeditor.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/umeditor/lang/zh-cn/zh-cn.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/controller/join.js') }}"></script>
 {% endblock %}

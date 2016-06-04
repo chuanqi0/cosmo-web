@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The Fantastic Event{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/umeditor/css/umeditor.min.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <div class="fe-apply" ng-controller="ApplyController">
+        <div class="container">
+            <div class="row">
+                <div class="fe-apply-left">
+                    <ul>
+                        <li ng-class="{'active': applyStep == null || applyStep == 1}"><div>1. 案例信息</div></li>
+                        <li ng-class="{'active': applyStep == 2}"><div>2. 案例图文</div></li>
+                        <li ng-class="{'active': applyStep == 3}"><div>3. 支付费用</div></li>
+                        <li ng-class="{'active': applyStep == 4}"><div>4. 报名成功</div></li>
+                    </ul>
+                </div>
+                <div class="fe-apply-right">
+                    <div id="fe-step-1" ng-show="applyStep == null || applyStep == 1" class="row fe-form fe-m0">
+                        <div class="col-md-12">
+                            <div class="fe-form-top">
+                                <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+                                <span class="fe-form-title">&nbsp;案例名称</span>
+                            </div>
+                            <div class="fe-form-bottom">
+                                <input type="text" placeholder="在这里输入案例名称" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="fe-form-top">
+                                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                                <span class="fe-form-title">&nbsp;案例简介</span>
+                            </div>
+                            <div class="fe-form-bottom">
+                                <textarea placeholder="在这里输入案例简介" rows="6"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="fe-form-top">
+                                <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+                                <span class="fe-form-title">&nbsp;价格区间</span>
+                            </div>
+                            <div class="fe-form-bottom">
+                                <select ng-model="price" ng-options="price for price in priceList"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 left">
+                            <div class="fe-form-top">
+                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                                <span class="fe-form-title">&nbsp;地区</span>
+                            </div>
+                            <div class="fe-form-bottom">
+                                <select ng-model="province" ng-options="province for province in provinceList"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 right">
+                            <div class="fe-form-top">
+                            </div>
+                            <div class="fe-form-bottom">
+                                <select ng-model="city" ng-options="city for city in cityList"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="fe-form-top">
+                                <span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+                                <span class="fe-form-title">&nbsp;场地</span>
+                            </div>
+                            <div class="fe-form-bottom">
+                                <input type="text" placeholder="在这里输入场地" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="fe-step-2" ng-show="applyStep == 2">
+                        <script type="text/plain" id="fe-editor" style="width: 760px">
+                            <p>请上传和填写案例的图文...</p>
+                        </script>
+                    </div>
+                    <div id="fe-step-3" ng-show="appStep == 3"></div>
+                    <div id="fe-step-4" ng-show="appStep == 4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/umeditor/umeditor.config.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/umeditor/umeditor.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/umeditor/lang/zh-cn/zh-cn.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/controller/apply.js') }}"></script>
+{% endblock %}

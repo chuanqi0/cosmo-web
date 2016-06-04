@@ -30,11 +30,11 @@ class FantasticViewController extends BaseController
     }
 
     /**
-     * @Route("/join")
+     * @Route("/apply")
      */
-    public function joinAction()
+    public function applyAction()
     {
-        return $this->render('FantasticBundle::join.html.twig', array('index' => 'join'));
+        return $this->render('FantasticBundle::apply.html.twig', array('index' => 'join'));
     }
 
     /**

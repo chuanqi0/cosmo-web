@@ -50,6 +50,14 @@
   width: 100%;
 }
 
+.fe-m0 {
+  margin: 0;
+}
+
+.fe-p0 {
+  padding: 0;
+}
+
 // 公共组件
 .fe-header {
   height: 30px;
@@ -297,7 +305,7 @@
   .fe-apply-right {
     background: @white;
     width: 860px;
-    padding: 50px;
+    padding: 25px 50px 75px 50px;
     float: left;
   }
 }
@@ -316,8 +324,19 @@
     padding: 10px 0;
   }
   .fe-form-top {
-    color: @blue-1;
-    font-size: 14px;
+    height: 20px;
+    .fe-form-title {
+      color: @blue-1;
+      float: left;
+      line-height: 20px;
+      font-size: 14px;
+    }
+    .glyphicon {
+      color: @blue-1;
+      float: left;
+      line-height: 20px;
+      font-size: 14px;
+    }
   }
   .fe-form-bottom {
     padding-top: 10px;
@@ -336,6 +355,14 @@
       padding: 10px;
       font-size: 14px;
       resize: none;
+    }
+    select {
+      background-color: @white;
+      width: 100%;
+      height: 45px;
+      border-radius: 4px;
+      border: 1px solid @gray-2;
+      font-size: 14px;
     }
   }
 }

@@ -34,9 +34,13 @@ class Award extends Base
      */
     private $casusNumber;
 
+    private $apply;
+
     public function __construct()
     {
         parent::__construct();
+
+        $this->apply = false;
     }
 
     /**
@@ -116,5 +120,25 @@ class Award extends Base
     public function getCasusNumber()
     {
         return $this->casusNumber;
+    }
+
+    public function setApply($apply)
+    {
+        $this->apply = $apply;
+
+        return $this;
+    }
+
+    public function getApply($apply) {
+        return $this->apply;
+    }
+
+    public function toArray() {
+        return array(
+            "id" => $this->id,
+            "name" => $this->name,
+            "fee" => $this->fee,
+            "apply" => $this->apply
+        );
     }
 }

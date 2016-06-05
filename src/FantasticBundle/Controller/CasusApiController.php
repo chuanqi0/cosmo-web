@@ -16,6 +16,25 @@ use UtilBundle\Constant\LoveConstant;
 class CasusApiController extends BaseController
 {
     /**
+     * @Route("/api/fantastic/award/list")
+     * @Method({"GET"})
+     */
+    public function awardListAction(Request $request)
+    {
+        try {
+            // 处理业务
+            $awardRepository = $this->getDoctrine()->getRepository('FantasticBundle:Award');
+            $awardList = $awardRepository->getAwardList();
+            // 设置返回数据
+            $this->setSuccess($awardRepository->listToArray($awardList), LoveConstant::MEESAGE_CASUS_EDIT_SUCCESS);
+        } catch (\Exception $e) {
+            $this->setFailedMessage($e->getMessage());
+        }
+        $jsonResponse = $this->makeJsonResponse();
+        return $jsonResponse;
+    }
+
+    /**
      * @Route("/api/fantastic/casus/edit")
      * @Method({"POST"})
      */

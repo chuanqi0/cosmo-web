@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Controller\BaseController;
 use FantasticBundle\Entity\Casus;
-use FantasticBundle\Entity\Award;
 use FantasticBundle\Entity\CasusAward;
 use UtilBundle\Constant\LoveConstant;
 
@@ -19,7 +18,7 @@ class CasusApiController extends BaseController
      * @Route("/api/fantastic/award/list")
      * @Method({"GET"})
      */
-    public function awardListAction(Request $request)
+    public function awardListAction()
     {
         try {
             // 处理业务

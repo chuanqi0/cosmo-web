@@ -16,6 +16,7 @@ class LoveConstant
     const MESSAGE_CASUS_PUBLISH_SUCCESS = '案例发布成功';
     const MEESAGE_CASUS_UPDATE_SUCCESS = '案例更新成功';
     const MEESAGE_CASUS_EDIT_SUCCESS = '案例编辑成功';
+    const MEESAGE_REGION_SUCCESS = '获取地区列表成功';
 
     const ERROR_TELEPHONE_EXIST = '手机号已注册';
     const ERROR_TELEPHONE_NOT_EXIST = '手机号未注册';

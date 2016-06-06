@@ -53,7 +53,7 @@
                                 <span class="fe-form-title">&nbsp;地区</span>
                             </div>
                             <div class="fe-form-bottom">
-                                <select ng-model="province" ng-options="province for province in provinceList"></select>
+                                <select ng-model="province" ng-options="province for province in provinceList" ng-change="changeProvince()"></select>
                             </div>
                         </div>
                         <div class="col-md-6 right">

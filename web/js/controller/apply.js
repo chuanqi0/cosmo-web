@@ -8,9 +8,10 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
     $scope.priceList = ['5万以下', '5~10万', '10~20万', '20~50万', '50万以上'];
     $scope.price = '5万以下';
     // 地区
-    $scope.provinceList = ['北京', '上海'];
+    $scope.regionList = [];
+    $scope.provinceList = [];
     $scope.province = '北京';
-    $scope.cityList = ['朝阳', '海淀'];
+    $scope.cityList = [];
     $scope.city = '朝阳';
     $scope.awardList = [];
 
@@ -35,6 +36,34 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
         });
     };
 
+    $scope.changeProvince = function () {
+        $scope.cityList = $scope.regionList[$scope.province];
+        $scope.city = $scope.cityList[0];
+    },
+
+    $scope.getRegionList = function() {
+        $.ajax({
+            url: '/api/region/list',
+            type: 'GET',
+            async: false,
+            dataType: 'json',
+            success: function (response) {
+                if (response.status == 0) {
+                    $scope.regionList = response.data;
+                    for (var region in $scope.regionList) {
+                        $scope.provinceList.push(region);
+                    }
+                    $scope.cityList = $scope.regionList[$scope.province];
+                } else {
+                    console.log(response.message);
+                }
+            },
+            error: function(xhr, status, err) {
+                console.error(err);
+            }
+        });
+    };
+
     $scope.applyAward = function(index) {
         if ($scope.awardList.length > index) {
             $scope.awardList[index].apply = !$scope.awardList[index].apply;
@@ -48,5 +77,6 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
 
     $scope.init = function($index) {
         $scope.getAwardList();
+        $scope.getRegionList();
     }
 }]);

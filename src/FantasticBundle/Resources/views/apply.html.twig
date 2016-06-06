@@ -78,7 +78,7 @@
                                 <span class="fe-form-title">&nbsp;选送奖项(可多选)</span>
                             </div>
                             <div class="fe-form-bottom pt0">
-                                <div class='col-md-6' ng-repeat="award in awardList track by $index" ng-class="{true: 'pt-left', false: 'pt-right'}[$index % 2 == 0]" onFinishRender>
+                                <div class='col-md-6' ng-repeat="award in awardList track by $index" ng-class="{true: 'pt-left', false: 'pt-right'}[$index % 2 == 0]">
                                     <div class="fe-choose" ng-click="applyAward($index)" ng-class="{'apply': award.apply}">
                                         <span>{{ '{{ award.name }}' }}</span>
                                         <span>￥{{ '{{ award.fee }}' }}</span>
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-4 fe-pt10">
-                            <div class="fe-btn next">下一步</div>
+                            <div class="fe-btn next" ng-click="jumpToStep(2)">下一步</div>
                         </div>
                     </div>
                     <div id="fe-step-2" ng-show="applyStep == 2">

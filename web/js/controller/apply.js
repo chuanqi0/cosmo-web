@@ -23,6 +23,8 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
             success: function (response) {
                 if (response.status == 0) {
                     $scope.awardList = response.data;
+                    var leftHeight = 772 + Math.ceil($scope.awardList.length / 2) * 55;
+                    $('.fe-apply-left').css('height', leftHeight + 'px');
                 } else {
                     console.log(response.message);
                 }
@@ -33,30 +35,18 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
         });
     };
 
-    $scope.applyAward = function($index) {
-        if ($scope.awardList.length > $index) {
-            $scope.awardList[$index].apply = !$scope.awardList[$index].apply;
+    $scope.applyAward = function(index) {
+        if ($scope.awardList.length > index) {
+            $scope.awardList[index].apply = !$scope.awardList[index].apply;
         }
     };
 
-    $scope.$watch('feApplyRightFinished', function (feApplyRightFinishedEvent) {
-        console.log($scope.awardList.length);
-    });
+    $scope.jumpToStep = function(step) {
+        $cookieStore.put('applyStep', step);
+        $scope.applyStep = step;
+    };
 
     $scope.init = function($index) {
         $scope.getAwardList();
     }
 }]);
-
-app.directive('onFinishRender', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attr) {
-            if (scope.$last === true) {
-                $timeout(function() {
-                    scope.$emit('feApplyRightFinished');
-                });
-            }
-        }
-    };
-});

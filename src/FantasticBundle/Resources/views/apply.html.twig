@@ -26,7 +26,7 @@
                                 <span class="fe-form-title">&nbsp;案例名称</span>
                             </div>
                             <div class="fe-form-bottom">
-                                <input type="text" placeholder="在这里输入案例名称" />
+                                <input type="text" placeholder="在这里输入案例名称" ng-model="name" ng-class="{'fe-error': name == '' && validator == true}"/>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -35,7 +35,7 @@
                                 <span class="fe-form-title">&nbsp;案例简介</span>
                             </div>
                             <div class="fe-form-bottom">
-                                <textarea placeholder="在这里输入案例简介" rows="6"></textarea>
+                                <textarea placeholder="在这里输入案例简介" rows="6" ng-model="description" ng-class="{'fe-error': description == '' && validator == true}"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -90,10 +90,24 @@
                             <div class="fe-btn next" ng-click="jumpToStep(2)">下一步</div>
                         </div>
                     </div>
-                    <div id="fe-step-2" ng-show="applyStep == 2">
-                        <script type="text/plain" id="fe-editor" style="width: 760px">
-                            <p>请上传和填写案例的图文...</p>
-                        </script>
+                    <div id="fe-step-2" ng-show="applyStep == 2" class="row fe-form fe-m0">
+                        <div class="col-md-12">
+                            <div class="fe-form-top">
+                                <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                                <span class="fe-form-title">&nbsp;案例图文</span>
+                            </div>
+                            <div class="fe-form-bottom">
+                                <script type="text/plain" id="fe-editor" style="width: 760px; height: 550px">
+                                    <p>请上传和填写案例的图文...</p>
+                                </script>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-md-offset-2 fe-pt10">
+                            <div class="fe-btn before" ng-click="jumpToStep(1)">上一步</div>
+                        </div>
+                        <div class="col-md-3 col-md-offset-2 fe-pt10">
+                            <div class="fe-btn next" ng-click="jumpToStep(3)">下一步</div>
+                        </div>
                     </div>
                     <div id="fe-step-3" ng-show="appStep == 3"></div>
                     <div id="fe-step-4" ng-show="appStep == 4"></div>

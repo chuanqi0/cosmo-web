@@ -4,6 +4,9 @@ var um = UM.getEditor('fe-editor');
 app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $cookieStore, $http) {
     // 申请步骤
     $scope.applyStep = $cookieStore.get('applyStep');
+    $scope.name = '';
+    $scope.description = '';
+    $scope.place = '';
     // 价格
     $scope.priceList = ['5万以下', '5~10万', '10~20万', '20~50万', '50万以上'];
     $scope.price = '5万以下';
@@ -14,6 +17,16 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
     $scope.cityList = [];
     $scope.city = '朝阳';
     $scope.awardList = [];
+    $scope.validator = false;
+
+    $scope.refreshLeftHeight = function() {
+        if ($scope.applyStep == 1) {
+            var leftHeight = 772 + Math.ceil($scope.awardList.length / 2) * 55;
+            $('.fe-apply-left').css('height', leftHeight + 'px');
+        } else if ($scope.applyStep == 2) {
+            $('.fe-apply-left').css('height', '757px');
+        }
+    };
 
     $scope.getAwardList = function() {
         $.ajax({
@@ -24,8 +37,7 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
             success: function (response) {
                 if (response.status == 0) {
                     $scope.awardList = response.data;
-                    var leftHeight = 772 + Math.ceil($scope.awardList.length / 2) * 55;
-                    $('.fe-apply-left').css('height', leftHeight + 'px');
+                    $scope.refreshLeftHeight();
                 } else {
                     console.log(response.message);
                 }
@@ -70,9 +82,26 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
         }
     };
 
+    $scope.checkFirstStep = function() {
+        if ($scope.name == '') {
+            return false;
+        }
+    };
+
     $scope.jumpToStep = function(step) {
-        $cookieStore.put('applyStep', step);
-        $scope.applyStep = step;
+        $scope.validator = false;
+        var check = true;
+        if ($scope.applyStep == 1 && step == 2) {
+            check = $scope.checkFirstStep();
+        }
+        if (check == true) {
+            $scope.validator = false;
+            $cookieStore.put('applyStep', step);
+            $scope.applyStep = step;
+            $scope.refreshLeftHeight();
+        } else {
+            $scope.validator = true;
+        }
     };
 
     $scope.init = function($index) {

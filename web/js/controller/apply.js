@@ -1,5 +1,7 @@
 // 实例化编辑器
-var um = UM.getEditor('fe-editor');
+var um = UM.getEditor('myEditor');
+um.setWidth(758);
+um.setHeight(550);
 
 app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $cookieStore, $http) {
     // 申请步骤
@@ -51,7 +53,7 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
     $scope.changeProvince = function () {
         $scope.cityList = $scope.regionList[$scope.province];
         $scope.city = $scope.cityList[0];
-    },
+    };
 
     $scope.getRegionList = function() {
         $.ajax({
@@ -84,8 +86,38 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
 
     $scope.checkFirstStep = function() {
         if ($scope.name == '') {
+            alert("请输入案例名称");
+            return false;
+        } else if ($scope.description == '') {
+            alert("请输入案例简介");
+            return false;
+        } else if ($scope.place == '') {
+            alert("请输入案例场地");
+            return false;
+        } else {
+            var hasAward = false;
+            console.log($scope.awardList);
+            for (var i = 0; i < $scope.awardList.length; i++) {
+                if ($scope.awardList[i].apply == true) {
+                    hasAward = true;
+                    break;
+                }
+            }
+            if (hasAward == false) {
+                alert("请至少报名一个选送奖项");
+                return false;
+            }
+        }
+        return true;
+    };
+
+    $scope.checkSecondStep = function () {
+        var content = UM.getEditor('myEditor').getContent();
+        if (content.length < 200) {
+            alert("案例图文必须超过200字");
             return false;
         }
+        return true;
     };
 
     $scope.jumpToStep = function(step) {
@@ -93,6 +125,8 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
         var check = true;
         if ($scope.applyStep == 1 && step == 2) {
             check = $scope.checkFirstStep();
+        } else if ($scope.applyStep == 2 && step == 3) {
+            check = $scope.checkSecondStep();
         }
         if (check == true) {
             $scope.validator = false;

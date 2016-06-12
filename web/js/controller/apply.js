@@ -1,7 +1,7 @@
 // 实例化编辑器
 var um = UM.getEditor('myEditor');
 um.setWidth(758);
-um.setHeight(550);
+um.setHeight(650);
 
 app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $cookieStore, $http) {
     // 申请步骤
@@ -26,7 +26,7 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
             var leftHeight = 772 + Math.ceil($scope.awardList.length / 2) * 55;
             $('.fe-apply-left').css('height', leftHeight + 'px');
         } else if ($scope.applyStep == 2) {
-            $('.fe-apply-left').css('height', '757px');
+            $('.fe-apply-left').css('height', '912px');
         }
     };
 

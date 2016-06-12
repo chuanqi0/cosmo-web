@@ -140,8 +140,8 @@
         // ,imagePath:URL + "php/"                     //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
         // ,imageFieldName:"upfile"                   //图片数据的key,若此处修改，需要在后台对应文件修改对应参数
 
-        ,imageUrl:"http://localhost:8000/media/demo/upload.php"             //图片上传提交地址
-        ,imagePath:URL + "php/"                     //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
+        ,imageUrl:URL+"php/imageUp.php"             //图片上传提交地址
+        ,imagePath:""                              //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
         ,imageFieldName:"upfile"                   //图片数据的key,若此处修改，需要在后台对应文件修改对应参数
 
 
@@ -234,7 +234,7 @@
 
         //imageScaleEnabled
         // 是否允许点击文件拖拽改变大小,默认true
-        //,imageScaleEnabled:true
+        ,imageScaleEnabled:false
 
         //dropFileEnabled
         // 是否允许拖放图片到编辑区域，上传并插入,默认true
@@ -246,11 +246,11 @@
 
         //autoHeightEnabled
         // 是否自动长高,默认true
-        //,autoHeightEnabled:true
+        ,autoHeightEnabled:false
 
         //autoFloatEnabled
         //是否保持toolbar的位置不动,默认true
-        //,autoFloatEnabled:true
+        ,autoFloatEnabled:false
 
         //浮动时工具栏距离浏览器顶部的高度，用于某些具有固定头部的页面
         //,topOffset:30

@@ -131,7 +131,7 @@ class Uploader
      */
     public function getFileInfo()
     {
-        return array(
+        $info = array(
             "originalName" => $this->oriName ,
             "name" => $this->fileName ,
             "url" => $this->fullName ,
@@ -139,6 +139,7 @@ class Uploader
             "type" => $this->fileType ,
             "state" => $this->stateInfo
         );
+        return $info;
     }
 
     /**

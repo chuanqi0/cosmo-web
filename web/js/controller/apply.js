@@ -6,7 +6,8 @@ um.setHeight(650);
 app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $cookieStore, $http) {
     // 申请步骤
     $scope.applyStep = $cookieStore.get('applyStep');
-    $scope.name = '';
+    $scope.casusGuid = $cookieStore.get('casusGuid') == null ? '' : $cookieStore.get('casusGuid');
+    $scope.title = '';
     $scope.description = '';
     $scope.place = '';
     // 价格
@@ -96,7 +97,6 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
             return false;
         } else {
             var hasAward = false;
-            console.log($scope.awardList);
             for (var i = 0; i < $scope.awardList.length; i++) {
                 if ($scope.awardList[i].apply == true) {
                     hasAward = true;
@@ -120,6 +120,84 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
         return true;
     };
 
+    $scope.publishCasus = function () {
+        var applyAwardList = [];
+        for (var i = 0; i < $scope.awardList.length; i++) {
+            var award = $scope.awardList[i];
+            if (award.apply == true) {
+                applyAwardList.push(award.id);
+            }
+        }
+        var data = {
+            userGuid: '41B41492-E718-C839-9C4F-8D20E2F1A877',
+            casusGuid: $scope.casusGuid,
+            title: $scope.title,
+            description: $scope.description,
+            place: $scope.place,
+            price: $scope.price,
+            region: $scope.province + ' ' + $scope.city,
+            awardList: JSON.stringify(applyAwardList)
+        };
+        $.ajax({
+            url: '/api/fantastic/casus/publish',
+            type: 'POST',
+            async: false,
+            data: data,
+            dataType: 'json',
+            success: function (response) {
+                if (response.status == 0) {
+                    $scope.casusGuid = response.data.guid;
+                    $cookieStore.put('casusGuid', $scope.casusGuid);
+                } else {
+                    console.log(response.message);
+                    if ($scope.casusGuid == '') {
+                        alert("案例发布失败");
+                    } else {
+                        alert("案例更新失败");
+                    }
+                }
+            },
+            error: function(xhr, status, err) {
+                console.error(err);
+                if ($scope.casusGuid == '') {
+                    alert("案例发布失败");
+                } else {
+                    alert("案例更新失败");
+                }
+            }
+        });
+    };
+
+    $scope.getCasusDetail = function() {
+        var data = {
+            casusGuid: $scope.casusGuid
+        };
+        $.ajax({
+            url: '/api/fantastic/casus/detail',
+            type: 'POST',
+            async: false,
+            data: data,
+            dataType: 'json',
+            success: function (response) {
+                if (response.status == 0) {
+                    $scope.title = response.data.title;
+                    $scope.description = response.data.description;
+                    $scope.price = response.data.price;
+                    var regionArray = response.data.region.split(' ');
+                    $scope.province = regionArray[0];
+                    $scope.cityList = $scope.regionList[$scope.province];
+                    $scope.city = regionArray[1];
+                    $scope.place = response.data.place;
+                } else {
+                    console.log(response.message);
+                }
+            },
+            error: function(xhr, status, err) {
+                console.error(err);
+            }
+        });
+    };
+
     $scope.jumpToStep = function(step) {
         $scope.validator = false;
         var check = true;
@@ -129,6 +207,9 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
             check = $scope.checkSecondStep();
         }
         if (check == true) {
+            if ($scope.applyStep == 1 && step == 2) {
+                $scope.publishCasus();
+            }
             $scope.validator = false;
             $cookieStore.put('applyStep', step);
             $scope.applyStep = step;
@@ -141,5 +222,8 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
     $scope.init = function($index) {
         $scope.getAwardList();
         $scope.getRegionList();
+        if ($scope.casusGuid != '') {
+            $scope.getCasusDetail();
+        }
     }
 }]);

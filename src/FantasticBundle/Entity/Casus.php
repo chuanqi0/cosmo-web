@@ -415,4 +415,15 @@ class Casus extends Base
             'cover' => $this->cover
         );
     }
+
+    public function toDetailArray() {
+        return array(
+            "guid" => $this->guid,
+            "title" => $this->title,
+            'description' => $this->description,
+            'price' => $this->price,
+            'region' => $this->region,
+            'place' => $this->place
+        );
+    }
 }

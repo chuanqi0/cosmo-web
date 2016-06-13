@@ -60,6 +60,29 @@ class CasusApiController extends BaseController
     }
 
     /**
+     * @Route("/api/fantastic/casus/detail")
+     * @Method({"POST"})
+     */
+    public function casusDetailAction(Request $request)
+    {
+        try {
+            $casusGuid = $request->get('casusGuid');
+            // 处理业务
+            $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+            $casus = $casusRepository->findCasusByGuid($casusGuid);
+            if (!$casus) {
+                throw new LoveException(LoveConstant::ERROR_CASUS_NOT_EXIST);
+            }
+            // 设置返回数据
+            $this->setSuccess($casus->toDetailArray(), LoveConstant::MEESAGE_CASUS_DETAIL_SUCCESS);
+        } catch (\Exception $e) {
+            $this->setFailedMessage($e->getMessage());
+        }
+        $jsonResponse = $this->makeJsonResponse();
+        return $jsonResponse;
+    }
+
+    /**
      * @Route("/api/fantastic/casus/publish")
      * @Method({"POST"})
      */

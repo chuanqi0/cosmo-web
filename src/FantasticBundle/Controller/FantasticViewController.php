@@ -3,6 +3,7 @@
 namespace FantasticBundle\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Controller\BaseController;
 
@@ -32,9 +33,23 @@ class FantasticViewController extends BaseController
     /**
      * @Route("/apply")
      */
-    public function applyAction()
+    public function applyAction(Request $request)
     {
-        return $this->render('FantasticBundle::apply.html.twig', array('index' => 'join'));
+        $casusGuid = $request->cookies->get('casusGuid');
+        $casusGuid = preg_replace('/\"/', '', $casusGuid);
+        $casusOut = array();
+        if ($casusGuid) {
+            $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+            $casus = $casusRepository->findCasusByGuid($casusGuid);
+            if ($casus) {
+                $casusOut = $casus->toArray();
+            }
+        }
+        $dataOut = array(
+            'casus' => $casusOut,
+            'index' => 'join'
+        );
+        return $this->render('FantasticBundle::apply.html.twig', $dataOut);
     }
 
     /**

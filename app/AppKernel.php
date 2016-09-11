@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new UtilBundle\UtilBundle(),
             new EventBundle\EventBundle(),
             new FantasticBundle\FantasticBundle(),
+            new WebBundle\WebBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

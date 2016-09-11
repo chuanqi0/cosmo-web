@@ -1,7 +1,12 @@
+web:
+    resource: "@WebBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 fantastic:
     resource: "@FantasticBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /fantastic
 
 event:
     resource: "@EventBundle/Controller/"

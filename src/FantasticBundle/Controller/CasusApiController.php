@@ -25,7 +25,7 @@ class CasusApiController extends BaseController
             $awardRepository = $this->getDoctrine()->getRepository('FantasticBundle:Award');
             $awardList = $awardRepository->getAwardList();
             // 设置返回数据
-            $this->setSuccess($awardRepository->listToArray($awardList), LoveConstant::MEESAGE_CASUS_EDIT_SUCCESS);
+            $this->setSuccess($awardRepository->listToArray($awardList), LoveConstant::MEESAGE_CASUS_LIST_SUCCESS);
         } catch (\Exception $e) {
             $this->setFailedMessage($e->getMessage());
         }

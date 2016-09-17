@@ -14,6 +14,8 @@ class BaseController extends Controller
     protected $message;
     protected $data;
 
+    public $base = 'http://localhost:8000/cbwa/';
+
     function __construct()
     {
         $this->status = LoveConstant::STATUS_FAILED;

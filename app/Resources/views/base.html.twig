@@ -17,18 +17,22 @@
     </head>
     <body ng-app="app" ng-controller="BaseController">
         <div class="fe-header">
-            <a class="fe-logo-area" href="/">
-                <img class="fe-logo" src="{{ asset('img/fantastic/common/logo_1.png') }}" alt="Logo" />
-            </a>
-            <a class="fe-login-area register" href="/register">
-                注册
-            </a>
-            <a class="fe-login-area split" href="javascript:void(0)">
-                &nbsp;/&nbsp;
-            </a>
-            <a class="fe-login-area" href="javascript:void(0)">
-                登录
-            </a>
+            <div class="container">
+                <div class="row">
+                    <a class="fe-logo-area" href="{{ base }}">
+                        <img class="fe-logo" src="{{ asset('img/fantastic/common/logo_1.png') }}" alt="Logo" />
+                    </a>
+                    <a class="fe-login-area" href="{{ base }}register">
+                        注册
+                    </a>
+                    <a class="fe-login-area split" href="javascript:void(0)">
+                        &nbsp;/&nbsp;
+                    </a>
+                    <a class="fe-login-area" href="{{ base }}login">
+                        登录
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="fe-top">
             <div class="container">
@@ -40,8 +44,8 @@
                         <img class="fe-title" src="{{ asset('img/fantastic/common/title.png') }}" alt="Title" />
                     </a>
                     <a class="fe-intro">
-                        作品征集: 2016.06.01-09.30<br />
-                        颁奖典礼: 2016.12.15/16 北京
+                        作品征集: 2016.10.10-11.20<br />
+                        颁奖典礼: 2016.12.10 北京
                     </a>
                 </div>
             </div>
@@ -50,24 +54,24 @@
             <div class="container">
                 <div class="row">
                     <ul>
-                        <li {% if index == 'home' %} class="active" {% endif %} ng-click="('/')">
+                        <li {% if index == 'home' %} class="active" {% endif %}>
                             <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>首页 HOME</div>
                         </li>
                         <li>
-                            <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
+                            <img class="triangle second" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>关于大赛 INFO</div>
                         </li>
                         <li>
-                            <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
+                            <img class="triangle third" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>奖项设置 AWARDS</div>
                         </li>
                         <li>
-                            <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
+                            <img class="triangle fourth" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>热门方案 WORKS</div>
                         </li>
                         <li>
-                            <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
+                            <img class="triangle fifth" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>颁奖典礼 CEREMONY</div>
                         </li>
                     </ul>
@@ -78,11 +82,34 @@
             </div>
         </div>
         {% block body %}{% endblock %}
-        <div class="fe-footer">
-
-        </div>
         <div class="fe-bottom">
-
+            <div class="container">
+                <div class="row fe-bottom-sponsor">
+                    <div class="col-md-12">
+                        <div class="bottom-title">
+                            主办单位
+                        </div>
+                        <div class="sponsor-primary">
+                            <img src="{{ asset('img/fantastic/common/sponsor.png') }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row fe-bottom-contact">
+                    <div class="col-md-12">
+                        <div class="bottom-title">
+                            联系我们
+                        </div>
+                        <div class="contact-content">
+                            电话:&nbsp;400-9008-520&nbsp;&nbsp;&nbsp;&nbsp;邮箱:&nbsp;CBWA@cosmo.love
+                            &nbsp;&nbsp;&nbsp;&nbsp;微博:&nbsp;@时尚新娘COSMOBride
+                            &nbsp;&nbsp;&nbsp;&nbsp;微信:&nbsp;时尚新娘
+                        </div>
+                        <div class="contact-copyright">
+                            ©1998-2016&nbsp;时尚新娘&nbsp;版权所有&nbsp;京ICP备14009671号-1
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

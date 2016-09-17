@@ -7,25 +7,20 @@ use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Controller\BaseController;
 
-class FantasticViewController extends BaseController
+class CBWAViewController extends BaseController
 {
     /**
      * @Route("/")
      */
     public function homeAction()
     {
-        $videoRepository = $this->getDoctrine()->getRepository('FantasticBundle:Video');
-        $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
-        $videoList = $videoRepository->getLatestVideoList();
-        $totalVideoNumber = $videoRepository->getTotalVideoNumber();
-        $casusList = $casusRepository->getLatestPublicCasusList();
-        $totalCasusNumber = $casusRepository->getTotalPublicCasusNumber();
+        // 处理业务
+        $judgeRepository = $this->getDoctrine()->getRepository('FantasticBundle:Judge');
+        $judgeList = $judgeRepository->getJudgeList();
         $dataOut = array(
+            'base' => $this->base,
             'index' => 'home',
-            'totalVideoNumber' => $totalVideoNumber,
-            'videoList' => $videoRepository->listToArray($videoList),
-            'totalCasusNumber' => $totalCasusNumber,
-            'casusList' => $casusRepository->listToArray($casusList)
+            'judgeList' => $judgeList
         );
         return $this->render('FantasticBundle::home.html.twig', $dataOut);
     }
@@ -37,16 +32,17 @@ class FantasticViewController extends BaseController
     {
         $casusGuid = $request->cookies->get('casusGuid');
         $casusGuid = preg_replace('/\"/', '', $casusGuid);
-        $casusOut = array();
+        $casusArray = array();
         if ($casusGuid) {
             $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
             $casus = $casusRepository->findCasusByGuid($casusGuid);
             if ($casus) {
-                $casusOut = $casus->toArray();
+                $casusArray = $casus->toArray();
             }
         }
         $dataOut = array(
-            'casus' => $casusOut,
+            'base' => $this->base,
+            'casus' => $casusArray,
             'index' => 'join'
         );
         return $this->render('FantasticBundle::apply.html.twig', $dataOut);
@@ -57,6 +53,10 @@ class FantasticViewController extends BaseController
      */
     public function registerAction()
     {
-        return $this->render('FantasticBundle::register.html.twig', array('index' => 'register'));
+        $dataOut = array(
+            'base' => $this->base,
+            'index' => 'register'
+        );
+        return $this->render('FantasticBundle::register.html.twig', $dataOut);
     }
 }

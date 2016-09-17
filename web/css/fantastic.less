@@ -20,6 +20,14 @@
   text-overflow: ellipsis;
 }
 
+.transfrom-scale(@scale) {
+  transform:scale(@scale);
+  -ms-transform:scale(@scale); 	/* IE 9 */
+  -moz-transform:scale(@scale); 	/* Firefox */
+  -webkit-transform:scale(@scale); /* Safari 和 Chrome */
+  -o-transform:scale(@scale); 	/* Opera */
+}
+
 ///* 小屏幕（平板，大于等于 768px） */
 //@media (min-width: @screen-sm-min) {
 //  .container {
@@ -70,7 +78,7 @@
     float: left;
     height: 30px;
     line-height: 10px;
-    padding: 10px 20px;
+    padding: 10px 20px 10px 0;
     .fe-logo {
       height: 10px;
     }
@@ -84,9 +92,6 @@
     color: @blue-2;
     &.split {
       text-decoration: none;
-    }
-    &.register {
-      padding-right: 20px;
     }
   }
 }
@@ -106,7 +111,7 @@
   .fe-intro {
     float: right;
     color: @gray-3;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
     text-align: right;
     padding: 88px 0 12px 0;
@@ -114,9 +119,9 @@
   }
   .fe-title-area {
     float: right;
-    padding: 66px 0 14px 8px;
+    padding: 42px 0 12px 8px;
     .fe-title {
-      height: 60px;
+      height: 86px;
     }
   }
 }
@@ -145,7 +150,19 @@
         width: 12px;
         position: absolute;
         &.first {
-          margin-left: 44px;
+          margin-left: 45px;
+        }
+        &.second {
+          margin-left: 54px;
+        }
+        &.third {
+          margin-left: 65px;
+        }
+        &.fourth {
+          margin-left: 62px;
+        }
+        &.fifth {
+          margin-left: 73px;
         }
       }
       div {
@@ -170,58 +187,55 @@
   }
 }
 
-.fe-footer {
-  height: 200px;
-  background-color: @blue-2;
-}
-
 .fe-bottom {
-  height: 100px;
-  background-color: @black;
-}
-
-// 首页
-.fe-video-area {
   background-color: @gray-1;
-  .container {
-    background: @white;
-    .fe-video-topic-area {
+  .fe-bottom-sponsor {
+    height: 100px;
+    background-color: @blue-2;
+    .sponsor-primary {
       text-align: center;
-      padding-top: 25px;
-      padding-bottom: 5px;
-      .fe-video-topic {
-        width: 325px;
-      }
-    }
-    .fe-video-subtopic-area {
-      text-align: center;
-      color: @gray-3;
-      font-size: 14px;
-      padding-bottom: 25px;
-    }
-    .fe-video-row {
-      padding: 0 8px;
-      &.bottom {
-        margin-top: 16px;
-        margin-bottom: 25px;
-      }
-      .col-md-4 {
-        padding: 0 8px;
-        img {
-          height: 240px;
-        }
+      img {
+        height: 60px;
       }
     }
   }
+  .fe-bottom-contact {
+    height: 80px;
+    background-color: @black;
+    .contact-content {
+      font-size: 12px;
+      text-align: center;
+      line-height: 20px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .contact-copyright {
+      font-size: 12px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 20px;
+      padding-bottom: 10px;
+    }
+  }
+  .bottom-title {
+    font-size: 14px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 20px;
+    padding-top: 10px;
+  }
 }
 
+// 首页
 .fe-case-area {
   background-color: @gray-1;
   .container {
     background: @white;
+    .carousel-indicators {
+      bottom: 0 !important;
+    }
     .fe-case-topic-area {
       text-align: center;
-      padding-top: 25px;
+      padding-top: 30px;
       padding-bottom: 5px;
       .fe-case-topic {
         width: 325px;
@@ -230,28 +244,54 @@
     .fe-case-subtopic-area {
       text-align: center;
       color: @gray-3;
-      font-size: 14px;
-      padding-bottom: 25px;
+      font-size: 16px;
+      font-style: italic;
+      padding-bottom: 30px;
     }
     .fe-case-row {
-      padding: 0 8px 10px 0;
+      padding: 0 6px 10px 6px;
+      &.bottom {
+        padding-bottom: 30px;
+      }
       .col-md-4 {
-        padding: 0 8px;
+        padding: 0 6px;
+        cursor: pointer;
         .fe-case {
-          &.middle {
-            margin-top: 20px;
+          position: relative;
+          overflow: hidden;
+          img {
+            transition: all ease 0.8s;
+            &:hover {
+              .transfrom-scale(1.1);
+            }
           }
-          .fe-case-title {
-            font-size: 20px;
-            color: @blue-2;
-            line-height: 36px;
-            font-weight: bold;
+        }
+        .fe-case-more {
+          position: relative;
+          text-align: center;
+          margin-top: -168.5px;
+          img {
+            width: 90px;
           }
-          .fe-case-description {
-            font-size: 14px;
-            color: @gray-3;
-            line-height: 20px;
-            padding-bottom: 20px;
+        }
+        .fe-case-bottom {
+          position: relative;
+          margin-top: -55px;
+          height: 55px;
+          background-color: rgba(13, 56, 120, 0.7);
+          .fe-case-icon {
+            float: left;
+            line-height: 55px;
+            padding: 0 12px;
+            img {
+              width: 22px;
+            }
+          }
+          .fe-case-category {
+            float: left;
+            line-height: 55px;
+            font-size: 18px;
+            color: @white;
           }
         }
       }

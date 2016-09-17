@@ -6,7 +6,7 @@ web:
 fantastic:
     resource: "@FantasticBundle/Controller/"
     type:     annotation
-    prefix:   /fantastic
+    prefix:   /cbwa
 
 event:
     resource: "@EventBundle/Controller/"

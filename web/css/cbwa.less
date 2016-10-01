@@ -20,7 +20,7 @@
   text-overflow: ellipsis;
 }
 
-.transfrom-scale(@scale) {
+.transform-scale(@scale) {
   transform:scale(@scale);
   -ms-transform:scale(@scale); 	/* IE 9 */
   -moz-transform:scale(@scale); 	/* Firefox */
@@ -68,6 +68,18 @@
 
 .fe-pt10 {
   padding-top: 10px;
+}
+
+.fe-pt20 {
+  padding-top: 20px;
+}
+
+.fe-pl15 {
+  padding-left: 15px;
+}
+
+body {
+  font-family: "Microsoft YaHei", simhei;
 }
 
 // 公共组件
@@ -262,7 +274,7 @@
           img {
             transition: all ease 0.8s;
             &:hover {
-              .transfrom-scale(1.1);
+              .transform-scale(1.1);
             }
           }
         }
@@ -296,13 +308,48 @@
         }
       }
     }
-    .fe-judge {
-      .col-md-12 {
-        padding: 0 6px;
-      }
+    .fe-judge-area {
+      padding: 24px 0;
       .col-md-2 {
         padding: 6px;
         cursor: pointer;
+        .fe-judge {
+          position: relative;
+          overflow: hidden;
+          img {
+            transition: all ease 0.8s;
+            height: 178px;
+          }
+          .fe-judge-cover {
+            display: none;
+            width: 154.66px;
+            height: 178px;
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            .fe-judge-name {
+              color: @white;
+              font-size: 25px;
+              margin-top: 50px;
+              text-align: right;
+              padding: 0 8px;
+            }
+            .fe-judge-intro {
+              color: rgba(255, 255, 255, 0.8);
+              font-size: 14px;
+              padding: 0 8px;
+            }
+          }
+          &:hover {
+            img {
+              .transform-scale(1.1);
+            }
+            .fe-judge-cover {
+              display: block;
+            }
+          }
+        }
       }
     }
   }
@@ -318,11 +365,13 @@
       font-size: 20px;
       color: @blue-2;
       font-weight: bold;
+      text-align: center;
     }
     .fe-register-description {
-      padding-top: 15px;
-      padding-bottom: 10px;
+      padding-top: 5px;
+      padding-bottom: 15px;
       border-bottom: 1px solid @gray-2;
+      text-align: center;
     }
   }
 }
@@ -370,6 +419,9 @@
     }
     &.right {
       padding: 10px 0 10px 8px;
+    }
+    &.middle {
+      padding: 10px 0;
     }
     &.pt-left {
       padding: 10px 8px 0 0;
@@ -442,7 +494,11 @@
     }
   }
   .fe-error {
-    border: 1px solid red !important;
+    border: 2px solid red !important;
+  }
+  .fe-reset {
+    text-align: right;
+    font-size: 14px;
   }
   .fe-btn {
     text-align: center;
@@ -458,6 +514,10 @@
     }
     &.next {
       background: @blue-2;
+      color: @white;
+    }
+    &.code {
+      background: @blue-1;
       color: @white;
     }
   }

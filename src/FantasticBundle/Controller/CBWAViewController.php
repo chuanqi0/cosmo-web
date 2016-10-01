@@ -60,4 +60,28 @@ class CBWAViewController extends BaseController
         );
         return $this->render('FantasticBundle::register.html.twig', $dataOut);
     }
+
+    /**
+     * @Route("/login")
+     */
+    public function loginAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'index' => 'login'
+        );
+        return $this->render('FantasticBundle::login.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/reset")
+     */
+    public function resetAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'index' => 'reset'
+        );
+        return $this->render('FantasticBundle::reset.html.twig', $dataOut);
+    }
 }

@@ -35,6 +35,11 @@ class Judge extends Base
     private $intro;
 
     /**
+     * @ORM\Column(name="sub_intro", type="string", length=30, nullable=false)
+     */
+    private $subIntro;
+
+    /**
      * @ORM\Column(name="weight", type="integer", nullable=false)
      */
     private $weight;
@@ -101,6 +106,29 @@ class Judge extends Base
     }
 
     /**
+     * Set subIntro
+     *
+     * @param string $subIntro
+     * @return Judge
+     */
+    public function setSubIntro($subIntro)
+    {
+        $this->subIntro = $subIntro;
+
+        return $this;
+    }
+
+    /**
+     * Get subIntro
+     *
+     * @return string
+     */
+    public function getSubIntro()
+    {
+        return $this->subIntro;
+    }
+
+    /**
      * Set weight
      *
      * @param integer $weight
@@ -151,6 +179,7 @@ class Judge extends Base
             "id" => $this->id,
             "nickname" => $this->nickname,
             "intro" => $this->intro,
+            "subIntro" => $this->subIntro,
             "cover" => $this->cover
         );
     }

@@ -15,21 +15,27 @@
         <script type="text/javascript" src="//cdn.bootcss.com/less.js/2.7.1/less.min.js"></script>
         {% block stylesheets %}{% endblock %}
     </head>
-    <body ng-app="app" ng-controller="BaseController">
-        <div class="fe-header">
+    <body ng-app="app">
+        <div class="fe-header" ng-controller="BaseController">
             <div class="container">
                 <div class="row">
                     <a class="fe-logo-area" href="{{ base }}">
                         <img class="fe-logo" src="{{ asset('img/fantastic/common/logo_1.png') }}" alt="Logo" />
                     </a>
-                    <a class="fe-login-area" href="{{ base }}register">
+                    <a class="fe-login-area" href="{{ base }}register" ng-show="user == null">
                         注册
                     </a>
-                    <a class="fe-login-area split" href="javascript:void(0)">
+                    <a class="fe-login-area" href="javascript:void(0)" ng-click="exit()" ng-show="user != null">
+                        退出
+                    </a>
+                    <a class="fe-login-area split">
                         &nbsp;/&nbsp;
                     </a>
-                    <a class="fe-login-area" href="{{ base }}login">
+                    <a class="fe-login-area" href="{{ base }}login" ng-show="user == null">
                         登录
+                    </a>
+                    <a class="fe-login-area"  href="{{ base }}personal" ng-show="user != null">
+                        个人中心
                     </a>
                 </div>
             </div>
@@ -116,6 +122,8 @@
         <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
         <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular-cookies.min.js"></script>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/service.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/md5.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -25,7 +25,7 @@
                             <input type="text" placeholder="接收到的验证码" ng-model="code" ng-class="{'fe-error': codeValid == false}" />
                         </div>
                         <div class="col-md-3 fe-p0 fe-pl15">
-                            <div class="fe-btn code" ng-click="sendCode(2)" >
+                            <div id="sendTimer" class="fe-btn code" ng-click="sendCode(2)">
                                 发送
                             </div>
                         </div>

@@ -6,6 +6,7 @@ app.controller('RegisterController', function($scope, $cookieStore, $interval, U
     $scope.rePassword = '';
     $scope.code = '';
     $scope.nickname = '';
+    $scope.sendTimer = 0;
 
     $scope.telephoneValid = true;
     $scope.passwordValid = true;
@@ -154,33 +155,49 @@ app.controller('RegisterController', function($scope, $cookieStore, $interval, U
     $scope.sendCode = function ($type) {
         $scope.checkTelephone();
         if ($scope.telephoneValid == true) {
-            var data = {
-                "telephone": $scope.telephone,
-                "type": $type,
-                'deviceId': UtilService.generateUuid()
-            };
-            $.ajax({
-                url: domain + '/api/user/pin/send/',
-                type: 'POST',
-                dataType: 'json',
-                data: data,
-                async: false,
-                success: function (response) {
-                    if (response.status == 0) {
-                        alert("已发送验证码, 请注意查收!")
-                    } else {
-                        if ($type == 1 && response.message == "手机号已注册") {
-                            alert("手机号已注册, 请直接登录");
-                            window.location.href = base + 'login';
+            if ($scope.sendTimer == 0) {
+                var success = false;
+                var data = {
+                    "telephone": $scope.telephone,
+                    "type": $type,
+                    'deviceId': UtilService.generateUuid()
+                };
+                $.ajax({
+                    url: domain + '/api/user/pin/send/',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data,
+                    async: false,
+                    success: function (response) {
+                        if (response.status == 0) {
+                            alert("已发送验证码, 请注意查收!");
+                            success = true;
                         } else {
-                            alert(response.message);
+                            if ($type == 1 && response.message == "手机号已注册") {
+                                alert("手机号已注册, 请直接登录");
+                                window.location.href = base + 'login';
+                            } else {
+                                alert(response.message);
+                            }
                         }
+                    },
+                    error: function (xhr, status, err) {
+                        console.error(err);
                     }
-                },
-                error: function (xhr, status, err) {
-                    console.error(err);
+                });
+                if (success == true) {
+                    $scope.sendTimer = 60;
+                    var timer = $interval(function () {
+                        $('#sendTimer').html($scope.sendTimer + "s");
+                        $scope.sendTimer--;
+                        console.log($scope.sendTimer);
+                        if ($scope.sendTimer == 0) {
+                            $('#sendTimer').html("发送");
+                            $interval.cancel(timer);
+                        }
+                    }, 1000);
                 }
-            });
+            }
         }
     };
 

@@ -9,7 +9,7 @@ use UtilBundle\Service\UtilService;
 
 /**
  * @ORM\Entity(repositoryClass="FantasticBundle\Entity\CasusRepository")
- * @ORM\Table(name="fantastic_casus")
+ * @ORM\Table(name="cbwa_casus")
  */
 class Casus extends Base
 {

@@ -9,7 +9,7 @@ use UtilBundle\Service\UtilService;
 
 /**
  * @ORM\Entity(repositoryClass="FantasticBundle\Entity\UserRepository")
- * @ORM\Table(name="fantastic_user")
+ * @ORM\Table(name="cbwa_user")
  */
 class User extends Base
 {
@@ -21,9 +21,9 @@ class User extends Base
     private $id;
 
     /**
-     * @ORM\Column(name="guid", type="guid", nullable=false)
+     * @ORM\Column(name="userId", type="integer")
      */
-    private $guid;
+    private $userId;
 
     /**
      * @ORM\Column(name="name", type="string", length=20, nullable=false)
@@ -34,16 +34,6 @@ class User extends Base
      * @ORM\Column(name="identity_card", type="string", length=18, unique=true, nullable=false)
      */
     private $identityCard;
-
-    /**
-     * @ORM\Column(name="telephone", type="string", length=20, unique=true, nullable=false)
-     */
-    private $telephone;
-
-    /**
-     * @ORM\Column(name="password", type="string", length=100, nullable=false)
-     */
-    private $password;
 
     /**
      * @ORM\Column(name="wechat", type="string", length=50, nullable=false)
@@ -68,8 +58,6 @@ class User extends Base
     public function __construct()
     {
         parent::__construct();
-
-        $this->guid = UtilService::getGUID();
     }
 
     /**
@@ -83,26 +71,26 @@ class User extends Base
     }
 
     /**
-     * Set guid
+     * Set userId
      *
-     * @param guid $guid
+     * @param integer $userId
      * @return User
      */
-    public function setGuid($guid)
+    public function setUserId($userId)
     {
-        $this->guid = $guid;
+        $this->userId = $userId;
 
         return $this;
     }
 
     /**
-     * Get guid
+     * Get userId
      *
-     * @return guid 
+     * @return integer 
      */
-    public function getGuid()
+    public function getUserId()
     {
-        return $this->guid;
+        return $this->userId;
     }
 
     /**
@@ -149,52 +137,6 @@ class User extends Base
     public function getIdentityCard()
     {
         return $this->identityCard;
-    }
-
-    /**
-     * Set telephone
-     *
-     * @param string $telephone
-     * @return User
-     */
-    public function setTelephone($telephone)
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    /**
-     * Get telephone
-     *
-     * @return string 
-     */
-    public function getTelephone()
-    {
-        return $this->telephone;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
     }
 
     /**
@@ -287,12 +229,5 @@ class User extends Base
     public function getCompanyIntro()
     {
         return $this->companyIntro;
-    }
-
-    public function toArray() {
-        return array(
-            "guid" => $this->guid,
-            "name" => $this->name
-        );
     }
 }

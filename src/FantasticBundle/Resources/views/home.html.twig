@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.cbwa.html.twig' %}
 
 {% block title %}全国婚礼作品设计大赛{% endblock %}
 
 {% block body %}
-    <div class="fe-case-area">
+    <div class="fe-home" ng-controller="HomeController">
         <div class="container">
             <div class="row">
                 <div id="fe-carousel" class="carousel slide" data-ride="carousel">
@@ -99,9 +99,23 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-click="check()">
                 <img class="fe-width" src="{{ asset('img/fantastic/home/banner_middle.jpg') }}" alt="Banner" />
+            </div>
+            <div class="row fe-judge">
+                <div class="col-md-12" ng-if="">
+                    <div class="col-md-2" ng-repeat="judge in judgeList">
+                        <img class="fe-width" ng-src="{[{ judge.cover }]}"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        app.value('judgeList', '{{ judgeList | json_encode | escape('js') }}');
+    </script>
+    <script type="text/javascript" src="{{ asset('js/controller/home.js') }}"></script>
 {% endblock %}

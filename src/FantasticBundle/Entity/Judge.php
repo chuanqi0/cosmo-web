@@ -150,7 +150,8 @@ class Judge extends Base
         return array(
             "id" => $this->id,
             "nickname" => $this->nickname,
-            "intro" => $this->intro
+            "intro" => $this->intro,
+            "cover" => $this->cover
         );
     }
 }

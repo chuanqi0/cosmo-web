@@ -17,10 +17,11 @@ class CBWAViewController extends BaseController
         // 处理业务
         $judgeRepository = $this->getDoctrine()->getRepository('FantasticBundle:Judge');
         $judgeList = $judgeRepository->getJudgeList();
+        $judgeListArray = $judgeRepository->listToArray($judgeList);
         $dataOut = array(
             'base' => $this->base,
             'index' => 'home',
-            'judgeList' => $judgeList
+            'judgeList' => $judgeListArray
         );
         return $this->render('FantasticBundle::home.html.twig', $dataOut);
     }

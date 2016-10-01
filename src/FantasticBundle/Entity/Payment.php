@@ -9,7 +9,7 @@ use UtilBundle\Service\UtilService;
 
 /**
  * @ORM\Entity(repositoryClass="FantasticBundle\Entity\PaymentRepository")
- * @ORM\Table(name="fantastic_payment")
+ * @ORM\Table(name="payment")
  */
 class Payment extends Base
 {
@@ -21,9 +21,9 @@ class Payment extends Base
     private $id;
 
     /**
-     * @ORM\Column(name="payment", type="smallint", nullable=false)
+     * @ORM\Column(name="type", type="smallint", nullable=false)
      */
-    private $payment;
+    private $type;
 
     /**
      * @ORM\Column(name="fee", type="decimal", scale=2, nullable=false)
@@ -75,26 +75,26 @@ class Payment extends Base
     }
 
     /**
-     * Set payment
+     * Set type
      *
-     * @param integer $payment
-     * @return Payment
+     * @param integer $type
+     * @return Type
      */
-    public function setPayment($payment)
+    public function setType($type)
     {
-        $this->payment = $payment;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get payment
+     * Get type
      *
      * @return integer 
      */
-    public function getPayment()
+    public function getType()
     {
-        return $this->payment;
+        return $this->type;
     }
 
     /**

@@ -1,4 +1,6 @@
-var app = angular.module('app', ['ngCookies']);
+var app = angular.module('app', ['ngCookies']).config(function($interpolateProvider){
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+});
 
 app.controller('BaseController', ['$scope', function($scope) {
     // 跳转页面

@@ -8,7 +8,7 @@ use AppBundle\Entity\Base;
 
 /**
  * @ORM\Entity(repositoryClass="FantasticBundle\Entity\AwardRepository")
- * @ORM\Table(name="fantastic_award")
+ * @ORM\Table(name="cbwa_award")
  */
 class Award extends Base
 {

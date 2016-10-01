@@ -3,7 +3,7 @@ var um = UM.getEditor('myEditor');
 um.setWidth(758);
 um.setHeight(650);
 
-app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $cookieStore, $http) {
+app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $cookieStore) {
     // 申请步骤
     $scope.applyStep = $cookieStore.get('applyStep');
     $scope.casusGuid = $cookieStore.get('casusGuid') == null ? '' : $cookieStore.get('casusGuid');
@@ -219,7 +219,7 @@ app.controller('ApplyController', ['$scope', '$cookieStore', function($scope, $c
         }
     };
 
-    $scope.init = function($index) {
+    $scope.init = function() {
         $scope.getAwardList();
         $scope.getRegionList();
         if ($scope.casusGuid != '') {

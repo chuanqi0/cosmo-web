@@ -11,7 +11,7 @@ fantastic:
 event:
     resource: "@EventBundle/Controller/"
     type:     annotation
-    prefix:   /api/event
+    prefix:   /
 
 util:
     resource: "@UtilBundle/Controller/"

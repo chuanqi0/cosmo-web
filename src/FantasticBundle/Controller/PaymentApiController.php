@@ -8,10 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Controller\BaseController;
 
+/**
+ * @Route("/api/cbwa")
+ */
 class CasusApiController extends BaseController
 {
     /**
-     * @Route("/api/fantastic/payment/alipay/notify")
+     * @Route("/payment/alipay/notify")
      * @Method({"POST"})
      */
     public function paymentAlipayNotifyAction(Request $request)
@@ -27,7 +30,7 @@ class CasusApiController extends BaseController
     }
 
     /**
-     * @Route("/api/fantastic/payment/wechat/notify")
+     * @Route("/payment/wechat/notify")
      * @Method({"POST"})
      */
     public function paymentWechatNotifyAction(Request $request)

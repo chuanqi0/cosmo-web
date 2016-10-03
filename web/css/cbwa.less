@@ -78,6 +78,18 @@
   padding-left: 15px;
 }
 
+.fe-left {
+  float: left;
+}
+
+.fe-right {
+  float: right;
+}
+
+.fe-bold {
+  font-weight: bold;
+}
+
 body {
   font-family: "Microsoft YaHei", simhei;
 }
@@ -123,7 +135,7 @@ body {
   .fe-intro {
     float: right;
     color: @gray-3;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     text-align: right;
     padding: 88px 0 12px 0;
@@ -376,6 +388,121 @@ body {
   }
 }
 
+// 个人中心
+.fe-personal {
+  background-color: @gray-1;
+  .fe-personal-description {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid @gray-2;
+    margin-bottom: 5px;
+    &.bottom {
+      padding-top: 25px;
+    }
+  }
+  .fe-personal-left {
+    width: 170px;
+    float: left;
+    background-color: @gray-2;
+    &.first {
+      height: 739px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        cursor: pointer;
+        height: 60px;
+        color: @black;
+        &.active, &:hover {
+          color: @white;
+          background-color: @blue-1;
+        }
+        div {
+          height: 60px;
+          line-height: 60px;
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .fe-personal-right {
+    background: @white;
+    width: 860px;
+    padding: 25px 50px 75px 50px;
+    float: left;
+    &.narrow {
+      padding: 25px 100px 75px 100px;
+    }
+    .personal-order-top {
+      padding: 15px 20px;
+      background-color: @blue-2;
+      color: white;
+      border-radius: 8px 8px 0 0;
+    }
+    .personal-order-bottom {
+      background-color: @gray-1;
+      border-radius: 0 0 8px 8px;
+      color: @black;
+      .order-bottom-title {
+        color: @gray-3;
+      }
+      .order-award {
+        height: 20px;
+        margin-top: 5px;
+      }
+      .col-md-3 {
+        padding: 75px 0 0 0;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+      }
+      .col-md-9 {
+        padding: 15px 20px;
+        border-right: 0.5px solid @gray-2;
+      }
+    }
+  }
+}
+
+// 颁奖典礼
+.fe-ceremony {
+  background-color: @gray-1;
+  .fe-ceremony-left {
+    width: 170px;
+    float: left;
+    background-color: @gray-2;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        cursor: pointer;
+        height: 60px;
+        color: @black;
+        &.active, &:hover {
+          color: @white;
+          background-color: @blue-1;
+        }
+        div {
+          height: 60px;
+          line-height: 60px;
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .fe-ceremony-right {
+    background: @white;
+    width: 860px;
+    padding: 25px 50px 75px 50px;
+    float: left;
+  }
+}
+
 // 报名
 .fe-apply {
   background-color: @gray-1;
@@ -408,6 +535,28 @@ body {
     width: 860px;
     padding: 25px 50px 75px 50px;
     float: left;
+    .fe-apply-fee {
+      .fee-top {
+        background-color: @blue-1;
+        .fee-top-1 {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          text-align: center;
+          padding: 20px 0 5px 0;
+        }
+        .fee-top-2 {
+          color: @white;
+          font-size: 36px;
+          text-align: center;
+        }
+        .fee-top-3 {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          text-align: center;
+          padding: 5px 0 20px 0;
+        }
+      }
+    }
   }
 }
 
@@ -461,6 +610,10 @@ body {
       border: 1px solid @gray-2;
       padding: 10px;
       font-size: 14px;
+      &.fe-disable {
+        background-color: @gray-1;
+        color: @gray-3;
+      }
     }
     textarea {
       width: 100%;

@@ -14,7 +14,7 @@ use UtilBundle\Service\UtilService;
 class Casus extends Base
 {
     /**
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -26,7 +26,12 @@ class Casus extends Base
     private $guid;
 
     /**
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Column(name="name", type="string", length=20, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(name="user_id", type="bigint", nullable=false)
      */
     private $userId;
 
@@ -61,7 +66,7 @@ class Casus extends Base
     private $place;
 
     /**
-     * @ORM\Column(name="total_fee", type="decimal", scale=2, nullable=false)
+     * @ORM\Column(name="total_fee", type="string", length=20, nullable=false)
      */
     private $totalFee;
 
@@ -76,14 +81,14 @@ class Casus extends Base
     private $paid;
 
     /**
-     * @ORM\Column(name="public", type="boolean", nullable=false)
-     */
-    private $public;
-
-    /**
      * @ORM\Column(name="cover", type="string", length=100, nullable=false)
      */
     private $cover;
+
+    /**
+     * @ORM\Column(name="award_list", type="string", length=500, nullable=false)
+     */
+    private $awardList;
 
     public function __construct()
     {
@@ -93,9 +98,9 @@ class Casus extends Base
         $this->content = '';
         $this->paid = false;
         $this->awardNumber = 0;
-        $this->totalFee = 0.00;
-        $this->public = false;
+        $this->totalFee = '0.00';
         $this->cover = '';
+        $this->awardList = '[]';
     }
 
     /**
@@ -152,6 +157,29 @@ class Casus extends Base
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Casus
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -385,6 +413,29 @@ class Casus extends Base
     }
 
     /**
+     * Get awardList
+     *
+     * @return Casus
+     */
+    public function getAwardList()
+    {
+        return $this->awardList;
+    }
+
+    /**
+     * Set awardList
+     *
+     * @param string $awardList
+     * @return Casus
+     */
+    public function setAwardList($awardList)
+    {
+        $this->awardList = $awardList;
+
+        return $this;
+    }
+
+    /**
      * Set cover
      *
      * @param string $cover
@@ -412,7 +463,13 @@ class Casus extends Base
             "guid" => $this->guid,
             "title" => $this->title,
             'description' => $this->description,
-            'cover' => $this->cover
+            'price' => $this->price,
+            'region' => $this->region,
+            'place' => $this->place,
+            'totalFee' => $this->totalFee,
+            'paid' => $this->paid,
+            'awardList' => json_decode($this->awardList, true),
+            'valid' => $this->valid
         );
     }
 
@@ -423,7 +480,12 @@ class Casus extends Base
             'description' => $this->description,
             'price' => $this->price,
             'region' => $this->region,
-            'place' => $this->place
+            'place' => $this->place,
+            'totalFee' => $this->totalFee,
+            'paid' => $this->paid,
+            'content' => $this->content,
+            'awardList' => json_decode($this->awardList, true),
+            'valid' => $this->valid
         );
     }
 }

@@ -15,8 +15,8 @@
         <script type="text/javascript" src="//cdn.bootcss.com/less.js/2.7.1/less.min.js"></script>
         {% block stylesheets %}{% endblock %}
     </head>
-    <body ng-app="app">
-        <div class="fe-header" ng-controller="BaseController">
+    <body ng-app="app" ng-controller="BaseController">
+        <div class="fe-header">
             <div class="container">
                 <div class="row">
                     <a class="fe-logo-area" href="{{ base }}">
@@ -60,7 +60,7 @@
             <div class="container">
                 <div class="row">
                     <ul>
-                        <li {% if index == 'home' %} class="active" {% endif %}>
+                        <li {% if index == 'home' %} class="active" {% endif %} ng-click="jumpToPage('')">
                             <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>首页 HOME</div>
                         </li>
@@ -76,12 +76,12 @@
                             <img class="triangle fourth" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>热门方案 WORKS</div>
                         </li>
-                        <li>
+                        <li {% if index == 'ceremony' %} class="active" {% endif %} ng-click="jumpToPage('ceremony')">
                             <img class="triangle fifth" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>颁奖典礼 CEREMONY</div>
                         </li>
                     </ul>
-                    <a class="fe-join-area" href="/apply">
+                    <a class="fe-join-area" href="/join">
                         <img class="fe-join" src="{{ asset('img/fantastic/common/join.png') }}" alt="Join" />
                     </a>
                 </div>
@@ -121,7 +121,7 @@
         <script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
         <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular-cookies.min.js"></script>
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/app.cbwa.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/service.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/md5.js') }}"></script>
         {% block javascripts %}{% endblock %}

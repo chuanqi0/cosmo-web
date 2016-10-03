@@ -10,7 +10,7 @@ use AppBundle\Controller\BaseController;
 class CBWAViewController extends BaseController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="cbwa_home")
      */
     public function homeAction()
     {
@@ -27,33 +27,68 @@ class CBWAViewController extends BaseController
     }
 
     /**
-     * @Route("/apply")
+     * @Route("/join")
      */
-    public function applyAction(Request $request)
+    public function joinAction(Request $request)
     {
-        $casusGuid = $request->cookies->get('casusGuid');
-        $casusGuid = preg_replace('/\"/', '', $casusGuid);
-        $casusArray = array();
-        if ($casusGuid) {
-            $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
-            $casus = $casusRepository->findCasusByGuid($casusGuid);
-            if ($casus) {
-                $casusArray = $casus->toArray();
-            }
+        // 处理业务
+        $cookieUserStr = $request->cookies->get("user");
+        if (!$cookieUserStr) {
+            return $this->redirectToRoute('cbwa_register');
         }
+        $cookieUser = json_decode($cookieUserStr);
+        // 是否已经补充信息
+        $userRepository = $this->getDoctrine()->getRepository('FantasticBundle:User');
+        $cbwaUser = $userRepository->findUserByUserUuid($cookieUser->uuid);
         $dataOut = array(
             'base' => $this->base,
-            'casus' => $casusArray,
             'index' => 'join'
         );
-        return $this->render('FantasticBundle::apply.html.twig', $dataOut);
+        if ($cbwaUser) {
+            $awardRepository = $this->getDoctrine()->getRepository('FantasticBundle:Award');
+            $awardList = $awardRepository->getAwardList();
+            $dataOut['awardList'] = $awardRepository->listToArray($awardList);
+            return $this->render('FantasticBundle::join.html.twig', $dataOut);
+        } else {
+            return $this->render('FantasticBundle::extra.html.twig', $dataOut);
+        }
     }
 
     /**
-     * @Route("/register")
+     * @Route("/ceremony")
      */
-    public function registerAction()
+    public function ceremonyAction(Request $request)
     {
+        // 处理业务
+        $cookieUserStr = $request->cookies->get("user");
+        if (!$cookieUserStr) {
+            return $this->redirectToRoute('cbwa_register');
+        }
+        $cookieUser = json_decode($cookieUserStr);
+        // 是否已经补充信息
+        $userRepository = $this->getDoctrine()->getRepository('FantasticBundle:User');
+        $cbwaUser = $userRepository->findUserByUserUuid($cookieUser->uuid);
+        $dataOut = array(
+            'base' => $this->base,
+            'index' => 'ceremony'
+        );
+        if (!$cbwaUser) {
+            return $this->render('FantasticBundle::extra.html.twig', $dataOut);
+        } else {
+            return $this->render('FantasticBundle::ceremony.html.twig', $dataOut);
+        }
+    }
+
+    /**
+     * @Route("/register", name="cbwa_register")
+     */
+    public function registerAction(Request $request)
+    {
+        // 处理业务
+        $cookieUser = $request->cookies->get("user");
+        if ($cookieUser) {
+            return $this->redirectToRoute('cbwa_home');
+        }
         $dataOut = array(
             'base' => $this->base,
             'index' => 'register'
@@ -64,8 +99,13 @@ class CBWAViewController extends BaseController
     /**
      * @Route("/login")
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
+        // 处理业务
+        $cookieUser = $request->cookies->get("user");
+        if ($cookieUser) {
+            return $this->redirectToRoute('cbwa_home');
+        }
         $dataOut = array(
             'base' => $this->base,
             'index' => 'login'
@@ -76,12 +116,50 @@ class CBWAViewController extends BaseController
     /**
      * @Route("/reset")
      */
-    public function resetAction()
+    public function resetAction(Request $request)
     {
+        // 处理业务
+        $cookieUser = $request->cookies->get("user");
+        if ($cookieUser) {
+            return $this->redirectToRoute('cbwa_home');
+        }
         $dataOut = array(
             'base' => $this->base,
             'index' => 'reset'
         );
         return $this->render('FantasticBundle::reset.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/personal")
+     */
+    public function personalAction(Request $request)
+    {
+        // 处理业务
+        $cookieUserStr = $request->cookies->get("user");
+        if (!$cookieUserStr) {
+            return $this->redirectToRoute('cbwa_home');
+        }
+        $cookieUser = json_decode($cookieUserStr);
+        // 是否已经补充信息
+        $userRepository = $this->getDoctrine()->getRepository('FantasticBundle:User');
+        $cbwaUser = $userRepository->findUserByUserUuid($cookieUser->uuid);
+        $dataOut = array(
+            'base' => $this->base,
+            'index' => 'personal'
+        );
+        if (!$cbwaUser) {
+            return $this->render('FantasticBundle::extra.html.twig', $dataOut);
+        } else {
+            $personalStep = $request->cookies->get("personalStep");
+            if ($personalStep == null || $personalStep == 1) {
+                $dataOut['cbwaUser'] = $cbwaUser->toArray();
+                return $this->render('FantasticBundle::personal.info.html.twig', $dataOut);
+            } else if ($personalStep == 2) {
+                return $this->render('FantasticBundle::personal.casus.html.twig', $dataOut);
+            } else {
+                return $this->render('FantasticBundle::personal.order.html.twig', $dataOut);
+            }
+        }
     }
 }

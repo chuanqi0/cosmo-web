@@ -13,9 +13,14 @@ app.controller('BaseController', function($scope, $cookieStore) {
         $cookieStore.remove('user');
         window.location.reload();
     };
+
+    $scope.jumpToPage = function ($page) {
+        window.location.href = base + $page;
+    }
 });
 
 // var domain = 'http://101.201.28.172:8080/rest';
 var domain = 'http://localhost:8080';
 
 var base = 'http://localhost:8000/';
+var apiBase = 'http://localhost:8000';

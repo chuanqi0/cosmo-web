@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.cbwa.html.twig' %}
 
 {% block title %}全国婚礼作品设计大赛{% endblock %}
 
@@ -7,26 +7,26 @@
 {% endblock %}
 
 {% block body %}
-    <div class="fe-apply" ng-controller="ApplyController" ng-init="init()">
+    <div class="fe-apply" ng-controller="JoinController" ng-init="init()">
         <div class="container">
             <div class="row">
                 <div class="fe-apply-left">
                     <ul>
-                        <li ng-class="{'active': applyStep == null || applyStep == 1}"><div>1. 案例信息</div></li>
+                        <li ng-class="{'active': applyStep == 1}"><div>1. 案例信息</div></li>
                         <li ng-class="{'active': applyStep == 2}"><div>2. 案例图文</div></li>
                         <li ng-class="{'active': applyStep == 3}"><div>3. 支付费用</div></li>
                         <li ng-class="{'active': applyStep == 4}"><div>4. 报名成功</div></li>
                     </ul>
                 </div>
                 <div class="fe-apply-right">
-                    <div id="fe-step-1" ng-show="applyStep == null || applyStep == 1" class="row fe-form fe-m0">
+                    <div ng-show="applyStep == 1" class="row fe-form fe-m0">
                         <div class="col-md-12">
                             <div class="fe-form-top">
                                 <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
                                 <span class="fe-form-title">&nbsp;案例名称</span>
                             </div>
                             <div class="fe-form-bottom">
-                                <input type="text" placeholder="在这里输入案例名称" ng-model="title" ng-class="{'fe-error': name == '' && validator == true}"/>
+                                <input type="text" placeholder="在这里输入案例名称" ng-model="title" ng-class="{'fe-error': titleValid == false}"/>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -35,7 +35,7 @@
                                 <span class="fe-form-title">&nbsp;案例简介</span>
                             </div>
                             <div class="fe-form-bottom">
-                                <textarea placeholder="在这里输入案例简介" rows="6" ng-model="description" ng-class="{'fe-error': description == '' && validator == true}"></textarea>
+                                <textarea placeholder="在这里输入案例简介" rows="6" ng-model="description" ng-class="{'fe-error': descriptionValid == false}"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -69,7 +69,7 @@
                                 <span class="fe-form-title">&nbsp;案例场地</span>
                             </div>
                             <div class="fe-form-bottom">
-                                <input type="text" placeholder="在这里输入场地" ng-model="place" ng-class="{'fe-error': place == '' && validator == true}" />
+                                <input type="text" placeholder="在这里输入场地" ng-model="place" ng-class="{'fe-error': placeValid == false}" />
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -80,17 +80,17 @@
                             <div class="fe-form-bottom pt0">
                                 <div class='col-md-6' ng-repeat="award in awardList track by $index" ng-class="{true: 'pt-left', false: 'pt-right'}[$index % 2 == 0]">
                                     <div class="fe-choose" ng-click="applyAward($index)" ng-class="{'apply': award.apply}">
-                                        <span>{{ '{{ award.name }}' }}</span>
-                                        <span>￥{{ '{{ award.fee }}' }}</span>
+                                        <span>{[{ award.name }]}</span>
+                                        <span>￥{[{ award.fee }]}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-md-offset-4 fe-pt10">
+                        <div class="col-md-4 col-md-offset-4 fe-pt20">
                             <div class="fe-btn next" ng-click="jumpToStep(2)">下一步</div>
                         </div>
                     </div>
-                    <div id="fe-step-2" ng-show="applyStep == 2" class="row fe-form fe-m0">
+                    <div ng-show="applyStep == 2" class="row fe-form fe-m0">
                         <div class="col-md-12">
                             <div class="fe-form-top">
                                 <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
@@ -109,8 +109,32 @@
                             <div class="fe-btn next" ng-click="jumpToStep(3)">下一步</div>
                         </div>
                     </div>
-                    <div id="fe-step-3" ng-show="appStep == 3"></div>
-                    <div id="fe-step-4" ng-show="appStep == 4"></div>
+                    <div ng-show="applyStep == 3" class="row fe-form fe-m0 fe-apply-fee">
+                        <div class="col-md-8 col-md-offset-2">
+                            <img class="fe-width" src="{{ asset('img/fantastic/join/fee_title.jpg') }}" />
+                        </div>
+                        <div class="col-md-8 col-md-offset-2 fee-top">
+                            <div class="fee-top-1">
+                                您本次报名的费用共计
+                            </div>
+                            <div class="fee-top-2">
+                                ¥ {[{ casus.totalFee }]}
+                            </div>
+                            <div class="fee-top-3">
+                                <div class="fee-top-row" ng-repeat="award in casus.awardList">
+                                    <span>{[{ award.name }]}</span>
+                                    <span>￥{[{ award.fee }]}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-md-offset-2 fe-pt10">
+                            <div class="fe-btn before" ng-click="jumpToStep(2)">上一步</div>
+                        </div>
+                        <div class="col-md-3 col-md-offset-2 fe-pt10">
+                            <div class="fe-btn next" ng-click="jumpToStep(4)">下一步</div>
+                        </div>
+                    </div>
+                    <div ng-show="applyStep == 4" class="row fe-form fe-m0"></div>
                 </div>
             </div>
         </div>
@@ -118,8 +142,11 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript">
+        app.value('awardList', '{{ awardList | json_encode | escape('js') }}');
+    </script>
     <script type="text/javascript" src="{{ asset('js/umeditor/umeditor.config.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/umeditor/umeditor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/umeditor/lang/zh-cn/zh-cn.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/controller/apply.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/controller/join.js') }}"></script>
 {% endblock %}

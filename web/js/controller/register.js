@@ -5,14 +5,12 @@ app.controller('RegisterController', function($scope, $cookieStore, $interval, U
     $scope.password = '';
     $scope.rePassword = '';
     $scope.code = '';
-    $scope.nickname = '';
     $scope.sendTimer = 0;
 
     $scope.telephoneValid = true;
     $scope.passwordValid = true;
     $scope.rePasswordValid = true;
     $scope.codeValid = true;
-    $scope.nicknameValid = true;
 
     $scope.checkTelephone = function () {
         if (!UtilService.checkTelephone($scope.telephone)) {
@@ -44,19 +42,11 @@ app.controller('RegisterController', function($scope, $cookieStore, $interval, U
         }
     };
 
-    $scope.checkNickname = function () {
-        if ($scope.nickname == '') {
-            $scope.nicknameValid = false;
-        } else {
-            $scope.nicknameValid = true;
-        }
-    };
-
     $scope.checkCode = function ($type) {
         var data = {
             "telephone": $scope.telephone,
             "type": $type,
-            'pin': $scope.code
+            "pin": $scope.code
         };
         $.ajax({
             url: domain + '/api/user/pin/check/',
@@ -114,14 +104,13 @@ app.controller('RegisterController', function($scope, $cookieStore, $interval, U
     $scope.register = function () {
         $scope.checkTelephone();
         $scope.checkPassword();
-        $scope.checkNickname();
         $scope.checkCode(1);
         if ($scope.codeValid == true) {
-            if ($scope.passwordValid == true && $scope.nicknameValid) {
+            if ($scope.passwordValid == true) {
                 var data = {
                     "telephone": $scope.telephone,
                     "password": hex_md5($scope.password),
-                    "nickname": $scope.nickname,
+                    "nickname": "用户" + $scope.telephone.substr(7, 4),
                     "gender": 2,
                     "deviceId": UtilService.generateUuid(),
                     "deviceType": 3,

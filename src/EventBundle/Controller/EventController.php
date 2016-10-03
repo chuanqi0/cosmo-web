@@ -8,6 +8,9 @@ use AppBundle\Controller\BaseController;
 use AppBundle\Common\LoveException;
 use EventBundle\Entity\Mikeal;
 
+/**
+ * @Route("/api/event")
+ */
 class EventController extends BaseController
 {
     /**

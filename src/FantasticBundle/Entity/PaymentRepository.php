@@ -8,6 +8,7 @@ class PaymentRepository extends EntityRepository
 {
     public function savePayment($payment)
     {
+        $payment->setUpdateTime(UtilService::getCurrentTime());
         $this->getEntityManager()->persist($payment);
         $this->getEntityManager()->flush();
     }

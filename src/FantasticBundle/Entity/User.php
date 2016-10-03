@@ -21,9 +21,14 @@ class User extends Base
     private $id;
 
     /**
-     * @ORM\Column(name="userId", type="integer")
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
     private $userId;
+
+    /**
+     * @ORM\Column(name="user_uuid", type="guid", nullable=false)
+     */
+    private $userUuid;
 
     /**
      * @ORM\Column(name="name", type="string", length=20, nullable=false)
@@ -86,7 +91,7 @@ class User extends Base
     /**
      * Get userId
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserId()
     {
@@ -229,5 +234,39 @@ class User extends Base
     public function getCompanyIntro()
     {
         return $this->companyIntro;
+    }
+
+    /**
+     * Set userUuid
+     *
+     * @param guid $userUuid
+     * @return User
+     */
+    public function setUserUuid($userUuid)
+    {
+        $this->userUuid = $userUuid;
+
+        return $this;
+    }
+
+    /**
+     * Get userUuid
+     *
+     * @return guid 
+     */
+    public function getUserUuid()
+    {
+        return $this->userUuid;
+    }
+
+    public function toArray() {
+        return array(
+            "name" => $this->name,
+            "identityCard" => $this->identityCard,
+            "wechat" => $this->wechat,
+            "company" => $this->company,
+            "companyLocation" => $this->companyLocation,
+            "companyIntro" => $this->companyIntro
+        );
     }
 }

@@ -12,7 +12,7 @@
 
     /*第二步：（必须）在上传策略UploadPolicy中指定用户空间名。也可以根据需要设置其他参数*/
     $uploadPolicy = new UploadPolicy( $namespace );	// 上传策略。并设置空间名
-    $uploadPolicy->dir = '/fantastic/';	// 文件路径，(可选，默认根目录"/")
+    $uploadPolicy->dir = '/cbwa/casus/';	// 文件路径，(可选，默认根目录"/")
     $uploadPolicy->name = 'image_'.time();			// 文件名，(可选，不能包含"/"。若为空，则默认使用文件名)
 
     /*第三步：（必须）进行文件上传*/

@@ -1,0 +1,26 @@
+{% extends 'base.cbwa.html.twig' %}
+
+{% block title %}全国婚礼作品设计大赛{% endblock %}
+
+{% block body %}
+    <div class="fe-personal" ng-controller="PersonalCasusController">
+        <div class="container">
+            <div class="row">
+                <div class="fe-personal-left first">
+                    <ul>
+                        <li ng-click="jumpToStep(1)"><div>1. 基本信息</div></li>
+                        <li class="active" ng-click="jumpToStep(2)"><div>2. 参赛案例</div></li>
+                        <li ng-click="jumpToStep(3)"><div>3. 我的订单</div></li>
+                    </ul>
+                </div>
+                <div class="fe-personal-right narrow">
+                    2
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/controller/personal.js') }}"></script>
+{% endblock %}

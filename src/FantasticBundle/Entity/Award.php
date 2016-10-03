@@ -29,11 +29,6 @@ class Award extends Base
      */
     private $fee;
 
-    /**
-     * @ORM\Column(name="casus_number", type="integer", nullable=false)
-     */
-    private $casusNumber;
-
     private $apply;
 
     public function __construct()
@@ -97,29 +92,6 @@ class Award extends Base
     public function getFee()
     {
         return $this->fee;
-    }
-
-    /**
-     * Set casusNumber
-     *
-     * @param integer $casusNumber
-     * @return Award
-     */
-    public function setCasusNumber($casusNumber)
-    {
-        $this->casusNumber = $casusNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get casusNumber
-     *
-     * @return integer 
-     */
-    public function getCasusNumber()
-    {
-        return $this->casusNumber;
     }
 
     public function setApply($apply)

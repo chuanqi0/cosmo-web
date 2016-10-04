@@ -60,19 +60,27 @@ app.controller('PersonalController', function($scope, $cookieStore, cbwaUser) {
 
 app.controller('PersonalCasusController', function($scope, $cookieStore) {
 
-    $scope.jumpToStep = function(step) {
-        $cookieStore.put('personalStep', step);
-        $scope.jumpToPage('personal');
-    };
-});
-
-app.controller('PersonalOrderController', function($scope, $cookieStore) {
-
     $scope.casusOrderList = [];
 
     $scope.jumpToStep = function(step) {
         $cookieStore.put('personalStep', step);
         $scope.jumpToPage('personal');
+    };
+
+    $scope.openOrder = function ($index) {
+        var currentOrder = $scope.casusOrderList[$index];
+        var valid = currentOrder.valid;
+        var paid = currentOrder.paid;
+        if (valid == true && paid == false) {
+            var casusGuid = currentOrder.guid;
+            $cookieStore.put('applyStep', 1);
+            $cookieStore.put('casusGuid', casusGuid);
+            $scope.jumpToPage('join');
+        } else if (valid == true && paid == true) {
+
+        } else {
+            alert("订单已取消");
+        }
     };
 
     $scope.getPersonalCasusList = function() {
@@ -99,7 +107,19 @@ app.controller('PersonalOrderController', function($scope, $cookieStore) {
         });
     };
 
+    $scope.refreshHeight = function() {
+        var j = 0;
+        for (var i = 0; i < $scope.casusOrderList.length; i++) {
+            j += $scope.casusOrderList[i].awardList.length;
+        }
+        var personalHeight = 110 + 180 * $scope.casusOrderList.length + 25 * j;
+        personalHeight = personalHeight > 550 ? personalHeight : 550;
+        $('.fe-personal-left').css('height', personalHeight + 'px');
+        $('.fe-personal-right').css('height', personalHeight + 'px');
+    };
+
     $scope.init = function () {
         $scope.getPersonalCasusList();
+        $scope.refreshHeight();
     };
 });

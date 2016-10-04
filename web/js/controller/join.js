@@ -7,7 +7,7 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
 
     // 申请步骤
     $scope.applyStep = $cookieStore.get('applyStep') == null ? 1 : $cookieStore.get('applyStep');
-    $scope.casus = $cookieStore.get('casus');
+    $scope.casus = null;
     $scope.title = $scope.casus == null ? '' : $scope.casus.title;
     $scope.description = $scope.casus == null ? '' : $scope.casus.description;
     $scope.place = $scope.casus == null ? '' : $scope.casus.place;
@@ -27,8 +27,6 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
     $scope.descriptionValid = true;
     $scope.placeValid = true;
     $scope.awardValid = true;
-
-    console.log($scope.casus);
 
     $scope.refreshLeftHeight = function() {
         if ($scope.applyStep == 1) {
@@ -161,10 +159,11 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
         return success;
     };
 
-    $scope.getContent = function () {
-        if ($scope.casus != null) {
+    $scope.getCasusDetail = function () {
+        var casusGuid = $cookieStore.get('casusGuid');
+        if (casusGuid != null && casusGuid != '') {
             var data = {
-                casusGuid: $scope.casus.guid
+                casusGuid: casusGuid
             };
             $.ajax({
                 url: apiBase + '/api/cbwa/casus/detail',
@@ -174,7 +173,7 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
                 dataType: 'json',
                 success: function (response) {
                     if (response.status == 0) {
-                        um.setContent(response.data.content);
+                        $scope.casus = response.data;
                     } else {
                         console.log(response.message);
                     }
@@ -218,9 +217,8 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
             dataType: 'json',
             success: function (response) {
                 if (response.status == 0) {
-                    $scope.casus = response.data;
-                    $cookieStore.put('casus', response.data);
                     success = true;
+                    $cookieStore.put('casusGuid', response.data.guid);
                 } else {
                     alert(response.message);
                 }
@@ -247,11 +245,20 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
 
     $scope.init = function() {
         $scope.refreshLeftHeight();
+        $scope.getCasusDetail();
         if ($scope.applyStep == 1) {
             $scope.getRegionList();
             $scope.refreshAwardList();
+            if ($scope.casus != null) {
+                $scope.title = $scope.casus.title;
+                $scope.description = $scope.casus.description;
+                $scope.place = $scope.casus.place;
+                $scope.price = $scope.casus.price;
+            }
         } else if ($scope.applyStep == 2) {
-            $scope.getContent();
+            if ($scope.casus != null) {
+                um.setContent($scope.casus.content);
+            }
         }
     }
 });

@@ -1,0 +1,70 @@
+{% extends 'base.cbwa.html.twig' %}
+
+{% block title %}全国婚礼作品设计大赛{% endblock %}
+
+{% block body %}
+    <div class="fe-info" ng-controller="InfoController" ng-init="init()">
+        <div class="container">
+            <div class="row">
+                <div class="fe-info-left">
+                    <ul>
+                        <li ng-class="{'active': infoStep == 1}" ng-click="jumpToStep(1)"><div>大赛简介</div></li>
+                        <li ng-class="{'active': infoStep == 2}" ng-click="jumpToStep(2)"><div>大赛规则</div></li>
+                        <li ng-class="{'active': infoStep == 3}" ng-click="jumpToStep(3)"><div>报名方式</div></li>
+                        <li ng-class="{'active': infoStep == 4}" ng-click="jumpToStep(4)"><div>主办方介绍</div></li>
+                        <li ng-class="{'active': infoStep == 5}" ng-click="jumpToStep(5)"><div>联系我们</div></li>
+                    </ul>
+                </div>
+                <div class="fe-info-right">
+                    <div ng-show="infoStep == 1" class="row fe-m0">
+                        <div>
+                            <img class="fe-width" src="{{ asset('img/fantastic/info/banner_1.jpg') }}" />
+                        </div>
+                        <div class="info-title">
+                            全国婚礼作品设计大赛正式启动
+                        </div>
+                        <div class="info-desc">
+                            <p>尊敬的公益伙伴们：</p>
+                            <p class="indent">期盼已久的“第四届中国公益慈善项目大赛”在2015年5月明媚的春光中如约启动了，本届大赛由中国公益慈善项目交流展示会组委会主办(展会由中华人民共和国民政部、国务院国有资产监督管理委员会、中华全国工商业联合会、广东省人民政府、深圳市人民政府和中国慈善联合会主办)，是一项国家级、开放性的公益创投大赛。</p>
+                            <p>【大赛主题】<br />大众社会创业，万众公益创新</p>
+                            <p>【大赛口号】<br />益起来，创未来</p>
+                            <p>【大赛目的】<br />1. 支持和传播优质公益项目的运作模式、先进理念；<br />2. 汇聚多元化公益创投资金，推动跨界力量参与社会创新；<br />3. 通过竞赛遴选优秀项目负责人组建中国公益创客联盟。<br /></p>
+                            <p>【参赛主体】<br />1. 中国（包括港澳台）所有有志于公益事业的企事业单位、社会组织、大专院校社团、未注册组织（社区/志愿/临时组织等）、其他法人单位（媒体/科研单位/事业单位等）及公民个人均可以申报；
+                            <br />2. 已获得各届中华慈善奖的项目、中央财政支持的项目和历届中国公益慈善项目大赛获奖项目不得申报；
+                            <br />3.大学生公益创客大赛、大学生公益视频大赛面向全国各大高校（含港澳台地区）正式注册的全日制非成人教育的各类高等院校在校专科生、本科生、硕士研究生和博士研究生均可参加，以个人或团队形式参赛。</p>
+                            <p>【申报要求】<br />1. 项目围绕教育、文化、卫生、环境环保、弱势人群、社区发展、慈善金融、公益支持等公益慈善领域，针对特定的社会问题或群体需求，以项目化形式提出创新解决方案；
+                            <br />2. 倡导项目申请者以真实社会需求为导向，使用互联网思维下的创新方法整合资源满足社会需求、解决社会问题，形成运用市场运作方式追求创新、效率和社会效果的跨界公益项目；
+                            <br />3. 项目应提交一个年度的执行方案；
+                            <br />4. 每个组织/个人最多提交2个参赛项目；
+                            <br />5. 大学生公益视频大赛申报要求及赛程将根据该奖项参赛指南及章程开展。
+                        </div>
+                    </div>
+                    <div ng-show="infoStep == 2" class="row fe-form fe-m0">
+                        <div class="info-title">
+                            大赛规则
+                        </div>
+                    </div>
+                    <div ng-show="infoStep == 3" class="row fe-form fe-m0">
+                        <div class="info-title">
+                            报名方式
+                        </div>
+                    </div>
+                    <div ng-show="infoStep == 4" class="row fe-form fe-m0">
+                        <div class="info-title">
+                            主办方介绍
+                        </div>
+                    </div>
+                    <div ng-show="infoStep == 5" class="row fe-form fe-m0">
+                        <div class="info-title">
+                            联系我们
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/controller/info.js') }}"></script>
+{% endblock %}

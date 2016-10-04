@@ -64,24 +64,24 @@
                             <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>首页 HOME</div>
                         </li>
-                        <li>
+                        <li {% if index == 'info' %} class="active" {% endif %} ng-click="jumpToPage('info')">
                             <img class="triangle second" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>关于大赛 INFO</div>
                         </li>
-                        <li>
+                        <li {% if index == 'awards' %} class="active" {% endif %} ng-click="jumpToPage('awards')">
                             <img class="triangle third" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>奖项设置 AWARDS</div>
                         </li>
-                        <li>
+                        <li {% if index == 'works' %} class="active" {% endif %} ng-click="jumpToPage('works')">
                             <img class="triangle fourth" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>热门方案 WORKS</div>
                         </li>
-                        <li {% if index == 'ceremony' %} class="active" {% endif %} ng-click="jumpToPage('ceremony')">
+                        <li {% if index == 'ceremony' %} class="active" {% endif %} ng-click="ceremony()">
                             <img class="triangle fifth" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>颁奖典礼 CEREMONY</div>
                         </li>
                     </ul>
-                    <a class="fe-join-area" href="/join">
+                    <a class="fe-join-area" ng-click="join()">
                         <img class="fe-join" src="{{ asset('img/fantastic/common/join.png') }}" alt="Join" />
                     </a>
                 </div>

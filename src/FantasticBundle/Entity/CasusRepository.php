@@ -20,7 +20,7 @@ class CasusRepository extends EntityRepository
 
     public function getPersonalCasusList($userId)
     {
-        return $this->findBy(array('userId' => $userId), array('createTime' => 'DESC'));
+        return $this->findBy(array('userId' => $userId), array('valid' => 'DESC', 'createTime' => 'DESC'));
     }
 //
 //    public function getTotalPublicCasusNumber()

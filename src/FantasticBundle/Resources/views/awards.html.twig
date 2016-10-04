@@ -1,0 +1,53 @@
+{% extends 'base.cbwa.html.twig' %}
+
+{% block title %}全国婚礼作品设计大赛{% endblock %}
+
+{% block body %}
+    <div class="fe-info" ng-controller="AwardsController" ng-init="init()">
+        <div class="container">
+            <div class="row">
+                <div class="fe-info-left">
+                    <ul>
+                        <li ng-class="{'active': awardsStep == 1}" ng-click="jumpToStep(1)"><div>奖项设置</div></li>
+                    </ul>
+                </div>
+                <div class="fe-info-right">
+                    <div ng-show="awardsStep == 1" class="row fe-m0">
+                        <div class="info-title left">
+                            年度最佳婚礼创意设计
+                        </div>
+                        <div class="info-desc">
+                            <p>【大赛主题】<br />大众社会创业，万众公益创新</p>
+                            <p class="indent">期盼已久的“第四届中国公益慈善项目大赛”在2015年5月明媚的春光中如约启动了，本届大赛由中国公益慈善项目交流展示会组委会主办(展会由中华人民共和国民政部、国务院国有资产监督管理委员会、中华全国工商业联合会、广东省人民政府、深圳市人民政府和中国慈善联合会主办)，是一项国家级、开放性的公益创投大赛。</p>
+                        </div>
+                        <div class="info-title left">
+                            年度最佳婚礼色彩设计
+                        </div>
+                        <div class="info-desc">
+                            <p>【大赛主题】<br />大众社会创业，万众公益创新</p>
+                            <p class="indent">期盼已久的“第四届中国公益慈善项目大赛”在2015年5月明媚的春光中如约启动了，本届大赛由中国公益慈善项目交流展示会组委会主办(展会由中华人民共和国民政部、国务院国有资产监督管理委员会、中华全国工商业联合会、广东省人民政府、深圳市人民政府和中国慈善联合会主办)，是一项国家级、开放性的公益创投大赛。</p>
+                        </div>
+                        <div class="info-title left">
+                            年度最美婚礼花艺
+                        </div>
+                        <div class="info-desc">
+                            <p>【大赛主题】<br />大众社会创业，万众公益创新</p>
+                            <p class="indent">期盼已久的“第四届中国公益慈善项目大赛”在2015年5月明媚的春光中如约启动了，本届大赛由中国公益慈善项目交流展示会组委会主办(展会由中华人民共和国民政部、国务院国有资产监督管理委员会、中华全国工商业联合会、广东省人民政府、深圳市人民政府和中国慈善联合会主办)，是一项国家级、开放性的公益创投大赛。</p>
+                        </div>
+                        <div class="info-title left">
+                            年度最美婚礼场地
+                        </div>
+                        <div class="info-desc">
+                            <p>【大赛主题】<br />大众社会创业，万众公益创新</p>
+                            <p class="indent">期盼已久的“第四届中国公益慈善项目大赛”在2015年5月明媚的春光中如约启动了，本届大赛由中国公益慈善项目交流展示会组委会主办(展会由中华人民共和国民政部、国务院国有资产监督管理委员会、中华全国工商业联合会、广东省人民政府、深圳市人民政府和中国慈善联合会主办)，是一项国家级、开放性的公益创投大赛。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/controller/awards.js') }}"></script>
+{% endblock %}

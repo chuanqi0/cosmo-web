@@ -3,10 +3,10 @@
 {% block title %}全国婚礼作品设计大赛{% endblock %}
 
 {% block body %}
-    <div class="fe-ceremony" ng-controller="CeremonyController">
+    <div class="fe-info" ng-controller="CeremonyController" ng-init="init()">
         <div class="container">
             <div class="row">
-                <div class="fe-ceremony-left">
+                <div class="fe-info-left">
                     <ul>
                         <li ng-class="{'active': ceremonyStep == 1}" ng-click="jumpToStep(1)"><div>典礼信息</div></li>
                         <li ng-class="{'active': ceremonyStep == 2}" ng-click="jumpToStep(2)"><div>入围名单</div></li>
@@ -14,15 +14,77 @@
                         <li ng-class="{'active': ceremonyStep == 4}" ng-click="jumpToStep(4)"><div>开放售票</div></li>
                     </ul>
                 </div>
-                <div class="fe-ceremony-right">
+                <div class="fe-info-right">
                     <div ng-show="ceremonyStep == 1" class="row fe-form fe-m0">
-                        1
+                        <div class="col-md-12 p0">
+                            <img class="fe-width" src="{{ asset('img/fantastic/info/banner_2.jpg') }}" />
+                        </div>
+                        <div class="col-md-10 fe-p0">
+                            <div class="info-title left">
+                                全国婚礼作品设计大赛-颁奖典礼暨婚尚盛典
+                            </div>
+                            <div class="info-sub-title">
+                                典礼信息
+                            </div>
+                            <div class="info-desc">
+                                <p>时间: 2016年12月31日    17:30 星光大道  19:00 颁奖典礼<br />
+                                地点: 北京饭店(北京市东城区东长安街33号)</p>
+                            </div>
+                            <div class="info-sub-title">
+                                媒体申请
+                            </div>
+                            <div class="info-desc">
+                                <p>请联系: 18611521840<br />
+                                邮箱: CBWA@cosmo.love</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 fe-p0">
+                            <div class="fe-btn next fe-mt15" ng-click="jumpToStep(4)">去购票</div>
+                        </div>
                     </div>
-                    <div ng-show="ceremonyStep == 2" class="row fe-form fe-m0">
-                        2
+                    <div ng-show="ceremonyStep == 2" class="row fe-m0">
+                        <div class="col-md-12 fe-p0">
+                            <img class="fe-width" src="{{ asset('img/fantastic/info/banner_4.jpg') }}" />
+                            <div class="info-title left">
+                                全国婚礼作品设计大赛-入围名单
+                            </div>
+                            <div class="info-sub-title">
+                                年度最佳婚礼创意设计
+                            </div>
+                            <div class="info-desc">
+                                <p>迷之森林   作者: 刘宇</p>
+                                <p>“樱”为爱情 作者: 王芳雨</p>
+                            </div>
+                            <div class="info-sub-title">
+                                年度最佳婚礼色彩搭配
+                            </div>
+                            <div class="info-desc">
+                                <p>迷之森林   作者: 刘宇</p>
+                                <p>“樱”为爱情 作者: 王芳雨</p>
+                            </div>
+                            <div class="info-sub-title">
+                                年度最佳婚礼花艺
+                            </div>
+                            <div class="info-desc">
+                                <p>迷之森林   作者: 刘宇</p>
+                                <p>“樱”为爱情 作者: 王芳雨</p>
+                            </div>
+                            <div class="info-sub-title">
+                                年度最佳婚礼场地
+                            </div>
+                            <div class="info-desc">
+                                <p>迷之森林   作者: 刘宇</p>
+                                <p>“樱”为爱情 作者: 王芳雨</p>
+                            </div>
+                        </div>
                     </div>
-                    <div ng-show="ceremonyStep == 3" class="row fe-form fe-m0">
-                        3
+                    <div ng-show="ceremonyStep == 3" class="row fe-m0">
+                        <div class="col-md-12 fe-p0">
+                            <img class="fe-width" src="{{ asset('img/fantastic/info/banner_3.jpg') }}" />
+                        </div>
+                        <div class="col-md-12 fe-pt20">
+                            <img class="fe-width" src="{{ asset('img/fantastic/info/brands.jpg') }}" />
+                        </div>
                     </div>
                 </div>
             </div>

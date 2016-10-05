@@ -13,6 +13,7 @@ class LoveConstant
     const MESSAGE_CASUS_PUBLISH_SUCCESS = '案例发布成功';
     const MEESAGE_CASUS_UPDATE_SUCCESS = '案例更新成功';
     const MEESAGE_CASUS_DETAIL_SUCCESS = '案例详情获取成功';
+    const MEESAGE_CASUS_CANCEL_SUCCESS = '案例取消成功';
     const MEESAGE_CASUS_EXTRA_SUCCESS = '案例内容补充成功';
     const MEESAGE_CASUS_LIST_SUCCESS = '案例列表获取成功';
     const MEESAGE_CASUS_PERSONAL_SUCCESS = '个人案例列表获取成功';
@@ -21,4 +22,5 @@ class LoveConstant
     const ERROR_CASUS_NOT_EXIST = '案例不存在';
     const ERROR_USER_NOT_EXIST = '用户未补全信息';
     const ERROR_AWARD_NOT_EXIST = '奖项不存在';
+    const ERROR_CASUS_PAID = '案例已支付, 不可取消';
 }

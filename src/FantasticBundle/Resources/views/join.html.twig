@@ -15,7 +15,7 @@
                         <li ng-class="{'active': applyStep == 1}"><div>1. 案例信息</div></li>
                         <li ng-class="{'active': applyStep == 2}"><div>2. 案例图文</div></li>
                         <li ng-class="{'active': applyStep == 3}"><div>3. 支付费用</div></li>
-                        <li ng-class="{'active': applyStep == 4}"><div>4. 报名成功</div></li>
+                        <li><div>4. 报名成功</div></li>
                     </ul>
                 </div>
                 <div class="fe-apply-right">
@@ -113,17 +113,28 @@
                         <div class="col-md-8 col-md-offset-2">
                             <img class="fe-width" src="{{ asset('img/fantastic/join/fee_title.jpg') }}" />
                         </div>
-                        <div class="col-md-8 col-md-offset-2 fee-top">
-                            <div class="fee-top-1">
-                                您本次报名的费用共计
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="row fe-m0 fee-top">
+                                <div class="fee-top-1">
+                                    您本次报名的费用共计
+                                </div>
+                                <div class="fee-top-2">
+                                    ¥ {[{ casus.totalFee }]}
+                                </div>
+                                <div class="fee-top-3">
+                                    <div class="fee-top-row" ng-repeat="award in casus.awardList">
+                                        <span>{[{ award.name }]}</span>
+                                        <span>￥{[{ award.fee }]}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="fee-top-2">
-                                ¥ {[{ casus.totalFee }]}
-                            </div>
-                            <div class="fee-top-3">
-                                <div class="fee-top-row" ng-repeat="award in casus.awardList">
-                                    <span>{[{ award.name }]}</span>
-                                    <span>￥{[{ award.fee }]}</span>
+                            <div class="row fe-m0 payment-choose">
+                                <div class="col-md-12 choose-title">
+                                    请选择支付方式
+                                </div>
+                                <div class="col-md-12 choose-area">
+                                    <div class="choose-radio"><input type="radio" checked /></div>
+                                    <div class="choose-btn alipay active"></div>
                                 </div>
                             </div>
                         </div>
@@ -131,10 +142,9 @@
                             <div class="fe-btn before" ng-click="jumpToStep(2)">上一步</div>
                         </div>
                         <div class="col-md-3 col-md-offset-2 fe-pt10">
-                            <div class="fe-btn next" ng-click="jumpToStep(4)">下一步</div>
+                            <div id="pay-btn" class="fe-btn next" ng-click="pay()">去支付</div>
                         </div>
                     </div>
-                    <div ng-show="applyStep == 4" class="row fe-form fe-m0"></div>
                 </div>
             </div>
         </div>

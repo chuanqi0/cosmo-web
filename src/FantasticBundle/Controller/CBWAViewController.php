@@ -2,8 +2,11 @@
 
 namespace FantasticBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Cookie;
+
 
 use AppBundle\Controller\BaseController;
 
@@ -27,7 +30,24 @@ class CBWAViewController extends BaseController
     }
 
     /**
-     * @Route("/join")
+     * @Route("/join/success")
+     */
+    public function joinSuccessAction(Request $request)
+    {
+        // 处理业务
+        $cookieUserStr = $request->cookies->get("user");
+        if (!$cookieUserStr) {
+            return $this->redirectToRoute('cbwa_register');
+        }
+        $dataOut = array(
+            'base' => $this->base,
+            'index' => 'join'
+        );
+        return $this->render('FantasticBundle::join.success.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/join", name="cbwa_join")
      */
     public function joinAction(Request $request)
     {

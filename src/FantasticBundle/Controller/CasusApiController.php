@@ -111,6 +111,34 @@ class CasusApiController extends BaseController
     }
 
     /**
+     * @Route("/casus/cancel")
+     * @Method({"POST"})
+     */
+    public function casusCancelAction(Request $request)
+    {
+        try {
+            $casusGuid = $request->get('casusGuid');
+            // 处理业务
+            $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+            $casus = $casusRepository->findCasusByGuid($casusGuid);
+            if (!$casus) {
+                throw new LoveException(LoveConstant::ERROR_CASUS_NOT_EXIST);
+            }
+            if ($casus->getPaid() == true) {
+                throw new LoveException(LoveConstant::ERROR_CASUS_PAID);
+            }
+            $casus->setValid(false);
+            $casusRepository->saveCasus($casus);
+            // 设置返回数据
+            $this->setSuccess($casus->toArray(), LoveConstant::MEESAGE_CASUS_CANCEL_SUCCESS);
+        } catch (\Exception $e) {
+            $this->setFailedMessage($e->getMessage());
+        }
+        $jsonResponse = $this->makeJsonResponse();
+        return $jsonResponse;
+    }
+
+    /**
      * @Route("/casus/publish")
      * @Method({"POST"})
      */
@@ -161,7 +189,6 @@ class CasusApiController extends BaseController
                 if (!$award) {
                     throw new LoveException(LoveConstant::ERROR_AWARD_NOT_EXIST);
                 } else {
-                    $this->get('logger')->info("EFEF");
                     $casusAward = new CasusAward();
                     $casusAward->setCasusId($casus->getId());
                     $casusAward->setAwardId($award->getId());

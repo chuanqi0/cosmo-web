@@ -1,4 +1,4 @@
-app.controller('PersonalController', function($scope, $cookieStore, cbwaUser) {
+app.controller('PersonalController', function($scope, $cookies, cbwaUser) {
 
     // 数据
     $scope.cbwaUser = JSON.parse(cbwaUser);
@@ -53,17 +53,17 @@ app.controller('PersonalController', function($scope, $cookieStore, cbwaUser) {
     };
 
     $scope.jumpToStep = function(step) {
-        $cookieStore.put('personalStep', step);
+        $scope.putCookie('personalStep', step);
         $scope.jumpToPage('personal');
     };
 });
 
-app.controller('PersonalCasusController', function($scope, $cookieStore) {
+app.controller('PersonalCasusController', function($scope, $cookies) {
 
     $scope.casusOrderList = [];
 
     $scope.jumpToStep = function(step) {
-        $cookieStore.put('personalStep', step);
+        $scope.putCookie('personalStep', step);
         $scope.jumpToPage('personal');
     };
 
@@ -73,13 +73,43 @@ app.controller('PersonalCasusController', function($scope, $cookieStore) {
         var paid = currentOrder.paid;
         if (valid == true && paid == false) {
             var casusGuid = currentOrder.guid;
-            $cookieStore.put('applyStep', 1);
-            $cookieStore.put('casusGuid', casusGuid);
+            $scope.putCookie('applyStep', 1);
+            $scope.putCookie('casusGuid', casusGuid);
             $scope.jumpToPage('join');
         } else if (valid == true && paid == true) {
 
         } else {
             alert("订单已取消");
+        }
+    };
+
+    $scope.cancelOrder = function ($index) {
+        var currentOrder = $scope.casusOrderList[$index];
+        var valid = currentOrder.valid;
+        var paid = currentOrder.paid;
+        if (valid == true && paid == false) {
+            var casusGuid = currentOrder.guid;
+            var data = {
+                casusGuid: casusGuid
+            };
+            $.ajax({
+                url: apiBase + '/api/cbwa/casus/cancel',
+                type: 'POST',
+                async: false,
+                data: data,
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status == 0) {
+                        alert("参赛案例取消成功");
+                        $scope.casusOrderList[$index] = response.data;
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, err) {
+                    console.error(err);
+                }
+            });
         }
     };
 

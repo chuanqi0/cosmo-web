@@ -1,0 +1,40 @@
+{% extends 'base.cbwa.html.twig' %}
+
+{% block title %}全国婚礼作品设计大赛{% endblock %}
+
+{% block body %}
+<div class="fe-apply" ng-controller="JoinSuccessController" ng-init="init()">
+    <div class="container">
+        <div class="row">
+            <div class="fe-apply-left">
+                <ul>
+                    <li><div>1. 案例信息</div></li>
+                    <li><div>2. 案例图文</div></li>
+                    <li><div>3. 支付费用</div></li>
+                    <li class="active"><div>4. 报名成功</div></li>
+                </ul>
+            </div>
+            <div class="fe-apply-right">
+                <div class="row fe-m0 loadding">
+                    <div class="col-md-2 col-md-offset-5 loadding-img">
+                        <img class="fe-width" ng-src="{{ asset('img/fantastic/join/loadding.gif') }}" ng-show="success == false" />
+                        <img class="fe-width" ng-src="{{ asset('img/fantastic/join/join_success.png') }}" ng-show="success == true" />
+                    </div>
+                    <div class="col-md-12">
+                        <div class="loadding-text top" ng-show="success == false">正在查询订单状态...</div>
+                        <div class="loadding-text top" ng-show="success == true">报名成功</div>
+                        <div class="loadding-text below">更多信息请在个人中心->参赛案例中查看</div>
+                    </div>
+                    <div class="col-md-2 col-md-offset-5 fe-p0">
+                        <div class="fe-btn next" ng-click="jumpToPage('personal')">前往个人中心</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/controller/join.success.js') }}"></script>
+{% endblock %}

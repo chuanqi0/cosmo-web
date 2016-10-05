@@ -1,4 +1,4 @@
-app.controller('RegisterController', function($scope, $cookieStore, $interval, UtilService) {
+app.controller('RegisterController', function($scope, $cookies, $interval, UtilService) {
 
     // 数据
     $scope.telephone = '';
@@ -125,7 +125,7 @@ app.controller('RegisterController', function($scope, $cookieStore, $interval, U
                     success: function (response) {
                         if (response.status == 0) {
                             alert("注册成功");
-                            $cookieStore.put('user', response.data);
+                            $scope.putCookieObject('user', response.data);
                             window.location.href = base;
                         } else {
                             alert(response.message);
@@ -207,7 +207,7 @@ app.controller('RegisterController', function($scope, $cookieStore, $interval, U
                 success: function (response) {
                     if (response.status == 0) {
                         alert("登录成功");
-                        $cookieStore.put('user', response.data);
+                        $scope.putCookieObject('user', response.data);
                         window.location.href = base;
                     } else {
                         alert(response.message);

@@ -1,4 +1,4 @@
-app.controller('HomeController', function($scope, $cookieStore, judgeList) {
+app.controller('HomeController', function($scope, judgeList) {
 
     // 评委列表
     $scope.judgeListSrc = JSON.parse(judgeList);

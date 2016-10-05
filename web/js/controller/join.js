@@ -3,10 +3,10 @@ var um = UM.getEditor('myEditor');
 um.setWidth(758);
 um.setHeight(650);
 
-app.controller('JoinController', function($scope, $cookieStore, awardList) {
+app.controller('JoinController', function($scope, $cookies, awardList) {
 
     // 申请步骤
-    $scope.applyStep = $cookieStore.get('applyStep') == null ? 1 : $cookieStore.get('applyStep');
+    $scope.applyStep = $cookies.get('applyStep') == null ? 1 : $cookies.get('applyStep');
     $scope.casus = null;
     $scope.title = $scope.casus == null ? '' : $scope.casus.title;
     $scope.description = $scope.casus == null ? '' : $scope.casus.description;
@@ -160,7 +160,7 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
     };
 
     $scope.getCasusDetail = function () {
-        var casusGuid = $cookieStore.get('casusGuid');
+        var casusGuid = $cookies.get('casusGuid');
         if (casusGuid != null && casusGuid != '') {
             var data = {
                 casusGuid: casusGuid
@@ -177,6 +177,33 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
                     } else {
                         console.log(response.message);
                     }
+                },
+                error: function (xhr, status, err) {
+                    console.error(err);
+                }
+            });
+        }
+    };
+
+    $scope.pay = function () {
+        if ($scope.casus != null && $scope.user != null) {
+            var data = {
+                userUuid: $scope.user.uuid,
+                targetUuid: $scope.casus.guid,
+                targetType: 1,
+                totalFee: $scope.casus.totalFee,
+                subject: '全国婚礼作品大赛',
+                body: '参赛费: ¥' + $scope.casus.totalFee,
+                returnUrl: base + 'join/success'
+            };
+            $.ajax({
+                url: domain + '/api/pay/alipay/instant',
+                type: 'POST',
+                async: false,
+                data: data,
+                dataType: 'html',
+                success: function (response) {
+                    $('#pay-btn').append(response);
                 },
                 error: function (xhr, status, err) {
                     console.error(err);
@@ -218,7 +245,7 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
             success: function (response) {
                 if (response.status == 0) {
                     success = true;
-                    $cookieStore.put('casusGuid', response.data.guid);
+                    $scope.putCookie('casusGuid', response.data.guid);
                 } else {
                     alert(response.message);
                 }
@@ -234,11 +261,11 @@ app.controller('JoinController', function($scope, $cookieStore, awardList) {
         var stepSuccess = true;
         if ($scope.applyStep == 1) {
             stepSuccess = $scope.processFirstStep();
-        } else if ($scope.applyStep == 2) {
+        } else if ($scope.applyStep == 2 && step == 3) {
             stepSuccess = $scope.processSecondStep(step);
         }
         if (stepSuccess == true) {
-            $cookieStore.put('applyStep', step);
+            $scope.putCookie('applyStep', step);
             $scope.jumpToPage('join');
         }
     };

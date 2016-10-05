@@ -2,15 +2,15 @@ var app = angular.module('app', ['ngCookies']).config(function($interpolateProvi
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 
-app.controller('BaseController', function($scope, $cookieStore) {
+app.controller('BaseController', function($scope, $cookies) {
     $scope.user = null;
 
-    if ($cookieStore.get('user')) {
-        $scope.user = $cookieStore.get('user');
+    if ($cookies.getObject('user')) {
+        $scope.user = $cookies.getObject('user');
     }
 
     $scope.exit = function () {
-        $cookieStore.remove('user');
+        $scope.removeCookie('user');
         window.location.reload();
     };
 
@@ -18,28 +18,46 @@ app.controller('BaseController', function($scope, $cookieStore) {
         window.location.href = base + $page;
     };
 
-    $scope.join = function ($page) {
-        var casusGuid = $cookieStore.get('casusGuid');
+    $scope.removeCookie = function ($key) {
+        var expireDate = new Date();
+        expireDate.setDate(expireDate.getDate() + 30);
+        $cookies.remove($key, {'path': '/', 'expires': expireDate});
+    };
+
+    $scope.putCookie = function ($key, $value) {
+        var expireDate = new Date();
+        expireDate.setDate(expireDate.getDate() + 30);
+        $cookies.put($key, $value, {'path': '/', 'expires': expireDate});
+    };
+
+    $scope.putCookieObject = function ($key, $value) {
+        var expireDate = new Date();
+        expireDate.setDate(expireDate.getDate() + 30);
+        $cookies.putObject($key, $value, {'expires': expireDate});
+    };
+
+    $scope.join = function () {
+        var casusGuid = $cookies.get('casusGuid');
         if (casusGuid != null) {
             if (confirm("有尚未完成的参赛案例, 是否创建新的案例?")) {
-                $cookieStore.put('applyStep', 1);
-                $cookieStore.remove('casusGuid');
+                $scope.putCookie('applyStep', 1);
+                $scope.removeCookie('casusGuid');
             }
         }
         $scope.jumpToPage('join');
     };
 
     $scope.ceremony = function () {
-        var ceremonyStep = $cookieStore.get('ceremonyStep');
+        var ceremonyStep = $cookies.get('ceremonyStep');
         if (ceremonyStep == 4 && $scope.user == null) {
-            $cookieStore.put('ceremonyStep', 1);
+            $scope.putCookie('ceremonyStep', 1);
         }
         $scope.jumpToPage('ceremony');
     };
 });
 
-// var domain = 'http://101.201.28.172:8080/rest';
-var domain = 'http://localhost:8080';
+var domain = 'http://101.201.28.172:8080/rest';
+// var domain = 'http://localhost:8080';
 
 var base = 'http://localhost:8000/';
 var apiBase = 'http://localhost:8000';

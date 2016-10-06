@@ -461,31 +461,36 @@ class Casus extends Base
     public function toArray() {
         return array(
             "guid" => $this->guid,
+            "cover" => $this->cover,
             "title" => $this->title,
-            'description' => $this->description,
-            'price' => $this->price,
-            'region' => $this->region,
-            'place' => $this->place,
-            'totalFee' => $this->totalFee,
-            'paid' => $this->paid,
-            'awardList' => json_decode($this->awardList, true),
-            'valid' => $this->valid
+            "name" => $this->name,
+            "description" => $this->description,
+            "price" => $this->price,
+            "region" => $this->region,
+            "place" => $this->place,
+            "totalFee" => $this->totalFee,
+            "paid" => $this->paid,
+            "awardList" => json_decode($this->awardList, true),
+            "valid" => $this->valid
         );
     }
 
     public function toDetailArray() {
         return array(
             "guid" => $this->guid,
+            "cover" => $this->cover,
             "title" => $this->title,
-            'description' => $this->description,
-            'price' => $this->price,
-            'region' => $this->region,
-            'place' => $this->place,
-            'totalFee' => $this->totalFee,
-            'paid' => $this->paid,
-            'content' => $this->content,
-            'awardList' => json_decode($this->awardList, true),
-            'valid' => $this->valid
+            "name" => $this->name,
+            "description" => $this->description,
+            "price" => $this->price,
+            "region" => $this->region,
+            "place" => $this->place,
+            "totalFee" => $this->totalFee,
+            "paid" => $this->paid,
+            "content" => $this->content,
+            "awardNumber" => $this->awardNumber,
+            "awardList" => json_decode($this->awardList, true),
+            "valid" => $this->valid
         );
     }
 }

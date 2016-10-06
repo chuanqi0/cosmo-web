@@ -124,9 +124,12 @@ app.controller('JoinController', function($scope, $cookies, awardList) {
 
     $scope.processSecondStep = function (step) {
         var content = UM.getEditor('myEditor').getContent();
-        if ($scope.applyStep == 2 && step == 3) {
-            if (content.length < 200) {
-                alert("案例图文必须超过200字");
+        if (content.length < 200) {
+            alert("案例图文必须超过200个字符");
+            return false;
+        } else {
+            if (content.indexOf('src=', 0) == -1) {
+                alert("案例必须上传图片");
                 return false;
             }
         }

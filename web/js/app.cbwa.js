@@ -18,6 +18,13 @@ app.controller('BaseController', function($scope, $cookies) {
         window.location.href = base + $page;
     };
 
+    $scope.getShortText = function ($text, $length) {
+        if ($text.length > $length) {
+            $text = $text.substr(0, $length) + '...';
+        }
+        return $text;
+    };
+
     $scope.removeCookie = function ($key) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);

@@ -77,7 +77,8 @@ app.controller('PersonalCasusController', function($scope, $cookies) {
             $scope.putCookie('casusGuid', casusGuid);
             $scope.jumpToPage('join');
         } else if (valid == true && paid == true) {
-
+            var casusGuid = currentOrder.guid;
+            $scope.jumpToPage('casus/' + casusGuid);
         } else {
             alert("订单已取消");
         }

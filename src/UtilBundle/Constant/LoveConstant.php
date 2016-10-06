@@ -23,4 +23,5 @@ class LoveConstant
     const ERROR_USER_NOT_EXIST = '用户未补全信息';
     const ERROR_AWARD_NOT_EXIST = '奖项不存在';
     const ERROR_CASUS_PAID = '案例已支付, 不可取消';
+    const ERROR_COVER_NOT_EXIST = '内容不包含图片';
 }

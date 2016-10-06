@@ -12,6 +12,11 @@ class UserRepository extends EntityRepository
         return $this->findOneBy(array('userUuid' => $userUuid, 'valid' => true));
     }
 
+    public function findUserByUserId($userId)
+    {
+        return $this->findOneBy(array('userId' => $userId, 'valid' => true));
+    }
+
     public function saveUser($user)
     {
         $user->setUpdateTime(UtilService::getCurrentTime());

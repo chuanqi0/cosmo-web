@@ -105,6 +105,31 @@ class CBWAViewController extends BaseController
     }
 
     /**
+     * @Route("/casus/{guid}")
+     */
+    public function casusAction($guid)
+    {
+        // 处理业务
+        $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+        $casus = $casusRepository->findCasusByGuid($guid);
+        if (!$casus) {
+            return $this->redirectToRoute('cbwa_home');
+        }
+        $userRepository = $this->getDoctrine()->getRepository('FantasticBundle:User');
+        $cbwaUser = $userRepository->findUserByUserId($casus->getUserId());
+        if (!$cbwaUser) {
+            return $this->redirectToRoute('cbwa_home');
+        }
+        $dataOut = array(
+            'base' => $this->base,
+            'index' => 'casus',
+            'casus' => $casus->toDetailArray(),
+            'cbwaUser' => $cbwaUser->toArray()
+        );
+        return $this->render('FantasticBundle::casus.html.twig', $dataOut);
+    }
+
+    /**
      * @Route("/info")
      */
     public function infoAction()
@@ -133,9 +158,12 @@ class CBWAViewController extends BaseController
      */
     public function worksAction()
     {
+        $awardRepository = $this->getDoctrine()->getRepository('FantasticBundle:Award');
+        $awardList = $awardRepository->getAwardList();
         $dataOut = array(
             'base' => $this->base,
-            'index' => 'works'
+            'index' => 'works',
+            'awardList' => $awardRepository->listToArray($awardList)
         );
         return $this->render('FantasticBundle::works.html.twig', $dataOut);
     }

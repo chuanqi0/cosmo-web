@@ -4,6 +4,7 @@ namespace FantasticBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use UtilBundle\Service\UtilService;
+use FantasticBundle\Entity\Casus;
 
 class CasusRepository extends EntityRepository
 {
@@ -22,18 +23,24 @@ class CasusRepository extends EntityRepository
     {
         return $this->findBy(array('userId' => $userId), array('valid' => 'DESC', 'createTime' => 'DESC'));
     }
-//
-//    public function getTotalPublicCasusNumber()
-//    {
-//        $queryStr = "select count(c) from FantasticBundle:Casus c where c.public = true";
-//        $query = $this->getEntityManager()->createQuery($queryStr);
-//        $result = $query->getResult();
-//        if ($result[0][1]) {
-//            return $result[0][1];
-//        } else {
-//            return 0;
-//        }
-//    }
+
+    public function getCasusList($awardId) {
+        if ($awardId == 0) {
+            return $this->findBy(array('paid' => true, 'valid' => true), array('createTime' => 'DESC'));
+        } else if ($awardId == -1) {
+            return $this->findBy(array('paid' => true, 'valid' => true, 'awardList' => ''), array('createTime' => 'DESC'));
+        } else {
+            $keyword = '%:'.$awardId.'%';
+            $qb = $this->getEntityManager()->createQueryBuilder();
+            $qb->select('c')
+                ->from('FantasticBundle\Entity\Casus', 'c')
+                ->where('c.paid = true')
+                ->andWhere('c.valid = true')
+                ->andWhere($qb->expr()->like('c.awardList', ':awardList'))
+                ->setParameter('awardList', $keyword);
+            return $qb->getQuery()->getResult();
+        }
+    }
 
     public function listToArray($casusList) {
         $casusListArray = array();

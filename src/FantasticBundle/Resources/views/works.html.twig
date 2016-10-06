@@ -3,26 +3,31 @@
 {% block title %}全国婚礼作品设计大赛{% endblock %}
 
 {% block body %}
-    <div class="fe-ceremony" ng-controller="CeremonyController">
+    <div class="fe-info" ng-controller="WorksController" ng-init="getCasusList(0)">
         <div class="container">
             <div class="row">
-                <div class="fe-ceremony-left">
+                <div class="fe-info-left">
                     <ul>
-                        <li ng-class="{'active': ceremonyStep == 1}" ng-click="jumpToStep(1)"><div>典礼信息</div></li>
-                        <li ng-class="{'active': ceremonyStep == 2}" ng-click="jumpToStep(2)"><div>入围名单</div></li>
-                        <li ng-class="{'active': ceremonyStep == 3}" ng-click="jumpToStep(3)"><div>合作品牌</div></li>
-                        <li ng-class="{'active': ceremonyStep == 4}" ng-click="jumpToStep(4)"><div>开放售票</div></li>
+                        <li ng-class="{'active': awardId == 0}" ng-click="getCasusList(0)"><div>热门方案</div></li>
+                        <li ng-class="{'active': awardId == -1}" ng-click="getCasusList(-1)"><div>明星案例</div></li>
+                        <li ng-class="{'active': awardId == award.id}" ng-repeat="award in awardList" ng-click="getCasusList(award.id)"><div>{[{ award.name }]}</div></li>
                     </ul>
                 </div>
-                <div class="fe-ceremony-right">
-                    <div ng-show="ceremonyStep == 1" class="row fe-form fe-m0">
-                        1
-                    </div>
-                    <div ng-show="ceremonyStep == 2" class="row fe-form fe-m0">
-                        2
-                    </div>
-                    <div ng-show="ceremonyStep == 3" class="row fe-form fe-m0">
-                        3
+                <div class="fe-info-right">
+                    <div class="row fe-m0">
+                        <div class="col-md-4 casus-cell" ng-repeat="casus in casusList track by $index" ng-click="jumpToDetail($index)">
+                            <div class="cell-top">
+                                <img class="fe-width" ng-src="{[{ casus.cover }]}@400w_300h_1e_1c" />
+                                <img class="fe-width cover-shade" src="{{ asset('img/fantastic/info/cover_cell.png') }}" />
+                                <div class="cover-text">
+                                    策划师:&nbsp;{[{ casus.name }]}
+                                </div>
+                            </div>
+                            <div class="cell-bottom">
+                                <div class="cell-title">{[{ casus.title }]}</div>
+                                <div class="cell-desc">{[{ getShortText(casus.description, 32) }]}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -31,5 +36,8 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/controller/ceremony.js') }}"></script>
+    <script type="text/javascript">
+        app.value('awardList', '{{ awardList | json_encode | escape('js') }}');
+    </script>
+    <script type="text/javascript" src="{{ asset('js/controller/works.js') }}"></script>
 {% endblock %}

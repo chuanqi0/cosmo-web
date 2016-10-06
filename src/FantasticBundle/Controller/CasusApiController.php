@@ -62,6 +62,26 @@ class CasusApiController extends BaseController
     }
 
     /**
+     * @Route("/casus/list")
+     * @Method({"POST"})
+     */
+    public function casusListAction(Request $request)
+    {
+        try {
+            $awardId = $request->get('awardId');
+            // 处理业务
+            $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+            $casusList = $casusRepository->getCasusList($awardId);
+            // 设置返回数据
+            $this->setSuccess($casusRepository->listToArray($casusList), LoveConstant::MEESAGE_CASUS_LIST_SUCCESS);
+        } catch (\Exception $e) {
+            $this->setFailedMessage($e->getMessage());
+        }
+        $jsonResponse = $this->makeJsonResponse();
+        return $jsonResponse;
+    }
+
+    /**
      * @Route("/casus/extra")
      * @Method({"POST"})
      */
@@ -75,6 +95,30 @@ class CasusApiController extends BaseController
             $casus = $casusRepository->findCasusByGuid($casusGuid);
             if (!$casus) {
                 throw new LoveException(LoveConstant::ERROR_CASUS_NOT_EXIST);
+            }
+            $find = strpos($content, 'src=');
+            if ($find) {
+                $start = 0;
+                $end = 0;
+                for ($i = $find; $i < strlen($content); $i++) {
+                    if (substr($content, $i, 1) == '"') {
+                        if ($start == 0) {
+                            $start = $i;
+                            continue;
+                        } else if ($end == 0) {
+                            $end = $i;
+                            break;
+                        }
+                    }
+                }
+                if ($start > 0 && $end > 0) {
+                    $cover = substr($content, $start + 1, $end - $start - 1);
+                    if ($cover) {
+                        $casus->setCover($cover);
+                    } else {
+                        throw new LoveException(LoveConstant::ERROR_COVER_NOT_EXIST);
+                    }
+                }
             }
             $casus->setContent($content);
             $casusRepository->saveCasus($casus);

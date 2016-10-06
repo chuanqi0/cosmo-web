@@ -108,7 +108,7 @@ body {
   font-family: "Microsoft YaHei", simhei;
 }
 
-// 公共组件
+// 头部
 .fe-header {
   height: 30px;
   background-color: @gray-2;
@@ -134,6 +134,7 @@ body {
   }
 }
 
+// 顶部
 .fe-top {
   height: 140px;
   background-color: @gray-1;
@@ -164,6 +165,7 @@ body {
   }
 }
 
+// 导航栏
 .fe-navigation {
   height: 36px;
   background-color: @blue-2;
@@ -226,6 +228,7 @@ body {
   }
 }
 
+// 底部
 .fe-bottom {
   background-color: @gray-1;
   .fe-bottom-sponsor {
@@ -501,7 +504,7 @@ body {
   }
 }
 
-// 颁奖典礼
+// 公共
 .fe-info {
   background-color: @gray-1;
   .fe-info-left {
@@ -557,6 +560,47 @@ body {
       color: @gray-4;
       .indent {
         text-indent: 2em;
+      }
+    }
+    .casus-cell {
+      padding: 0 6px;
+      cursor: pointer;
+      .cell-top {
+        position: relative;
+        .cover-shade {
+          position: absolute;
+          z-index: 10;
+          top: 0;
+        }
+        .cover-text {
+          position: absolute;
+          bottom: 0;
+          z-index: 20;
+          height: 36px;
+          line-height: 36px;
+          font-size: 12px;
+          padding-left: 12px;
+          color: @white;
+          text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+        }
+      }
+      .cell-bottom {
+        .cell-title {
+          color: @blue-2;
+          font-weight: bold;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          line-height: 25px;
+          height: 30px;
+          padding-top: 5px;
+        }
+        .cell-desc {
+          height: 40px;
+          line-height: 20px;
+          color: @gray-3;
+          overflow: hidden;
+        }
       }
     }
   }
@@ -671,6 +715,72 @@ body {
   }
 }
 
+// 案例
+.fe-casus {
+  background-color: @gray-1;
+  .cover {
+    position: relative;
+    .cover-shade {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+    }
+    .cover-text {
+      position: absolute;
+      bottom: 0;
+      z-index: 20;
+      height: 70px;
+      line-height: 70px;
+      font-size: 30px;
+      padding-left: 40px;
+      color: @white;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    }
+  }
+  .casus-content {
+    padding: 0;
+    background-color: @white;
+    .content-left {
+      padding: 0 75px 50px 75px;
+      border-right: 1px solid @gray-1;
+      .casus-description {
+        padding: 25px 75px;
+        color: @gray-3;
+        font-style: italic;
+        line-height: 25px;
+      }
+      .casus-content {
+        padding: 0;
+        color: @gray-4;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .content-right {
+      padding: 25px 40px;
+      .glyphicon {
+        color: @blue-1;
+      }
+      .desc-title {
+        margin-left: 2px;
+        color: @blue-1;
+      }
+      .desc-content {
+        line-height: 25px;
+        color: @gray-3;
+        font-weight: bold;
+        padding: 0;
+      }
+      .row {
+        padding-bottom: 5px;
+        border-bottom: 1px solid @gray-1;
+        margin: 0 0 15px 0;
+      }
+    }
+  }
+}
+
 // 表单
 .fe-form {
   .col-md-6 {
@@ -769,6 +879,7 @@ body {
   }
 }
 
+// 按钮
 .fe-btn {
   text-align: center;
   cursor: pointer;

@@ -11,6 +11,7 @@ app.controller('BaseController', function($scope, $cookies) {
 
     $scope.exit = function () {
         $scope.removeCookie('user');
+        $scope.removeCookie('casusGuid');
         window.location.reload();
     };
 

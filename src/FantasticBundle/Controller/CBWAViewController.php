@@ -68,6 +68,7 @@ class CBWAViewController extends BaseController
             $awardRepository = $this->getDoctrine()->getRepository('FantasticBundle:Award');
             $awardList = $awardRepository->getAwardList();
             $dataOut['awardList'] = $awardRepository->listToArray($awardList);
+            $dataOut['cbwaUser'] = $cbwaUser->toArray();
             return $this->render('FantasticBundle::join.html.twig', $dataOut);
         } else {
             return $this->render('FantasticBundle::extra.html.twig', $dataOut);

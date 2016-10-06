@@ -121,6 +121,10 @@ class CasusApiController extends BaseController
                 }
             }
             $casus->setContent($content);
+            // 跳过选择参赛奖项的环节,发布的明星案例
+            if ($casus->getTotalFee() == '0.00') {
+                $casus->setPaid(true);
+            }
             $casusRepository->saveCasus($casus);
             // 设置返回数据
             $this->setSuccess($casus->toArray(), LoveConstant::MEESAGE_CASUS_EXTRA_SUCCESS);

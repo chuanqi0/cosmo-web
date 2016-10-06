@@ -28,7 +28,7 @@ class CasusRepository extends EntityRepository
         if ($awardId == 0) {
             return $this->findBy(array('paid' => true, 'valid' => true), array('createTime' => 'DESC'));
         } else if ($awardId == -1) {
-            return $this->findBy(array('paid' => true, 'valid' => true, 'awardList' => ''), array('createTime' => 'DESC'));
+            return $this->findBy(array('paid' => true, 'valid' => true, 'awardList' => '[]'), array('createTime' => 'DESC'));
         } else {
             $keyword = '%:'.$awardId.'%';
             $qb = $this->getEntityManager()->createQueryBuilder();

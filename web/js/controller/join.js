@@ -3,7 +3,7 @@ var um = UM.getEditor('myEditor');
 um.setWidth(758);
 um.setHeight(650);
 
-app.controller('JoinController', function($scope, $cookies, awardList) {
+app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser) {
 
     // 申请步骤
     $scope.applyStep = $cookies.get('applyStep') == null ? 1 : $cookies.get('applyStep');
@@ -21,6 +21,7 @@ app.controller('JoinController', function($scope, $cookies, awardList) {
     $scope.cityList = [];
     $scope.city = '朝阳';
     $scope.awardList = JSON.parse(awardList);
+    $scope.cbwaUser = JSON.parse(cbwaUser);
 
     // 验证
     $scope.titleValid = true;
@@ -105,15 +106,17 @@ app.controller('JoinController', function($scope, $cookies, awardList) {
         } else {
             $scope.placeValid = true;
         }
-        $scope.awardValid = false;
-        for (var i = 0; i < $scope.awardList.length; i++) {
-            if ($scope.awardList[i].apply == true) {
-                $scope.awardValid = true;
-                break;
+        if ($scope.cbwaUser.level == 0) {
+            $scope.awardValid = false;
+            for (var i = 0; i < $scope.awardList.length; i++) {
+                if ($scope.awardList[i].apply == true) {
+                    $scope.awardValid = true;
+                    break;
+                }
             }
-        }
-        if ($scope.awardValid == false) {
-            alert("请至少报名一个选送奖项");
+            if ($scope.awardValid == false) {
+                alert("请至少报名一个选送奖项");
+            }
         }
         if ($scope.titleValid && $scope.descriptionValid && $scope.placeValid && $scope.awardValid) {
             return $scope.publishCasus();

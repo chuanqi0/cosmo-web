@@ -60,6 +60,11 @@ class User extends Base
      */
     private $companyIntro;
 
+    /**
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level;
+
     public function __construct()
     {
         parent::__construct();
@@ -259,6 +264,29 @@ class User extends Base
         return $this->userUuid;
     }
 
+    /**
+     * Set level
+     *
+     * @param integer $level
+     * @return User
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get $level
+     *
+     * @return integer
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
     public function toArray() {
         return array(
             "name" => $this->name,
@@ -266,7 +294,8 @@ class User extends Base
             "wechat" => $this->wechat,
             "company" => $this->company,
             "companyLocation" => $this->companyLocation,
-            "companyIntro" => $this->companyIntro
+            "companyIntro" => $this->companyIntro,
+            "level" => $this->level
         );
     }
 }

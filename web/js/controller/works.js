@@ -1,6 +1,6 @@
-app.controller('WorksController', function($scope, awardList) {
+app.controller('WorksController', function($scope, $cookies, awardList) {
     // 奖项ID
-    $scope.awardId = 0;
+    $scope.awardId = $cookies.get('awardId') == null ? 0 : $cookies.get('awardId');
 
     $scope.awardList = JSON.parse(awardList);
     $scope.casusList = [];
@@ -10,11 +10,16 @@ app.controller('WorksController', function($scope, awardList) {
         $scope.jumpToPage('casus/' + casus.guid);
     };
 
-    $scope.getCasusList = function ($awardId) {
-        var data = {
-            "awardId": $awardId
-        };
+    $scope.refreshCasusList = function ($awardId) {
         $scope.awardId = $awardId;
+        $scope.putCookie('awardId', $awardId);
+        $scope.getCasusList();
+    };
+
+    $scope.getCasusList = function () {
+        var data = {
+            "awardId": $scope.awardId
+        };
         $.ajax({
             url: apiBase + '/api/cbwa/casus/list',
             type: 'POST',
@@ -24,7 +29,6 @@ app.controller('WorksController', function($scope, awardList) {
             success: function (response) {
                 if (response.status == 0) {
                     $scope.casusList = response.data;
-                    console.log($scope.casusList);
                 } else {
                     console.log(response.message);
                 }

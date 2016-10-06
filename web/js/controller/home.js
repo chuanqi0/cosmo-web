@@ -24,4 +24,9 @@ app.controller('HomeController', function($scope, judgeList) {
         }
         $scope.judgeList.push(judgeRow);
     }
+
+    $scope.jumpToWorks = function ($awardId) {
+        $scope.putCookie('awardId', $awardId);
+        $scope.jumpToPage('works');
+    };
 });

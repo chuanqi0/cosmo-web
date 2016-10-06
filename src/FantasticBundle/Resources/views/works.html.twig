@@ -3,14 +3,14 @@
 {% block title %}全国婚礼作品设计大赛{% endblock %}
 
 {% block body %}
-    <div class="fe-info" ng-controller="WorksController" ng-init="getCasusList(0)">
+    <div class="fe-info" ng-controller="WorksController" ng-init="getCasusList()">
         <div class="container">
             <div class="row">
                 <div class="fe-info-left">
                     <ul>
-                        <li ng-class="{'active': awardId == 0}" ng-click="getCasusList(0)"><div>热门方案</div></li>
-                        <li ng-class="{'active': awardId == -1}" ng-click="getCasusList(-1)"><div>明星案例</div></li>
-                        <li ng-class="{'active': awardId == award.id}" ng-repeat="award in awardList" ng-click="getCasusList(award.id)"><div>{[{ award.name }]}</div></li>
+                        <li ng-class="{'active': awardId == 0}" ng-click="refreshCasusList(0)"><div>热门方案</div></li>
+                        <li ng-class="{'active': awardId == -1}" ng-click="refreshCasusList(-1)"><div>明星案例</div></li>
+                        <li ng-class="{'active': awardId == award.id}" ng-repeat="award in awardList" ng-click="refreshCasusList(award.id)"><div>{[{ award.name }]}</div></li>
                     </ul>
                 </div>
                 <div class="fe-info-right">

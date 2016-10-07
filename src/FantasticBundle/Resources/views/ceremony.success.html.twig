@@ -1,0 +1,40 @@
+{% extends 'base.cbwa.html.twig' %}
+
+{% block title %}全国婚礼作品设计大赛{% endblock %}
+
+{% block body %}
+<div class="fe-info" ng-controller="CeremonySuccessController" ng-init="init()">
+    <div class="container">
+        <div class="row">
+            <div class="fe-info-left">
+                <ul>
+                    <li ng-click="jumpToStep(1)"><div>典礼信息</div></li>
+                    <li ng-click="jumpToStep(2)"><div>入围名单</div></li>
+                    <li ng-click="jumpToStep(3)"><div>合作品牌</div></li>
+                    <li class="active" ng-click="jumpToStep(4)"><div>开放售票</div></li>
+                </ul>
+            </div>
+            <div class="fe-info-right">
+                <div class="row fe-m0 loadding">
+                    <div class="col-md-2 col-md-offset-5 loadding-img">
+                        <img class="fe-width" ng-src="{{ asset('img/fantastic/join/loadding.gif') }}" ng-show="success == false" />
+                        <img class="fe-width" ng-src="{{ asset('img/fantastic/join/join_success.png') }}" ng-show="success == true" />
+                    </div>
+                    <div class="col-md-12">
+                        <div class="loadding-text top" ng-show="success == false">正在查询订单状态...</div>
+                        <div class="loadding-text top" ng-show="success == true">购买成功</div>
+                        <div class="loadding-text below">更多信息请在个人中心->典礼门票中查看</div>
+                    </div>
+                    <div class="col-md-2 col-md-offset-5 fe-p0">
+                        <div class="fe-btn next" ng-click="jumpToPage('personal')">前往个人中心</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/controller/ceremony.success.js') }}"></script>
+{% endblock %}

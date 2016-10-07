@@ -1,24 +1,24 @@
-app.controller('JoinSuccessController', function($scope, $cookies, $interval) {
+app.controller('CeremonySuccessController', function($scope, $cookies, $interval) {
 
     $scope.success = false;
 
-    $scope.casus = null;
+    $scope.ticket = null;
 
-    $scope.getCasusDetail = function () {
-        var casusGuid = $cookies.get('casusGuid');
-        if (casusGuid != null && casusGuid != '') {
+    $scope.getTicketDetail = function () {
+        var ticketGuid = $cookies.get('ticketGuid');
+        if (ticketGuid != null && ticketGuid != '') {
             var data = {
-                casusGuid: casusGuid
+                ticketGuid: ticketGuid
             };
             $.ajax({
-                url: apiBase + '/api/cbwa/casus/detail',
+                url: apiBase + '/api/cbwa/ticket/detail',
                 type: 'POST',
                 async: false,
                 data: data,
                 dataType: 'json',
                 success: function (response) {
                     if (response.status == 0) {
-                        $scope.casus = response.data;
+                        $scope.ticket = response.data;
                     } else {
                         console.log(response.message);
                     }
@@ -32,14 +32,13 @@ app.controller('JoinSuccessController', function($scope, $cookies, $interval) {
 
     $scope.init = function () {
         var timer = $interval(function () {
-            $scope.getCasusDetail();
-            if ($scope.casus != null) {
-                if ($scope.casus.paid == true) {
+            $scope.getTicketDetail();
+            if ($scope.ticket != null) {
+                if ($scope.ticket.paid == true) {
                     $scope.success = true;
-                    $scope.putCookie('applyStep', 1);
-                    console.log("Remove Before: " + $cookies.get('casusGuid'));
-                    $cookies.remove('casusGuid');
-                    console.log("Remove After: " + $cookies.get('casusGuid'));
+                    console.log("Remove Before: " + $cookies.get('ticketGuid'));
+                    $scope.removeCookie('ticketGuid');
+                    console.log("Remove After: " + $cookies.get('ticketGuid'));
                     console.log("订单状态: 已支付");
                     $interval.cancel(timer);
                 } else {
@@ -47,5 +46,10 @@ app.controller('JoinSuccessController', function($scope, $cookies, $interval) {
                 }
             }
         }, 2000);
+    };
+
+    $scope.jumpToStep = function(step) {
+        $scope.putCookie('ceremonyStep', step);
+        $scope.jumpToPage('ceremony');
     };
 });

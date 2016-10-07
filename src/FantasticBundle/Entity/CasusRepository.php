@@ -4,7 +4,6 @@ namespace FantasticBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use UtilBundle\Service\UtilService;
-use FantasticBundle\Entity\Casus;
 
 class CasusRepository extends EntityRepository
 {

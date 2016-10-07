@@ -58,7 +58,7 @@ app.controller('PersonalController', function($scope, $cookies, cbwaUser) {
     };
 });
 
-app.controller('PersonalCasusController', function($scope, $cookies) {
+app.controller('PersonalCasusController', function($scope) {
 
     $scope.casusOrderList = [];
 
@@ -151,6 +151,99 @@ app.controller('PersonalCasusController', function($scope, $cookies) {
 
     $scope.init = function () {
         $scope.getPersonalCasusList();
+        $scope.refreshHeight();
+    };
+});
+
+app.controller('PersonalTicketController', function($scope) {
+
+    $scope.ticketOrderList = [];
+
+    $scope.jumpToStep = function(step) {
+        $scope.putCookie('personalStep', step);
+        $scope.jumpToPage('personal');
+    };
+
+    $scope.openOrder = function ($index) {
+        var currentOrder = $scope.ticketOrderList[$index];
+        var valid = currentOrder.valid;
+        var paid = currentOrder.paid;
+        if (valid == true && paid == false) {
+            var ticketGuid = currentOrder.guid;
+            $scope.putCookie('ceremonyStep', 4);
+            $scope.putCookie('ticketGuid', ticketGuid);
+            $scope.jumpToPage('ceremony');
+        } else if (valid == true && paid == true) {
+            alert("实体门票将尽快邮寄给您");
+        } else {
+            alert("订单已取消");
+        }
+    };
+
+    $scope.cancelOrder = function ($index) {
+        var ticketOrder = $scope.ticketOrderList[$index];
+        var valid = ticketOrder.valid;
+        var paid = ticketOrder.paid;
+        if (valid == true && paid == false) {
+            var ticketGuid = ticketOrder.guid;
+            var data = {
+                ticketGuid: ticketGuid
+            };
+            $.ajax({
+                url: apiBase + '/api/cbwa/ticket/cancel',
+                type: 'POST',
+                async: false,
+                data: data,
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status == 0) {
+                        alert("典礼门票取消成功");
+                        $scope.ticketOrderList[$index] = response.data;
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (xhr, status, err) {
+                    console.error(err);
+                }
+            });
+        }
+    };
+
+    $scope.getPersonalTicketList = function() {
+        var data = {
+            "userUuid": $scope.user.uuid
+        };
+        $.ajax({
+            url: apiBase + '/api/cbwa/ticket/personal',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            async: false,
+            success: function (response) {
+                if (response.status == 0) {
+                    console.log(response.data);
+                    $scope.ticketOrderList = response.data;
+                    $scope.$applyAsync();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (xhr, status, err) {
+                console.error(err);
+            }
+        });
+    };
+
+    $scope.refreshHeight = function() {
+        var personalHeight = 110 + (180 + 25 * 3) * $scope.ticketOrderList.length;
+        personalHeight = personalHeight > 550 ? personalHeight : 550;
+        $('.fe-personal-left').css('height', personalHeight + 'px');
+        $('.fe-personal-right').css('height', personalHeight + 'px');
+    };
+
+    $scope.init = function () {
+        $scope.getPersonalTicketList();
         $scope.refreshHeight();
     };
 });

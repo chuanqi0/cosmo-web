@@ -1,0 +1,81 @@
+{% extends 'base.cbwa.html.twig' %}
+
+{% block title %}全国婚礼作品设计大赛{% endblock %}
+
+{% block body %}
+    <div class="fe-info" ng-controller="CeremonyTicketController" ng-init="init()">
+        <div class="container">
+            <div class="row">
+                <div class="fe-info-left">
+                    <ul>
+                        <li ng-click="jumpToStep(1)"><div>典礼信息</div></li>
+                        <li ng-click="jumpToStep(2)"><div>入围名单</div></li>
+                        <li ng-click="jumpToStep(3)"><div>合作品牌</div></li>
+                        <li class="active" ng-click="jumpToStep(4)"><div>开放售票</div></li>
+                    </ul>
+                </div>
+                <div class="fe-info-right">
+                    <div class="row fe-form fe-m0 fe-ticket-fee">
+                        <div class="col-md-8 col-md-offset-2">
+                            <img class="fe-width" src="{{ asset('img/fantastic/join/fee_title.jpg') }}" />
+                        </div>
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="row fe-m0 fee-top">
+                                <div class="fee-top-1">
+                                    费用共计
+                                </div>
+                                <div class="fee-top-2">
+                                    ¥ 0.01
+                                </div>
+                                <div class="fee-top-3">
+                                    <div class="fee-top-row">
+                                        <span>颁奖典礼暨婚尚盛典</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row fe-m0 payment-choose">
+                                <div class="col-md-12 choose-title">
+                                    请选择支付方式
+                                </div>
+                                <div class="col-md-12 choose-area">
+                                    <div class="choose-radio"><input type="radio" checked /></div>
+                                    <div class="choose-btn alipay active"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="col-md-6 left">
+                                <div class="fe-form-top"><span class="fe-form-title">真实姓名</span></div>
+                                <div class="fe-form-bottom">
+                                    <input type="text" placeholder="在这里输入真实姓名" ng-model="name" ng-class="{'fe-error': nameValid == false}" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 right">
+                                <div class="fe-form-top"><span class="fe-form-title">手机号</span></div>
+                                <div class="fe-form-bottom">
+                                    <input type="text" placeholder="在这里输入手机号" ng-model="telephone" ng-class="{'fe-error': telephoneValid == false}" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="fe-form-top"><span class="fe-form-title">邮寄地址</span></div>
+                                <div class="fe-form-bottom">
+                                    <input type="text" placeholder="在这里输入邮寄地址" ng-model="address" ng-class="{'fe-error': addressValid == false}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-4 fe-pt10">
+                            <div id="pay-btn" class="fe-btn next" ng-click="ticketAndPay()">去支付</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        app.value('cbwaUser', '{{ cbwaUser | json_encode | escape('js') }}');
+    </script>
+    <script type="text/javascript" src="{{ asset('js/controller/ceremony.js') }}"></script>
+{% endblock %}

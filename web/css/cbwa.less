@@ -603,6 +603,60 @@ body {
         }
       }
     }
+    .fe-ticket-fee {
+      .fee-top {
+        background-color: @blue-1;
+        .fee-top-1 {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          text-align: center;
+          padding: 20px 0 5px 0;
+        }
+        .fee-top-2 {
+          color: @white;
+          font-size: 36px;
+          text-align: center;
+        }
+        .fee-top-3 {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          text-align: center;
+          padding: 5px 0 20px 0;
+        }
+      }
+      .payment-choose {
+        margin-top: 10px;
+        border: 1px solid @gray-2;
+        margin-bottom: 10px;
+        .choose-title {
+          color: @gray-4;
+          padding: 10px 15px;
+        }
+        .choose-area {
+          padding: 5px 15px 40px 15px;
+          .choose-radio {
+            float: left;
+            padding-top: 5px;
+            input {
+              cursor: pointer;
+            }
+          }
+          .choose-btn {
+            width: 156px;
+            height: 32px;
+            float: left;
+            margin-left: 5px;
+            &.alipay {
+              background-image: url(../img/fantastic/join/btn_alipay.jpg);
+              background-size: 100%;
+            }
+            &.active {
+              border: 1px solid @red-1;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -694,23 +748,24 @@ body {
         }
       }
     }
-    .loadding {
-      .loadding-img {
-        padding: 40px 30px 20px 30px;
-      }
-      .loadding-text {
-        text-align: center;
-        margin-bottom: 10px;
-        &.top {
-          font-size: 18px;
-          color: @blue-2;
-          font-weight: bold;
-        }
-        &.below {
-          color: @gray-4;
-          font-size: 14px;
-        }
-      }
+  }
+}
+
+.loadding {
+  .loadding-img {
+    padding: 40px 30px 20px 30px;
+  }
+  .loadding-text {
+    text-align: center;
+    margin-bottom: 10px;
+    &.top {
+      font-size: 18px;
+      color: @blue-2;
+      font-weight: bold;
+    }
+    &.below {
+      color: @gray-4;
+      font-size: 14px;
     }
   }
 }

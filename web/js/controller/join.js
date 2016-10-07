@@ -196,7 +196,7 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
             var data = {
                 userUuid: $scope.user.uuid,
                 targetUuid: $scope.casus.guid,
-                targetType: 1,
+                targetType: 100,
                 totalFee: $scope.casus.totalFee,
                 subject: '全国婚礼作品大赛',
                 body: '参赛费: ¥' + $scope.casus.totalFee,

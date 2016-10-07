@@ -1,0 +1,58 @@
+{% extends 'base.cbwa.html.twig' %}
+
+{% block title %}全国婚礼作品设计大赛{% endblock %}
+
+{% block body %}
+    <div class="fe-personal" ng-controller="PersonalTicketController" ng-init="init()">
+        <div class="container">
+            <div class="row">
+                <div class="fe-personal-left other">
+                    <ul>
+                        <li ng-click="jumpToStep(1)"><div>1. 基本信息</div></li>
+                        <li ng-click="jumpToStep(2)"><div>2. 参赛案例</div></li>
+                        <li class="active" ng-click="jumpToStep(3)"><div>3. 典礼门票</div></li>
+                    </ul>
+                </div>
+                <div class="fe-personal-right narrow">
+                    <div class="row fe-m0" ng-repeat="ticketOrder in ticketOrderList track by $index">
+                        <div class="col-md-12 personal-order-top fe-pointer" ng-class="{'cancel': ticketOrder.valid == false}" ng-click="openOrder($index)">
+                            <span class="fe-left">票据编号:&nbsp;{[{ ticketOrder.guid.substr(0, 8) }]}</span>
+                            <span class="fe-right fe-bold" ng-show="ticketOrder.valid == true && ticketOrder.paid == true">已支付</span>
+                            <span class="fe-right fe-bold" ng-show="ticketOrder.valid == true && ticketOrder.paid == false">未完成</span>
+                            <span class="fe-right fe-bold" ng-show="ticketOrder.valid == false">已取消</span>
+                        </div>
+                        <div class="col-md-12 personal-order-bottom fe-p0">
+                            <div class="col-md-9 fe-pointer" ng-click="openOrder($index)">
+                                <div class="order-bottom-title">门票</div>
+                                <div class="fe-bold">颁奖典礼暨婚尚盛典</div>
+                                <div class="order-bottom-title fe-pt20">参与者信息</div>
+                                <div class="order-award">
+                                    <span class="fe-left">姓名</span>
+                                    <span class="fe-right">{[{ ticketOrder.name }]}</span>
+                                </div>
+                                <div class="order-award">
+                                    <span class="fe-left">手机号</span>
+                                    <span class="fe-right">{[{ ticketOrder.telephone }]}</span>
+                                </div>
+                                <div class="order-award">
+                                    <span class="fe-left">邮寄地址</span>
+                                    <span class="fe-right">{[{ ticketOrder.address }]}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3" ng-style="{ 'height': (110 + 3 * 25) + 'px' }">
+                                <div class="bottom-right-top">票价&nbsp;￥{[{ ticketOrder.totalFee }]}</div>
+                                <div class="bottom-right-bottom" ng-show="ticketOrder.valid == true && ticketOrder.paid == false">
+                                    <div class="fe-btn before small" ng-click="cancelOrder($index)">取消订单</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/controller/personal.js') }}"></script>
+{% endblock %}

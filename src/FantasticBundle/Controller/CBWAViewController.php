@@ -47,6 +47,23 @@ class CBWAViewController extends BaseController
     }
 
     /**
+     * @Route("/ceremony/success")
+     */
+    public function ceremonySuccessAction(Request $request)
+    {
+        // 处理业务
+        $cookieUserStr = $request->cookies->get("user");
+        if (!$cookieUserStr) {
+            return $this->redirectToRoute('cbwa_register');
+        }
+        $dataOut = array(
+            'base' => $this->base,
+            'index' => 'ceremony'
+        );
+        return $this->render('FantasticBundle::ceremony.success.html.twig', $dataOut);
+    }
+
+    /**
      * @Route("/join", name="cbwa_join")
      */
     public function joinAction(Request $request)
@@ -98,7 +115,8 @@ class CBWAViewController extends BaseController
             if (!$cbwaUser) {
                 return $this->render('FantasticBundle::extra.html.twig', $dataOut);
             } else {
-                return $this->render('FantasticBundle::ceremony.html.twig', $dataOut);
+                $dataOut['cbwaUser'] = $cbwaUser->toArray();
+                return $this->render('FantasticBundle::ceremony.ticket.html.twig', $dataOut);
             }
         } else {
             return $this->render('FantasticBundle::ceremony.html.twig', $dataOut);
@@ -245,8 +263,10 @@ class CBWAViewController extends BaseController
             if ($personalStep == null || $personalStep == 1) {
                 $dataOut['cbwaUser'] = $cbwaUser->toArray();
                 return $this->render('FantasticBundle::personal.info.html.twig', $dataOut);
-            } else {
+            } else if ($personalStep == 2) {
                 return $this->render('FantasticBundle::personal.casus.html.twig', $dataOut);
+            } else {
+                return $this->render('FantasticBundle::personal.ticket.html.twig', $dataOut);
             }
         }
     }

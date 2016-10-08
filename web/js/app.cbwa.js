@@ -41,7 +41,7 @@ app.controller('BaseController', function($scope, $cookies) {
     $scope.putCookieObject = function ($key, $value) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.putObject($key, $value, {'expires': expireDate});
+        $cookies.putObject($key, $value, {'path': '/', 'expires': expireDate});
     };
 
     $scope.join = function () {

@@ -64,8 +64,10 @@ app.controller('BaseController', function($scope, $cookies) {
     };
 });
 
-var domain = 'http://101.201.28.172:8080/rest';
+var domain = 'http://101.201.171.131:8080/rest';
 // var domain = 'http://localhost:8080';
 
-var base = 'http://localhost:8000/';
-var apiBase = 'http://localhost:8000';
+var base = 'http://www.ccbride.com/cbwa/';
+var apiBase = 'http://www.ccbride.com/cbwa';
+// var base = 'http://localhost:8000/';
+// var apiBase = 'http://localhost:8000';

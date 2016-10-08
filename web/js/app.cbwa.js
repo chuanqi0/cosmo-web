@@ -12,6 +12,7 @@ app.controller('BaseController', function($scope, $cookies) {
     $scope.exit = function () {
         $scope.removeCookie('user');
         $scope.removeCookie('casusGuid');
+        $scope.removeCookie('ticketGuid');
         window.location.reload();
     };
 
@@ -29,19 +30,19 @@ app.controller('BaseController', function($scope, $cookies) {
     $scope.removeCookie = function ($key) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.remove($key, {'path': '/', 'expires': expireDate});
+        $cookies.remove($key, {'path': '/cbwa/', 'expires': expireDate});
     };
 
     $scope.putCookie = function ($key, $value) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.put($key, $value, {'path': '/', 'expires': expireDate});
+        $cookies.put($key, $value, {'path': '/cbwa/', 'expires': expireDate});
     };
 
     $scope.putCookieObject = function ($key, $value) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.putObject($key, $value, {'path': '/', 'expires': expireDate});
+        $cookies.putObject($key, $value, {'path': '/cbwa/', 'expires': expireDate});
     };
 
     $scope.join = function () {

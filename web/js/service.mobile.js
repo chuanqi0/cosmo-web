@@ -4,4 +4,9 @@ angular.module('app')
             var reg = new RegExp("^[1][3,4,5,7,8][0-9]{9}$");
             return reg.test($telephone);
         };
+        this.isMobile = function () {
+            var agent = navigator.userAgent.toLowerCase();
+            var mobile = /ipad/.test(agent) || /iphone/.test(agent) || /android/.test(agent);
+            return mobile;
+        };
     }]);

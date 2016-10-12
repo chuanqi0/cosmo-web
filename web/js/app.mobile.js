@@ -2,11 +2,13 @@ var app = angular.module('app', ['ngCookies']).config(function($interpolateProvi
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 
-app.controller('BaseMobileController', function($scope, $cookies) {
+app.controller('BaseMobileController', function($scope, $cookies, UtilService) {
 
     $scope.jumpToPage = function ($page) {
         window.location.href = base + $page;
     };
+
+    $scope.isMobile = UtilService.isMobile();
 
     $scope.getShortText = function ($text, $length) {
         if ($text.length > $length) {
@@ -32,8 +34,11 @@ app.controller('BaseMobileController', function($scope, $cookies) {
         expireDate.setDate(expireDate.getDate() + 30);
         $cookies.putObject($key, $value, {'path': '/pub/mobile/', 'expires': expireDate});
     };
-});
 
-var ele = document.getElementsByTagName("html")[0];
-var size = window.innerWidth / 375 * 16;
-ele.style.fontSize = size + "px";
+    var ele = document.getElementsByTagName("html")[0];
+    var size = window.innerWidth / 375 * 16;
+    if ($scope.isMobile == false) {
+        size = window.innerWidth / 375 * 8;
+    }
+    ele.style.fontSize = size + "px";
+});

@@ -4,14 +4,16 @@
 
 {% block body %}
     <div class="m-consult" ng-controller="ConsultController" ng-init="init()">
-        <div class="container-fluid">
+        <div class="container-fluid" ng-class="{'m-half': isMobile == false}">
             <div class="row">
                 <div class="col-xs-12 consult-top">
                     <img class="consult-cover" ng-src="{[{ cover }]}@750w_572h_1e_1c" />
-                    <img class="consult-circle" src="{{ asset('img/mobile/consult/circle.png') }}" />
+                </div>
+                <div class="col-xs-12 consult-circle">
+                    <img class="m-width" src="{{ asset('img/mobile/consult/circle.png') }}" />
                 </div>
                 <div class="col-xs-12 consult-title">
-                    您要咨询的是?
+                    您想要了解的是?
                 </div>
                 <div class="col-xs-12 consult-types">
                     <div class="col-xs-3">
@@ -66,17 +68,9 @@
                     <input type="number" class="consult-input" ng-model="telephone" placeholder="请输入您的手机号" />
                 </div>
             </div>
-            {#<div class="row consult-bottom">#}
-                {#<div class="bottom-line">#}
-                    {#<img class="m-width" src="{{ asset('img/mobile/consult/shadow.png') }}" />#}
-                {#</div>#}
-                {#<div class="bottom-content">#}
-                    {#<div class="btn-consult" ng-click="consult()">#}
-                        {#<span><img src="{{ asset('img/mobile/consult/consult.png') }}" /></span>#}
-                        {#<span>预约咨询</span>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
+            <div class="row consult-bottom">
+                <img src="{{ asset('img/mobile/consult/consult.png') }}" />
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.mobile.html.twig' %}
+
+{% block title %}时尚新娘{% endblock %}
+
+{% block body %}
+    <div class="m-consult" ng-controller="ConsultController" ng-init="init()">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 consult-top">
+                    <img class="consult-cover" ng-src="{[{ cover }]}@750w_700h_1e_1c" />
+                    <img class="consult-circle" src="{{ asset('img/mobile/consult/circle.png') }}" />
+                </div>
+                <div class="col-xs-12 consult-title">
+                    您要咨询的是?
+                </div>
+                <div class="col-xs-12 consult-types">
+                    <div class="col-xs-3">
+                        <div class="consult-type" ng-click="selectType(1)" ng-class="{'active': consultType == 1}">
+                            <div class="type-img">
+                                <img src="{{ asset('img/mobile/consult/icon_photo_1.png') }}" ng-show="consultType != 1" />
+                                <img src="{{ asset('img/mobile/consult/icon_photo_2.png') }}" ng-show="consultType == 1" />
+                            </div>
+                            <div class="type-text">
+                                婚纱照
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="consult-type" ng-click="selectType(2)" ng-class="{'active': consultType == 2}">
+                            <div class="type-img">
+                                <img src="{{ asset('img/mobile/consult/icon_place_1.png') }}" ng-show="consultType != 2" />
+                                <img src="{{ asset('img/mobile/consult/icon_place_2.png') }}" ng-show="consultType == 2" />
+                            </div>
+                            <div class="type-text">
+                                场地
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="consult-type" ng-click="selectType(3)" ng-class="{'active': consultType == 3}">
+                            <div class="type-img">
+                                <img src="{{ asset('img/mobile/consult/icon_plan_1.png') }}" ng-show="consultType != 3" />
+                                <img src="{{ asset('img/mobile/consult/icon_plan_2.png') }}" ng-show="consultType == 3" />
+                            </div>
+                            <div class="type-text">
+                                策划
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="consult-type" ng-click="selectType(4)" ng-class="{'active': consultType == 4}">
+                            <div class="type-img">
+                                <img src="{{ asset('img/mobile/consult/icon_travel_1.png') }}" ng-show="consultType != 4" />
+                                <img src="{{ asset('img/mobile/consult/icon_travel_2.png') }}" ng-show="consultType == 4" />
+                            </div>
+                            <div class="type-text">
+                                旅拍
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 consult-telephone">
+                    联系方式
+                </div>
+                <div class="col-xs-12">
+                    <input type="text" class="consult-input" ng-model="telephone" placeholder="请输入您的手机号" />
+                </div>
+            </div>
+        </div>
+        <div class="consult-bottom">
+            <div class="bottom-line">
+                <img class="m-width" src="{{ asset('img/mobile/consult/shadow.png') }}" />
+            </div>
+            <div class="bottom-content">
+                <div class="btn-consult" ng-click="consult()">
+                    <span><img src="{{ asset('img/mobile/consult/consult.png') }}" /></span>
+                    <span>预约咨询</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/mobile/consult.js') }}"></script>
+{% endblock %}

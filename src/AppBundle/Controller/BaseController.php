@@ -14,8 +14,10 @@ class BaseController extends Controller
     protected $message;
     protected $data;
 
-    public $domain = 'http://101.201.171.131:8080/rest';
-    public $base = 'http://www.ccbride.com/pub';
+//    public $domain = 'http://101.201.171.131:8080/rest';
+//    public $base = 'http://www.ccbride.com/pub';
+    public $domain = 'http://localhost:8080';
+    public $base = 'http://localhost:8000';
 
     function __construct()
     {

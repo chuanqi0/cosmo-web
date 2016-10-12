@@ -7,13 +7,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use AppBundle\Controller\BaseController;
 
+/**
+ * @Route("/mobile")
+ */
 class MobileViewController extends BaseController
 {
     /**
-     * @Route("/consultant")
+     * @Route("/consult")
      */
-    public function consultantAction()
+    public function consultAction()
     {
-        return $this->render('MobileBundle:Default:index.html.twig');
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain
+        );
+        return $this->render('MobileBundle::consult.html.twig', $dataOut);
     }
 }

@@ -25,7 +25,8 @@ class CBWAViewController extends BaseController
         $judgeList = $judgeRepository->getJudgeList();
         $judgeListArray = $judgeRepository->listToArray($judgeList);
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'home',
             'judgeList' => $judgeListArray
         );
@@ -43,7 +44,8 @@ class CBWAViewController extends BaseController
             return $this->redirectToRoute('cbwa_register');
         }
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'join'
         );
         return $this->render('FantasticBundle::join.success.html.twig', $dataOut);
@@ -60,7 +62,8 @@ class CBWAViewController extends BaseController
             return $this->redirectToRoute('cbwa_register');
         }
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'ceremony'
         );
         return $this->render('FantasticBundle::ceremony.success.html.twig', $dataOut);
@@ -81,7 +84,8 @@ class CBWAViewController extends BaseController
         $userRepository = $this->getDoctrine()->getRepository('FantasticBundle:User');
         $cbwaUser = $userRepository->findUserByUserUuid($cookieUser->uuid);
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'join'
         );
         if ($cbwaUser) {
@@ -103,7 +107,8 @@ class CBWAViewController extends BaseController
         // 处理业务
         $ceremonyStep = $request->cookies->get("ceremonyStep");
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'ceremony'
         );
         if ($ceremonyStep == 4) {
@@ -143,7 +148,8 @@ class CBWAViewController extends BaseController
             return $this->redirectToRoute('cbwa_home');
         }
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'casus',
             'casus' => $casus->toDetailArray(),
             'cbwaUser' => $cbwaUser->toArray()
@@ -157,7 +163,8 @@ class CBWAViewController extends BaseController
     public function infoAction()
     {
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'info'
         );
         return $this->render('FantasticBundle::info.html.twig', $dataOut);
@@ -169,7 +176,8 @@ class CBWAViewController extends BaseController
     public function awardsAction()
     {
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'awards'
         );
         return $this->render('FantasticBundle::awards.html.twig', $dataOut);
@@ -183,7 +191,8 @@ class CBWAViewController extends BaseController
         $awardRepository = $this->getDoctrine()->getRepository('FantasticBundle:Award');
         $awardList = $awardRepository->getAwardList();
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'works',
             'awardList' => $awardRepository->listToArray($awardList)
         );
@@ -201,7 +210,8 @@ class CBWAViewController extends BaseController
             return $this->redirectToRoute('cbwa_home');
         }
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'register'
         );
         return $this->render('FantasticBundle::register.html.twig', $dataOut);
@@ -218,7 +228,8 @@ class CBWAViewController extends BaseController
             return $this->redirectToRoute('cbwa_home');
         }
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'login'
         );
         return $this->render('FantasticBundle::login.html.twig', $dataOut);
@@ -235,7 +246,8 @@ class CBWAViewController extends BaseController
             return $this->redirectToRoute('cbwa_home');
         }
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'reset'
         );
         return $this->render('FantasticBundle::reset.html.twig', $dataOut);
@@ -256,7 +268,8 @@ class CBWAViewController extends BaseController
         $userRepository = $this->getDoctrine()->getRepository('FantasticBundle:User');
         $cbwaUser = $userRepository->findUserByUserUuid($cookieUser->uuid);
         $dataOut = array(
-            'base' => $this->cbwaBase,
+            'base' => $this->base,
+            'domain' => $this->domain,
             'index' => 'personal'
         );
         if (!$cbwaUser) {

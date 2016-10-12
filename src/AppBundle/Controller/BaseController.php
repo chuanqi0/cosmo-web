@@ -14,7 +14,8 @@ class BaseController extends Controller
     protected $message;
     protected $data;
 
-    public $base = 'http://www.ccbride.com/pub/';
+    public $cbwaBase = 'http://www.ccbride.com/pub/cbwa/';
+    public $mobileBase = 'http://www.ccbride.com/pub/mobile/';
 
     function __construct()
     {

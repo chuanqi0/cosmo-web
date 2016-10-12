@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Cookie;
 
 use AppBundle\Controller\BaseController;
 
+/**
+ * @Route("/cbwa")
+ */
 class CBWAViewController extends BaseController
 {
     /**

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet/less" type="text/css" href="{{ asset('css/mobile.less') }}" />
+        <!--[if lte IE 9]>
+        <script type="text/javascript" src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="//cdn.bootcss.com/less.js/2.7.1/less.min.js"></script>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body ng-app="app" ng-controller="BaseMobileController">
+        {% block body %}{% endblock %}
+        <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular-cookies.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/app.mobile.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/service.mobile.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/md5.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

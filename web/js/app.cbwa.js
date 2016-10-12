@@ -2,7 +2,7 @@ var app = angular.module('app', ['ngCookies']).config(function($interpolateProvi
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 
-app.controller('BaseController', function($scope, $cookies) {
+app.controller('BaseCBWAController', function($scope, $cookies) {
     $scope.user = null;
 
     if ($cookies.getObject('user')) {
@@ -68,7 +68,7 @@ app.controller('BaseController', function($scope, $cookies) {
 var domain = 'http://101.201.171.131:8080/rest';
 // var domain = 'http://localhost:8080';
 
-var base = 'http://www.ccbride.com/cbwa/';
-var apiBase = 'http://www.ccbride.com/cbwa';
+var base = 'http://www.ccbride.com/pub/cbwa/';
+var apiBase = 'http://www.ccbride.com/pub';
 // var base = 'http://localhost:8000/';
 // var apiBase = 'http://localhost:8000';

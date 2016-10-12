@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new EventBundle\EventBundle(),
             new FantasticBundle\FantasticBundle(),
             new WebBundle\WebBundle(),
+            new MobileBundle\MobileBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

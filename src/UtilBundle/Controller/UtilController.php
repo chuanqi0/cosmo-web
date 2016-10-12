@@ -4,6 +4,6 @@ namespace UtilBundle\Controller;
 
 use AppBundle\Controller\BaseController;
 
-class UtilController extends BaseCBWAController
+class UtilController extends BaseController
 {
 }

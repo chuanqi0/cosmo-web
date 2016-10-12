@@ -19,10 +19,10 @@
         <div class="fe-header">
             <div class="container">
                 <div class="row">
-                    <a class="fe-logo-area" href="{{ base }}">
+                    <a class="fe-logo-area" href="jumpToPage('')">
                         <img class="fe-logo" src="{{ asset('img/fantastic/common/logo_1.png') }}" alt="Logo" />
                     </a>
-                    <a class="fe-login-area" href="{{ base }}register" ng-show="user == null">
+                    <a class="fe-login-area" href="javascript:void(0)" ng-click="jumpToPage('register')" ng-show="user == null">
                         注册
                     </a>
                     <a class="fe-login-area" href="javascript:void(0)" ng-click="exit()" ng-show="user != null">
@@ -31,10 +31,10 @@
                     <a class="fe-login-area split">
                         &nbsp;/&nbsp;
                     </a>
-                    <a class="fe-login-area" href="{{ base }}login" ng-show="user == null">
+                    <a class="fe-login-area" href="javascript:void(0)" ng-click="jumpToPage('login')" ng-show="user == null">
                         登录
                     </a>
-                    <a class="fe-login-area"  href="{{ base }}personal" ng-show="user != null">
+                    <a class="fe-login-area" href="javascript:void(0)" ng-click="jumpToPage('personal')" ng-show="user != null">
                         个人中心
                     </a>
                 </div>

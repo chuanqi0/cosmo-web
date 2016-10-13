@@ -13,16 +13,6 @@ use UtilBundle\Constant\LoveConstant;
 class AppController extends BaseController
 {
     /**
-     * @Route("/symfony", name="homepage")
-     */
-    public function indexAction(Request $request)
-    {
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        ));
-    }
-
-    /**
      * @Route("/api/region/list")
      * @Method({"GET"})
      */

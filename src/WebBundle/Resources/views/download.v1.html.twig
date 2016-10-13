@@ -1,0 +1,95 @@
+{% extends 'base.web.html.twig' %}
+
+{% block title %}时尚新娘{% endblock %}
+
+{% block body %}
+    <div class="container-fluid download" ng-controller="DownloadController" ng-init="init()">
+        <!-- Mobile -->
+        <div ng-if="isMobile == true" class="row download-mobile-v1" ng-click="jumpDownload()">
+            <div class="col-xs-12 w-p0 i-header">
+                <img class="download-btn ios" src="http://cosmolove.image.alimmdn.com/res/download/mobile_btn_download.png" />
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/mobile_bg_2_02.jpg" />
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/mobile_bg_2_03.jpg" />
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/mobile_bg_2_04.jpg" />
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/mobile_bg_2_05.jpg" />
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/mobile_bg_2_06.jpg" />
+            </div>
+            <div class="col-xs-12 w-p0 i-footer">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/mobile_bg_2_07.jpg" />
+                <div class="description w-width w-center">
+                    <strong>给你人生最美的一天，和幸福的很多天！</strong></br>
+                    “时尚新娘COSMOBride”是《时尚新娘》9年积累后，</br>
+                    在互联网时代的全新表达。拥有130万新媒体用户，</br>
+                    以及时尚集团强大影响力，和涵盖生活全方位的百</br>
+                    位时尚编辑达人的资源支持。
+                </div>
+            </div>
+        </div>
+        <!-- PC -->
+        <div ng-if="isMobile == false" class="row download-pc-v1">
+            <div class="download-btn w-width">
+                <img class="ios" ng-class="{true: 'ios-float-out'}[pcHover == 1]" src="http://cosmolove.image.alimmdn.com/res/download/web_btn_ios_1.png" ng-mouseover="setHover(1)" ng-mouseleave="setHover(0)"  ng-click="iOSDownload()" />
+                <img class="android" ng-class="{true: 'android-float-out'}[pcHover == 2]" src="http://cosmolove.image.alimmdn.com/res/download/web_btn_android_2.png" ng-mouseover="setHover(2)" ng-mouseleave="setHover(0)"  ng-click="androidDownload()" />
+            </div>
+            <div class="col-xs-12 w-p0 i-header">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/web_bg_2_01.jpg" />
+                <div class="pc-logo">
+                    <img class="w-width" ng-class="{true: 'logo-out'}[isMobile == false]" src="http://cosmolove.image.alimmdn.com/res/download/web_img_logo_2.png" />
+                    <div class="w-width description" ng-class="{true: 'word-out'}[isMobile == false]">
+                        <strong>给你人生最美的一天，和幸福的很多天！</strong>
+                        <div>“时尚新娘COSMOBride”是《时尚新娘》9年积累后，在互</div>
+                        <div>联网时代的全新表达。拥有130万新媒体用户，以及时尚</div>
+                        <div>集团强大影响力，和涵盖生活全方位的百位时尚编辑达人</div>
+                        <div>的资源支持。</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/web_bg_2_02.jpg" />
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/web_bg_2_03.jpg" />
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/web_bg_2_04.jpg" />
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/web_bg_2_05.jpg" />
+            </div>
+            <div class="col-xs-12 w-p0">
+                <img class="w-width" src="http://cosmolove.image.alimmdn.com/res/download/web_bg_2_06.jpg" />
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="download-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content browser-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12 w-center">
+                            <img src="{{ asset('img/web/download/browser.png') }}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        app.value('direct', '{{ direct }}');
+    </script>
+    <script type="text/javascript" src="{{ asset('js/web/download.js') }}"></script>
+{% endblock %}

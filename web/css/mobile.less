@@ -17,7 +17,7 @@
 }
 
 .m-p0 {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .m-width {
@@ -33,7 +33,11 @@
 }
 
 .m-plr14 {
-  padding: 0 0.875rem;
+  padding: 0 0.875rem !important;
+}
+
+.m-t-1 {
+  margin-top: 1rem !important;
 }
 
 html {
@@ -43,6 +47,10 @@ html {
 body {
   font-size: 0.75rem;
   font-family: "Microsoft YaHei", simhei;
+}
+
+.col-xs-12 {
+  padding: 0 1rem;
 }
 
 // 咨询
@@ -129,6 +137,7 @@ body {
 
 // 视频分享
 .m-share-video {
+  padding-top: 1rem;
   .title {
     text-align: center;
     color: @gold-1;
@@ -143,36 +152,69 @@ body {
     margin-bottom: 1rem;
     line-height: 1.25rem;
   }
-  .author-area {
-    line-height: 1.5625rem;
+}
+
+// 资讯分享
+.m-share-poster {
+  padding-top: 1rem;
+  background-color: @white;
+  .po-theme-dark {
+    position: absolute;
+    bottom: 1.2rem;
+    right: 0.9rem;
     color: @gray-2;
-    font-size: 0.625rem;
-    padding-bottom: 6rem;
-    background-color: @gray-1;
+    font-size: 0.75rem;
+    text-align: right;
+  }
+  .po-up-title {
+    color: @gold-1;
+    font-weight: bold;
+    font-size: 1.25rem;
     text-align: center;
-    .author {
-      background: url('../img/mobile/share/video_bottom.png') no-repeat;
-      background-size: 100%;
-      .avatar {
-        margin-top: -0.5rem;
-        padding: 0.5rem;
-        height: 4.75rem;
-        .border-radius(2.385rem);
-        background: url('../img/mobile/share/bg_header.png') no-repeat;
-        background-size: 100%;
-        &.and-v {
-          margin-right: -2rem;
-        }
-      }
-      .big-v {
-        width: 2rem;
-        margin-top: 2rem;
-      }
-    }
-    .editor {
-      color: @gold-1;
-      font-size: 0.875rem;
-    }
+    margin-top: 1rem;
+  }
+  .po-up-title-desc {
+    color: @gray-3;
+    font-size: 0.875rem;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+    line-height: 1.25rem;
+  }
+  .po-sub-title {
+    color: @gold-1;
+    font-size: 1.125rem;
+    margin: 0.625rem 0rem;
+    text-align: center;
+  }
+  ///* 图注渐变：左->右 */
+  //.po-legend-l2r {
+  //  position: absolute;
+  //  bottom: 0;
+  //  color: white;
+  //  font-size: 0.625rem;
+  //  padding: 8px 12px;
+  //  background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* IE 10 */
+  //  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* 火狐 */
+  //  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* google Safari5.1 Chrome 10+ */
+  //  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* Opera 11.10+ */
+  //}
+  ///* 图注渐变：右->左 */
+  //.po-legend-r2l {
+  //  position: absolute;
+  //  bottom: 0;
+  //  color: white;
+  //  font-size: 0.625rem;
+  //  padding: 8px 12px;
+  //  background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* IE 10 */
+  //  background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* 火狐 */
+  //  background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* google Safari5.1 Chrome 10+ */
+  //  background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* Opera 11.10+ */
+  //}
+  .po-text-dark {
+    color: @gray-3;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    margin: 1.5rem 0rem;
   }
 }
 
@@ -183,5 +225,38 @@ body {
   bottom: 0;
   img {
     width: 23.4375rem;
+  }
+}
+
+.author-area {
+  line-height: 1.5625rem;
+  color: @gray-5;
+  font-size: 0.625rem;
+  padding-bottom: 6rem;
+  background-color: @gray-1;
+  text-align: center;
+  margin-top: 0.625rem;
+  .author {
+    background: url('../img/mobile/share/video_bottom.png') no-repeat;
+    background-size: 100%;
+    .avatar {
+      margin-top: -0.5rem;
+      padding: 0.5rem;
+      height: 4.75rem;
+      .border-radius(2.385rem);
+      background: url('../img/mobile/share/bg_header.png') no-repeat;
+      background-size: 100%;
+      &.and-v {
+        margin-right: -2rem;
+      }
+    }
+    .big-v {
+      width: 2rem;
+      margin-top: 2rem;
+    }
+  }
+  .editor {
+    color: @gold-1;
+    font-size: 0.875rem;
   }
 }

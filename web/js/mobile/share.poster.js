@@ -1,4 +1,4 @@
-app.controller('ShareVideoController', function($scope, $sce, posterUuid, DownloadService) {
+app.controller('SharePosterController', function($scope, posterUuid, DownloadService) {
 
     $scope.poster = null;
 
@@ -24,11 +24,7 @@ app.controller('ShareVideoController', function($scope, $sce, posterUuid, Downlo
             }
         });
     };
-
-    $scope.trustUrl = function ($url) {
-        return $sce.trustAsResourceUrl($url);
-    };
-
+    
     $scope.init = function () {
         $scope.getPosterDetail();
     };

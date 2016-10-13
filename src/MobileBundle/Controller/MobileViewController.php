@@ -23,4 +23,17 @@ class MobileViewController extends BaseController
         );
         return $this->render('MobileBundle::consult.html.twig', $dataOut);
     }
+
+    /**
+     * @Route("/share/video/{posterUuid}")
+     */
+    public function downloadAction($posterUuid)
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain,
+            'posterUuid' => $posterUuid
+        );
+        return $this->render('MobileBundle::share.video.html.twig', $dataOut);
+    }
 }

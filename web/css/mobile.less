@@ -1,10 +1,20 @@
 // 公共颜色
 @white: #ffffff;
+@gray-1: #f9f9f9;
 @gray-2: #a9a9a9;
 @gray-3: #787878;
 @gray-4: #525252;
+@gray-5: #c1c1c1;
 @pink-1: #f89670;
 @pink-2: #fff5f3;
+@gold-1: #ba882a;
+
+// 公共函数
+.border-radius(@radius) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
 
 .m-p0 {
   padding: 0;
@@ -16,6 +26,10 @@
 
 .m-half {
   width: 50%;
+}
+
+.m-center {
+  text-align: center;
 }
 
 .m-plr14 {
@@ -110,5 +124,64 @@ body {
     img {
       width: 23.4375rem;
     }
+  }
+}
+
+// 视频分享
+.m-share-video {
+  .title {
+    text-align: center;
+    color: @gold-1;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
+  .sub-title {
+    color: @gray-3;
+    font-size: 0.875rem;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+    line-height: 1.25rem;
+  }
+  .author-area {
+    line-height: 1.5625rem;
+    color: @gray-2;
+    font-size: 0.625rem;
+    padding-bottom: 6rem;
+    background-color: @gray-1;
+    text-align: center;
+    .author {
+      background: url('../img/mobile/share/video_bottom.png') no-repeat;
+      background-size: 100%;
+      .avatar {
+        margin-top: -0.5rem;
+        padding: 0.5rem;
+        height: 4.75rem;
+        .border-radius(2.385rem);
+        background: url('../img/mobile/share/bg_header.png') no-repeat;
+        background-size: 100%;
+        &.and-v {
+          margin-right: -2rem;
+        }
+      }
+      .big-v {
+        width: 2rem;
+        margin-top: 2rem;
+      }
+    }
+    .editor {
+      color: @gold-1;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// 公共下载按钮
+.share-bottom {
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  img {
+    width: 23.4375rem;
   }
 }

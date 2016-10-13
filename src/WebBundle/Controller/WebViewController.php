@@ -41,6 +41,18 @@ class WebViewController extends BaseController
     }
 
     /**
+     * @Route("/policy/user")
+     */
+    public function policyUserAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain
+        );
+        return $this->render('WebBundle::policy.user.html.twig', $dataOut);
+    }
+
+    /**
      * @Route("/symfony", name="symfony")
      */
     public function symfonyAction()

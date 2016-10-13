@@ -1,4 +1,4 @@
-app.controller('DownloadController', function($scope, $location, direct, DownloadService) {
+app.controller('DownloadController', function($scope, direct, DownloadService) {
     $scope.pcHover = 0;
 
     $scope.setHover = function ($hover) {

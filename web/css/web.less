@@ -1,0 +1,188 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 0.75rem;
+}
+
+.w-p0 {
+  padding: 0;
+}
+
+.w-width {
+  width: 100%;
+}
+
+.w-center {
+  text-align: center;
+}
+
+.download {
+  background: url('../img/web/download/texture.jpg');
+  // 下载按钮浮动
+  @keyframes float-out
+  {
+    from {top: -3.75rem;}
+    to {top: 0rem;}
+  }
+  @-moz-keyframes float-out /* Firefox */
+  {
+    from {top: -3.75rem;}
+    to {top: 0rem;}
+  }
+  @-webkit-keyframes float-out /* Safari 和 Chrome */
+  {
+    from {top: -3.75rem;}
+    to {top: 0rem;}
+  }
+  @-o-keyframes float-out /* Opera */
+  {
+    from {top: -3.75rem;}
+    to {top: 0rem;}
+  }
+  // 动画
+  @keyframes fade-out
+  {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  @-moz-keyframes fade-out /* Firefox */
+  {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  @-webkit-keyframes fade-out /* Safari and Chrome */
+  {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  @-o-keyframes fade-out /* Opera */
+  {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  // Mobile
+  .download-mobile-v1 {
+    .download-btn {
+      position: fixed;
+      z-index: 1000;
+      right: 0;
+      &.ios {
+        top: 1rem;
+        height: 3.75rem;;
+      }
+      &.android {
+        top: 5rem;
+        height: 3.125rem;
+      }
+    }
+    .i-header {
+      position: relative;
+      .logo {
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0; // 水平&垂直居中
+        opacity: 0;
+        filter: alpha(opacity=0);
+        &.logo-out {
+          animation: fade-out 5s ease forwards;
+          -moz-animation: fade-out 5s ease forwards; /* Firefox */
+          -webkit-animation: fade-out 5s ease forwards; /* Safari and Chrome */
+          -o-animation: fade-out 5s ease forwards; /* Opera */
+        }
+      }
+    }
+    .i-footer {
+      position: relative;
+      font-size: 0.875rem;
+      .description {
+        position: absolute;
+        top: 14.5rem;
+        line-height: 25px;
+        color: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+  // PC
+  .download-pc-v1 {
+    .download-btn {
+      position: fixed;
+      z-index: 1000;
+      .ios {
+        position: absolute;
+        height: 9.0625rem;
+        top: -3.75rem;
+        left: 57.5rem;
+        cursor: pointer;
+        &.ios-float-out {
+          animation: float-out 1s ease forwards;
+          -moz-animation: float-out 1s ease forwards; /* Firefox */
+          -webkit-animation: float-out 1s ease forwards; /* Safari and Chrome */
+          -o-animation: float-out 1s ease forwards; /* Opera */
+        }
+      }
+      .android {
+        position: absolute;
+        height: 9.0625rem;
+        top: -3.75rem;
+        left: 62.1rem;
+        cursor: pointer;
+        &.android-float-out {
+          animation: float-out 1s ease forwards;
+          -moz-animation: float-out 1s ease forwards; /* Firefox */
+          -webkit-animation: float-out 1s ease forwards; /* Safari and Chrome */
+          -o-animation: float-out 1s ease forwards; /* Opera */
+        }
+      }
+    }
+    .i-header {
+      position: relative;
+      .pc-logo {
+        position: absolute;
+        right: 0;
+        width: 50%;
+        top: 8rem;
+        img {
+          padding-right: 35%;
+          opacity: 0;
+          &.logo-out {
+            animation: fade-out 5s ease forwards;
+            -moz-animation: fade-out 5s ease forwards; /* Firefox */
+            -webkit-animation: fade-out 5s ease forwards; /* Safari and Chrome */
+            -o-animation: fade-out 5s ease forwards; /* Opera */
+          }
+        }
+        .description {
+          font-size: 0.75rem;
+          padding-left: 1.25rem;
+          padding-top: 0.625rem;
+          color: rgba(0, 0, 0, 0.5);
+          opacity: 0;
+          filter: alpha(opacity=0);
+          &.word-out {
+            animation: fade-out 8s ease forwards;
+            -moz-animation: fade-out 8s ease forwards; /* Firefox */
+            -webkit-animation: fade-out 8s ease forwards; /* Safari and Chrome */
+            -o-animation: fade-out 8s ease forwards; /* Opera */
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  background-color: rgba(0,0,0,0.6) !important;
+  .browser-content {
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    img {
+      width: 80%;
+    }
+  }
+}

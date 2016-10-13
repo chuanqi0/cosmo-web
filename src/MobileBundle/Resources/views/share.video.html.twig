@@ -1,0 +1,61 @@
+{% extends 'base.mobile.html.twig' %}
+
+{% block title %}时尚新娘{% endblock %}
+
+{% block body %}
+    <div class="container-fluid m-share-video" ng-class="{'m-half': isMobile == false}"
+         ng-controller="ShareVideoController" ng-init="init()">
+        <!-- title -->
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="m-width" src="{{ asset('img/mobile/share/poster_title_1.png') }}" />
+            </div>
+        </div>
+        <!-- subtitle -->
+        <div class="row">
+            <div class="col-xs-12 title">{[{ poster.title }]}</div>
+            <div class="col-xs-12 sub-title">{[{ poster.subTitle }]}</div>
+            <div class="col-xs-12 m-p0 m-center">
+                <img class="m-half" src="{{ asset('img/mobile/share/poster_title_2.png') }}" />
+            </div>
+        </div>
+        <!-- video -->
+        <div class="row">
+            <div class="col-xs-12">
+                <video class="m-width" controls preload="metadata">
+                    <source ng-src="{[{ trustUrl(poster.content.url) }]}" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <!-- author -->
+        <div class="row author-area" style="margin-top: 10px">
+            <div class="col-xs-12 author">
+                <img class="p-m-2 avatar" ng-class="{true: 'and-v'}[poster.author.identity != 0]"
+                     ng-src="{[{ poster.author.avatarThumb }]}"/>
+                <img ng-if="poster.author.identity == 1" class="big-v" src="{{ asset('img/mobile/common/user_identity_blue.png') }}" />
+                <img ng-if="poster.author.identity == 2 || poster.author.identity == 3" class="big-v"
+                     src="{{ asset('img/mobile/common/user_identity_gold.png') }}" />
+            </div>
+            <div class="col-xs-12 editor">{[{ poster.author.nickname }]}</div>
+            <div class="col-xs-12 m-p0 m-center"
+                 ng-if="poster.camera != '' || poster.model != '' || poster.sculpt != '' || poster.flower != ''">
+                <img ng-src="img/img_article_title_2@3x.png" class="m-half"/>
+            </div>
+            <div class="col-xs-12" ng-if="poster.camera != ''">摄影师：{[{ poster.camera }]}</div>
+            <div class="col-xs-12" ng-if="poster.model != ''">模特：{[{ poster.model }]}</div>
+            <div class="col-xs-12" ng-if="poster.sculpt != ''">造型师：{[{ poster.sculpt }]}</div>
+            <div class="col-xs-12" ng-if="poster.flower != ''">花艺设计：{[{ poster.flower }]}</div>
+        </div>
+        <!-- download -->
+        <div class="row share-bottom" ng-if="isMobile == true" ng-click="jumpDownload()">
+            <img class="m-width" src="{{ asset('img/mobile/common/banner_download.png') }}" />
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        app.value('posterUuid', '{{ posterUuid }}');
+    </script>
+    <script type="text/javascript" src="{{ asset('js/mobile/share.video.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet/less" type="text/css" href="{{ asset('css/admin.less') }}" />
+        <!--[if lte IE 9]>
+        <script type="text/javascript" src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="//cdn.bootcss.com/less.js/2.7.1/less.min.js"></script>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body ng-app="app" ng-controller="BaseAdminController">
+        <div class="fe-header">
+            <div class="container">
+                <div class="row">
+                    <a class="fe-logo-area" href="jumpToPage('')">
+                        <img class="fe-logo" src="{{ asset('img/admin/common/logo.png') }}" alt="Logo" />
+                    </a>
+                    <a class="fe-login-area" href="javascript:void(0)" ng-click="jumpToPage('register')" ng-show="user == null">
+                        注册
+                    </a>
+                    <a class="fe-login-area" href="javascript:void(0)" ng-click="exit()" ng-show="user != null">
+                        退出
+                    </a>
+                    <a class="fe-login-area split">
+                        &nbsp;/&nbsp;
+                    </a>
+                    <a class="fe-login-area" href="javascript:void(0)" ng-click="jumpToPage('login')" ng-show="user == null">
+                        登录
+                    </a>
+                    <a class="fe-login-area" href="javascript:void(0)" ng-click="jumpToPage('personal')" ng-show="user != null">
+                        个人中心
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% block body %}{% endblock %}
+        <div class="fe-bottom">
+            <div class="container">
+                <div class="row fe-bottom-sponsor">
+                    <div class="col-md-12">
+                        <div class="bottom-title">
+                            时尚新娘&时尚致爱
+                        </div>
+                        <div class="sponsor-primary">
+                            <img src="{{ asset('img/fantastic/common/sponsor.png') }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row fe-bottom-contact">
+                    <div class="col-md-12">
+                        <div class="bottom-title">
+                            联系我们
+                        </div>
+                        <div class="contact-content">
+                            电话:&nbsp;400-9008-520&nbsp;&nbsp;&nbsp;&nbsp;邮箱:&nbsp;bd@cosmo.love
+                            &nbsp;&nbsp;&nbsp;&nbsp;微博:&nbsp;@时尚新娘COSMOBride
+                            &nbsp;&nbsp;&nbsp;&nbsp;微信:&nbsp;时尚新娘
+                        </div>
+                        <div class="contact-copyright">
+                            ©1998-2016&nbsp;时尚新娘&nbsp;版权所有&nbsp;京ICP备14009671号-1
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var domain = '{{ domain }}';
+            var base = '{{ base }}/admin/';
+            var apiBase = '{{ base }}';
+        </script>
+        <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular-cookies.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/app.admin.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/service.admin.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/md5.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

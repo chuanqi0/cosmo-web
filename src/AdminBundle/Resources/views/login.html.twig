@@ -1,0 +1,40 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}时尚新娘管理后台{% endblock %}
+
+{% block body %}
+    <div class="fe-register" ng-controller="LoginController">
+        <div class="container">
+            <div class="row fe-register-title">
+                登录
+            </div>
+            <div class="row fe-register-description">
+                管理后台和时尚新娘App的账号是<strong>通用</strong>的哦
+            </div>
+            <div class="row fe-form">
+                <div class="col-md-6 col-md-offset-3 middle">
+                    <div class="fe-form-top"><span class="fe-form-title">手机号</span></div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入手机号" ng-model="telephone" ng-class="{'fe-error': telephoneValid == false}" />
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3 middle">
+                    <div class="fe-form-top"><span class="fe-form-title">密码</span></div>
+                    <div class="fe-form-bottom">
+                        <input type="password" placeholder="在这里输入登录密码" ng-model="password" ng-class="{'fe-error': passwordValid == false}" />
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-3 middle fe-reset">
+                    <a href="javascript:void(0)" ng-click="jumpToPage('reset')">忘记密码?</a>
+                </div>
+                <div class="col-md-2 col-md-offset-5 fe-p0 middle">
+                    <div class="fe-btn next" ng-click="login()">登录</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/admin/login.js') }}"></script>
+{% endblock %}

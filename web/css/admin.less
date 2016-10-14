@@ -363,7 +363,7 @@ body {
 .fe-register {
   background-color: @gray-1;
   .container {
-    padding: 25px 160px 100px 160px;
+    padding: 75px 160px 100px 160px;
     background: @white;
     .fe-register-title {
       font-size: 20px;
@@ -634,182 +634,6 @@ body {
   }
 }
 
-// 报名
-.fe-apply {
-  background-color: @gray-1;
-  .fe-apply-left {
-    width: 170px;
-    float: left;
-    background-color: @gray-2;
-    min-height: 550px;
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      li {
-        height: 60px;
-        color: @black;
-        &.active {
-          color: @white;
-          background-color: @blue-1;
-        }
-        div {
-          height: 60px;
-          line-height: 60px;
-          font-size: 14px;
-          text-align: center;
-        }
-      }
-    }
-  }
-  .fe-apply-right {
-    background: @white;
-    width: 860px;
-    padding: 25px 50px 75px 50px;
-    float: left;
-    min-height: 550px;
-    .fe-apply-fee {
-      .fee-top {
-        background-color: @blue-1;
-        .fee-top-1 {
-          color: rgba(255, 255, 255, 0.8);
-          font-size: 14px;
-          text-align: center;
-          padding: 20px 0 5px 0;
-        }
-        .fee-top-2 {
-          color: @white;
-          font-size: 36px;
-          text-align: center;
-        }
-        .fee-top-3 {
-          color: rgba(255, 255, 255, 0.8);
-          font-size: 14px;
-          text-align: center;
-          padding: 5px 0 20px 0;
-        }
-      }
-      .payment-choose {
-        margin-top: 10px;
-        border: 1px solid @gray-2;
-        margin-bottom: 10px;
-        .choose-title {
-          color: @gray-4;
-          padding: 10px 15px;
-        }
-        .choose-area {
-          padding: 5px 15px 40px 15px;
-          .choose-radio {
-            float: left;
-            padding-top: 5px;
-            input {
-              cursor: pointer;
-            }
-          }
-          .choose-btn {
-            width: 156px;
-            height: 32px;
-            float: left;
-            margin-left: 5px;
-            &.alipay {
-              background-image: url(../img/fantastic/join/btn_alipay.jpg);
-              background-size: 100%;
-            }
-            &.active {
-              border: 1px solid @red-1;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-.loadding {
-  .loadding-img {
-    padding: 40px 30px 20px 30px;
-  }
-  .loadding-text {
-    text-align: center;
-    margin-bottom: 10px;
-    &.top {
-      font-size: 18px;
-      color: @blue-2;
-      font-weight: bold;
-    }
-    &.below {
-      color: @gray-4;
-      font-size: 14px;
-    }
-  }
-}
-
-// 案例
-.fe-casus {
-  background-color: @gray-1;
-  .cover {
-    position: relative;
-    .cover-shade {
-      position: absolute;
-      z-index: 10;
-      top: 0;
-    }
-    .cover-text {
-      position: absolute;
-      bottom: 0;
-      z-index: 20;
-      height: 70px;
-      line-height: 70px;
-      font-size: 30px;
-      padding-left: 40px;
-      color: @white;
-      text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    }
-  }
-  .casus-content {
-    padding: 0;
-    background-color: @white;
-    .content-left {
-      padding: 0 75px 50px 75px;
-      border-right: 1px solid @gray-1;
-      .casus-description {
-        padding: 25px 75px;
-        color: @gray-3;
-        font-style: italic;
-        line-height: 25px;
-      }
-      .casus-content {
-        padding: 0;
-        color: @gray-4;
-        img {
-          width: 100%;
-        }
-      }
-    }
-    .content-right {
-      padding: 25px 40px;
-      .glyphicon {
-        color: @blue-1;
-      }
-      .desc-title {
-        margin-left: 2px;
-        color: @blue-1;
-      }
-      .desc-content {
-        line-height: 25px;
-        color: @gray-3;
-        font-weight: bold;
-        padding: 0;
-      }
-      .row {
-        padding-bottom: 5px;
-        border-bottom: 1px solid @gray-1;
-        margin: 0 0 15px 0;
-      }
-    }
-  }
-}
-
 // 表单
 .fe-form {
   .col-md-6 {
@@ -933,12 +757,5 @@ body {
     height: 30px;
     padding: 5px;
     line-height: 20px;
-  }
-}
-
-// 编辑器
-.edui-body-container {
-  img {
-    width: 360px !important;
   }
 }

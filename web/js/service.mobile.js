@@ -24,7 +24,7 @@ angular.module('app')
                 parseDate = Math.floor(gap / (60 * 60 * 1000)) + " 小时前";
             }
             return parseDate;
-        }
+        };
     }])
     .service('DownloadService', [function () {
         var QQ_DOWNLOAD = 'http://a.app.qq.com/o/simple.jsp?pkgname=love.cosmo.android';

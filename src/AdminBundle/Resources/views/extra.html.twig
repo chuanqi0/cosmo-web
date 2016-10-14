@@ -1,0 +1,66 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}时尚新娘管理后台{% endblock %}
+
+{% block body %}
+    <div class="fe-register" ng-controller="ExtraController">
+        <div class="container">
+            <div class="row fe-register-title">
+                尊敬的管理员
+            </div>
+            <div class="row fe-register-description">
+                请填写您的<strong>真实信息</strong>
+            </div>
+            <div class="row fe-form">
+                <div class="col-md-6 left">
+                    <div class="fe-form-top"><span class="fe-form-title">真实姓名</span></div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入真实姓名" ng-model="name" ng-class="{'fe-error': nameValid == false}" />
+                    </div>
+                </div>
+                <div class="col-md-6 right">
+                    <div class="fe-form-top"><span class="fe-form-title">身份证号</span></div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入身份证号" ng-model="identityCard" ng-class="{'fe-error': identityCardValid == false}" />
+                    </div>
+                </div>
+                <div class="col-md-6 left">
+                    <div class="fe-form-top"><span class="fe-form-title">微信号</span></div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入微信号" ng-model="wechat" ng-class="{'fe-error': wechatValid == false}" />
+                    </div>
+                </div>
+            </div>
+            <div class="row fe-register-description">
+                以下为<strong>选项信息</strong>
+            </div>
+            <div class="row fe-form">
+                <div class="col-md-6 left">
+                    <div class="fe-form-top"><span class="fe-form-title">公司名称</span></div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入公司名称" ng-model="company" />
+                    </div>
+                </div>
+                <div class="col-md-6 right">
+                    <div class="fe-form-top"><span class="fe-form-title">公司所在地</span></div>
+                    <div class="fe-form-bottom">
+                        <input type="text" placeholder="在这里输入公司所在地" ng-model="companyLocation" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="fe-form-top"><span class="fe-form-title">公司简介</span></div>
+                    <div class="fe-form-bottom">
+                        <textarea placeholder="在这里输入公司简介" rows="6" ng-model="companyIntro"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-2 col-md-offset-5 fe-p0 middle fe-pt20">
+                    <div class="fe-btn next" ng-click="commit()">提交</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/admin/extra.js') }}"></script>
+{% endblock %}

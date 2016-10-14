@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new FantasticBundle\FantasticBundle(),
             new WebBundle\WebBundle(),
             new MobileBundle\MobileBundle(),
+            new AdminBundle\AdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

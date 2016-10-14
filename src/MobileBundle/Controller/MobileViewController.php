@@ -38,6 +38,19 @@ class MobileViewController extends BaseController
     }
 
     /**
+     * @Route("/share/photo/{photoUuid}")
+     */
+    public function sharePhotoAction($photoUuid)
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain,
+            'photoUuid' => $photoUuid
+        );
+        return $this->render('MobileBundle::share.photo.html.twig', $dataOut);
+    }
+
+    /**
      * @Route("/share/poster/{posterUuid}")
      */
     public function sharePosterAction($posterUuid)

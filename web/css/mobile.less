@@ -20,6 +20,10 @@
   padding: 0 !important;
 }
 
+.m-m0 {
+  margin: 0 !important;
+}
+
 .m-width {
   width: 100%;
 }
@@ -44,8 +48,20 @@
   padding: 0 0.875rem !important;
 }
 
-.m-t-1 {
+.m-m-t-1 {
   margin-top: 1rem !important;
+}
+
+.m-m-t-10 {
+  margin-top: 0.625rem !important;
+}
+
+.m-p-1 {
+  padding: 1rem !important;
+}
+
+.m-p-12 {
+  padding: 0.75rem !important;
 }
 
 html {
@@ -223,6 +239,173 @@ body {
     font-size: 0.875rem;
     line-height: 1.5rem;
     margin: 1.5rem 0rem;
+  }
+}
+
+// 秀爱分享
+.m-share-photo {
+  background-color: @gray-1;
+  .top-area {
+    background-color: @white;
+    margin: 0.25rem;
+    .border-radius(0.25rem);
+  }
+  .author {
+    position: relative;
+    float: left;
+    width: 3rem;
+    .avatar {
+      height: 3rem;
+      .border-radius(1.5rem);
+    }
+    .big-v {
+      position: absolute;
+      z-index: 10;
+      bottom: 0;
+      right: 0;
+      width: 1.5rem;
+    }
+  }
+  .user-area {
+    float: left;
+    width: 17.9375rem;
+    margin-left: 0.5rem;
+    position: relative;
+    .area-top {
+      line-height: 3rem;
+      font-size: 0.875rem;
+      color: @gray-2;
+      &.with-desc {
+        line-height: 1rem;
+        padding-top: 0.5rem;
+      }
+    }
+    .area-bottom {
+      font-size: 0.875rem;
+      color: @gray-4;
+      padding-top: 0.25rem;
+      line-height: 1.25rem;
+    }
+    .area-time {
+      font-size: 0.625rem;
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      right: 0.25rem;
+      color: @gray-2;
+    }
+  }
+  .url-list {
+    padding: 0 0.75rem;
+    .col-xs-4, .col-xs-6, .col-xs-8 {
+      padding: 0.125rem;
+    }
+  }
+  .favor-list {
+    margin-top: 0.875rem;
+    margin-bottom: 0.5rem;
+    padding: 0;
+    .icon-list {
+      width: 1.875rem;
+    }
+    .mini-avatar {
+      width: 1.75rem;
+      margin-right: 0.25rem;
+      .border-radius(5rem);
+    }
+    .icon-next {
+      margin-right: 0.25rem;
+      width: 1.75rem;
+    }
+    .favor-number {
+      float: right;
+      margin-top: -0.375rem;
+      .number-top {
+        text-align: center;
+        img {
+          width: 1.25rem;
+        }
+      }
+      .number-bottom {
+        padding-top: 0.25rem;
+        font-size: 0.625rem;
+        color: @gray-2;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.comment-list {
+  margin: 0;
+  .comment-title {
+    font-size: 0.875rem;
+    color: @gold-1;
+    text-align: center;
+    margin: 1rem 0 0 0;
+  }
+  .photo-comment {
+    .comment-row {
+      padding: 1rem 0;
+      height: 5rem;
+      border-bottom: 0.5px solid rgba(193, 193, 193, 0.2);
+      .comment-left {
+        position: relative;
+        float: left;
+        width: 3rem;
+        height: 3rem;
+        .avatar {
+          height: 3rem;
+          .border-radius(1.5rem);
+        }
+        .big-v {
+          position: absolute;
+          z-index: 10;
+          bottom: 0;
+          right: 0;
+          width: 1.5rem;
+        }
+      }
+      .comment-right {
+        float: left;
+        width: 17.9375rem;
+        margin-left: 0.5rem;
+        position: relative;
+        .area-top {
+          line-height: 3rem;
+          font-size: 0.875rem;
+          color: @gray-2;
+          &.with-desc {
+            line-height: 1rem;
+            padding-top: 0.5rem;
+          }
+        }
+        .area-bottom {
+          font-size: 0.875rem;
+          color: @gray-4;
+          padding-top: 0.25rem;
+          line-height: 1.25rem;
+        }
+        .area-time {
+          font-size: 0.625rem;
+          position: absolute;
+          z-index: 10;
+          top: 0;
+          right: 0.25rem;
+          color: @gray-2;
+        }
+      }
+    }
+  }
+  .default-comment {
+    padding: 1.25rem 0 6.5rem 0;
+    color: @gray-5;
+    background-color: @gray-1;
+    text-align: center;
+    img {
+      width: 1.875rem;
+      margin-bottom: 0.3125rem;
+    }
   }
 }
 

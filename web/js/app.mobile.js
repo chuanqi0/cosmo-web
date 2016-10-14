@@ -2,7 +2,7 @@ var app = angular.module('app', ['ngCookies']).config(function($interpolateProvi
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 
-app.controller('BaseMobileController', function($scope, $cookies, UtilService) {
+app.controller('BaseMobileController', function($scope, $cookies, $sce, UtilService) {
 
     $scope.jumpToPage = function ($page) {
         window.location.href = base + $page;
@@ -15,6 +15,10 @@ app.controller('BaseMobileController', function($scope, $cookies, UtilService) {
             $text = $text.substr(0, $length) + '...';
         }
         return $text;
+    };
+
+    $scope.formatTime = function ($time) {
+        return UtilService.formatTime($time);
     };
 
     $scope.removeCookie = function ($key) {
@@ -33,6 +37,10 @@ app.controller('BaseMobileController', function($scope, $cookies, UtilService) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
         $cookies.putObject($key, $value, {'path': '/pub/mobile/', 'expires': expireDate});
+    };
+
+    $scope.trustHtml = function ($html) {
+        return $sce.trustAsHtml($html.replace(/\n/g, '<br />'));
     };
 
     var ele = document.getElementsByTagName("html")[0];

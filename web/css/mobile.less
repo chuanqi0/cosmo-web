@@ -17,7 +17,11 @@
 }
 
 .m-p0 {
-  padding: 0;
+  padding: 0 !important;
+}
+
+.m-m0 {
+  margin: 0 !important;
 }
 
 .m-width {
@@ -28,12 +32,36 @@
   width: 50%;
 }
 
+.m-left {
+  text-align: left;
+}
+
+.m-right {
+  text-align: right;
+}
+
 .m-center {
   text-align: center;
 }
 
 .m-plr14 {
-  padding: 0 0.875rem;
+  padding: 0 0.875rem !important;
+}
+
+.m-m-t-1 {
+  margin-top: 1rem !important;
+}
+
+.m-m-t-10 {
+  margin-top: 0.625rem !important;
+}
+
+.m-p-1 {
+  padding: 1rem !important;
+}
+
+.m-p-12 {
+  padding: 0.75rem !important;
 }
 
 html {
@@ -43,6 +71,10 @@ html {
 body {
   font-size: 0.75rem;
   font-family: "Microsoft YaHei", simhei;
+}
+
+.col-xs-12 {
+  padding: 0 1rem;
 }
 
 // 咨询
@@ -129,6 +161,7 @@ body {
 
 // 视频分享
 .m-share-video {
+  padding-top: 1rem;
   .title {
     text-align: center;
     color: @gold-1;
@@ -143,35 +176,235 @@ body {
     margin-bottom: 1rem;
     line-height: 1.25rem;
   }
-  .author-area {
-    line-height: 1.5625rem;
+}
+
+// 资讯分享
+.m-share-poster {
+  padding-top: 1rem;
+  background-color: @white;
+  .po-theme-dark {
+    position: absolute;
+    bottom: 1.2rem;
+    right: 0.9rem;
     color: @gray-2;
-    font-size: 0.625rem;
-    padding-bottom: 6rem;
-    background-color: @gray-1;
+    font-size: 0.75rem;
+    text-align: right;
+  }
+  .po-up-title {
+    color: @gold-1;
+    font-weight: bold;
+    font-size: 1.25rem;
     text-align: center;
-    .author {
-      background: url('../img/mobile/share/video_bottom.png') no-repeat;
-      background-size: 100%;
-      .avatar {
-        margin-top: -0.5rem;
-        padding: 0.5rem;
-        height: 4.75rem;
-        .border-radius(2.385rem);
-        background: url('../img/mobile/share/bg_header.png') no-repeat;
-        background-size: 100%;
-        &.and-v {
-          margin-right: -2rem;
-        }
-      }
-      .big-v {
-        width: 2rem;
-        margin-top: 2rem;
+    margin-top: 1rem;
+  }
+  .po-up-title-desc {
+    color: @gray-3;
+    font-size: 0.875rem;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+    line-height: 1.25rem;
+  }
+  .po-sub-title {
+    color: @gold-1;
+    font-size: 1.125rem;
+    margin: 0.625rem 0rem;
+    text-align: center;
+  }
+  /* 图注渐变：左->右 */
+  .po-legend-l2r {
+    position: absolute;
+    bottom: 0;
+    color: white;
+    font-size: 0.625rem;
+    padding: 8px 12px;
+    background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* IE 10 */
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* 火狐 */
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* google Safari5.1 Chrome 10+ */
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* Opera 11.10+ */
+  }
+  /* 图注渐变：右->左 */
+  .po-legend-r2l {
+    position: absolute;
+    bottom: 0;
+    color: white;
+    font-size: 0.625rem;
+    padding: 8px 12px;
+    background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* IE 10 */
+    background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* 火狐 */
+    background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* google Safari5.1 Chrome 10+ */
+    background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.5) 10%, rgba(255, 255, 255, 0.1) 100%); /* Opera 11.10+ */
+  }
+  .po-text-dark {
+    color: @gray-3;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    margin: 1.5rem 0rem;
+  }
+}
+
+// 秀爱分享
+.m-share-photo {
+  background-color: @gray-1;
+  .top-area {
+    background-color: @white;
+    margin: 0.25rem;
+    .border-radius(0.25rem);
+  }
+  .author {
+    position: relative;
+    float: left;
+    width: 3rem;
+    .avatar {
+      height: 3rem;
+      .border-radius(1.5rem);
+    }
+    .big-v {
+      position: absolute;
+      z-index: 10;
+      bottom: 0;
+      right: 0;
+      width: 1.5rem;
+    }
+  }
+  .user-area {
+    float: left;
+    width: 17.9375rem;
+    margin-left: 0.5rem;
+    position: relative;
+    .area-top {
+      line-height: 3rem;
+      font-size: 0.875rem;
+      color: @gray-2;
+      &.with-desc {
+        line-height: 1rem;
+        padding-top: 0.5rem;
       }
     }
-    .editor {
-      color: @gold-1;
+    .area-bottom {
       font-size: 0.875rem;
+      color: @gray-4;
+      padding-top: 0.25rem;
+      line-height: 1.25rem;
+    }
+    .area-time {
+      font-size: 0.625rem;
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      right: 0.25rem;
+      color: @gray-2;
+    }
+  }
+  .url-list {
+    padding: 0 0.75rem;
+    .col-xs-4, .col-xs-6, .col-xs-8 {
+      padding: 0.125rem;
+    }
+  }
+  .favor-list {
+    margin-top: 0.875rem;
+    margin-bottom: 0.5rem;
+    padding: 0;
+    .icon-list {
+      width: 1.875rem;
+    }
+    .mini-avatar {
+      width: 1.75rem;
+      margin-right: 0.25rem;
+      .border-radius(5rem);
+    }
+    .icon-next {
+      margin-right: 0.25rem;
+      width: 1.75rem;
+    }
+    .favor-number {
+      float: right;
+      margin-top: -0.375rem;
+      .number-top {
+        text-align: center;
+        img {
+          width: 1.25rem;
+        }
+      }
+      .number-bottom {
+        padding-top: 0.25rem;
+        font-size: 0.625rem;
+        color: @gray-2;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.comment-list {
+  margin: 0;
+  .comment-title {
+    font-size: 0.875rem;
+    color: @gold-1;
+    text-align: center;
+    margin: 1rem 0 0 0;
+  }
+  .photo-comment {
+    .comment-row {
+      padding: 1rem 0;
+      height: 5rem;
+      border-bottom: 0.5px solid rgba(193, 193, 193, 0.2);
+      .comment-left {
+        position: relative;
+        float: left;
+        width: 3rem;
+        height: 3rem;
+        .avatar {
+          height: 3rem;
+          .border-radius(1.5rem);
+        }
+        .big-v {
+          position: absolute;
+          z-index: 10;
+          bottom: 0;
+          right: 0;
+          width: 1.5rem;
+        }
+      }
+      .comment-right {
+        float: left;
+        width: 17.9375rem;
+        margin-left: 0.5rem;
+        position: relative;
+        .area-top {
+          line-height: 3rem;
+          font-size: 0.875rem;
+          color: @gray-2;
+          &.with-desc {
+            line-height: 1rem;
+            padding-top: 0.5rem;
+          }
+        }
+        .area-bottom {
+          font-size: 0.875rem;
+          color: @gray-4;
+          padding-top: 0.25rem;
+          line-height: 1.25rem;
+        }
+        .area-time {
+          font-size: 0.625rem;
+          position: absolute;
+          z-index: 10;
+          top: 0;
+          right: 0.25rem;
+          color: @gray-2;
+        }
+      }
+    }
+  }
+  .default-comment {
+    padding: 1.25rem 0 6.5rem 0;
+    color: @gray-5;
+    background-color: @gray-1;
+    text-align: center;
+    img {
+      width: 1.875rem;
+      margin-bottom: 0.3125rem;
     }
   }
 }
@@ -183,5 +416,38 @@ body {
   bottom: 0;
   img {
     width: 23.4375rem;
+  }
+}
+
+.author-area {
+  line-height: 1.5625rem;
+  color: @gray-5;
+  font-size: 0.625rem;
+  padding-bottom: 6rem;
+  background-color: @gray-1;
+  text-align: center;
+  margin-top: 0.625rem;
+  .author {
+    background: url('../img/mobile/share/video_bottom.png') no-repeat;
+    background-size: 100%;
+    .avatar {
+      margin-top: -0.5rem;
+      padding: 0.5rem;
+      height: 4.75rem;
+      .border-radius(2.385rem);
+      background: url('../img/mobile/share/bg_header.png') no-repeat;
+      background-size: 100%;
+      &.and-v {
+        margin-right: -2rem;
+      }
+    }
+    .big-v {
+      width: 2rem;
+      margin-top: 2rem;
+    }
+  }
+  .editor {
+    color: @gold-1;
+    font-size: 0.875rem;
   }
 }

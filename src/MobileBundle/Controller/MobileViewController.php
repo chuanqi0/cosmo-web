@@ -27,7 +27,7 @@ class MobileViewController extends BaseController
     /**
      * @Route("/share/video/{posterUuid}")
      */
-    public function downloadAction($posterUuid)
+    public function shareVideoAction($posterUuid)
     {
         $dataOut = array(
             'base' => $this->base,
@@ -35,5 +35,31 @@ class MobileViewController extends BaseController
             'posterUuid' => $posterUuid
         );
         return $this->render('MobileBundle::share.video.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/share/photo/{photoUuid}")
+     */
+    public function sharePhotoAction($photoUuid)
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain,
+            'photoUuid' => $photoUuid
+        );
+        return $this->render('MobileBundle::share.photo.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/share/poster/{posterUuid}")
+     */
+    public function sharePosterAction($posterUuid)
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain,
+            'posterUuid' => $posterUuid
+        );
+        return $this->render('MobileBundle::share.poster.html.twig', $dataOut);
     }
 }

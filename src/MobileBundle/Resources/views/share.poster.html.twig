@@ -3,28 +3,46 @@
 {% block title %}时尚新娘{% endblock %}
 
 {% block body %}
-    <div class="container-fluid m-share-video" ng-class="{'m-half': isMobile == false}"
-         ng-controller="ShareVideoController" ng-init="init()">
-        <!-- title -->
+    <div class="container-fluid m-share-poster" ng-class="{'m-half': isMobile == false}"
+         ng-controller="SharePosterController" ng-init="init()">
         <div class="row">
             <div class="col-xs-12">
                 <img class="m-width" src="{{ asset('img/mobile/share/poster_title_1.png') }}" />
+                <div class="po-theme-dark">{[{ poster.themeTitle }]}</div>
             </div>
         </div>
-        <!-- subtitle -->
         <div class="row">
-            <div class="col-xs-12 title">{[{ poster.title }]}</div>
-            <div class="col-xs-12 sub-title">{[{ poster.subTitle }]}</div>
+            <div class="col-xs-12 po-up-title">{[{ poster.title }]}</div>
+            <div class="col-xs-12 po-up-title-desc">{[{ poster.subTitle }]}</div>
             <div class="col-xs-12 m-p0 m-center">
                 <img class="m-half" src="{{ asset('img/mobile/share/poster_title_2.png') }}" />
             </div>
         </div>
-        <!-- video -->
-        <div class="row">
+        <div class="row" ng-repeat="one in poster.content track by $index">
             <div class="col-xs-12">
-                <video class="m-width" controls preload="metadata">
-                    <source ng-src="{[{ trustUrl(poster.content.url) }]}" type="video/mp4">
-                </video>
+                <div class="row " ng-show="one.title != ''">
+                    <div class="col-xs-12 m-p0 m-center" ng-show="$index != 0">
+                        <img class="m-half" src="{{ asset('img/mobile/share/poster_title_2.png') }}" />
+                    </div>
+                    <div class="col-xs-12 po-sub-title">{[{ one.title }]}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 m-p0" ng-class="{true: 'm-m-t-1'}[one.title=='' && $index == 0]">
+                        <img class="m-width" ng-src="{[{ one.image }]}" />
+                    </div>
+                    <div class="col-xs-12" ng-show="one.legend">
+                        <div class="row">
+                            <div class="col-xs-12" ng-class="{true: 'm-left po-legend-l2r', false: 'm-right po-legend-r2l'}[$index % 2 == 0]"
+                                 ng-bind-html="trustHtml(one.legend)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" ng-class="{true: 'po-text-dark'}[one.text != '' || (one.text == '' && $index == poster.content.length - 1)]"
+                         ng-bind-html="trustHtml(one.text)">
+                    </div>
+                </div>
             </div>
         </div>
         <!-- author -->
@@ -57,5 +75,5 @@
     <script type="text/javascript">
         app.value('posterUuid', '{{ posterUuid }}');
     </script>
-    <script type="text/javascript" src="{{ asset('js/mobile/share.video.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/mobile/share.poster.js') }}"></script>
 {% endblock %}

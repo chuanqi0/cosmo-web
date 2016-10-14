@@ -9,12 +9,28 @@ angular.module('app')
             var mobile = /ipad/.test(agent) || /iphone/.test(agent) || /android/.test(agent);
             return mobile;
         };
+        this.formatTime = function ($time) {
+            var dateNow = new Date();
+            var tmpArr = $time.split(/\s|-|:/);
+            var date = new Date(parseInt(tmpArr[0]), parseInt(tmpArr[1]) - 1, parseInt(tmpArr[2]),
+                parseInt(tmpArr[3]), parseInt(tmpArr[4]), parseInt(tmpArr[5]), parseInt(tmpArr[6]));
+            var gap = dateNow.getTime() - date.getTime();
+            var parseDate = $time.substring(5, 16).replace('-', '.');
+            if (gap < 60 * 1000) {
+                parseDate = "刚刚";
+            } else if (gap < 60 * 60 * 1000) {
+                parseDate = Math.floor(gap / (60 * 1000)) + " 分钟前";
+            } else if (gap < 60 * 60 * 24 * 1000) {
+                parseDate = Math.floor(gap / (60 * 60 * 1000)) + " 小时前";
+            }
+            return parseDate;
+        }
     }])
     .service('DownloadService', [function () {
         var QQ_DOWNLOAD = 'http://a.app.qq.com/o/simple.jsp?pkgname=love.cosmo.android';
         var APPSTORE_DOWNLOAD = 'https://itunes.apple.com/cn/app/shi-shang-xin-niang/id1088557167';
         var APK_DOWNLOAD = 'http://cosmolove.file.alimmdn.com/res/apk/Cosmobride-release-1.3.1.apk';
-    
+
         this.isIOSDevice = function () {
             var sUserAgent = navigator.userAgent.toLowerCase();
             var bIsIpad = (sUserAgent.match(/ipad/i) != null);

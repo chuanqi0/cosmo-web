@@ -1,4 +1,4 @@
-app.controller('SharePosterController', function($scope, posterUuid, DownloadService) {
+app.controller('SharePosterController', function($scope, $sce, posterUuid, DownloadService) {
 
     $scope.poster = null;
 
@@ -24,7 +24,11 @@ app.controller('SharePosterController', function($scope, posterUuid, DownloadSer
             }
         });
     };
-    
+
+    $scope.trustHtml = function ($html) {
+        return $sce.trustAsHtml($html.replace(/\n/g, '<br />'));
+    };
+
     $scope.init = function () {
         $scope.getPosterDetail();
     };

@@ -4,9 +4,11 @@ var app = angular.module('app', ['ngCookies']).config(function($interpolateProvi
 
 app.controller('BaseAdminController', function($scope, $cookies, $sce, UtilService) {
     $scope.user = null;
+    $scope.isLogin = false;
 
     if ($cookies.getObject('user')) {
         $scope.user = $cookies.getObject('user');
+        $scope.isLogin = true;
     }
 
     $scope.exit = function () {
@@ -32,19 +34,19 @@ app.controller('BaseAdminController', function($scope, $cookies, $sce, UtilServi
     $scope.removeCookie = function ($key) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.remove($key, {'path': '/pub/admin/', 'expires': expireDate});
+        $cookies.remove($key, {'path': '/admin/', 'expires': expireDate});
     };
 
     $scope.putCookie = function ($key, $value) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.put($key, $value, {'path': '/pub/admin/', 'expires': expireDate});
+        $cookies.put($key, $value, {'path': '/admin/', 'expires': expireDate});
     };
 
     $scope.putCookieObject = function ($key, $value) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.putObject($key, $value, {'path': '/pub/admin/', 'expires': expireDate});
+        $cookies.putObject($key, $value, {'path': '/admin/', 'expires': expireDate});
     };
 
     $scope.trustHtml = function ($html) {

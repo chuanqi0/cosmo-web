@@ -13,6 +13,18 @@ use AppBundle\Controller\BaseController;
 class MobileViewController extends BaseController
 {
     /**
+     * @Route("/test")
+     */
+    public function testAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain
+        );
+        return $this->render('MobileBundle::test.html.twig', $dataOut);
+    }
+
+    /**
      * @Route("/consult")
      */
     public function consultAction()

@@ -1,33 +1,16 @@
-app.controller('ExtraController', function($scope) {
+app.controller('PersonalController', function($scope, $cookies, adminUser) {
 
     // 数据
-    $scope.name = '';
-    $scope.identityCard = '';
-    $scope.wechat = '';
-    $scope.company = '';
-    $scope.companyLocation = '';
-    $scope.companyIntro = '';
+    $scope.adminUser = JSON.parse(adminUser);
+    $scope.telephone = $scope.user.telephone;
+    $scope.name = $scope.adminUser.name;
+    $scope.identityCard = $scope.adminUser.identityCard;
+    $scope.wechat = $scope.adminUser.wechat;
+    $scope.company = $scope.adminUser.company;
+    $scope.companyLocation = $scope.adminUser.companyLocation;
+    $scope.companyIntro = $scope.adminUser.companyIntro;
 
-    $scope.nameValid = true;
-    $scope.identityCardValid = true;
     $scope.wechatValid = true;
-
-    $scope.checkName = function () {
-        var reg = new RegExp("^[\u4e00-\u9fa5]{2,10}$");
-        if (reg.test($scope.name)) {
-            $scope.nameValid = true;
-        } else {
-            $scope.nameValid = false;
-        }
-    };
-
-    $scope.checkIdentityCard = function () {
-        if (/(^\d{15}$)|(^\d{17}(\d|X|x)$)/.test($scope.identityCard)) {
-            $scope.identityCardValid = true;
-        } else {
-            $scope.identityCardValid = false;
-        }
-    };
 
     $scope.checkWechat = function () {
         if ($scope.wechat == '') {
@@ -37,11 +20,9 @@ app.controller('ExtraController', function($scope) {
         }
     };
 
-    $scope.commit = function () {
-        $scope.checkName();
-        $scope.checkIdentityCard();
+    $scope.save = function () {
         $scope.checkWechat();
-        if ($scope.nameValid == true && $scope.identityCardValid == true && $scope.wechatValid == true && $scope.user != null) {
+        if ($scope.wechatValid == true && $scope.user != null) {
             var data = {
                 "userUuid": $scope.user.uuid,
                 "name": $scope.name,
@@ -59,8 +40,7 @@ app.controller('ExtraController', function($scope) {
                 async: false,
                 success: function (response) {
                     if (response.status == 0) {
-                        alert("提交成功");
-                        window.location.reload();
+                        alert("保存修改成功");
                     } else {
                         alert(response.message);
                     }
@@ -70,5 +50,10 @@ app.controller('ExtraController', function($scope) {
                 }
             });
         }
+    };
+
+    $scope.jumpToStep = function(step) {
+        $scope.putCookie('personalStep', step);
+        $scope.jumpToPage('personal');
     };
 });

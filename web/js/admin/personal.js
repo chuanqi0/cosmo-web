@@ -1,7 +1,6 @@
-app.controller('PersonalController', function($scope, $cookies, adminUser) {
+app.controller('PersonalController', function($scope) {
 
     // 数据
-    $scope.adminUser = JSON.parse(adminUser);
     $scope.telephone = $scope.user.telephone;
     $scope.name = $scope.adminUser.name;
     $scope.identityCard = $scope.adminUser.identityCard;

@@ -7,8 +7,13 @@
 @blue-1: #1c9bec;
 @blue-2: #0d3168;
 @blue-3: #0c203f;
+@blue-4: #d9eafa;
 @black: #000000;
 @red-1: #f74e36;
+@consult-1: #e96565;
+@consult-2: #f5a761;
+@consult-3: #74b725;
+@consult-4: #929292;
 
 // 公共函数
 .text-overflow() {
@@ -136,7 +141,7 @@ body {
           margin-left: 45px;
         }
         &.second {
-          margin-left: 54px;
+          margin-left: 66px;
         }
         &.third {
           margin-left: 65px;
@@ -593,6 +598,43 @@ body {
   }
 }
 
+.fe-consult {
+  background-color: @gray-1;
+  .fe-consult-left {
+    width: 170px;
+    float: left;
+    background-color: @gray-2;
+    min-height: 550px;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        cursor: pointer;
+        height: 60px;
+        color: @black;
+        &.active, &:hover {
+          color: @white;
+          background-color: @blue-1;
+        }
+        div {
+          height: 60px;
+          line-height: 60px;
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .fe-consult-right {
+    background: @white;
+    width: 860px;
+    padding: 35px 50px 75px 50px;
+    float: left;
+    min-height: 550px;
+  }
+}
+
 // 表单
 .fe-form {
   .col-md-6 {
@@ -716,5 +758,52 @@ body {
     height: 30px;
     padding: 5px;
     line-height: 20px;
+  }
+}
+
+// 表单
+.fe-table {
+  margin-bottom: 0 !important;
+  a {
+    cursor: pointer;
+  }
+  select {
+    cursor: pointer;
+    &.red {
+      color: @consult-1;
+    }
+    &.orange {
+      color: @consult-2;
+    }
+    &.green {
+      color: @consult-3;
+    }
+    &.gray {
+      color: @consult-4;
+    }
+  }
+  th {
+    color: @white;
+    background-color: @blue-1;
+    text-align: center;
+    line-height: 32px !important;
+  }
+  td {
+    text-align: center;
+    line-height: 32px !important;
+  }
+  tbody {
+    tr {
+      &:hover {
+        background-color: @blue-4;
+      }
+    }
+  }
+}
+
+.pagination {
+  float: right;
+  a {
+    padding: 10px 15px !important;
   }
 }

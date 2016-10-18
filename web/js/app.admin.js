@@ -1,9 +1,28 @@
-var app = angular.module('app', ['ngCookies']).config(function($interpolateProvider){
+Date.prototype.format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1,                 //月份
+        "d+": this.getDate(),                    //日
+        "h+": this.getHours(),                   //小时
+        "m+": this.getMinutes(),                 //分
+        "s+": this.getSeconds(),                 //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds()             //毫秒
+    };
+    if (/(y+)/.test(fmt))
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt))
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+};
+
+var app = angular.module('app', ['ngCookies', 'ui.bootstrap']).config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 
-app.controller('BaseAdminController', function($scope, $cookies, $sce, UtilService) {
+app.controller('BaseAdminController', function($scope, $cookies, $sce, adminUser, UtilService) {
     $scope.user = null;
+    $scope.adminUser = JSON.parse(adminUser);
     $scope.isLogin = false;
 
     if ($cookies.getObject('user')) {
@@ -27,26 +46,26 @@ app.controller('BaseAdminController', function($scope, $cookies, $sce, UtilServi
         return $text;
     };
 
-    $scope.formatTime = function ($time) {
-        return UtilService.formatTime($time);
+    $scope.formatTimeStamp = function ($timestamp) {
+        return UtilService.formatTimestamp($timestamp);
     };
 
     $scope.removeCookie = function ($key) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.remove($key, {'path': '/admin/', 'expires': expireDate});
+        $cookies.remove($key, {'path': '/pub/admin/', 'expires': expireDate});
     };
 
     $scope.putCookie = function ($key, $value) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.put($key, $value, {'path': '/admin/', 'expires': expireDate});
+        $cookies.put($key, $value, {'path': '/pub/admin/', 'expires': expireDate});
     };
 
     $scope.putCookieObject = function ($key, $value) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.putObject($key, $value, {'path': '/admin/', 'expires': expireDate});
+        $cookies.putObject($key, $value, {'path': '/pub/admin/', 'expires': expireDate});
     };
 
     $scope.trustHtml = function ($html) {

@@ -4,19 +4,17 @@ angular.module('app')
             var reg = new RegExp("^[1][0,3,4,5,7,8][0-9]{9}$");
             return reg.test($telephone);
         };
-        this.formatTime = function ($time) {
+        this.formatTimestamp = function ($timestamp) {
             var dateNow = new Date();
-            var tmpArr = $time.split(/\s|-|:/);
-            var date = new Date(parseInt(tmpArr[0]), parseInt(tmpArr[1]) - 1, parseInt(tmpArr[2]),
-                parseInt(tmpArr[3]), parseInt(tmpArr[4]), parseInt(tmpArr[5]), parseInt(tmpArr[6]));
-            var gap = dateNow.getTime() - date.getTime();
-            var parseDate = $time.substring(5, 16).replace('-', '.');
+            var gap = dateNow.getTime() - $timestamp;
+            var date = new Date($timestamp).format('yyyy-MM-dd hh:mm:ss');
+            var parseDate = date.substring(5, 16);
             if (gap < 60 * 1000) {
                 parseDate = "刚刚";
             } else if (gap < 60 * 60 * 1000) {
-                parseDate = Math.floor(gap / (60 * 1000)) + " 分钟前";
+                parseDate = Math.floor(gap / (60 * 1000)) + "分钟前";
             } else if (gap < 60 * 60 * 24 * 1000) {
-                parseDate = Math.floor(gap / (60 * 60 * 1000)) + " 小时前";
+                parseDate = Math.floor(gap / (60 * 60 * 1000)) + "小时前";
             }
             return parseDate;
         };

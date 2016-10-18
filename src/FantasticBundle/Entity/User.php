@@ -36,7 +36,7 @@ class User extends Base
     private $name;
 
     /**
-     * @ORM\Column(name="identity_card", type="string", length=18, unique=true, nullable=false)
+     * @ORM\Column(name="identity_card", type="string", length=18, nullable=false)
      */
     private $identityCard;
 

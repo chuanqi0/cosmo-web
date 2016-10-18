@@ -1,0 +1,54 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %}时尚新娘管理后台{% endblock %}
+
+{% block body %}
+    <div class="fe-consult" ng-controller="ConsultController" ng-init="initMine()">
+        <div class="container">
+            <div class="row">
+                <div class="fe-consult-left">
+                    <ul>
+                        <li ng-class="{'active': consultStep == 1}" ng-click="jumpToStep(1)"><div>我的客户</div></li>
+                        <li ng-class="{'active': consultStep == 2}" ng-click="jumpToStep(2)" ng-show="adminUser.level == 2"><div>全部客户</div></li>
+                    </ul>
+                </div>
+                <div class="fe-consult-right">
+                    <div class="row fe-m0">
+                        <table class="table table-bordered table-striped fe-table">
+                            <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>手机号</th>
+                                <th>咨询类型</th>
+                                <th>地区</th>
+                                <th>分配顾问</th>
+                                <th>分配商家</th>
+                                <th>咨询状态</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="consult in consultList track by $index">
+                                <td>{[{ formatTimeStamp(consult.createTime) }]}</td>
+                                <td><a>{[{ consult.telephone }]}</a></td>
+                                <td>{[{ consult.userId == 0 ? '访客' : '用户' }]}&nbsp;{[{ consultTypeList[consult.consultType] }]}</td>
+                                <td></td>
+                                <td>{[{ adminUser.name }]}</td>
+                                <td></td>
+                                <td><select class="form-control" ng-class="{'red': consult.consultStatusObject.key >= 5 && consult.consultStatusObject.key <= 7, 'orange': consult.consultStatusObject.key == 4, 'green': consult.consultStatusObject.key == 3, 'gray': consult.consultStatusObject.key < 3}" ng-model="consult.consultStatusObject" ng-options="cs.value for cs in consultStatusList" ng-change="changeConsultStatus($index)"></select></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <ul uib-pagination total-items="pagination.totalElement" ng-model="pagination.currentPage" max-size="pagination.maxSize" ng-change="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        app.value('adminUserList', '{{ adminUserList | json_encode | escape('js') }}');
+    </script>
+    <script type="text/javascript" src="{{ asset('js/admin/consult.js') }}"></script>
+{% endblock %}

@@ -23,4 +23,16 @@ class AdminUserRepository extends EntityRepository
         $this->getEntityManager()->persist($adminUser);
         $this->getEntityManager()->flush();
     }
+
+    public function getAdminUserList() {
+        return $this->findBy(array('level' => [1, 2]));
+    }
+
+    public function listToArray($adminUserList) {
+        $adminUserListArray = array();
+        foreach ($adminUserList as $adminUser) {
+            array_push($adminUserListArray, $adminUser->toArray());
+        }
+        return $adminUserListArray;
+    }
 }

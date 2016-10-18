@@ -48,21 +48,9 @@
                             <img class="triangle first" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
                             <div>首页 HOME</div>
                         </li>
-                        <li {% if index == 'info' %} class="active" {% endif %} ng-click="jumpToPage('info')">
+                        <li {% if index == 'consult' %} class="active" {% endif %} ng-click="jumpToPage('consult')" ng-show="adminUser != '' && adminUser.level >= 1 && adminUser.level <= 2">
                             <img class="triangle second" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
-                            <div>关于大赛 INFO</div>
-                        </li>
-                        <li {% if index == 'awards' %} class="active" {% endif %} ng-click="jumpToPage('awards')">
-                            <img class="triangle third" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
-                            <div>奖项设置 AWARDS</div>
-                        </li>
-                        <li {% if index == 'works' %} class="active" {% endif %} ng-click="jumpToPage('works')">
-                            <img class="triangle fourth" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
-                            <div>热门方案 WORKS</div>
-                        </li>
-                        <li {% if index == 'ceremony' %} class="active" {% endif %} ng-click="ceremony()">
-                            <img class="triangle fifth" src="{{ asset('img/fantastic/common/triangle.png') }}" alt="Triangle" />
-                            <div>颁奖典礼 CEREMONY</div>
+                            <div>婚礼顾问 CONSULT</div>
                         </li>
                     </ul>
                 </div>
@@ -107,9 +95,14 @@
         <script type="text/javascript" src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular.min.js"></script>
         <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.6/angular-cookies.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/angular-ui-bootstrap/2.2.0/ui-bootstrap.min.js"></script>
+        <script type="text/javascript" src="//cdn.bootcss.com/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>
         <script type="text/javascript" src="{{ asset('js/app.admin.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/service.admin.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/md5.js') }}"></script>
+        <script type="text/javascript">
+            app.value('adminUser', '{{ adminUser | json_encode | escape('js') }}');
+        </script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

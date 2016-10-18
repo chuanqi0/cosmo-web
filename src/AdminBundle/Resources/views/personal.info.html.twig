@@ -74,8 +74,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript">
-        app.value('adminUser', '{{ adminUser | json_encode | escape('js') }}');
-    </script>
     <script type="text/javascript" src="{{ asset('js/admin/personal.js') }}"></script>
 {% endblock %}

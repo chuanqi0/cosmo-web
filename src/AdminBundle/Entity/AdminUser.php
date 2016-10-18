@@ -36,7 +36,7 @@ class AdminUser extends Base
     private $name;
 
     /**
-     * @ORM\Column(name="identity_card", type="string", length=18, unique=true, nullable=false)
+     * @ORM\Column(name="identity_card", type="string", length=18, nullable=false)
      */
     private $identityCard;
 
@@ -289,6 +289,8 @@ class AdminUser extends Base
 
     public function toArray() {
         return array(
+            "userUuid" => $this->userUuid,
+            "userId" => $this->userId,
             "name" => $this->name,
             "identityCard" => $this->identityCard,
             "wechat" => $this->wechat,

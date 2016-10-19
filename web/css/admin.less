@@ -801,9 +801,54 @@ body {
   }
 }
 
+.fe-modal {
+  .modal-header {
+    background: @blue-1;
+    color: @white;
+  }
+  .modal-body {
+    .desc-row {
+      padding-bottom: 10px;
+      border-bottom: 1px solid @gray-1;
+    }
+    .desc-title {
+      color: @gray-3;
+      font-size: 16px;
+      line-height: 30px;
+    }
+    .desc-content {
+      padding-bottom: 5px;
+      color: @gray-4;
+      .desc-delete {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+      .region-select {
+        background-color: @white;
+        width: 45%;
+        height: 34px;
+        border-radius: 4px;
+        border: 1px solid @gray-2;
+        font-size: 14px;
+      }
+    }
+  }
+  .modal-footer {
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
 .pagination {
   float: right;
   a {
     padding: 10px 15px !important;
+  }
+}
+
+.btn {
+  &.btn-primary {
+    background-color: @blue-1 !important;
+    border-color: @blue-1 !important;
   }
 }

@@ -10,6 +10,7 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
         {key: 5, value: "跟进中"}, {key: 6, value: "等待处理"}, {key: 7, value: "推荐中"}];
 
     $scope.adminUserList = JSON.parse(adminUserList);
+    $scope.regionList = [];
 
     $scope.currentUser = null;
 
@@ -48,7 +49,7 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
             "consultLevel": $scope.consultLevel
         };
         $.ajax({
-            url: domain + '/api/admin/user/consult/list',
+            url: domain + '/api/admin/user/consult/list/',
             type: 'POST',
             dataType: 'json',
             data: data,
@@ -84,10 +85,12 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
         var data = {
             "userUuid": $scope.adminUser.userUuid,
             "consultId": currentConsult.id,
-            "consultAdminUserId": currentConsult.adminUser.userId
+            "consultAdminUserId": currentConsult.adminUser.userId,
+            "consultRemarkList": currentConsult.remarkList,
+            "consultStatus": currentConsult.status
         };
         $.ajax({
-            url: domain + '/api/admin/user/consult/user',
+            url: domain + '/api/admin/user/consult/update/',
             type: 'POST',
             dataType: 'json',
             data: data,
@@ -111,10 +114,12 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
             var data = {
                 "userUuid": $scope.adminUser.userUuid,
                 "consultId": currentConsult.id,
+                "consultAdminUserId": currentConsult.adminUserId,
+                "consultRemarkList": currentConsult.remarkList,
                 "consultStatus": currentConsult.consultStatusObject.key
             };
             $.ajax({
-                url: domain + '/api/admin/user/consult/status',
+                url: domain + '/api/admin/user/consult/update/',
                 type: 'POST',
                 dataType: 'json',
                 data: data,
@@ -135,14 +140,14 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
         }
     };
 
-    $scope.getUserDetail = function (userId) {
+    $scope.getUserDetail = function (userUuid) {
         var userDetail = null;
-        if (userId != 0) {
+        if (userUuid != '') {
             var data = {
-                "userId": userId
+                "userUuid": userUuid
             };
             $.ajax({
-                url: domain + '/api/admin/user/consult/status',
+                url: domain + '/api/user/detail/',
                 type: 'POST',
                 dataType: 'json',
                 data: data,
@@ -164,14 +169,23 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
 
     $scope.open = function ($index) {
         var currentConsult = $scope.consultList[$index];
-        $scope.currentUser = getUserDetail(currentConsult.userId);
+        $scope.currentUser = $scope.getUserDetail(currentConsult.userUuid);
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'consult.detail.html',
             controller: 'ConsultDetailController',
             resolve: {
-                consultId: function () {
-                    return currentConsult.id;
+                adminUser: function () {
+                    return $scope.adminUser;
+                },
+                currentUser: function () {
+                    return $scope.currentUser;
+                },
+                currentConsult: function () {
+                    return currentConsult;
+                },
+                regionList: function () {
+                    return $scope.regionList;
                 }
             }
         });
@@ -184,28 +198,114 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
         );
     };
 
+    $scope.getRegionList = function() {
+        $.ajax({
+            url: apiBase + '/api/region/list',
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                if (response.status == 0) {
+                    $scope.regionList = response.data;
+                } else {
+                    console.log(response.message);
+                }
+            },
+            error: function(xhr, status, err) {
+                console.error(err);
+            }
+        });
+    };
+
     $scope.initMine = function () {
         $scope.consultLevel = 1;
         $scope.getConsultList();
+        $scope.getRegionList();
         $scope.refreshHeight();
     };
 
     $scope.initAll = function () {
         $scope.consultLevel = 2;
         $scope.getConsultList();
+        $scope.getRegionList();
         $scope.refreshHeight();
     };
 });
 
-app.controller('ConsultDetailController', function($scope, $uibModalInstance, consultId) {
+app.controller('ConsultDetailController', function($scope, $uibModalInstance, adminUser, currentUser, currentConsult, regionList) {
 
-    $scope.consultId = consultId;
+    $scope.currentUser = currentUser;
+    $scope.keyList = ['姓名', '婚期', '意向', '预算', '偏好', '其它'];
+    $scope.remarkList = JSON.parse(currentConsult.remarkList);
+    $scope.province = '北京';
+    $scope.city = '朝阳';
+    if ($scope.remarkList.length > 0) {
+        var regionArray = $scope.remarkList[0].value.split(' ');
+        $scope.province = regionArray[0];
+        $scope.city = regionArray[1];
+        $scope.remarkList.splice(0, 1);
+    }
+    // 地区
+    $scope.regionList = regionList;
+    $scope.provinceList = [];
+    for (var region in $scope.regionList) {
+        $scope.provinceList.push(region);
+    }
+    $scope.cityList = $scope.regionList[$scope.province];
+    $scope.region = '地区';
+
+    $scope.changeProvince = function () {
+        console.log($scope.province);
+        $scope.cityList = $scope.regionList[$scope.province];
+        $scope.city = $scope.cityList[0];
+        $scope.$applyAsync();
+    };
 
     $scope.commit = function () {
-        $uibModalInstance.close('123');
+        var remarkArray = [{key: '地区', value: $scope.province + ' ' + $scope.city}];
+        for (var i = 0; i < $scope.remarkList.length; i++) {
+            var remark = {
+                key: $scope.remarkList[i].key,
+                value: $scope.remarkList[i].value
+            };
+            remarkArray.push(remark);
+        }
+        var data = {
+            "userUuid": adminUser.userUuid,
+            "consultId": currentConsult.id,
+            "consultAdminUserId": currentConsult.adminUserId,
+            "consultRemarkList": JSON.stringify(remarkArray),
+            "consultStatus": currentConsult.status
+        };
+        $.ajax({
+            url: domain + '/api/admin/user/consult/update/',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            async: false,
+            success: function (response) {
+                if (response.status == 0) {
+                    currentConsult.remarkList = response.data.remarkList;
+                    currentConsult.region = response.data.region;
+                    $uibModalInstance.close(0);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (xhr, status, err) {
+                console.error(err);
+            }
+        });
     };
 
     $scope.close = function () {
         $uibModalInstance.dismiss();
+    };
+
+    $scope.addRemark = function () {
+        $scope.remarkList.push({key: $scope.keyList[0], value: ''});
+    };
+
+    $scope.deleteRemark = function ($index) {
+        $scope.remarkList.splice($index, 1);
     };
 });

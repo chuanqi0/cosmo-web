@@ -29,9 +29,9 @@
                             <tbody>
                             <tr ng-repeat="consult in consultList track by $index">
                                 <td>{[{ formatTimeStamp(consult.createTime) }]}</td>
-                                <td><a>{[{ consult.telephone }]}</a></td>
+                                <td><a ng-click="open($index)">{[{ consult.telephone }]}</a></td>
                                 <td>{[{ consult.userId == 0 ? '访客' : '用户' }]}&nbsp;{[{ consultTypeList[consult.consultType] }]}</td>
-                                <td></td>
+                                <td>{[{ consult.region }]}</td>
                                 <td>{[{ adminUser.name }]}</td>
                                 <td></td>
                                 <td><select class="form-control" ng-class="{'red': consult.consultStatusObject.key >= 5 && consult.consultStatusObject.key <= 7, 'orange': consult.consultStatusObject.key == 4, 'green': consult.consultStatusObject.key == 3, 'gray': consult.consultStatusObject.key < 3}" ng-model="consult.consultStatusObject" ng-options="cs.value for cs in consultStatusList" ng-change="changeConsultStatus($index)"></select></td>
@@ -44,6 +44,9 @@
             </div>
         </div>
     </div>
+    <script type="text/ng-template" id="consult.detail.html">
+        {{ include("AdminBundle::modals/consult.detail.html.twig") }}
+    </script>
 {% endblock %}
 
 {% block javascripts %}

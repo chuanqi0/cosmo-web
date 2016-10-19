@@ -53,19 +53,19 @@ app.controller('BaseAdminController', function($scope, $cookies, $sce, adminUser
     $scope.removeCookie = function ($key) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.remove($key, {'path': '/admin/', 'expires': expireDate});
+        $cookies.remove($key, {'path': '/pub/admin/', 'expires': expireDate});
     };
 
     $scope.putCookie = function ($key, $value) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.put($key, $value, {'path': '/admin/', 'expires': expireDate});
+        $cookies.put($key, $value, {'path': '/pub/admin/', 'expires': expireDate});
     };
 
     $scope.putCookieObject = function ($key, $value) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 30);
-        $cookies.putObject($key, $value, {'path': '/admin/', 'expires': expireDate});
+        $cookies.putObject($key, $value, {'path': '/pub/admin/', 'expires': expireDate});
     };
 
     $scope.trustHtml = function ($html) {

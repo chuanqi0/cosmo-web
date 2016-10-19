@@ -1,0 +1,69 @@
+<div class="fe-modal">
+    <div class="modal-header">
+        <h5 class="modal-title" id="modal-title">咨询详情</h5>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="row desc-row" ng-show="currentUser != null">
+            <div class="col-md-12 desc-title">用户资料</div>
+            <div class="col-md-6 desc-content">
+                <div class="col-md-2 fe-p0">
+                    昵称:
+                </div>
+                <div class="col-md-10 fe-p0">
+                    {[{ currentUser.nickname }]}
+                </div>
+            </div>
+            <div class="col-md-6 desc-content">
+                <div class="col-md-2 fe-p0">
+                    手机:
+                </div>
+                <div class="col-md-10 fe-p0">
+                    {[{ currentUser.telephone }]}
+                </div>
+            </div>
+            <div class="col-md-6 desc-content">
+                <div class="col-md-2 fe-p0">
+                    性别:
+                </div>
+                <div class="col-md-10 fe-p0">
+                    {[{ currentUser.gender == 1 ? '男' : '女' }]}
+                </div>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+        <div class="row desc-row">
+            <div class="col-md-12 desc-title">咨询备注</div>
+            <div class="col-md-12 desc-content">
+                <div class="col-md-3 fe-p0">
+                    <input type="text" class="form-control" ng-model="region" disabled />
+                </div>
+                <div class="col-md-8">
+                    <select class="region-select" ng-model="province" ng-options="province for province in provinceList" ng-change="changeProvince()"></select>
+                    <select class="region-select" ng-model="city" ng-options="city for city in cityList"></select>
+                </div>
+                <div class="col-md-1 fe-p0">
+                </div>
+            </div>
+            <div class="col-md-12 desc-content" ng-repeat="remark in remarkList track by $index">
+                <div class="col-md-3 fe-p0">
+                    <select class="form-control" ng-model="remark.key" ng-options="key for key in keyList" ></select>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" ng-model="remark.value" />
+                </div>
+                <div class="col-md-1 fe-p0">
+                    <button class="btn btn-danger desc-delete" type="button" ng-click="deleteRemark($index)">删除</button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-success" type="button" ng-click="addRemark()">添加</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="commit()">保存</button>
+        <button class="btn btn-default" type="button" ng-click="close()">关闭</button>
+    </div>
+</div>

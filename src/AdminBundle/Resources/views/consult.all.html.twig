@@ -4,6 +4,9 @@
 
 {% block body %}
     <div class="fe-consult" ng-controller="ConsultController" ng-init="initAll()">
+        <script type="text/ng-template" id="consult.detail.html">
+            {{ include("AdminBundle::modals/consult.detail.html.twig") }}
+        </script>
         <div class="container">
             <div class="row">
                 <div class="fe-consult-left">
@@ -29,7 +32,7 @@
                             <tbody>
                                 <tr ng-repeat="consult in consultList track by $index">
                                     <td>{[{ formatTimeStamp(consult.createTime) }]}</td>
-                                    <td><a>{[{ consult.telephone }]}</a></td>
+                                    <td><a ng-click="open($index)">{[{ consult.telephone }]}</a></td>
                                     <td>{[{ consult.userId == 0 ? '访客' : '用户' }]}&nbsp;{[{ consultTypeList[consult.consultType] }]}</td>
                                     <td></td>
                                     <td><select class="form-control" ng-model="consult.adminUser" ng-options="ad.name for ad in adminUserList" ng-change="changeConsultUser($index)"></select></td>

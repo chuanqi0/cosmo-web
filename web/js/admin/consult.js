@@ -1,5 +1,6 @@
-app.controller('ConsultController', function($scope, $cookies, adminUserList) {
+app.controller('ConsultController', function($scope, $cookies, $uibModal, adminUserList) {
     // 典礼步骤
+    var $ctrl = this;
     $scope.consultStep = $cookies.get('consultStep') == null ? 1 : $cookies.get('consultStep');
     $scope.consultLevel = 1;
     $scope.consultList = [];
@@ -9,6 +10,8 @@ app.controller('ConsultController', function($scope, $cookies, adminUserList) {
         {key: 5, value: "跟进中"}, {key: 6, value: "等待处理"}, {key: 7, value: "推荐中"}];
 
     $scope.adminUserList = JSON.parse(adminUserList);
+
+    $scope.currentUser = null;
 
     $scope.pageChanged = function () {
         if ($scope.pagination.currentPage == 1) {
@@ -31,9 +34,7 @@ app.controller('ConsultController', function($scope, $cookies, adminUserList) {
     };
 
     $scope.refreshHeight = function() {
-        if ($scope.consultStep == 1) {
-            $('.fe-consult-left').css('height', '589px');
-        } else {
+        if ($scope.consultStep == 1 || $scope.consultStep == 2) {
             $('.fe-consult-left').css('height', '729px');
             $('.fe-consult-right').css('height', '729px');
         }
@@ -112,7 +113,6 @@ app.controller('ConsultController', function($scope, $cookies, adminUserList) {
                 "consultId": currentConsult.id,
                 "consultStatus": currentConsult.consultStatusObject.key
             };
-            console.log(data);
             $.ajax({
                 url: domain + '/api/admin/user/consult/status',
                 type: 'POST',
@@ -135,6 +135,55 @@ app.controller('ConsultController', function($scope, $cookies, adminUserList) {
         }
     };
 
+    $scope.getUserDetail = function (userId) {
+        var userDetail = null;
+        if (userId != 0) {
+            var data = {
+                "userId": userId
+            };
+            $.ajax({
+                url: domain + '/api/admin/user/consult/status',
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                async: false,
+                success: function (response) {
+                    if (response.status == 0) {
+                        userDetail = response.data;
+                    } else {
+                        console.log(response.message);
+                    }
+                },
+                error: function (xhr, status, err) {
+                    console.error(err);
+                }
+            });
+        }
+        return userDetail;
+    };
+
+    $scope.open = function ($index) {
+        var currentConsult = $scope.consultList[$index];
+        $scope.currentUser = getUserDetail(currentConsult.userId);
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'consult.detail.html',
+            controller: 'ConsultDetailController',
+            resolve: {
+                consultId: function () {
+                    return currentConsult.id;
+                }
+            }
+        });
+        modalInstance.result.then(
+            function ($status) {
+                console.log("Commit modal: " + $status);
+            }, function ($reason) {
+                console.log('Close modal at ' + new Date());
+            }
+        );
+    };
+
     $scope.initMine = function () {
         $scope.consultLevel = 1;
         $scope.getConsultList();
@@ -145,5 +194,18 @@ app.controller('ConsultController', function($scope, $cookies, adminUserList) {
         $scope.consultLevel = 2;
         $scope.getConsultList();
         $scope.refreshHeight();
+    };
+});
+
+app.controller('ConsultDetailController', function($scope, $uibModalInstance, consultId) {
+
+    $scope.consultId = consultId;
+
+    $scope.commit = function () {
+        $uibModalInstance.close('123');
+    };
+
+    $scope.close = function () {
+        $uibModalInstance.dismiss();
     };
 });

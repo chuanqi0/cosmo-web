@@ -8,7 +8,7 @@ class JudgeRepository extends EntityRepository
 {
     public function getJudgeList()
     {
-        return $this->findBy(array('valid' => true), array('weight' => 'DESC'));
+        return $this->findBy(array('valid' => true), array('weight' => 'ASC'));
     }
 
     public function listToArray($judgeList) {

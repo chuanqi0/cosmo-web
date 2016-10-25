@@ -280,6 +280,7 @@ class CBWAViewController extends BaseController
                 $dataOut['cbwaUser'] = $cbwaUser->toArray();
                 return $this->render('FantasticBundle::personal.info.html.twig', $dataOut);
             } else if ($personalStep == 2) {
+                $dataOut['cbwaUser'] = $cbwaUser->toArray();
                 return $this->render('FantasticBundle::personal.casus.html.twig', $dataOut);
             } else {
                 return $this->render('FantasticBundle::personal.ticket.html.twig', $dataOut);

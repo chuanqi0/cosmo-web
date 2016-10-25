@@ -1,4 +1,4 @@
-app.controller('PersonalController', function($scope, $cookies, cbwaUser) {
+app.controller('PersonalController', function($scope, cbwaUser) {
 
     // 数据
     $scope.cbwaUser = JSON.parse(cbwaUser);
@@ -58,8 +58,10 @@ app.controller('PersonalController', function($scope, $cookies, cbwaUser) {
     };
 });
 
-app.controller('PersonalCasusController', function($scope) {
+app.controller('PersonalCasusController', function($scope, cbwaUser) {
 
+    // 数据
+    $scope.cbwaUser = JSON.parse(cbwaUser);
     $scope.casusOrderList = [];
 
     $scope.jumpToStep = function(step) {
@@ -71,7 +73,7 @@ app.controller('PersonalCasusController', function($scope) {
         var currentOrder = $scope.casusOrderList[$index];
         var valid = currentOrder.valid;
         var paid = currentOrder.paid;
-        if (valid == true && paid == false) {
+        if ($scope.cbwaUser.level != 0 || (valid == true && paid == false)) {
             var casusGuid = currentOrder.guid;
             $scope.putCookie('applyStep', 1);
             $scope.putCookie('casusGuid', casusGuid);

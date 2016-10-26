@@ -460,6 +460,7 @@ class Casus extends Base
 
     public function toArray() {
         return array(
+            "id" => $this->id,
             "guid" => $this->guid,
             "cover" => $this->cover,
             "title" => $this->title,
@@ -477,6 +478,7 @@ class Casus extends Base
 
     public function toDetailArray() {
         return array(
+            "id" => $this->id,
             "guid" => $this->guid,
             "cover" => $this->cover,
             "title" => $this->title,

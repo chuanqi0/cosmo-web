@@ -5,6 +5,7 @@ error_reporting(E_ERROR | E_WARNING);
 date_default_timezone_set("Asia/chongqing");
 // Alibaba
 require_once('../alimedia/alimage.class.php');
+require_once('../magician/php_image_magician.php');
 $ak = '23276563';                                // 用户的AK (user app key)
 $sk = '9f9233f57959b112752534302c24442d';        // 用户的SK (user secret key)
 $namespace = 'cosmolove';                        // 空间名称  (user namespace)
@@ -14,24 +15,18 @@ $aliImage = new AlibabaImage($ak, $sk);        //设置AK和SK
 /*第二步：（必须）在上传策略UploadPolicy中指定用户空间名。也可以根据需要设置其他参数*/
 $uploadPolicy = new UploadPolicy($namespace);    // 上传策略。并设置空间名
 $uploadPolicy->dir = '/cbwa/casus/';    // 文件路径，(可选，默认根目录"/")
+$file = $_FILES["upfile"];
+$type = getFileExt($file["name"]);
 $uploadPolicy->name = 'image_' . time();            // 文件名，(可选，不能包含"/"。若为空，则默认使用文件名)
 
 /*第三步：（必须）进行文件上传*/
-$file = $_FILES["upfile"];
 if ($file) {
     $state = "SUCCESS";
     $url = "";
-    $type = getFileExt($file["name"]);
     if (!checkType($file["name"])) {
-        $state = "不允许的文件类型";
+        $state = "图片仅支持JPG格式";
     } else {
-        if ($type == ".png") {
-            $im = imagecreatefrompng($file["tmp_name"]);
-        } else if ($type == ".gif") {
-            $im = imagecreatefromgif($file["tmp_name"]);
-        } else {
-            $im = imagecreatefromjpeg($file["tmp_name"]);
-        }
+        $im = imagecreatefromjpeg($file["tmp_name"]);
         if ($im) {
             $resizeFile = '/opt/cbwa/' . $uploadPolicy->name . $type;
             resizeImage($im, 720, 720, $resizeFile, $type);
@@ -62,7 +57,7 @@ if ($file) {
 
 function checkType($name)
 {
-    return in_array(getFileExt($name), array(".gif", ".png", ".jpg", ".jpeg", ".bmp"));
+    return in_array(getFileExt($name), array(".jpg", ".jpeg"));
 }
 
 function getFileExt($name)
@@ -105,9 +100,7 @@ function resizeImage($im, $maxwidth, $maxheight, $resizeFile, $type)
         if (file_exists($resizeFile)) {
             unlink($resizeFile);
         }
-        if ($type == ".png") {
-            imagepng($newim, $resizeFile);
-        } else if ($type == ".gif") {
+        if ($type == ".gif") {
             imagegif($newim, $resizeFile);
         } else {
             imagejpeg($newim, $resizeFile);
@@ -115,9 +108,7 @@ function resizeImage($im, $maxwidth, $maxheight, $resizeFile, $type)
         imagedestroy($newim);
         imagedestroy($im);
     } else {
-        if ($type == ".png") {
-            imagepng($im, $resizeFile);
-        } else if ($type == ".gif") {
+        if ($type == ".gif") {
             imagegif($im, $resizeFile);
         } else {
             imagejpeg($im, $resizeFile);

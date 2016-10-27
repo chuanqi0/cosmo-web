@@ -61,7 +61,7 @@ class Casus extends Base
     private $region;
 
     /**
-     * @ORM\Column(name="place", type="string", length=20, nullable=false)
+     * @ORM\Column(name="place", type="string", length=50, nullable=false)
      */
     private $place;
 

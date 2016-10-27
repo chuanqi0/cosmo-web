@@ -10,7 +10,7 @@
                     <ul>
                         <li ng-class="{'active': awardId == 0}" ng-click="refreshCasusList(0)"><div>热门方案</div></li>
                         <li ng-class="{'active': awardId == -1}" ng-click="refreshCasusList(-1)"><div>明星案例</div></li>
-                        <li ng-class="{'active': awardId == award.id}" ng-repeat="award in awardList" ng-click="refreshCasusList(award.id)"><div>{[{ award.name }]}</div></li>
+                        <li ng-class="{'active': awardId == award.id}" ng-repeat="award in awardList" ng-click="refreshCasusList(award.id)"><div>{[{ award.shortName }]}</div></li>
                     </ul>
                 </div>
                 <div class="fe-info-right">
@@ -32,6 +32,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row fe-m0 fe-mt20" ng-show="showMore == true">
+                        <div class="col-md-4 col-md-offset-4 fe-p0">
+                            <div class="fe-btn code" ng-click="getCasusList()"><span class="glyphicon glyphicon-plus"></span><span>&nbsp;点击加载更多</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,5 +47,5 @@
     <script type="text/javascript">
         app.value('awardList', '{{ awardList | json_encode | escape('js') }}');
     </script>
-    <script type="text/javascript" src="{{ asset('js/controller/works.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/controller/works.js?v=2') }}"></script>
 {% endblock %}

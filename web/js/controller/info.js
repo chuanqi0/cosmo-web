@@ -9,7 +9,11 @@ app.controller('InfoController', function($scope, $cookies) {
 
     $scope.refreshHeight = function() {
         if ($scope.infoStep == 1) {
-            $('.fe-info-left').css('height', '1046px');
+            $('.fe-info-left').css('height', '754px');
+        } else if ($scope.infoStep == 2) {
+            $('.fe-info-left').css('height', '968px');
+        } else if ($scope.infoStep == 4) {
+            $('.fe-info-left').css('height', '818px');
         }
     };
 

@@ -69,9 +69,12 @@ class CasusApiController extends BaseController
     {
         try {
             $awardId = $request->get('awardId');
+            $page = $request->get('page');
             // 处理业务
             $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
-            $casusList = $casusRepository->getCasusList($awardId);
+            $casusList = $casusRepository->getCasusList($awardId, $page);
+            $totalElements = $casusRepository->countCasusList($awardId);
+            $this->totalPage = ceil($totalElements / LoveConstant::CBWA_CASUS_PAGE_SIZE);
             // 设置返回数据
             $this->setSuccess($casusRepository->listToArray($casusList), LoveConstant::MEESAGE_CASUS_LIST_SUCCESS);
         } catch (\Exception $e) {
@@ -247,7 +250,7 @@ class CasusApiController extends BaseController
                 }
             }
             $casus->setAwardList($awardList);
-            $casus->setTotalFee(number_format($totalFee, 2));
+            $casus->setTotalFee(str_replace(',', '', number_format($totalFee, 2)));
             $casus->setAwardNumber(count($awardArray));
             // 第二次保存
             $casusRepository->saveCasus($casus);

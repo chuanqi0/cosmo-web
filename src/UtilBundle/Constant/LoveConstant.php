@@ -10,6 +10,8 @@ class LoveConstant
 
     const CBWA_TICKET_FEE = '600.00';
 
+    const CBWA_CASUS_PAGE_SIZE = 12;
+
     const MESSAGE_SUCCESS = '请求执行成功';
     const MESSAGE_FAILED = '请求执行失败';
     const MESSAGE_CASUS_PUBLISH_SUCCESS = '案例发布成功';

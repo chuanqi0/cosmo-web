@@ -39,6 +39,7 @@ class CasusRepository extends EntityRepository
                 ->andWhere('c.valid = true')
                 ->andWhere($qb->expr()->like('c.awardList', ':awardList'))
                 ->setParameter('awardList', $keyword)
+                ->orderBy('c.createTime', 'DESC')
                 ->setMaxResults(LoveConstant::CBWA_CASUS_PAGE_SIZE)
                 ->setFirstResult($page * LoveConstant::CBWA_CASUS_PAGE_SIZE);
             return $qb->getQuery()->getResult();

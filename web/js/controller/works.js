@@ -41,5 +41,8 @@ app.controller('WorksController', function($scope, $cookies, awardList) {
     };
 
     $scope.refreshLeftHeight = function() {
+        var worksHeight = 110 + Math.ceil($scope.casusList.length / 3) * 256;
+        worksHeight = worksHeight > 550 ? worksHeight : 550;
+        $('.fe-info-left').css('height', worksHeight + 'px');
     };
 });

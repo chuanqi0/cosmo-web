@@ -8,7 +8,7 @@ class LoveConstant
     const STATUS_SUCCESS = 0;
     const STATUS_FAILED = -1;
 
-    const CBWA_TICKET_FEE = '0.01';
+    const CBWA_TICKET_FEE = '600.00';
 
     const MESSAGE_SUCCESS = '请求执行成功';
     const MESSAGE_FAILED = '请求执行失败';

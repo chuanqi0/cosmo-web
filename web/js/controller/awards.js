@@ -9,7 +9,7 @@ app.controller('AwardsController', function($scope, $cookies) {
 
     $scope.refreshHeight = function() {
         if ($scope.awardsStep == 1) {
-            $('.fe-info-left').css('height', '822px');
+            $('.fe-info-left').css('height', '682px');
         }
     };
 

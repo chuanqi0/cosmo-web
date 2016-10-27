@@ -25,6 +25,11 @@ class Award extends Base
     private $name;
 
     /**
+     * @ORM\Column(name="short_name", type="string", length=20, nullable=false)
+     */
+    private $shortName;
+
+    /**
      * @ORM\Column(name="fee", type="decimal", scale=2, nullable=false)
      */
     private $fee;
@@ -101,14 +106,26 @@ class Award extends Base
         return $this;
     }
 
-    public function getApply($apply) {
+    public function getApply() {
         return $this->apply;
+    }
+
+    public function setShortName($shortName)
+    {
+        $this->shortName = $shortName;
+
+        return $this;
+    }
+
+    public function getShortName() {
+        return $this->shortName;
     }
 
     public function toArray() {
         return array(
             "id" => $this->id,
             "name" => $this->name,
+            "shortName" => $this->shortName,
             "fee" => $this->fee,
             "apply" => $this->apply
         );

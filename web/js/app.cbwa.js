@@ -2,8 +2,10 @@ var app = angular.module('app', ['ngCookies']).config(function($interpolateProvi
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 });
 
-app.controller('BaseCBWAController', function($scope, $cookies) {
+app.controller('BaseCBWAController', function($scope, $cookies, UtilService) {
     $scope.user = null;
+
+    $scope.isMobile = UtilService.isMobile();
 
     if ($cookies.getObject('user')) {
         $scope.user = $cookies.getObject('user');

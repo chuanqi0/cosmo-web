@@ -125,7 +125,7 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
         }
     };
 
-    $scope.processSecondStep = function (step) {
+    $scope.processSecondStep = function () {
         var content = UM.getEditor('myEditor').getContent();
         if (content.length < 200) {
             alert("案例图文必须超过200个字符");
@@ -268,11 +268,13 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
         if ($scope.applyStep == 1) {
             stepSuccess = $scope.processFirstStep();
         } else if ($scope.applyStep == 2) {
-            stepSuccess = $scope.processSecondStep(step);
+            stepSuccess = $scope.processSecondStep();
         }
         if (stepSuccess == true) {
             $scope.putCookie('applyStep', step);
             $scope.jumpToPage('join');
+        } else {
+            console.log($scope.titleValid);
         }
     };
 

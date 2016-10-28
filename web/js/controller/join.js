@@ -267,7 +267,7 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
         var stepSuccess = true;
         if ($scope.applyStep == 1) {
             stepSuccess = $scope.processFirstStep();
-        } else if ($scope.applyStep == 2 && step == 3) {
+        } else if ($scope.applyStep == 2) {
             stepSuccess = $scope.processSecondStep(step);
         }
         if (stepSuccess == true) {

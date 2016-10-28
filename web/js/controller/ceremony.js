@@ -9,7 +9,7 @@ app.controller('CeremonyController', function($scope, $cookies) {
 
     $scope.refreshHeight = function() {
         if ($scope.ceremonyStep == 1) {
-            $('.fe-info-left').css('height', '583px');
+            $('.fe-info-left').css('height', '603px');
         } else if ($scope.ceremonyStep == 2) {
             $('.fe-info-left').css('height', '808px');
         } else if ($scope.ceremonyStep == 3) {

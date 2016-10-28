@@ -10,7 +10,7 @@
                     <ul>
                         <li ng-class="{'active': ceremonyStep == 1}" ng-click="jumpToStep(1)"><div>典礼信息</div></li>
                         {#<li ng-class="{'active': ceremonyStep == 2}" ng-click="jumpToStep(2)"><div>入围名单</div></li>#}
-                        <li ng-class="{'active': ceremonyStep == 3}" ng-click="jumpToStep(3)"><div>合作品牌</div></li>
+                        {#<li ng-class="{'active': ceremonyStep == 3}" ng-click="jumpToStep(3)"><div>合作品牌</div></li>#}
                         <li ng-click="jumpToStep(4)"><div>开放售票</div></li>
                     </ul>
                 </div>
@@ -27,15 +27,14 @@
                                 典礼信息
                             </div>
                             <div class="info-desc">
-                                <p>时间: 2016年12月31日    17:30 星光大道  19:00 颁奖典礼<br />
-                                地点: 北京饭店(北京市东城区东长安街33号)</p>
+                                <p>即将到来...</p>
                             </div>
                             <div class="info-sub-title">
                                 媒体申请
                             </div>
                             <div class="info-desc">
-                                <p>请联系: 18611521840<br />
-                                邮箱: CBWA@cosmo.love</p>
+                                <p>电话:&nbsp;<a>010-65895246</a>&nbsp;&nbsp;<a>010-65871890</a><br />
+                                邮箱:&nbsp;<a>CBWA@cosmo.love</a></p>
                             </div>
                         </div>
                         <div class="col-md-2 fe-p0">
@@ -93,5 +92,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/controller/ceremony.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/controller/ceremony.js?v=2') }}"></script>
 {% endblock %}

@@ -19,7 +19,7 @@
                     </ul>
                 </div>
                 <div class="fe-apply-right">
-                    <div ng-if="applyStep == 1" class="row fe-form fe-m0">
+                    <div ng-show="applyStep == 1" class="row fe-form fe-m0">
                         <div class="col-xs-12">
                             <div class="fe-form-top">
                                 <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
@@ -90,7 +90,7 @@
                             <div class="fe-btn next" ng-click="jumpToStep(2)">下一步</div>
                         </div>
                     </div>
-                    <div ng-if="applyStep == 2" class="row fe-form fe-m0">
+                    <div ng-show="applyStep == 2" class="row fe-form fe-m0">
                         <div class="col-xs-12">
                             <div class="fe-form-top">
                                 <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
@@ -109,7 +109,7 @@
                             <div class="fe-btn next" ng-click="jumpToStep(3)">下一步</div>
                         </div>
                     </div>
-                    <div ng-if="applyStep == 3" class="row fe-form fe-m0 fe-apply-fee">
+                    <div ng-show="applyStep == 3" class="row fe-form fe-m0 fe-apply-fee">
                         <div class="col-xs-8 col-xs-offset-2">
                             <img class="fe-width" src="{{ asset('img/fantastic/join/fee_title.jpg') }}" />
                         </div>
@@ -141,10 +141,10 @@
                         <div class="col-xs-3 col-xs-offset-2 fe-pt10">
                             <div class="fe-btn before" ng-click="jumpToStep(2)">上一步</div>
                         </div>
-                        <div class="col-xs-3 col-xs-offset-2 fe-pt10" ng-if="casus.totalFee != '0.00'">
+                        <div class="col-xs-3 col-xs-offset-2 fe-pt10" ng-show="casus.totalFee != '0.00'">
                             <div id="pay-btn" class="fe-btn next" ng-click="pay()">去支付</div>
                         </div>
-                        <div class="col-xs-3 col-xs-offset-2 fe-pt10" ng-if="casus.totalFee == '0.00'">
+                        <div class="col-xs-3 col-xs-offset-2 fe-pt10" ng-show="casus.totalFee == '0.00'">
                             <div id="pay-btn" class="fe-btn next" ng-click="jumpToPage('join/success')">完成</div>
                         </div>
                     </div>

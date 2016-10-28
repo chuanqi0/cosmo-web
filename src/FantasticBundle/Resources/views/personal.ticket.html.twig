@@ -15,14 +15,14 @@
                 </div>
                 <div class="fe-personal-right narrow">
                     <div class="row fe-m0" ng-repeat="ticketOrder in ticketOrderList track by $index">
-                        <div class="col-md-12 personal-order-top fe-pointer" ng-class="{'cancel': ticketOrder.valid == false}" ng-click="openOrder($index)">
+                        <div class="col-xs-12 personal-order-top fe-pointer" ng-class="{'cancel': ticketOrder.valid == false}" ng-click="openOrder($index)">
                             <span class="fe-left">票据编号:&nbsp;{[{ ticketOrder.guid.substr(0, 8) }]}</span>
                             <span class="fe-right fe-bold" ng-show="ticketOrder.valid == true && ticketOrder.paid == true">已支付</span>
                             <span class="fe-right fe-bold" ng-show="ticketOrder.valid == true && ticketOrder.paid == false">未完成</span>
                             <span class="fe-right fe-bold" ng-show="ticketOrder.valid == false">已取消</span>
                         </div>
-                        <div class="col-md-12 personal-order-bottom fe-p0">
-                            <div class="col-md-9 fe-pointer" ng-click="openOrder($index)">
+                        <div class="col-xs-12 personal-order-bottom fe-p0">
+                            <div class="col-xs-9 fe-pointer" ng-click="openOrder($index)">
                                 <div class="order-bottom-title">门票</div>
                                 <div class="fe-bold">颁奖典礼暨婚尚盛典</div>
                                 <div class="order-bottom-title fe-pt20">参与者信息</div>
@@ -39,7 +39,7 @@
                                     <span class="fe-right">{[{ ticketOrder.address }]}</span>
                                 </div>
                             </div>
-                            <div class="col-md-3" ng-style="{ 'height': (110 + 3 * 25) + 'px' }">
+                            <div class="col-xs-3" ng-style="{ 'height': (110 + 3 * 25) + 'px' }">
                                 <div class="bottom-right-top">票价&nbsp;￥{[{ ticketOrder.totalFee }]}</div>
                                 <div class="bottom-right-bottom" ng-show="ticketOrder.valid == true && ticketOrder.paid == false">
                                     <div class="fe-btn before small" ng-click="cancelOrder($index)">取消订单</div>

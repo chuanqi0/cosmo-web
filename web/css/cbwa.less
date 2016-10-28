@@ -88,6 +88,8 @@
 
 body {
   font-family: "Microsoft YaHei", simhei;
+  min-width: 1030px;
+  margin: 0 auto;
 }
 
 // 头部
@@ -274,10 +276,7 @@ body {
     }
     .fe-case-row {
       padding: 0 6px 10px 6px;
-      &.bottom {
-        padding-bottom: 30px;
-      }
-      .col-md-4 {
+      .col-xs-4 {
         padding: 0 6px;
         cursor: pointer;
         .fe-case {
@@ -319,12 +318,15 @@ body {
           }
         }
       }
+      &.bottom {
+        padding-bottom: 30px;
+      }
     }
     .fe-judge-area {
-      padding: 24px 0;
-      .col-md-2 {
-        padding: 6px;
+      padding: 24px 6px 24px 6px;
+      .col-xs-2 {
         cursor: pointer;
+        padding: 6px;
         .fe-judge {
           position: relative;
           overflow: hidden;
@@ -463,7 +465,7 @@ body {
         height: 20px;
         margin-top: 5px;
       }
-      .col-md-3 {
+      .col-xs-3 {
         padding: 15px 20px;
         position: relative;
         .bottom-right-top {
@@ -479,7 +481,7 @@ body {
           bottom: 15px;
         }
       }
-      .col-md-9 {
+      .col-xs-9 {
         padding: 15px 20px;
         border-right: 0.5px solid @gray-2;
       }
@@ -826,7 +828,7 @@ body {
 
 // 表单
 .fe-form {
-  .col-md-6 {
+  .col-xs-6 {
     &.left {
       padding: 10px 8px 10px 0;
     }
@@ -843,7 +845,7 @@ body {
       padding: 10px 0 0 8px;
     }
   }
-  .col-md-12 {
+  .col-xs-12 {
     padding: 10px 0;
     &.p0 {
       padding: 0;

@@ -6,72 +6,72 @@
     <div class="fe-casus" ng-controller="CasusController">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 fe-p0 cover">
+                <div class="col-xs-12 fe-p0 cover">
                     <img class="fe-width" ng-src="{[{ casusBg }]}@1218w_284h_1e_1c" />
                     <img class="fe-width cover-shade" src="{{ asset('img/fantastic/info/cover.png') }}" />
                     <div class="cover-text">
                         {[{ casus.title }]}
                     </div>
                 </div>
-                <div class="col-md-12 casus-content">
-                    <div class="col-md-9 content-left">
-                        <div class="col-md-12 casus-description">
+                <div class="col-xs-12 casus-content">
+                    <div class="col-xs-9 content-left">
+                        <div class="col-xs-12 casus-description">
                             『&nbsp;{[{ casus.description }]}&nbsp;』
                         </div>
-                        <div class="col-md-12 casus-content" ng-bind-html="contentHtml"></div>
+                        <div class="col-xs-12 casus-content" ng-bind-html="contentHtml"></div>
                     </div>
-                    <div class="col-md-3 content-right">
+                    <div class="col-xs-3 content-right">
                         <div class="row" ng-show="casus.awardNumber > 0">
-                            <div class="col-md-12 fe-p0">
+                            <div class="col-xs-12 fe-p0">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span class="desc-title">策划师</span>
                             </div>
-                            <div class="col-md-12 desc-content">
+                            <div class="col-xs-12 desc-content">
                                 {[{ casus.name }]}
                             </div>
                         </div>
                         <div class="row" ng-show="cbwaUser.company != '' &&  casus.awardNumber > 0">
-                            <div class="col-md-12 fe-p0">
+                            <div class="col-xs-12 fe-p0">
                                 <span class="glyphicon glyphicon-lock"></span>
                                 <span class="desc-title">公司</span>
                             </div>
-                            <div class="col-md-12 desc-content">
+                            <div class="col-xs-12 desc-content">
                                 {[{ cbwaUser.company }]}
                             </div>
                         </div>
                         <div class="row" ng-show="casus.awardNumber > 0">
-                            <div class="col-md-12 fe-p0">
+                            <div class="col-xs-12 fe-p0">
                                 <span class="glyphicon glyphicon-tag"></span>
                                 <span class="desc-title">价格区间</span>
                             </div>
-                            <div class="col-md-12 desc-content">
+                            <div class="col-xs-12 desc-content">
                                 {[{ casus.price }]}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12 fe-p0">
+                            <div class="col-xs-12 fe-p0">
                                 <span class="glyphicon glyphicon-map-marker"></span>
                                 <span class="desc-title">地区</span>
                             </div>
-                            <div class="col-md-12 desc-content">
+                            <div class="col-xs-12 desc-content">
                                 {[{ casus.region }]}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12 fe-p0">
+                            <div class="col-xs-12 fe-p0">
                                 <span class="glyphicon glyphicon-move"></span>
                                 <span class="desc-title">场地</span>
                             </div>
-                            <div class="col-md-12 desc-content">
+                            <div class="col-xs-12 desc-content">
                                 {[{ casus.place }]}
                             </div>
                         </div>
                         <div class="row" ng-show="casus.awardNumber > 0">
-                            <div class="col-md-12 fe-p0">
+                            <div class="col-xs-12 fe-p0">
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span class="desc-title">选送奖项</span>
                             </div>
-                            <div class="col-md-12 desc-content" ng-repeat="award in casus.awardList">
+                            <div class="col-xs-12 desc-content" ng-repeat="award in casus.awardList">
                                 {[{ award.name }]}
                             </div>
                         </div>

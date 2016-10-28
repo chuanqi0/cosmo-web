@@ -16,16 +16,16 @@
             </div>
             <div class="fe-info-right">
                 <div class="row fe-m0 loadding">
-                    <div class="col-md-2 col-md-offset-5 loadding-img">
+                    <div class="col-xs-2 col-xs-offset-5 loadding-img">
                         <img class="fe-width" ng-src="{{ asset('img/fantastic/join/loadding.gif') }}" ng-show="success == false" />
                         <img class="fe-width" ng-src="{{ asset('img/fantastic/join/join_success.png') }}" ng-show="success == true" />
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <div class="loadding-text top" ng-show="success == false">正在查询订单状态...</div>
                         <div class="loadding-text top" ng-show="success == true">购买成功</div>
                         <div class="loadding-text below">更多信息请在个人中心->典礼门票中查看</div>
                     </div>
-                    <div class="col-md-2 col-md-offset-5 fe-p0">
+                    <div class="col-xs-2 col-xs-offset-5 fe-p0">
                         <div class="fe-btn next" ng-click="jumpToPage('personal')">前往个人中心</div>
                     </div>
                 </div>

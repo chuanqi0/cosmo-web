@@ -15,7 +15,7 @@
                 </div>
                 <div class="fe-info-right">
                     <div class="row fe-m0">
-                        <div class="col-md-4 casus-cell" ng-repeat="casus in casusList track by $index" ng-click="jumpToDetail($index)">
+                        <div class="col-xs-4 casus-cell" ng-repeat="casus in casusList track by $index" ng-click="jumpToDetail($index)">
                             <div class="cell-top">
                                 <img class="fe-width" ng-src="{[{ casus.cover }]}@400w_300h_1e_1c" />
                                 <img class="fe-width cover-shade" src="{{ asset('img/fantastic/info/cover_cell.png') }}" />
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="row fe-m0 fe-mt20" ng-show="showMore == true">
-                        <div class="col-md-4 col-md-offset-4 fe-p0">
+                        <div class="col-xs-4 col-xs-offset-4 fe-p0">
                             <div class="fe-btn code" ng-click="getCasusList()"><span class="glyphicon glyphicon-plus"></span><span>&nbsp;点击加载更多</span></div>
                         </div>
                     </div>

@@ -140,20 +140,8 @@ app.controller('PersonalCasusController', function($scope, cbwaUser) {
         });
     };
 
-    $scope.refreshHeight = function() {
-        var j = 0;
-        for (var i = 0; i < $scope.casusOrderList.length; i++) {
-            j += $scope.casusOrderList[i].awardList.length;
-        }
-        var personalHeight = 110 + 180 * $scope.casusOrderList.length + 25 * j;
-        personalHeight = personalHeight > 550 ? personalHeight : 550;
-        $('.fe-personal-left').css('height', personalHeight + 'px');
-        $('.fe-personal-right').css('height', personalHeight + 'px');
-    };
-
     $scope.init = function () {
         $scope.getPersonalCasusList();
-        $scope.refreshHeight();
     };
 });
 
@@ -237,15 +225,7 @@ app.controller('PersonalTicketController', function($scope) {
         });
     };
 
-    $scope.refreshHeight = function() {
-        var personalHeight = 110 + (180 + 25 * 3) * $scope.ticketOrderList.length;
-        personalHeight = personalHeight > 550 ? personalHeight : 550;
-        $('.fe-personal-left').css('height', personalHeight + 'px');
-        $('.fe-personal-right').css('height', personalHeight + 'px');
-    };
-
     $scope.init = function () {
         $scope.getPersonalTicketList();
-        $scope.refreshHeight();
     };
 });

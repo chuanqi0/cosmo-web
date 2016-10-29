@@ -3,9 +3,9 @@
 {% block title %}全国婚礼作品设计大赛{% endblock %}
 
 {% block body %}
-    <div class="fe-info" ng-controller="InfoController" ng-init="init()">
+    <div class="fe-info" ng-controller="InfoController">
         <div class="container">
-            <div class="row">
+            <div class="row fe-info-bg">
                 <div class="fe-info-left">
                     <ul>
                         <li ng-class="{'active': infoStep == 1}" ng-click="jumpToStep(1)"><div>大赛简介</div></li>

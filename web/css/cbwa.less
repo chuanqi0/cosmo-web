@@ -28,6 +28,9 @@
 // 取消自适应
 .container {
   width: 1030px !important;
+  &.register {
+    min-height: 550px;
+  }
 }
 
 .fe-width {
@@ -413,17 +416,14 @@ body {
       padding-top: 25px;
     }
   }
+  .fe-personal-bg {
+    background-color: @gray-2;
+  }
   .fe-personal-left {
     width: 170px;
     float: left;
     background-color: @gray-2;
     min-height: 550px;
-    &.first {
-      height: 739px;
-    }
-    &.other {
-      height: 600px;
-    }
     ul {
       list-style: none;
       padding: 0;
@@ -502,6 +502,9 @@ body {
 // 公共
 .fe-info {
   background-color: @gray-1;
+  .fe-info-bg {
+    background-color: @gray-2;
+  }
   .fe-info-left {
     width: 170px;
     float: left;
@@ -661,6 +664,9 @@ body {
 // 报名
 .fe-apply {
   background-color: @gray-1;
+  .fe-apply-bg {
+    background-color: @gray-2;
+  }
   .fe-apply-left {
     width: 170px;
     float: left;

@@ -29,7 +29,7 @@ if ($file) {
         $im = imagecreatefromjpeg($file["tmp_name"]);
         if ($im) {
             $resizeFile = '/opt/cbwa/' . $uploadPolicy->name . $type;
-            resizeImage($im, 720, 720, $resizeFile, $type);
+            resizeImage($im, 1080, 1080, $resizeFile, $type);
             $res = $aliImage->upload($resizeFile, $uploadPolicy);
             $callback = $_GET['callback'];
             $url = $res["url"];
@@ -100,19 +100,11 @@ function resizeImage($im, $maxwidth, $maxheight, $resizeFile, $type)
         if (file_exists($resizeFile)) {
             unlink($resizeFile);
         }
-        if ($type == ".gif") {
-            imagegif($newim, $resizeFile);
-        } else {
-            imagejpeg($newim, $resizeFile);
-        }
+        imagejpeg($newim, $resizeFile);
         imagedestroy($newim);
         imagedestroy($im);
     } else {
-        if ($type == ".gif") {
-            imagegif($im, $resizeFile);
-        } else {
-            imagejpeg($im, $resizeFile);
-        }
+        imagejpeg($im, $resizeFile);
         imagedestroy($im);
     }
 }

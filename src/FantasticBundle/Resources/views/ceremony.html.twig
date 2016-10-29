@@ -9,6 +9,7 @@
                 <div class="fe-info-left">
                     <ul>
                         <li ng-class="{'active': ceremonyStep == 1}" ng-click="jumpToStep(1)"><div>典礼信息</div></li>
+                        <li ng-class="{'active': ceremonyStep == 2}" ng-click="jumpToStep(2)"><div>往届回顾</div></li>
                         {#<li ng-class="{'active': ceremonyStep == 2}" ng-click="jumpToStep(2)"><div>入围名单</div></li>#}
                         {#<li ng-class="{'active': ceremonyStep == 3}" ng-click="jumpToStep(3)"><div>合作品牌</div></li>#}
                         <li ng-click="jumpToStep(4)"><div>开放售票</div></li>
@@ -39,6 +40,61 @@
                         </div>
                         <div class="col-xs-2 fe-p0">
                             <div class="fe-btn next fe-mt15" ng-click="jumpToStep(4)">去购票</div>
+                        </div>
+                    </div>
+                    <div ng-show="ceremonyStep == 2" class="row fe-m0">
+                        <div class="info-title">
+                            2014 婚尚盛典（第四届）
+                        </div>
+                        <div class="info-desc">
+                            <p class="indent">中国顶尖婚尚全媒体《时尚新娘》倾力打造的中国婚尚行业最具影响力的年度盛事——“2014 婚尚盛典”在北京LAVIN玫瑰里
+                            梦幻绽放.来自影视剧各大当红明星、时尚届潮流人物、艺术领域前沿大师的全明星豪华阵容，与婚尚届、珠宝届和设计界的精英名流、品牌代表齐聚现场，
+                            共同见证了《时尚新娘》婚尚盛典第四年璀璨时刻。</p>
+                            <p class="indent">伴随着婚尚影响力大奖、婚尚中国力量奖、婚尚风云人物、婚尚婚礼策划、婚尚珠宝奖等多个专业婚尚大奖的发布，以及年度“婚尚盛典幸福偶像”诞生，
+                            “2014 婚尚盛典”权威盘点了婚尚领域顶级品牌，发布了2015年婚尚流行趋势，为所有嘉宾呈现了一场幸福感满溢的婚尚潮流盛宴。婚尚盛典现场我们也得到了颖通集团、
+                            朗丽兹西山花园酒店、AA 租车等多家知名品牌的大力支持。</p>
+                        </div>
+                        <div>
+                            <img class="fe-width" src="http://cosmolove.image.alimmdn.com/img/poster/84f22d2a-ce01-4bba-b75a-1a4bc0a4f5fb" />
+                        </div>
+                        <div class="info-sub-title fe-pt10">群星云集闪耀红毯</div>
+                        <div class="info-desc">
+                            <p class="indent">“2014 婚尚盛典”汇集了众多明星夫妻、人气偶像、时尚名人，现场星光熠熠。李湘王岳伦夫妇、陈思诚佟丽娅夫妇、刘璇王弢夫妇、
+                            王铮亮文薇、李晟李佳航夫妇六对明星夫妻一一亮相红毯，他们恩爱甜蜜之情溢于言表。歌坛全能偶像张杰，知名女星秦岚、吉克隽逸、熊乃瑾、杨恭如、杨紫
+                            贾青，人气男星俞灏明、张晓龙、丹尼斯吴等众多当红艺人盛装出席，助阵婚尚盛典。“2014 婚尚盛典”由时尚女主播 LINDA 与北京电视台著名主持人曹涤非共同主持。</p>
+                        </div>
+                        <div>
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/e9a1e4ee-bc80-4601-801f-61d62d203f89?t=1477719985871" />
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/0b94b428-72d3-4ea7-bee2-d8fbd7ab54b1?t=1477719985930" />
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/bbc0aeb7-3b05-4e0e-ae00-98bd68c6bb24?t=1477719985714" />
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/a87f96a8-2ddb-47c3-b789-aa18a1736266?t=1477719985913" />
+                            <img class="fe-width" src="http://cosmolove.image.alimmdn.com/img/poster/d7d638ac-56eb-4adf-95a9-4e646b1151f1?t=1477719985997" />
+                        </div>
+                        <div class="info-sub-title fe-pt10">名流精英齐聚一堂</div>
+                        <div class="info-desc">
+                            <p class="indent">来自社会各界的名流精英和婚尚行业的专家达人也在红毯上大放异彩，在时尚面前展现他们的态度。时尚传媒集团出版总裁苏芒女士、
+                            时尚新娘主编、执行出版人冷雨璇女士、周大福珠宝中国营运管理中心品牌部总监黄振文先生、爱迪尔珠宝品牌文化中心副总经理苏启浩先生、LAVIN 玫瑰里营运中心
+                            总经理唐朝晖先生、著名花艺设计师、珍爱时刻创始人高意静女士、深白（SHENBAI）私人定制设计总监彭品女士等业界知名人士共聚红毯。他们的领袖气质和非凡的个人
+                            魅力丝毫不输于现场明星，另在场每一个人都深深折服。</p>
+                        </div>
+                        <div>
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/6312d6a6-baa9-4480-b822-830ebeb7c1bf?t=1477720148405" />
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/d4bae835-f3a0-435e-8964-02996873107c?t=1477720147461" />
+                            <img class="fe-width" src="http://cosmolove.image.alimmdn.com/img/poster/482bb13c-3d3f-4d14-be30-07b4e5f29a5d?t=1477720148426" />
+                        </div>
+                        <div class="info-sub-title fe-pt10">婚纱大秀 致敬经典</div>
+                        <div class="info-desc">
+                            <p class="indent">婚尚盛典历届主题婚纱大秀都会紧紧抓住所有嘉宾眼球。今年，《时尚新娘》力邀王培沂、王玉涛等国内10位顶尖设计师，为“2014 婚尚盛典”倾力打造
+                            10件梦幻婚纱，模特们身穿一件件不同风格的唯美婚纱，将盛典现场变身为时尚秀场。享誉全球的已故殿堂级设计大师奥斯卡德拉伦塔（OSCAR DE LARENTA）的婚纱力作在婚纱大秀
+                            中压轴亮相！</p>
+                        </div>
+                        <div class="info-sub-title fe-pt10">现场布置</div>
+                        <div>
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/869ac9e3-25b1-48c6-9cb2-d3666fad1e55?t=1477720246315" />
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/67565122-f76f-45e9-b038-f0b9cbac0c04?t=1477720246324" />
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/75a01ed6-11a8-45ce-b631-ea84e8a82dbb?t=1477720246399" />
+                            <img class="fe-width fe-mb1" src="http://cosmolove.image.alimmdn.com/img/poster/2cfd9d90-673c-4a83-9eda-fc1cae3bb975?t=1477720247158" />
+                            <img class="fe-width" src="http://cosmolove.image.alimmdn.com/img/poster/8516c282-a755-47ca-b856-02001c38808b?t=1477720247342" />
                         </div>
                     </div>
                     {#<div ng-show="ceremonyStep == 2" class="row fe-m0">#}

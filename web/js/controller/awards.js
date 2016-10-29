@@ -6,14 +6,4 @@ app.controller('AwardsController', function($scope, $cookies) {
         $scope.putCookie('awardsStep', step);
         $scope.jumpToPage('awards');
     };
-
-    $scope.refreshHeight = function() {
-        if ($scope.awardsStep == 1) {
-            $('.fe-info-left').css('height', '682px');
-        }
-    };
-
-    $scope.init = function () {
-        $scope.refreshHeight();
-    };
 });

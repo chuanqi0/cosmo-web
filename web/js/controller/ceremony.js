@@ -6,20 +6,6 @@ app.controller('CeremonyController', function($scope, $cookies) {
         $scope.putCookie('ceremonyStep', step);
         $scope.jumpToPage('ceremony');
     };
-
-    $scope.refreshHeight = function() {
-        if ($scope.ceremonyStep == 1) {
-            $('.fe-info-left').css('height', '603px');
-        } else if ($scope.ceremonyStep == 2) {
-            $('.fe-info-left').css('height', '808px');
-        } else if ($scope.ceremonyStep == 3) {
-            $('.fe-info-left').css('height', '794px');
-        }
-    };
-
-    $scope.init = function () {
-        $scope.refreshHeight();
-    };
 });
 
 app.controller('CeremonyTicketController', function($scope, $cookies, cbwaUser, UtilService) {
@@ -38,10 +24,6 @@ app.controller('CeremonyTicketController', function($scope, $cookies, cbwaUser, 
     $scope.jumpToStep = function(step) {
         $scope.putCookie('ceremonyStep', step);
         $scope.jumpToPage('ceremony');
-    };
-
-    $scope.refreshLeftHeight = function() {
-        $('.fe-info-left').css('height', '657px');
     };
 
     $scope.checkTelephone = function () {
@@ -163,7 +145,6 @@ app.controller('CeremonyTicketController', function($scope, $cookies, cbwaUser, 
     };
 
     $scope.init = function () {
-        $scope.refreshLeftHeight();
         $scope.getTicketDetail();
         if ($scope.ticket != null) {
             $scope.name = $scope.ticket.name;

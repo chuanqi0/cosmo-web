@@ -29,15 +29,6 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
     $scope.placeValid = true;
     $scope.awardValid = true;
 
-    $scope.refreshLeftHeight = function() {
-        if ($scope.applyStep == 1) {
-            var leftHeight = 782 + Math.ceil($scope.awardList.length / 2) * 55;
-            $('.fe-apply-left').css('height', leftHeight + 'px');
-        } else if ($scope.applyStep == 2) {
-            $('.fe-apply-left').css('height', '912px');
-        }
-    };
-
     $scope.changeProvince = function () {
         $scope.cityList = $scope.regionList[$scope.province];
         $scope.city = $scope.cityList[0];
@@ -188,6 +179,8 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
                     console.error(err);
                 }
             });
+        } else {
+            $scope.applyStep = 1;
         }
     };
 
@@ -279,7 +272,6 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
     };
 
     $scope.init = function() {
-        $scope.refreshLeftHeight();
         $scope.getCasusDetail();
         if ($scope.applyStep == 1) {
             $scope.getRegionList();

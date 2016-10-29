@@ -5,7 +5,7 @@
 {% block body %}
     <div class="fe-info" ng-controller="WorksController" ng-init="getCasusList()">
         <div class="container">
-            <div class="row">
+            <div class="row fe-info-bg">
                 <div class="fe-info-left">
                     <ul>
                         <li ng-class="{'active': awardId == 0}" ng-click="refreshCasusList(0)"><div>热门方案</div></li>
@@ -47,5 +47,5 @@
     <script type="text/javascript">
         app.value('awardList', '{{ awardList | json_encode | escape('js') }}');
     </script>
-    <script type="text/javascript" src="{{ asset('js/controller/works.js?v=2') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/controller/works.js?v=3') }}"></script>
 {% endblock %}

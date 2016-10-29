@@ -204,6 +204,7 @@ app.controller('RegisterController', function($scope, $cookies, $interval, UtilS
                 type: 'POST',
                 dataType: 'json',
                 data: data,
+                // async: false,
                 success: function (response) {
                     if (response.status == 0) {
                         alert("登录成功");

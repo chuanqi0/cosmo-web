@@ -53,17 +53,5 @@ app.controller('WorksController', function($scope, $cookies, awardList) {
                 console.error(err);
             }
         });
-        $scope.refreshLeftHeight();
-    };
-
-    $scope.refreshLeftHeight = function() {
-        var worksHeight = 0;
-        if ($scope.showMore == true) {
-            worksHeight = 175 + Math.ceil($scope.casusList.length / 3) * 256;
-        } else {
-            worksHeight = 110 + Math.ceil($scope.casusList.length / 3) * 256;
-        }
-        worksHeight = worksHeight > 550 ? worksHeight : 550;
-        $('.fe-info-left').css('height', worksHeight + 'px');
     };
 });

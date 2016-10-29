@@ -5,8 +5,8 @@
 {% block body %}
     <div class="fe-personal" ng-controller="PersonalTicketController" ng-init="init()">
         <div class="container">
-            <div class="row">
-                <div class="fe-personal-left other">
+            <div class="row fe-personal-bg">
+                <div class="fe-personal-left">
                     <ul>
                         <li ng-click="jumpToStep(1)"><div>1. 基本信息</div></li>
                         <li ng-click="jumpToStep(2)"><div>2. 参赛案例</div></li>
@@ -54,5 +54,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/controller/personal.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/controller/personal.js?v=1') }}"></script>
 {% endblock %}

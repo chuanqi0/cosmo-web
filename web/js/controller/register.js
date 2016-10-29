@@ -198,6 +198,7 @@ app.controller('RegisterController', function($scope, $cookies, $interval, UtilS
                 "telephone": $scope.telephone,
                 "password": hex_md5($scope.password)
             };
+            jQuery.support.cors = true;
             $.ajax({
                 url: domain + '/api/user/login/',
                 type: 'POST',

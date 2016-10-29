@@ -34,6 +34,20 @@ class CBWAViewController extends BaseController
     }
 
     /**
+     * @Route("/browser")
+     */
+    public function browserAction()
+    {
+        // 处理业务
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain,
+            'index' => 'browser'
+        );
+        return $this->render('FantasticBundle::browser.html.twig', $dataOut);
+    }
+
+    /**
      * @Route("/join/success")
      */
     public function joinSuccessAction(Request $request)

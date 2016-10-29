@@ -1,0 +1,75 @@
+body {
+    min-width: 1100px;
+    margin: 0;
+    font-size: 18px;
+    background: #f2f2f2;
+}
+.browser {
+    width: 744px;
+    height: 767px;
+    margin-bottom: 50px;
+}
+.browser h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 100;
+    padding-top: 100px;
+    color: #4f4f4f;
+}
+.browser h4 {
+    font-weight: 100;
+    text-align: center;
+    color: #cb9f07;
+    margin: 0;
+}
+.browser .fe-row {
+    overflow: auto;
+    padding-left: 100px;
+}
+.browser .fe-row .go-home {
+    margin-left: 182px;
+    width: 280px;
+    height: 90px;
+    line-height: 90px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    background: #ffe100;
+    color: #8c4810;
+    font-size: 20px;
+}
+.browser .fe-row .img {
+    cursor: pointer;
+    width: 147px;
+    height: 147px;
+    background-size: 147px;
+    position: relative;
+    float: left;
+}
+.browser .fe-row .text {
+    width: 147px;
+    height: 30px;
+    line-height: 30px;
+    color: #4f4f4f;
+    text-align: center;
+    position: relative;
+    float: left;
+}
+.browser .fe-row .img.firefox {
+    background: url(../img/fantastic/home/firefox.png) no-repeat;
+
+}
+.browser .fe-row .img.chrome {
+    margin-left: 51.5px;
+    background: url(../img/fantastic/home/chrome.png) no-repeat;
+}
+.browser .fe-row .img.safari {
+    margin-left: 51.5px;
+    background: url(../img/fantastic/home/safari.png) no-repeat;
+}
+.browser .fe-row .img.qihu {
+    margin-left: 51.5px;
+    background: url(../img/fantastic/home/360.png) no-repeat;
+}

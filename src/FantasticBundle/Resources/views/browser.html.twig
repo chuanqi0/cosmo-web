@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>1234</title>
+    <meta charset="UTF-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/browser.css') }}" />
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    {% block stylesheets %}{% endblock %}
 </head>
 <body>
-123456
+    <div class="browser" id="browser">
+        <h1>您的IE浏览器版本过低，我们的网站暂时不支持哦～</h1>
+        <h4>您可以下载并使用以下浏览器</h4>
+        <div class="fe-row" style="margin-top: 65px">
+            <div class="img firefox" onclick="browserDownload(0)"></div>
+            <div class="img chrome" onclick="browserDownload(1)"></div>
+            <div class="img qihu" onclick="browserDownload(3)"></div>
+        </div>
+        <div class="fe-row">
+            <div class="text">Firefox</div>
+            <div class="text" style="margin-left: 51.5px">Chrome</div>
+            <div class="text" style="margin-left: 51.5px">360浏览器</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        var feClientWidth = document.body.clientWidth - 20;
+        var feClientWidth = feClientWidth > 1100 ? feClientWidth : 1100;
+        var contentLeftWidth = parseInt((feClientWidth - 744) / 2);
+        $('#browser').css('margin-left', contentLeftWidth);
+        var height = $(window).height();
+        $('body').css('minHeight', height);
+        function browserDownload(data) {
+            var urlArray = ['http://www.firefox.com.cn/download/', 'http://rj.baidu.com/soft/detail/14744.html',
+                'http://rj.baidu.com/soft/detail/12966.html?ald', 'http://se.360.cn/'];
+            window.open(urlArray[data]);
+        }
+    </script>
 </body>
 </html>

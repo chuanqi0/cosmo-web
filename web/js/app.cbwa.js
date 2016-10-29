@@ -63,4 +63,15 @@ app.controller('BaseCBWAController', function($scope, $cookies) {
         }
         $scope.jumpToPage('ceremony');
     };
+
+    $scope.checkBrowser = function () {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIE6 = sUserAgent.match(/msie/i) == "msie 6";
+        var bIsIE7 = sUserAgent.match(/msie/i) == "msie 7";
+        var bIsIE8 = sUserAgent.match(/msie/i) == "msie 8";
+        var bIsIE9 = sUserAgent.match(/msie/i) == "msie 9";
+        if (bIsIE6 || bIsIE7 || bIsIE8 || bIsIE9) {
+            $scope.jumpToPage('browser');
+        }
+    };
 });

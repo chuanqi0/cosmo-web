@@ -16,7 +16,7 @@
         <script type="text/javascript" src="//cdn.bootcss.com/less.js/2.7.1/less.min.js"></script>
         {% block stylesheets %}{% endblock %}
     </head>
-    <body ng-app="app" ng-controller="BaseCBWAController">
+    <body ng-app="app" ng-controller="BaseCBWAController" ng-init="checkBrowser()">
         <div class="fe-header">
             <div class="container">
                 <div class="row">

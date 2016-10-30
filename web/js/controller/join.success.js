@@ -38,7 +38,7 @@ app.controller('JoinSuccessController', function($scope, $cookies, $interval) {
                     $scope.success = true;
                     $scope.putCookie('applyStep', 1);
                     console.log("Remove Before: " + $cookies.get('casusGuid'));
-                    $cookies.remove('casusGuid');
+                    $scope.removeCookie('casusGuid');
                     console.log("Remove After: " + $cookies.get('casusGuid'));
                     console.log("订单状态: 已支付");
                     $interval.cancel(timer);

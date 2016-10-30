@@ -97,7 +97,6 @@
             }
         },
         callback: function (editor, $w, url, state) {
-
             if (state == "SUCCESS") {
                 //显示图片计数+1
                 Upload.showCount++;
@@ -185,8 +184,12 @@
         },
         uploadComplete: function(r){
             var me = this;
+            var firstIndex = r.indexOf('<');
+            if (firstIndex > 0) {
+                r = r.substr(0, firstIndex);
+            }
             try{
-                var json = eval('('+r+')');
+                var json = JSON.parse(r);
                 Base.callback(me.editor, me.dialog, json.url, json.state);
             }catch (e){
                 var lang = me.editor.getLang('image');

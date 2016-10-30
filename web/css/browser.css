@@ -57,19 +57,18 @@ body {
     position: relative;
     float: left;
 }
-.browser .fe-row .img.firefox {
-    background: url(../img/fantastic/home/firefox.png) no-repeat;
-
-}
 .browser .fe-row .img.chrome {
-    margin-left: 51.5px;
     background: url(../img/fantastic/home/chrome.png) no-repeat;
 }
-.browser .fe-row .img.safari {
+.browser .fe-row .img.firefox {
     margin-left: 51.5px;
-    background: url(../img/fantastic/home/safari.png) no-repeat;
+    background: url(../img/fantastic/home/firefox.png) no-repeat;
 }
 .browser .fe-row .img.qihu {
     margin-left: 51.5px;
     background: url(../img/fantastic/home/360.png) no-repeat;
+}
+.browser .fe-row .img.safari {
+    margin-left: 51.5px;
+    background: url(../img/fantastic/home/safari.png) no-repeat;
 }

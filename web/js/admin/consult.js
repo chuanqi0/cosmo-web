@@ -46,7 +46,8 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
             "userUuid": $scope.adminUser.userUuid,
             "page": $scope.pagination.currentPage,
             "base": $scope.pagination.base,
-            "consultLevel": $scope.consultLevel
+            "consultLevel": $scope.consultLevel,
+            "status": -1
         };
         $.ajax({
             url: domain + '/api/admin/user/consult/list/',

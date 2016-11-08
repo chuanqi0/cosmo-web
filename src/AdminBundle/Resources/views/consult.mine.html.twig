@@ -14,6 +14,11 @@
                 </div>
                 <div class="fe-consult-right">
                     <div class="row fe-m0">
+                        <div class="col-md-2 col-md-offset-10 fe-p0">
+                            <select class="form-control" ng-model="allConsultStatus" ng-options="acs.value for acs in allConsultStatusList" ng-change="changeAllConsultStatus()"></select>
+                        </div>
+                    </div>
+                    <div class="row fe-m0 fe-pt10">
                         <table class="table table-bordered table-striped fe-table">
                             <thead>
                             <tr>
@@ -53,5 +58,5 @@
     <script type="text/javascript">
         app.value('adminUserList', '{{ adminUserList | json_encode | escape('js') }}');
     </script>
-    <script type="text/javascript" src="{{ asset('js/admin/consult.js?v=1') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/consult.js?v=2') }}"></script>
 {% endblock %}

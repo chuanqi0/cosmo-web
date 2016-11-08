@@ -8,11 +8,19 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
     $scope.consultStatusList = [{key: 0, value: "非目标"}, {key: 1, value: "已定好"},
         {key: 2, value: "推荐失败"}, {key: 3, value: "推荐成功"}, {key: 4, value: "无法接通"},
         {key: 5, value: "跟进中"}, {key: 6, value: "等待处理"}, {key: 7, value: "推荐中"}];
+    $scope.allConsultStatusList = [{key: -1, value: "全部"}, {key: 0, value: "非目标"}, {key: 1, value: "已定好"},
+        {key: 2, value: "推荐失败"}, {key: 3, value: "推荐成功"}, {key: 4, value: "无法接通"},
+        {key: 5, value: "跟进中"}, {key: 6, value: "等待处理"}, {key: 7, value: "推荐中"}];
+    $scope.allConsultStatus = $scope.allConsultStatusList[0];
 
     $scope.adminUserList = JSON.parse(adminUserList);
     $scope.regionList = [];
 
     $scope.currentUser = null;
+
+    $scope.changeAllConsultStatus = function () {
+        $scope.getConsultList();
+    };
 
     $scope.pageChanged = function () {
         if ($scope.pagination.currentPage == 1) {
@@ -47,7 +55,7 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
             "page": $scope.pagination.currentPage,
             "base": $scope.pagination.base,
             "consultLevel": $scope.consultLevel,
-            "status": -1
+            "status": $scope.allConsultStatus.key
         };
         $.ajax({
             url: domain + '/api/admin/user/consult/list/',

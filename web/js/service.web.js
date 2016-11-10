@@ -6,16 +6,14 @@ angular.module('app')
         };
         this.isMobile = function () {
             var agent = navigator.userAgent.toLowerCase();
-            alert(agent);
-            var mobile = /ipad/.test(agent) || /iphone/.test(agent) || /android/.test(agent);
-            alert(mobile);
+            var mobile = /ipad/.test(agent) || /iphone/.test(agent) || /android/.test(agent) || /ucweb/.test(agent);
             return mobile;
         };
     }])
     .service('DownloadService', [function () {
         var QQ_DOWNLOAD = 'http://a.app.qq.com/o/simple.jsp?pkgname=love.cosmo.android';
         var APPSTORE_DOWNLOAD = 'https://itunes.apple.com/cn/app/shi-shang-xin-niang/id1088557167';
-        var APK_DOWNLOAD = 'http://cosmolove.file.alimmdn.com/res/apk/Cosmobride-release-1.3.1.apk';
+        var APK_DOWNLOAD = 'http://cosmolove.file.alimmdn.com/res/apk/Cosmobride-release-1.5.4.apk';
 
         this.isIOSDevice = function () {
             var sUserAgent = navigator.userAgent.toLowerCase();

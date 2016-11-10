@@ -6,7 +6,9 @@ angular.module('app')
         };
         this.isMobile = function () {
             var agent = navigator.userAgent.toLowerCase();
+            alert(agent);
             var mobile = /ipad/.test(agent) || /iphone/.test(agent) || /android/.test(agent);
+            alert(mobile);
             return mobile;
         };
     }])

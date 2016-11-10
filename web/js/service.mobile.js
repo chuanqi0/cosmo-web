@@ -6,7 +6,7 @@ angular.module('app')
         };
         this.isMobile = function () {
             var agent = navigator.userAgent.toLowerCase();
-            var mobile = /ipad/.test(agent) || /iphone/.test(agent) || /android/.test(agent);
+            var mobile = /ipad/.test(agent) || /iphone/.test(agent) || /android/.test(agent) || /ucweb/.test(agent);
             return mobile;
         };
         this.formatTime = function ($time) {

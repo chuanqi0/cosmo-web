@@ -63,8 +63,12 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
     };
 
     $scope.applyAward = function(index) {
-        if ($scope.awardList.length > index) {
-            $scope.awardList[index].apply = !$scope.awardList[index].apply;
+        if ($scope.casus != null && $scope.casus.paid == true) {
+            alert("案例已支付，不可修改选送奖项");
+        } else {
+            if ($scope.awardList.length > index) {
+                $scope.awardList[index].apply = !$scope.awardList[index].apply;
+            }
         }
     };
 

@@ -5,7 +5,7 @@
 {% block body %}
     <div class="fe-consult" ng-controller="ConsultController" ng-init="initAll()">
         <div class="container">
-            <div class="row">
+            <div class="row fe-consult-bg">
                 <div class="fe-consult-left">
                     <ul>
                         <li ng-class="{'active': consultStep == 1}" ng-click="jumpToStep(1)"><div>我的客户</div></li>
@@ -58,5 +58,5 @@
     <script type="text/javascript">
         app.value('adminUserList', '{{ adminUserList | json_encode | escape('js') }}');
     </script>
-    <script type="text/javascript" src="{{ asset('js/admin/consult.js?v=2') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/admin/consult.js?v=3') }}"></script>
 {% endblock %}

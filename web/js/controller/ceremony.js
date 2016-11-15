@@ -8,9 +8,10 @@ app.controller('CeremonyController', function($scope, $cookies) {
     };
 });
 
-app.controller('CeremonyTicketController', function($scope, $cookies, cbwaUser, UtilService) {
+app.controller('CeremonyTicketController', function($scope, $cookies, cbwaUser, ceremonyPrice, UtilService) {
 
     $scope.cbwaUser = JSON.parse(cbwaUser);
+    $scope.ceremonyPrice = ceremonyPrice;
     $scope.ticket = null;
 
     $scope.name = $scope.cbwaUser.name;

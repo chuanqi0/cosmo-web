@@ -42,13 +42,6 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
         $scope.jumpToPage('consult');
     };
 
-    $scope.refreshHeight = function() {
-        if ($scope.consultStep == 1 || $scope.consultStep == 2) {
-            $('.fe-consult-left').css('height', '729px');
-            $('.fe-consult-right').css('height', '729px');
-        }
-    };
-
     $scope.getConsultList = function () {
         var data = {
             "userUuid": $scope.adminUser.userUuid,
@@ -229,14 +222,12 @@ app.controller('ConsultController', function($scope, $cookies, $uibModal, adminU
         $scope.consultLevel = 1;
         $scope.getConsultList();
         $scope.getRegionList();
-        $scope.refreshHeight();
     };
 
     $scope.initAll = function () {
         $scope.consultLevel = 2;
         $scope.getConsultList();
         $scope.getRegionList();
-        $scope.refreshHeight();
     };
 });
 

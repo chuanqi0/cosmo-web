@@ -72,15 +72,11 @@ app.controller('PersonalCasusController', function($scope, cbwaUser) {
     $scope.openOrder = function ($index) {
         var currentOrder = $scope.casusOrderList[$index];
         var valid = currentOrder.valid;
-        var paid = currentOrder.paid;
-        if ($scope.cbwaUser.level != 0 || (valid == true && paid == false)) {
+        if (valid == true) {
             var casusGuid = currentOrder.guid;
             $scope.putCookie('applyStep', 1);
             $scope.putCookie('casusGuid', casusGuid);
             $scope.jumpToPage('join');
-        } else if (valid == true && paid == true) {
-            var casusGuid = currentOrder.guid;
-            $scope.jumpToPage('casus/' + casusGuid);
         } else {
             alert("订单已取消");
         }

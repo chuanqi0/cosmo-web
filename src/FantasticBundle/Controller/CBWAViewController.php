@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Cookie;
 
 use AppBundle\Controller\BaseController;
 
+use UtilBundle\Constant\LoveConstant;
+
 /**
  * @Route("/cbwa")
  */
@@ -138,6 +140,13 @@ class CBWAViewController extends BaseController
                 return $this->render('FantasticBundle::extra.html.twig', $dataOut);
             } else {
                 $dataOut['cbwaUser'] = $cbwaUser->toArray();
+                $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+                $casusList = $casusRepository->findPaidCasusByUserId($cbwaUser->getUserId());
+                if ($casusList && sizeof($casusList) > 0) {
+                    $dataOut['ceremonyPrice'] = LoveConstant::CBWA_TICKET_FEE_1;
+                } else {
+                    $dataOut['ceremonyPrice'] = LoveConstant::CBWA_TICKET_FEE_2;
+                }
                 return $this->render('FantasticBundle::ceremony.ticket.html.twig', $dataOut);
             }
         } else {

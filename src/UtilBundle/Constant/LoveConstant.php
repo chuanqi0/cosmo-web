@@ -8,7 +8,8 @@ class LoveConstant
     const STATUS_SUCCESS = 0;
     const STATUS_FAILED = -1;
 
-    const CBWA_TICKET_FEE = '600.00';
+    const CBWA_TICKET_FEE_1 = '1988.00';
+    const CBWA_TICKET_FEE_2 = '2988.00';
 
     const CBWA_CASUS_PAGE_SIZE = 12;
 

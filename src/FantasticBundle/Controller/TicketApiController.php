@@ -47,7 +47,13 @@ class TicketApiController extends BaseController
             $ticket->setName($name);
             $ticket->setTelephone($telephone);
             $ticket->setAddress($address);
-            $ticket->setTotalFee(LoveConstant::CBWA_TICKET_FEE);
+            $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+            $casusList = $casusRepository->findPaidCasusByUserId($cbwaUser->getUserId());
+            if ($casusList && sizeof($casusList) > 0) {
+                $ticket->setTotalFee(LoveConstant::CBWA_TICKET_FEE_1);
+            } else {
+                $ticket->setTotalFee(LoveConstant::CBWA_TICKET_FEE_2);
+            }
             // 保存
             $ticketRepository->saveTicket($ticket);
             $entityManager->getConnection()->commit();

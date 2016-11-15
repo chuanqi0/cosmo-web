@@ -12,6 +12,10 @@ class CasusRepository extends EntityRepository
         return $this->findOneBy(array('guid' => $guid, 'valid' => true));
     }
 
+    public function findPaidCasusByUserId($userId) {
+        return $this->findBy(array('userId' => $userId, 'valid' => true, 'paid' => true), array('id' => 'ASC'), 1, 0);
+    }
+
     public function saveCasus($casus)
     {
         $casus->setUpdateTime(UtilService::getCurrentTime());

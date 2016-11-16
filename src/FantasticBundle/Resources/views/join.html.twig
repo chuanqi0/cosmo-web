@@ -106,7 +106,8 @@
                             <div class="fe-btn before" ng-click="jumpToStep(1)">上一步</div>
                         </div>
                         <div class="col-xs-3 col-xs-offset-2 fe-pt10">
-                            <div class="fe-btn next" ng-click="jumpToStep(3)">下一步</div>
+                            <div class="fe-btn next" ng-click="jumpToStep(3)" ng-if="casus.paid == false">下一步</div>
+                            <div class="fe-btn next" ng-click="jumpToPage('join/success')" ng-if="casus.paid == true">下一步</div>
                         </div>
                     </div>
                     <div ng-show="applyStep == 3" class="row fe-form fe-m0 fe-apply-fee">

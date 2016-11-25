@@ -65,6 +65,16 @@ class User extends Base
      */
     private $level;
 
+    /**
+     * @ORM\Column(name="receipt_limit", type="string", length=20, nullable=false)
+     */
+    private $receiptLimit;
+
+    /**
+     * @ORM\Column(name="receipt_apply", type="string", length=20, nullable=false)
+     */
+    private $receiptApply;
+
     public function __construct()
     {
         parent::__construct();
@@ -287,6 +297,52 @@ class User extends Base
         return $this->level;
     }
 
+    /**
+     * Set receiptLimit
+     *
+     * @param string $receiptLimit
+     * @return User
+     */
+    public function setReceiptLimit($receiptLimit)
+    {
+        $this->receiptLimit = $receiptLimit;
+
+        return $this;
+    }
+
+    /**
+     * Get receiptLimit
+     *
+     * @return string 
+     */
+    public function getReceiptLimit()
+    {
+        return $this->receiptLimit;
+    }
+
+    /**
+     * Set receiptApply
+     *
+     * @param string $receiptApply
+     * @return User
+     */
+    public function setReceiptApply($receiptApply)
+    {
+        $this->receiptApply = $receiptApply;
+
+        return $this;
+    }
+
+    /**
+     * Get receiptApply
+     *
+     * @return string 
+     */
+    public function getReceiptApply()
+    {
+        return $this->receiptApply;
+    }
+
     public function toArray() {
         return array(
             "name" => $this->name,
@@ -295,7 +351,9 @@ class User extends Base
             "company" => $this->company,
             "companyLocation" => $this->companyLocation,
             "companyIntro" => $this->companyIntro,
-            "level" => $this->level
+            "level" => $this->level,
+            "receiptLimit" => $this->receiptLimit,
+            "receiptApply" => $this->receiptApply
         );
     }
 }

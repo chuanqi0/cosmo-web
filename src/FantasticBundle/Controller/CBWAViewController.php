@@ -305,8 +305,11 @@ class CBWAViewController extends BaseController
             } else if ($personalStep == 2) {
                 $dataOut['cbwaUser'] = $cbwaUser->toArray();
                 return $this->render('FantasticBundle::personal.casus.html.twig', $dataOut);
-            } else {
+            } else if ($personalStep == 3) {
                 return $this->render('FantasticBundle::personal.ticket.html.twig', $dataOut);
+            } else {
+                $dataOut['cbwaUser'] = $cbwaUser->toArray();
+                return $this->render('FantasticBundle::personal.receipt.html.twig', $dataOut);
             }
         }
     }

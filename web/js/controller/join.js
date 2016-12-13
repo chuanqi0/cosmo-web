@@ -175,11 +175,6 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
                 success: function (response) {
                     if (response.status == 0) {
                         $scope.casus = response.data;
-                        if ($scope.cbwaUser.level == 0) {
-                            if ($scope.casus.paid == true) {
-                                $scope.jumpToPage('join/success');
-                            }
-                        }
                     } else {
                         console.log(response.message);
                     }

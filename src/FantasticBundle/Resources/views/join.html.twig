@@ -107,7 +107,7 @@
                         </div>
                         <div class="col-xs-3 col-xs-offset-2 fe-pt10">
                             <div class="fe-btn next" ng-click="jumpToStep(3)" ng-if="casus.paid == false">下一步</div>
-                            <div class="fe-btn next" ng-click="jumpToPage('join/success')" ng-if="casus.paid == true">下一步</div>
+                            <div class="fe-btn next" ng-click="jumpToSuccess()" ng-if="casus.paid == true">下一步</div>
                         </div>
                     </div>
                     <div ng-show="applyStep == 3" class="row fe-form fe-m0 fe-apply-fee">
@@ -163,5 +163,5 @@
     <script type="text/javascript" src="{{ asset('js/umeditor/umeditor.config.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/umeditor/umeditor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/umeditor/lang/zh-cn/zh-cn.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/controller/join.js?v=4') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/controller/join.js?v=5') }}"></script>
 {% endblock %}

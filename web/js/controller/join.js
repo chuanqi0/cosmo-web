@@ -271,7 +271,16 @@ app.controller('JoinController', function($scope, $cookies, awardList, cbwaUser)
             $scope.putCookie('applyStep', step);
             $scope.jumpToPage('join');
         } else {
-            console.log($scope.titleValid);
+            alert("保存案例失败");
+        }
+    };
+
+    $scope.jumpToSuccess = function() {
+        var stepSuccess = $scope.processSecondStep();
+        if (stepSuccess == true) {
+            $scope.jumpToPage('join/success');
+        } else {
+            alert("保存案例失败");
         }
     };
 

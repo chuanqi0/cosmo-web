@@ -84,7 +84,7 @@ class MobileViewController extends BaseController
         $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
         $casus = $casusRepository->findCasusByGuid($guid);
         if (!$casus) {
-            return $this->redirectToRoute('cbwa_mobile_home');
+            return $this->redirectToRoute('mobile_cbwa_works');
         }
         $dataOut = array(
             'base' => $this->base,
@@ -92,5 +92,17 @@ class MobileViewController extends BaseController
             'casus' => $casus->toDetailArray()
         );
         return $this->render('MobileBundle::cbwa.casus.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/cbwa/works", name="mobile_cbwa_works")
+     */
+    public function cbwaHomeAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain
+        );
+        return $this->render('MobileBundle::cbwa.works.html.twig', $dataOut);
     }
 }

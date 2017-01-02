@@ -8,7 +8,7 @@ app.controller('WorksController', function($scope, $cookies) {
 
     $scope.jumpToDetail = function ($index) {
         var casus = $scope.casusList[$index];
-        $scope.jumpToPage('casus/' + casus.guid);
+        $scope.jumpToPage('cbwa/casus/' + casus.guid);
     };
 
     $scope.refreshCasusList = function ($awardId) {

@@ -74,4 +74,23 @@ class MobileViewController extends BaseController
         );
         return $this->render('MobileBundle::share.poster.html.twig', $dataOut);
     }
+
+    /**
+     * @Route("/cbwa/casus/{guid}")
+     */
+    public function cbwaCasusAction($guid)
+    {
+        // 处理业务
+        $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+        $casus = $casusRepository->findCasusByGuid($guid);
+        if (!$casus) {
+            return $this->redirectToRoute('cbwa_mobile_home');
+        }
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain,
+            'casus' => $casus->toDetailArray()
+        );
+        return $this->render('MobileBundle::cbwa.casus.html.twig', $dataOut);
+    }
 }

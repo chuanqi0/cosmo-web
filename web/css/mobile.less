@@ -7,6 +7,7 @@
 @gray-5: #c1c1c1;
 @pink-1: #f89670;
 @pink-2: #fff5f3;
+@blue-1: #1c9bec;
 @gold-1: #ba882a;
 
 // 公共函数
@@ -62,6 +63,10 @@
 
 .m-p-12 {
   padding: 0.75rem !important;
+}
+
+.m-p0 {
+  padding: 0;
 }
 
 html {
@@ -419,6 +424,79 @@ body {
   z-index: 100;
   img {
     width: 23.4375rem;
+  }
+}
+
+// 案例
+.fe-casus {
+  background-color: @gray-1;
+  .cover {
+    position: relative;
+    .cover-shade {
+      position: absolute;
+      z-index: 10;
+      left: 0;
+      top: 0;
+    }
+    .cover-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 20;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      font-size: 1rem;
+      padding-left: 1rem;
+      color: @white;
+      text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+    }
+  }
+  .casus-content {
+    padding: 0;
+    background-color: @white;
+    .content-left {
+      padding: 0 1rem 1rem 1rem;
+      border-right: 1px solid @gray-1;
+      font-size: 0.75rem;
+      .casus-description {
+        padding: 1rem 1rem;
+        color: @gray-3;
+        font-style: italic;
+      }
+      .casus-content {
+        p {
+          line-height: 1.25rem !important;
+          margin: 0 0 0.5rem !important;
+        }
+        padding: 0;
+        color: @gray-4;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .content-right {
+      padding: 1rem;
+      font-size: 0.75rem;
+      .glyphicon {
+        color: @blue-1;
+      }
+      .desc-title {
+        margin-left: 0.125rem;
+        color: @blue-1;
+      }
+      .desc-content {
+        line-height: 1.25rem;
+        color: @gray-3;
+        font-weight: bold;
+        padding: 0;
+      }
+      .row {
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid @gray-1;
+        margin: 0 0 0.5rem 0;
+      }
+    }
   }
 }
 

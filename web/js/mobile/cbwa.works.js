@@ -19,6 +19,15 @@ app.controller('WorksController', function($scope, $cookies) {
         $scope.getCasusList();
     };
 
+    $scope.vote = function($index) {
+        var casus = $scope.casusList[$index];
+        alert("投票给" + casus.name);
+    };
+
+    $scope.about = function() {
+        window.location.href = apiBase + "/cbwa/";
+    };
+
     $scope.getCasusList = function () {
         var data = {
             "awardId": $scope.awardId,

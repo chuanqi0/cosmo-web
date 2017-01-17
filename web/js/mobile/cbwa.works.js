@@ -1,6 +1,5 @@
 app.controller('WorksController', function($scope, $cookies) {
     // 奖项ID
-    $scope.awardId = $cookies.get('awardId') == null ? 1 : $cookies.get('awardId');
     $scope.page = 1;
     $scope.showMore = true;
 
@@ -21,7 +20,27 @@ app.controller('WorksController', function($scope, $cookies) {
 
     $scope.vote = function($index) {
         var casus = $scope.casusList[$index];
-        alert("投票给" + casus.name);
+        // 查看所有的奖项
+        var data = {
+            "casusGuid": casus.guid
+        };
+        $.ajax({
+            url: apiBase + '/api/cbwa/casus/vote',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            async: false,
+            success: function (response) {
+                if (response.status == 0) {
+                    alert(response.data);
+                    alert("感谢您为" + casus.name + "\n投出了宝贵的一票");
+                    $scope.casusList[$index].voteNumber++;
+                }
+            },
+            error: function (xhr, status, err) {
+                console.error(err);
+            }
+        });
     };
 
     $scope.about = function() {
@@ -29,8 +48,9 @@ app.controller('WorksController', function($scope, $cookies) {
     };
 
     $scope.getCasusList = function () {
+        // 查看所有的奖项
         var data = {
-            "awardId": $scope.awardId,
+            "awardId": 0,
             "page": $scope.page
         };
         $.ajax({

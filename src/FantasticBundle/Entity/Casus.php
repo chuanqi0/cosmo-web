@@ -90,6 +90,11 @@ class Casus extends Base
      */
     private $awardList;
 
+    /**
+     * @ORM\Column(name="vote_number", type="integer", nullable=false)
+     */
+    private $voteNumber;
+
     public function __construct()
     {
         parent::__construct();
@@ -101,6 +106,7 @@ class Casus extends Base
         $this->totalFee = '0.00';
         $this->cover = '';
         $this->awardList = '[]';
+        $this->voteNumber = 0;
     }
 
     /**
@@ -458,6 +464,29 @@ class Casus extends Base
         return $this->cover;
     }
 
+    /**
+     * Set voteNumber
+     *
+     * @param integer $voteNumber
+     * @return Casus
+     */
+    public function setVoteNumber($voteNumber)
+    {
+        $this->voteNumber = $voteNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get voteNumber
+     *
+     * @return integer
+     */
+    public function getVoteNumber()
+    {
+        return $this->voteNumber;
+    }
+
     public function toArray() {
         return array(
             "id" => $this->id,
@@ -472,7 +501,8 @@ class Casus extends Base
             "totalFee" => $this->totalFee,
             "paid" => $this->paid,
             "awardList" => json_decode($this->awardList, true),
-            "valid" => $this->valid
+            "valid" => $this->valid,
+            "voteNumber" => $this->voteNumber
         );
     }
 
@@ -492,7 +522,8 @@ class Casus extends Base
             "content" => $this->content,
             "awardNumber" => $this->awardNumber,
             "awardList" => json_decode($this->awardList, true),
-            "valid" => $this->valid
+            "valid" => $this->valid,
+            "voteNumber" => $this->voteNumber
         );
     }
 }

@@ -436,6 +436,45 @@ body {
   }
 }
 
+// 投票区
+.vote-area {
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  height: 3rem;
+  background-color: @white;
+  box-shadow: 0 -0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  .left-area {
+    float: left;
+    width: 30%;
+    text-align: center;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    color: @gray-3;
+  }
+  .right-area {
+    float: right;
+    width: 70%;
+    text-align: center;
+    background-color: @white;
+    height: 3rem;
+    padding: 0.25rem;
+    .inner-area {
+      background-color: @blue-1;
+      color: @white;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+  }
+}
+
 .fe-works {
   .works-nav {
     text-align: center;
@@ -464,6 +503,7 @@ body {
         top: 0;
       }
       .cover-text {
+        width: 100%;
         position: absolute;
         left: 0;
         bottom: 0;
@@ -472,6 +512,7 @@ body {
         line-height: 2.25rem;
         font-size: 0.75rem;
         padding-left: 0.75rem;
+        padding-right: 0.75rem;
         color: @white;
         text-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
       }

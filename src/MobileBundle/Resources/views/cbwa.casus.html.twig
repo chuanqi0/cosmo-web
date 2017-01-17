@@ -78,6 +78,15 @@
                     </div>
                 </div>
             </div>
+            <!-- vote -->
+            <div class="row vote-area" ng-click="jumpDownload()">
+                <div class="left-area" ng-click="jumpToPage('cbwa/works')">首页</div>
+                <div class="right-area">
+                    <div class="inner-area" ng-click="vote()">
+                        投Ta一票
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -87,5 +96,5 @@
         app.value('casus', '{{ casus | json_encode | escape('js') }}');
         app.value('cbwaUser', '{{ cbwaUser | json_encode | escape('js') }}');
     </script>
-    <script type="text/javascript" src="{{ asset('js/controller/casus.js?v=1') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/controller/casus.js?v=2') }}"></script>
 {% endblock %}

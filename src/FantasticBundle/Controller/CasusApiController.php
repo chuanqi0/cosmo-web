@@ -187,6 +187,13 @@ class CasusApiController extends BaseController
         return $jsonResponse;
     }
 
+    public function getIp()
+    {
+        $request = $this->container->get('request_stack')->getCurrentRequest();
+        $ip = $request->getClientIp();
+        return $ip;
+    }
+
     /**
      * @Route("/casus/cancel")
      * @Method({"POST"})

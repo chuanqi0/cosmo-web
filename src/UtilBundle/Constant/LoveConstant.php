@@ -37,4 +37,5 @@ class LoveConstant
     const ERROR_CASUS_PAID = '案例已支付, 不可取消';
     const ERROR_TICKET_PAID = '门票已支付, 不可取消';
     const ERROR_COVER_NOT_EXIST = '内容不包含图片';
+    const ERROR_VOTE_TOO_MUCH = '一天最多只能给每个作品投5票';
 }

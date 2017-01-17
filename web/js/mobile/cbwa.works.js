@@ -32,9 +32,10 @@ app.controller('WorksController', function($scope, $cookies) {
             async: false,
             success: function (response) {
                 if (response.status == 0) {
-                    console(response);
                     alert("感谢您为" + casus.name + "\n投出了宝贵的一票");
                     $scope.casusList[$index].voteNumber++;
+                } else {
+                    alert("一天最多只能给每个案例投5票");
                 }
             },
             error: function (xhr, status, err) {

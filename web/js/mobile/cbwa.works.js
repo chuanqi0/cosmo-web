@@ -32,7 +32,7 @@ app.controller('WorksController', function($scope, $cookies) {
             async: false,
             success: function (response) {
                 if (response.status == 0) {
-                    alert(response.data);
+                    console(response);
                     alert("感谢您为" + casus.name + "\n投出了宝贵的一票");
                     $scope.casusList[$index].voteNumber++;
                 }

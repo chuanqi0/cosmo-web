@@ -178,7 +178,7 @@ class CasusApiController extends BaseController
             $casus->setVoteNumber($casus->getVoteNumber() + 1);
             $casusRepository->saveCasus($casus);
             // 设置返回数据
-            $ip = $this->container->get('request_stack')->getCurrentRequest()->getClientIp();
+            $ip = $this->getIp();
             $this->setSuccess($ip);
         } catch (\Exception $e) {
             $this->setFailedMessage($e->getMessage());

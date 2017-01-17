@@ -31,7 +31,16 @@ class CasusRepository extends EntityRepository
     public function getCasusList($awardId, $page) {
         $page = $page - 1;
         if ($awardId == 0) {
-            return $this->findBy(array('paid' => true, 'valid' => true), array('createTime' => 'DESC'), LoveConstant::CBWA_CASUS_PAGE_SIZE, $page * LoveConstant::CBWA_CASUS_PAGE_SIZE);
+            $qb = $this->getEntityManager()->createQueryBuilder();
+            $qb->select('c')
+                ->from('FantasticBundle\Entity\Casus', 'c')
+                ->where('c.paid = true')
+                ->andWhere('c.valid = true')
+                ->andWhere('c.awardNumber > 0')
+                ->orderBy('c.voteNumber', 'DESC')
+                ->setMaxResults(LoveConstant::CBWA_CASUS_PAGE_SIZE)
+                ->setFirstResult($page * LoveConstant::CBWA_CASUS_PAGE_SIZE);
+            return $qb->getQuery()->getResult();
         } else if ($awardId == -1) {
             return $this->findBy(array('paid' => true, 'valid' => true, 'awardNumber' => 0), array('createTime' => 'DESC'), LoveConstant::CBWA_CASUS_PAGE_SIZE, $page * LoveConstant::CBWA_CASUS_PAGE_SIZE);
         } else {

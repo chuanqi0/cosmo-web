@@ -6,4 +6,27 @@ app.controller('CasusController', function($scope, $sce, casus, cbwaUser) {
     $scope.cbwaUser = JSON.parse(cbwaUser);
 
     $scope.contentHtml = $sce.trustAsHtml($scope.casus.content);
+
+    $scope.vote = function() {
+        // 查看所有的奖项
+        var data = {
+            "casusGuid": $scope.casus.guid
+        };
+        $.ajax({
+            url: apiBase + '/api/cbwa/casus/vote',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            async: false,
+            success: function (response) {
+                if (response.status == 0) {
+                    alert("感谢您为" + $scope.casus.name + "\n投出了宝贵的一票");
+                    $scope.casus.voteNumber++;
+                }
+            },
+            error: function (xhr, status, err) {
+                console.error(err);
+            }
+        });
+    };
 });

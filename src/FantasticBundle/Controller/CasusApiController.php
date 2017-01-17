@@ -162,6 +162,31 @@ class CasusApiController extends BaseController
     }
 
     /**
+     * @Route("/casus/vote")
+     * @Method({"POST"})
+     */
+    public function casusVoteAction(Request $request)
+    {
+        try {
+            $casusGuid = $request->get('casusGuid');
+            // 处理业务
+            $casusRepository = $this->getDoctrine()->getRepository('FantasticBundle:Casus');
+            $casus = $casusRepository->findCasusByGuid($casusGuid);
+            if (!$casus) {
+                throw new LoveException(LoveConstant::ERROR_CASUS_NOT_EXIST);
+            }
+            $casus->setVoteNumber($casus->getVoteNumber() + 1);
+            $casusRepository->saveCasus($casus);
+            // 设置返回数据
+            $this->setSuccess($this->getIp($request));
+        } catch (\Exception $e) {
+            $this->setFailedMessage($e->getMessage());
+        }
+        $jsonResponse = $this->makeJsonResponse();
+        return $jsonResponse;
+    }
+
+    /**
      * @Route("/casus/cancel")
      * @Method({"POST"})
      */

@@ -3,7 +3,7 @@
 {% block title %}时尚致爱邀您制作新春封面 - 选择模板{% endblock %}
 
 {% block body %}
-    <div class="face-body model bg-white">
+    <div class="face-body model bg-white" ng-controller="SwapFaceCtrl">
         <div class="">
             <a href="www.baidu.com"><img class="w-full" src="{{ asset('img/mobile/face/btn_download.gif') }}"/></a>
         </div>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="text-center">
-            <a ui-sref="face.step2fill"><img class="bottom_btn" src="{{ asset('img/mobile/face/btn_enter2make.png') }}"/></a>
+            <img class="bottom_btn" src="{{ asset('img/mobile/face/btn_enter2make.png') }}" ng-click="gotoStepFill()"/>
         </div>
     </div>
 {% endblock %}

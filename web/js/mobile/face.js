@@ -46,12 +46,12 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
 
     $scope.gotoStepPhoto = function () {
         window.location.href = base + 'face/step/photo/' + type +
-            '/tag1=' + $scope.waterMark.tag1 + '' +
-            '/tag2=' + $scope.waterMark.tag2 + '' +
-            '/tag3=' + $scope.waterMark.tag3 + '' +
-            '/tag4=' + $scope.waterMark.tag4 + '' +
-            '/tag5=' + $scope.waterMark.tag5 + '' +
-            '/tag6=' + $scope.waterMark.tag6;
+            '/' + $scope.waterMark.tag1 +
+            '/' + $scope.waterMark.tag2 +
+            '/' + $scope.waterMark.tag3 +
+            '/' + $scope.waterMark.tag4 +
+            '/' + $scope.waterMark.tag5 +
+            '/' + $scope.waterMark.tag6;
     };
 
     if (window.location.href.indexOf('step') != -1) {
@@ -84,26 +84,26 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
             // 绘制水印
             //ctx.font = "20px microsoft yahei";
             ctx.fillStyle = "#000000";
-            ctx.fillText($scope.waterMark.tag1, 16, 110);
+            ctx.fillText($scope.waterMark.tag1, 16, 110 * (459 / canvas.width));
             ctx.fillStyle = "#BA882A";
             if (type == 1) {
                 ctx.fillStyle = "pink";
             }
-            ctx.fillText($scope.waterMark.tag2, 16, 190);
+            ctx.fillText($scope.waterMark.tag2, 16, 190 * (459 / canvas.width));
             ctx.fillStyle = "#BA882A";
             if (type == 1) {
                 ctx.fillStyle = "pink";
             }
-            ctx.fillText($scope.waterMark.tag3, 16, 280);
+            ctx.fillText($scope.waterMark.tag3, 16, 280 * (459 / canvas.width));
             ctx.fillStyle = "#BA882A";
             if (type == 1) {
                 ctx.fillStyle = "pink";
             }
-            ctx.fillText($scope.waterMark.tag4, 16, 110);
+            ctx.fillText($scope.waterMark.tag4, 16, 110 * (459 / canvas.width));
             ctx.fillStyle = "rgba(255,255,255,0.5)";
-            ctx.fillText($scope.waterMark.tag5, 16, 180);
+            ctx.fillText($scope.waterMark.tag5, 16, 180 * (459 / canvas.width));
             ctx.fillStyle = "rgba(255,255,255,0.5)";
-            ctx.fillText($scope.waterMark.tag6, 16, 250);
+            ctx.fillText($scope.waterMark.tag6, 16, 250 * (459 / canvas.width));
         }
     }
 

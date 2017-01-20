@@ -60,9 +60,9 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
         if (type == 'woman') {
             img.src = '../../../../img/mobile/face/img_model_1.png';
         } else if (type == 'man') {
-            img.src = domain + '../../../../pub/img/mobile/face/img_model_2.png';
+            img.src = '../../../../pub/img/mobile/face/img_model_2.png';
         } else {
-            img.src = domain + '../../../../pub/img/mobile/face/img_model_3.png';
+            img.src = '../../../../pub/img/mobile/face/img_model_3.png';
         }
         // 获取文字tag
         if (window.location.href.indexOf('photo') != -1) {

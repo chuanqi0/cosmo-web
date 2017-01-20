@@ -15,7 +15,16 @@
 
         <div class="content text-center">
             <canvas id="poster-canvas" class="w-full"></canvas>
-            <img class="w-half" src="{{ asset('img/mobile/face/btn_upload_photo.png') }}"/>
+            {#<img class="w-half" src="{{ asset('img/mobile/face/btn_upload_photo.png') }}"/>#}
+            <button class="btn-upload">上传您照片</button><button>上传Ta的照片</button>
+
+            <div class="text-center">
+                <button class="btn-upload" ng-click="uploadImage(1)">上传您的照片</button>
+                <button class="btn-upload" ng-if="ModelType=='couple'" ng-click="uploadImage(2)">上传Ta的照片</button>
+            </div>
+
+            <input type="file" id="photo-1" />
+            <input type="file" id="photo-2"/>
         </div>
         <div class="advice">
             <div class="thin-text small-font">你肯定喜欢</div>

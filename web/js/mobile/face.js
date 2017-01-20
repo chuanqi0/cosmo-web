@@ -84,26 +84,26 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
             // 绘制水印
             //ctx.font = "20px microsoft yahei";
             ctx.fillStyle = "#000000";
-            ctx.fillText($scope.waterMark.tag1, 16, 110 * (459 / canvas.width));
+            ctx.fillText($scope.waterMark.tag1, 16, 110 * (459 / canvas.height));
             ctx.fillStyle = "#BA882A";
             if (type == 1) {
                 ctx.fillStyle = "pink";
             }
-            ctx.fillText($scope.waterMark.tag2, 16, 190 * (459 / canvas.width));
+            ctx.fillText($scope.waterMark.tag2, 16, 190 * (459 / canvas.height));
             ctx.fillStyle = "#BA882A";
             if (type == 1) {
                 ctx.fillStyle = "pink";
             }
-            ctx.fillText($scope.waterMark.tag3, 16, 280 * (459 / canvas.width));
+            ctx.fillText($scope.waterMark.tag3, 16, 280 * (459 / canvas.height));
             ctx.fillStyle = "#BA882A";
             if (type == 1) {
                 ctx.fillStyle = "pink";
             }
-            ctx.fillText($scope.waterMark.tag4, 16, 110 * (459 / canvas.width));
+            ctx.fillText($scope.waterMark.tag4, 16, 110 * (459 / canvas.height));
             ctx.fillStyle = "rgba(255,255,255,0.5)";
-            ctx.fillText($scope.waterMark.tag5, 16, 180 * (459 / canvas.width));
+            ctx.fillText($scope.waterMark.tag5, 16, 180 * (459 / canvas.height));
             ctx.fillStyle = "rgba(255,255,255,0.5)";
-            ctx.fillText($scope.waterMark.tag6, 16, 250 * (459 / canvas.width));
+            ctx.fillText($scope.waterMark.tag6, 16, 250 * (459 / canvas.height));
         }
     }
 

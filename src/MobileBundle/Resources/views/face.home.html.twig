@@ -3,7 +3,7 @@
 {% block title %}时尚致爱邀您制作新春封面 - 新年特辑{% endblock %}
 
 {% block body %}
-    <div class="face-body home bg-white" ng-controller="SharePhotoController">
+    <div class="face-body home bg-white" ng-controller="SwapFaceCtrl">
         <div class="top">
             <a href="www.baidu.com"><img class="w-full" src="{{ asset('img/mobile/face/btn_download.gif') }}"/></a>
         </div>
@@ -20,7 +20,7 @@
                 <div class="text-center thin-text">长话短说，以图为例</div>
                 <div><img class="w-full" src="{{ asset('img/mobile/face/img_model_1.png') }}"/></div>
                 <div class="text-center">
-                    <a ui-sref="face.model"><img class="bottom_btn" src="{{ asset('img/mobile/face/btn_make_cover.png') }}"/></a>
+                    <img class="bottom_btn" src="{{ asset('img/mobile/face/btn_make_cover.png') }}" ng-click="gotoStartMake()"/>
                 </div>
             </div>
         </div>

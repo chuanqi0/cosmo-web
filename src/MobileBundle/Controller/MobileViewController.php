@@ -131,25 +131,33 @@ class MobileViewController extends BaseController
     }
 
     /**
-     * @Route("/face/step/fill")
+     * @Route("/face/step/fill?type={type}")
      */
-    public function faceStepFillAction()
+    public function faceStepFillAction($type)
     {
         $dataOut = array(
             'base' => $this->base,
-            'domain' => $this->domain
+            'domain' => $this->domain,
+            'type' => $type
         );
         return $this->render('MobileBundle::face.step.fill.html.twig', $dataOut);
     }
 
     /**
-     * @Route("/face/step/photo")
+     * @Route("/face/step/photo?type={type}&tag1={tag1}&tag2={tag2}&tag3={tag3}&tag4={tag4}&tag5={tag5}&tag6={tag6}")
      */
-    public function faceStepPhotoAction()
+    public function faceStepPhotoAction($type, $tag1, $tag2, $tag3, $tag4, $tag5, $tag6)
     {
         $dataOut = array(
             'base' => $this->base,
-            'domain' => $this->domain
+            'domain' => $this->domain,
+            'type' => $type,
+            'tag1' => $tag1,
+            'tag2' => $tag2,
+            'tag3' => $tag3,
+            'tag4' => $tag4,
+            'tag5' => $tag5,
+            'tag6' => $tag6,
         );
         return $this->render('MobileBundle::face.step.photo.html.twig', $dataOut);
     }

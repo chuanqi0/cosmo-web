@@ -10,47 +10,61 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
         couple: false
     };
 
-    $scope.changeModel = function (type) {
-        if ($scope.model[type] == true) {
+    $scope.changeModel = function (modelType) {
+        if ($scope.model[modelType] == true) {
             return;
         }
-        $scope.model[type] = !$scope.model[type];
+        $scope.model[modelType] = !$scope.model[modelType];
         for (var key in $scope.model) {
-            if (key != type && $scope.model[type] == true) {
+            if (key != modelType && $scope.model[modelType] == true) {
                 $scope.model[key] = false;
             }
         }
     };
 
     $scope.gotoStepFill = function () {
-        var type = '';
+        var modelType = '';
         for (var key in $scope.model) {
             if ($scope.model[key] == true) {
-                type = key;
+                modelType = key;
                 break;
             }
         }
-        window.location.href = base + 'face/step/fill';
-    };
-
-    $scope.gotoStepPhoto = function () {
-        window.location.href = base + 'face/step/photo';
+        window.location.href = base + 'face/step/fill?type=' + modelType;
     };
 
     $scope.waterMark = {
-        tag1: '新年快乐',  // 110
-        tag2: '哈哈',  // 190
-        tag3: '',  // 280
-        tag4: '',
-        tag5: '',
-        tag6: '',
+        tag1: tag1 ? tag1 : '',  // 110
+        tag2: tag2 ? tag2 : '',  // 190
+        tag3: tag3 ? tag3 : '',  // 280
+        tag4: tag4 ? tag4 : '',
+        tag5: tag5 ? tag5 : '',
+        tag6: tag6 ? tag6 : '',
         sourceImage: '',
         croppedImage: ''
     };
 
+    $scope.gotoStepPhoto = function () {
+        window.location.href = base + 'face/step/photo?type=' + type + '' +
+            '&tag1=' + $scope.waterMark.tag1 + '' +
+            '&tag2=' + $scope.waterMark.tag2 + '' +
+            '&tag3=' + $scope.waterMark.tag3 + '' +
+            '&tag4=' + $scope.waterMark.tag4 + '' +
+            '&tag5=' + $scope.waterMark.tag5 + '' +
+            '&tag6=' + $scope.waterMark.tag6;
+    };
+
     if (window.location.href.indexOf('step') != -1) {
+        // 初始化背景图片
         var img = new Image();
-        img.src = './img/face/img_model_2.png';
+        if (type == 'woman') {
+            img.src = './img/mobile/face/img_model_1.png';
+        } else if (type == 'man') {
+            img.src = './img/mobileface/img_model_2.png';
+        } else {
+            img.src = './img/mobile/face/img_model_3.png';
+        }
+        // h获取
         // 加载完成开始绘制
         img.onload = function () {
             //准备canvas环境

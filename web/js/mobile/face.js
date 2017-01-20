@@ -46,12 +46,12 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
 
     $scope.gotoStepPhoto = function () {
         window.location.href = base + 'face/step/photo/' + type +
-            '/' + $scope.waterMark.tag1 ? $scope.waterMark.tag1 : '-' +
-            '/' + $scope.waterMark.tag2 ? $scope.waterMark.tag2 : '-' +
-            '/' + $scope.waterMark.tag3 ? $scope.waterMark.tag3 : '-' +
-            '/' + $scope.waterMark.tag4 ? $scope.waterMark.tag4 : '-' +
-            '/' + $scope.waterMark.tag5 ? $scope.waterMark.tag5 : '-' +
-            '/' + $scope.waterMark.tag6 ? $scope.waterMark.tag6 : '-';
+            '/' + ($scope.waterMark.tag1 ? $scope.waterMark.tag1 : '-') +
+            '/' + ($scope.waterMark.tag2 ? $scope.waterMark.tag2 : '-') +
+            '/' + ($scope.waterMark.tag3 ? $scope.waterMark.tag3 : '-') +
+            '/' + ($scope.waterMark.tag4 ? $scope.waterMark.tag4 : '-') +
+            '/' + ($scope.waterMark.tag5 ? $scope.waterMark.tag5 : '-') +
+            '/' + ($scope.waterMark.tag6 ? $scope.waterMark.tag6 : '-');
     };
 
     if (window.location.href.indexOf('step') != -1) {
@@ -60,18 +60,18 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
         if (type == 'woman') {
             img.src = '../../../../img/mobile/face/img_model_1.png';
         } else if (type == 'man') {
-            img.src = '../../../../pub/img/mobile/face/img_model_2.png';
+            img.src = '../../../../img/mobile/face/img_model_2.png';
         } else {
-            img.src = '../../../../pub/img/mobile/face/img_model_3.png';
+            img.src = '../../../../img/mobile/face/img_model_3.png';
         }
         // 获取文字tag
         if (window.location.href.indexOf('photo') != -1) {
-            $scope.waterMark.tag1 = (tag1 != '' && tag1 != '-') ? tag1 : '';
-            $scope.waterMark.tag2 = (tag2 != '' && tag2 != '-') ? tag2 : '';
-            $scope.waterMark.tag3 = (tag3 != '' && tag3 != '-') ? tag3 : '';
-            $scope.waterMark.tag5 = (tag4 != '' && tag4 != '-') ? tag4 : '';
-            $scope.waterMark.tag5 = (tag5 != '' && tag5 != '-') ? tag5 : '';
-            $scope.waterMark.tag6 = (tag6 != '' && tag6 != '-') ? tag6 : '';
+            $scope.waterMark.tag1 = tag1 != '-' ? tag1 : '';
+            $scope.waterMark.tag2 = tag2 != '-' ? tag2 : '';
+            $scope.waterMark.tag3 = tag3 != '-' ? tag3 : '';
+            $scope.waterMark.tag5 = tag4 != '-' ? tag4 : '';
+            $scope.waterMark.tag5 = tag5 != '-' ? tag5 : '';
+            $scope.waterMark.tag6 = tag6 != '-' ? tag6 : '';
         }
         // 加载完成开始绘制
         img.onload = function () {

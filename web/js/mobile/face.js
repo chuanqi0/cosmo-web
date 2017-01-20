@@ -1,4 +1,4 @@
-app.controller('SwapFaceCtrl', ['$scope', '$state', function ($scope, $state) {
+app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
 
     $scope.gotoStartMake = function () {
         window.location.href = base + 'face/model';
@@ -48,12 +48,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$state', function ($scope, $state) {
         croppedImage: ''
     };
 
-    // 填充文字
-    $scope.gotoChoosePhoto = function () {
-        $state.go('face.step2photo');
-    };
-
-    if ($state.current.url.indexOf('step') != -1) {
+    if (window.location.href.indexOf('step') != -1) {
         var img = new Image();
         img.src = './img/face/img_model_2.png';
         // 加载完成开始绘制

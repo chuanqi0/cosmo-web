@@ -31,8 +31,14 @@
 {% endblock %}
 
 {% block javascripts %}
-    {#<script type="text/javascript">#}
-    {#app.value('photoUuid', '{{ photoUuid }}');#}
-    {#</script>#}
+    <script type="text/javascript">
+        var type = '{{ type }}';
+        var tag1 = '{{ tag1 }}';
+        var tag2 = '{{ tag2 }}';
+        var tag3 = '{{ tag3 }}';
+        var tag4 = '{{ tag4 }}';
+        var tag5 = '{{ tag5 }}';
+        var tag6 = '{{ tag6 }}';
+    </script>
     <script type="text/javascript" src="{{ asset('js/mobile/face.js') }}"></script>
 {% endblock %}

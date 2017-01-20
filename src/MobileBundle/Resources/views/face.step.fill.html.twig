@@ -29,8 +29,8 @@
 {% endblock %}
 
 {% block javascripts %}
-    {#<script type="text/javascript">#}
-    {#app.value('photoUuid', '{{ photoUuid }}');#}
-    {#</script>#}
+    <script type="text/javascript">
+        var type = '{{ type }}';
+    </script>
     <script type="text/javascript" src="{{ asset('js/mobile/face.js') }}"></script>
 {% endblock %}

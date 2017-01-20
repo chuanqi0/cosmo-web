@@ -131,7 +131,7 @@ class MobileViewController extends BaseController
     }
 
     /**
-     * @Route("/face/step/fill?type={type}")
+     * @Route("/face/step/fill?type=:type")
      */
     public function faceStepFillAction($type)
     {
@@ -144,7 +144,7 @@ class MobileViewController extends BaseController
     }
 
     /**
-     * @Route("/face/step/photo?type={type}&tag1={tag1}&tag2={tag2}&tag3={tag3}&tag4={tag4}&tag5={tag5}&tag6={tag6}")
+     * @Route("/face/step/photo?type=:type&tag1=:tag1&tag2=:tag2&tag3=:tag3&tag4=:tag4&tag5=:tag5&tag6=:tag6")
      */
     public function faceStepPhotoAction($type, $tag1, $tag2, $tag3, $tag4, $tag5, $tag6)
     {

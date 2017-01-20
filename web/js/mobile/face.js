@@ -34,12 +34,12 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
     };
 
     $scope.waterMark = {
-        tag1: tag1 ? tag1 : '',  // 110
-        tag2: tag2 ? tag2 : '',  // 190
-        tag3: tag3 ? tag3 : '',  // 280
-        tag4: tag4 ? tag4 : '',
-        tag5: tag5 ? tag5 : '',
-        tag6: tag6 ? tag6 : '',
+        tag1: '',  // 110
+        tag2: '',  // 190
+        tag3: '',  // 280
+        tag4: '',
+        tag5: '',
+        tag6: '',
         sourceImage: '',
         croppedImage: ''
     };
@@ -64,7 +64,15 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
         } else {
             img.src = './img/mobile/face/img_model_3.png';
         }
-        // h获取
+        // 获取文字tag
+        if (window.location.href.indexOf('photo') != -1) {
+            $scope.waterMark.tag1 = tag1;
+            $scope.waterMark.tag2 = tag2;
+            $scope.waterMark.tag3 = tag3;
+            $scope.waterMark.tag5 = tag4;
+            $scope.waterMark.tag5 = tag5;
+            $scope.waterMark.tag6 = tag6;
+        }
         // 加载完成开始绘制
         img.onload = function () {
             //准备canvas环境
@@ -74,22 +82,21 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
             // 绘制图片
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             // 绘制水印
-            var ModelType = 0;
             //ctx.font = "20px microsoft yahei";
             ctx.fillStyle = "#000000";
             ctx.fillText($scope.waterMark.tag1, 16, 110);
             ctx.fillStyle = "#BA882A";
-            if (ModelType == 1) {
+            if (type == 1) {
                 ctx.fillStyle = "pink";
             }
             ctx.fillText($scope.waterMark.tag2, 16, 190);
             ctx.fillStyle = "#BA882A";
-            if (ModelType == 1) {
+            if (type == 1) {
                 ctx.fillStyle = "pink";
             }
             ctx.fillText($scope.waterMark.tag3, 16, 280);
             ctx.fillStyle = "#BA882A";
-            if (ModelType == 1) {
+            if (type == 1) {
                 ctx.fillStyle = "pink";
             }
             ctx.fillText($scope.waterMark.tag4, 16, 110);

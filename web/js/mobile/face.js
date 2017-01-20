@@ -30,7 +30,7 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
                 break;
             }
         }
-        window.location.href = base + 'face/step/fill?type=' + modelType;
+        window.location.href = base + 'face/step/fill/' + modelType;
     };
 
     $scope.waterMark = {
@@ -45,13 +45,13 @@ app.controller('SwapFaceCtrl', ['$scope', function ($scope) {
     };
 
     $scope.gotoStepPhoto = function () {
-        window.location.href = base + 'face/step/photo?type=' + type + '' +
-            '&tag1=' + $scope.waterMark.tag1 + '' +
-            '&tag2=' + $scope.waterMark.tag2 + '' +
-            '&tag3=' + $scope.waterMark.tag3 + '' +
-            '&tag4=' + $scope.waterMark.tag4 + '' +
-            '&tag5=' + $scope.waterMark.tag5 + '' +
-            '&tag6=' + $scope.waterMark.tag6;
+        window.location.href = base + 'face/step/photo/' + type +
+            '/tag1=' + $scope.waterMark.tag1 + '' +
+            '/tag2=' + $scope.waterMark.tag2 + '' +
+            '/tag3=' + $scope.waterMark.tag3 + '' +
+            '/tag4=' + $scope.waterMark.tag4 + '' +
+            '/tag5=' + $scope.waterMark.tag5 + '' +
+            '/tag6=' + $scope.waterMark.tag6;
     };
 
     if (window.location.href.indexOf('step') != -1) {

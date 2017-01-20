@@ -17,19 +17,19 @@
             <div class="model-case padding-1">
                 <div class="bold-text">女神版</div>
                 <img class="w-full" src="{{ asset('img/mobile/face/img_model_1.png') }}"/>
-                <img ng-if="!model.woman" class="margin-t-sm" src="{{ asset('img/mobile/face/btn_model_empty.png') }}"/>
+                <img ng-if="!model.woman" ng-click="changeModel('woman')"  class="margin-t-sm" src="{{ asset('img/mobile/face/btn_model_empty.png') }}"/>
                 <img ng-if="model.woman" class="margin-t-sm" src="{{ asset('img/mobile/face/btn_model_chose.png') }}"/>
             </div>
             <div class="model-case padding-2">
                 <div class="bold-text">女神版</div>
                 <img class="w-full" src="{{ asset('img/mobile/face/img_model_2.png') }}"/>
-                <img ng-if="!model.man" class="margin-t-sm" src="{{ asset('img/mobile/face/btn_model_empty.png') }}"/>
+                <img ng-if="!model.man" ng-click="changeModel('woman')"  class="margin-t-sm" src="{{ asset('img/mobile/face/btn_model_empty.png') }}"/>
                 <img ng-if="model.man" class="margin-t-sm" src="{{ asset('img/mobile/face/btn_model_chose.png') }}"/>
             </div>
             <div class="model-case padding-3">
                 <div class="bold-text">情侣版</div>
                 <img class="w-full" src="{{ asset('img/mobile/face/img_model_3.png') }}"/>
-                <img ng-if="!model.couple" class="margin-t-sm" src="{{ asset('img/mobile/face/btn_model_empty.png') }}"/>
+                <img ng-if="!model.couple" ng-click="changeModel('woman')"  class="margin-t-sm" src="{{ asset('img/mobile/face/btn_model_empty.png') }}"/>
                 <img ng-if="model.couple" class="margin-t-sm" src="{{ asset('img/mobile/face/btn_model_chose.png') }}"/>
             </div>
         </div>

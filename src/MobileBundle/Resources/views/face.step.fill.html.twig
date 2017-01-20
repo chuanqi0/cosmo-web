@@ -1,0 +1,36 @@
+{% extends 'base.mobile.html.twig' %}
+
+{% block title %}时尚致爱邀您制作新春封面 - 想说的话{% endblock %}
+
+{% block body %}
+    <div class="step2fill bg-white">
+        <div class="">
+            <a href="www.baidu.com"><img class="w-full" src="{{ asset('img/face/btn_download.gif') }}"/></a>
+        </div>
+        <div class="title text-center">
+            <div class=""><img src="{{ asset('img/face/img_title_up.png') }}"/></div>
+            <div class="bold-text">请编辑您想要说的话</div>
+            <div class="img-under-title "><img src="{{ asset('img/face/img_title_down.png') }}"/></div>
+        </div>
+
+        <div class="content">
+            <img class="w-full" src="{{ asset('img/face/img_model_2.png') }}"/>
+            <input class="blank-left l-1" type="text"/>
+            <input class="blank-left l-2" type="text"/>
+            <input class="blank-left l-3" type="text"/>
+            <input class="blank-right r-1" type="text"/>
+            <input class="blank-right r-2" type="text"/>
+            <input class="blank-right r-3" type="text"/>
+        </div>
+        <div class="text-center">
+            <a ui-sref="face.step2photo"><img class="bottom_btn" src="{{ asset('img/face/btn_enter2photo.png') }}"/></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {#<script type="text/javascript">#}
+    {#app.value('photoUuid', '{{ photoUuid }}');#}
+    {#</script>#}
+    <script type="text/javascript" src="{{ asset('js/mobile/face.js') }}"></script>
+{% endblock %}

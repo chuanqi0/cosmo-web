@@ -1,0 +1,33 @@
+{% extends 'base.mobile.html.twig' %}
+
+{% block title %}时尚致爱邀您制作新春封面 - 结果展示{% endblock %}
+
+{% block body %}
+    <div class="show bg-white">
+        <div class="">
+            <a href="www.baidu.com"><img class="w-full" src="{{ asset('img/face/btn_download.gif') }}"/></a>
+        </div>
+        <div class="title text-center">
+            <div class=""><img src="{{ asset('img/face/img_title_up.png') }}"/></div>
+            <div class="bold-text">长按图片识别二维码</div>
+            <div class="bold-text">开始定制属于您的杂志封面</div>
+            <div class="img-under-title "><img src="{{ asset('img/face/img_title_down.png') }}"/></div>
+        </div>
+
+        <div class="content text-center">
+            <img class="w-full" src="{{ asset('img/face/img_model_1.png') }}"/>
+        </div>
+        <div class="advice">
+            <a href=""><img class="w-full" src="{{ asset('img/face/img_ad_1.png') }}"/></a>
+            <a href="" class="margin-t-sm"><img class="w-full" src="{{ asset('img/face/img_ad_2.png') }}"/></a>
+            <a href="" class="margin-t-sm"><img class="w-full" src="{{ asset('img/face/img_ad_3.png') }}"/></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {#<script type="text/javascript">#}
+    {#app.value('photoUuid', '{{ photoUuid }}');#}
+    {#</script>#}
+    <script type="text/javascript" src="{{ asset('js/mobile/face.js') }}"></script>
+{% endblock %}

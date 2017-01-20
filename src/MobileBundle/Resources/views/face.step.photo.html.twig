@@ -1,0 +1,37 @@
+{% extends 'base.mobile.html.twig' %}
+
+{% block title %}时尚致爱邀您制作新春封面 - 选择照片{% endblock %}
+
+{% block body %}
+    <div class="step2photo bg-white">
+        <div class="">
+            <a href="www.baidu.com"><img class="w-full" src="{{ asset('img/face/btn_download.gif') }}"/></a>
+        </div>
+        <div class="title text-center">
+            <div class=""><img src="{{ asset('img/face/img_title_up.png') }}"/></div>
+            <div class="bold-text">请上传一张您的正面照</div>
+            <div class="img-under-title "><img src="{{ asset('img/face/img_title_down.png') }}"/></div>
+        </div>
+
+        <div class="content text-center">
+            <img class="w-half" src="{{ asset('img/face/btn_upload_photo.png') }}"/>
+        </div>
+        <div class="advice">
+            <div class="thin-text small-font">你肯定喜欢</div>
+            <div class=""><a href="www.baidu.com">真爱100全球誓言</a></div>
+            <div class=""><a href="">全球婚礼作品设计大赛</a> | <a href="">婚礼策划师盛典</a></div>
+            <div class=""><a href="">时尚新娘9周年</a> | <a href="">致爱珍藏本</a></div>
+            <div class=""><a href="">林允</a> | <a href="">拥有着白炙热的灵魂，享受随遇而安</a></div>
+            <div class=""><a href="">涅槃之后重整旗鼓的娜扎，她远比你想象的更精彩</a></div>
+            <div class=""><a href="">这是今年爱情最美的样子</a></div>
+            <div class=""><a href="">盛一伦</a> | <a href="">勇敢做自己，无需多言</a></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {#<script type="text/javascript">#}
+    {#app.value('photoUuid', '{{ photoUuid }}');#}
+    {#</script>#}
+    <script type="text/javascript" src="{{ asset('js/mobile/face.js') }}"></script>
+{% endblock %}

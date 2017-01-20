@@ -712,3 +712,162 @@ body {
     margin-top: 0.5rem;
   }
 }
+
+.face-body {
+  @color-gold: #BA882A;
+  @color-pink: #F5EBF0;
+  .text-center {
+    text-align: center;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .w-half {
+    width: 50%;
+  }
+  .bg-white {
+    background-color: white !important;
+  }
+  .btn-pointer {
+    cursor: pointer;
+  }
+  .padding-md {
+    padding: 16px;
+  }
+  .padding-lg {
+    padding: 20px;
+  }
+  .margin-t-sm {
+    margin-top: 6px;
+  }
+  .bold-text {
+    font-weight: bold;
+    color: @color-gold;
+    font-size: 18px;
+  }
+  .thin-text {
+    color: @color-gold;
+  }
+  .small-font {
+    font-size: 12px;
+  }
+
+  //font-family: "Microsoft YaHei";
+  height: 100%;
+  background-color: white;
+
+  .title {
+    padding-top: 6px;
+    .img-under-title {
+      margin-top: -8px;
+    }
+  }
+
+  .bottom_btn {
+    height: 36px;
+    margin: 16px 0px;
+  }
+
+  .home {
+    .down {
+      padding: 0px 32px;
+      .desc {
+        padding: 16px 0px;
+      }
+      .case {
+        padding: 0px 16px;
+      }
+    }
+  }
+
+  .model {
+    .content {
+      .model-case {
+        display: inline-block;
+        width: 49%;
+        &.padding-1 {
+          padding-left: 32px;
+          padding-right: 16px;
+        }
+        &.padding-2 {
+          padding-left: 16px;
+          padding-right: 32px;
+        }
+        &.padding-3 {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+      }
+    }
+  }
+
+  .step2fill {
+    .content {
+      position: relative;
+      padding: 0px 16px;
+      input {
+        border: 1px darkgray solid
+      }
+      .blank-left {
+        position: absolute;
+        left: 32px;
+        &.l-1 {
+          top: 110px;
+          width: 85px;
+          height: 40px;
+        }
+        &.l-2 {
+          top: 190px;
+          width: 100px;
+          height: 40px;
+        }
+        &.l-3 {
+          top: 280px;
+          width: 120px;
+          height: 35px;
+        }
+      }
+      .blank-right {
+        position: absolute;
+        right: 32px;
+        &.r-1 {
+          top: 110px;
+          width: 90px;
+          height: 30px;
+        }
+        &.r-2 {
+          top: 180px;
+          width: 90px;
+          height: 35px;
+        }
+        &.r-3 {
+          top: 250px;
+          width: 120px;
+          height: 40px;
+        }
+      }
+    }
+  }
+
+  .step2photo {
+    .content {
+      padding: 40px;
+    }
+    .advice {
+      div {
+        padding: 5px 5px;
+        border-bottom: 1px darkgray solid;
+      }
+      a {
+        color: darkgray;
+      }
+    }
+  }
+
+  .show {
+    .content {
+      padding: 0px 50px;
+      margin-bottom: 16px;
+    }
+  }
+}

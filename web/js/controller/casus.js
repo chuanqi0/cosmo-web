@@ -22,6 +22,8 @@ app.controller('CasusController', function($scope, $sce, casus, cbwaUser) {
                 if (response.status == 0) {
                     alert("感谢您为" + $scope.casus.name + "\n投出了宝贵的一票");
                     $scope.casus.voteNumber++;
+                } else {
+                    alert("一天最多只能给每个案例投5票");
                 }
             },
             error: function (xhr, status, err) {

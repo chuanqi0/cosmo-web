@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Controller\BaseController;
 use FantasticBundle\Entity\Casus;
+use FantasticBundle\Entity\Vote;
 use FantasticBundle\Entity\CasusAward;
 use UtilBundle\Constant\LoveConstant;
 
@@ -175,11 +176,25 @@ class CasusApiController extends BaseController
             if (!$casus) {
                 throw new LoveException(LoveConstant::ERROR_CASUS_NOT_EXIST);
             }
-            $casus->setVoteNumber($casus->getVoteNumber() + 1);
-            $casusRepository->saveCasus($casus);
-            // 设置返回数据
-            $ip = $this->getIp();
-            $this->setSuccess($ip);
+            $clientIp = $this->getClientIp();
+            $voteRepository = $this->getDoctrine()->getRepository('FantasticBundle:Vote');
+            $vote = $voteRepository->findVoteOfToday($clientIp, $casusGuid);
+            if (!$vote) {
+                $vote = new Vote();
+                $vote->setClientIp($clientIp);
+                $vote->setCasusGuid($casusGuid);
+            }
+            $voteNumber = $vote->getVoteNumber();
+            if ($voteNumber < 5) {
+                $vote->setVoteNumber($voteNumber + 1);
+                $voteRepository->saveVote($vote);
+                $casus->setVoteNumber($casus->getVoteNumber() + 1);
+                $casusRepository->saveCasus($casus);
+                // 设置返回数据
+                $this->setSuccess();
+            } else {
+                $this->setFailedMessage(LoveConstant::ERROR_VOTE_TOO_MUCH);
+            }
         } catch (\Exception $e) {
             $this->setFailedMessage($e->getMessage());
         }
@@ -187,7 +202,7 @@ class CasusApiController extends BaseController
         return $jsonResponse;
     }
 
-    public function getIp()
+    public function getClientIp()
     {
         $request = $this->container->get('request_stack')->getCurrentRequest();
         $ip = $request->getClientIp();

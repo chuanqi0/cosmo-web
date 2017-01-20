@@ -1,0 +1,35 @@
+{% extends 'base.mobile.html.twig' %}
+
+{% block title %}时尚致爱邀您制作新春封面 - 新年特辑{% endblock %}
+
+{% block body %}
+    <div class="home bg-white" ng-controller="SharePhotoController">
+        <div class="top">
+            <a href="www.baidu.com"><img class="w-full" src="{{ asset('img/face/btn_download.gif') }}"/></a>
+        </div>
+        <div class="down">
+            <div class="title text-center">
+                <div class=""><img src="{{ asset('img/face/img_title_up.png') }}"/></div>
+                <div class="bold-text">时尚致爱祝您新年快乐</div>
+                <div class="img-under-title "><img src="{{ asset('img/face/img_title_down.png')}}"/></div>
+            </div>
+
+            <div class="thin-text desc">不仅抢占明星风头，跟更把去年的会议、新春的祝福统统写在封面上，只要够美够帅，你就是下一个封面明星！快来制作属于你的新春杂志封面。</div>
+
+            <div class="case">
+                <div class="text-center thin-text">长话短说，以图为例</div>
+                <div><img class="w-full" src="{{ asset('img/face/img_model_1.png') }}"/></div>
+                <div class="text-center">
+                    <a ui-sref="face.model"><img class="bottom_btn" src="{{ asset('img/face/btn_make_cover.png') }}"/></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {#<script type="text/javascript">#}
+    {#app.value('photoUuid', '{{ photoUuid }}');#}
+    {#</script>#}
+    <script type="text/javascript" src="{{ asset('js/mobile/face.js') }}"></script>
+{% endblock %}

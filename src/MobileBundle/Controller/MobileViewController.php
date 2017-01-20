@@ -105,4 +105,64 @@ class MobileViewController extends BaseController
         );
         return $this->render('MobileBundle::cbwa.works.html.twig', $dataOut);
     }
+
+    /**
+     * @Route("/face/home")
+     */
+    public function faceHomeAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain
+        );
+        return $this->render('MobileBundle::face.home.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/face/model")
+     */
+    public function faceModelAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain
+        );
+        return $this->render('MobileBundle::face.model.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/face/step/fill")
+     */
+    public function faceStepFillAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain
+        );
+        return $this->render('MobileBundle::face.step.fill.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/face/step/photo")
+     */
+    public function faceStepPhotoAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain
+        );
+        return $this->render('MobileBundle::face.step.photo.html.twig', $dataOut);
+    }
+
+    /**
+     * @Route("/face/step/photo")
+     */
+    public function faceShowAction()
+    {
+        $dataOut = array(
+            'base' => $this->base,
+            'domain' => $this->domain
+        );
+        return $this->render('MobileBundle::face.show.html.twig', $dataOut);
+    }
 }

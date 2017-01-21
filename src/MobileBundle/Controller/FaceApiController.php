@@ -10,6 +10,7 @@ namespace MobileBundle\Controller;
 
 use FantasticBundle\Entity\Face;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Controller\BaseController;

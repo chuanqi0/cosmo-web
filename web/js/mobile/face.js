@@ -84,7 +84,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             canvas.height = (img.height / img.width) * canvas.width;
             var ctx = canvas.getContext("2d");
             // 绘制图片
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
             // 绘制水印
             if (window.location.href.indexOf('show') != -1) {
                 // 文字
@@ -124,7 +124,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     try {
         // 图片裁剪
         $scope.srcImg = '';
-        var img = $("#src-img")[0];
+        var srcimg = $("#src-img")[0];
         var imgCrops = [$("#img-crop-0")[0], $("#img-crop-1")[0]];
         var width = parseInt($("#img-crop-0").css("width"));
         var height = parseInt($("#img-crop-0").css("height"));
@@ -142,7 +142,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             fr.readAsDataURL(file);
 
             fr.onload = function () {
-                img.src = fr.result;
+                srcimg.src = fr.result;
                 $scope.$apply(function () {
                     $scope.srcImg = fr.result;
                 });

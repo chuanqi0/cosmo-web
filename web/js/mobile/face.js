@@ -291,7 +291,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 // }
                 // 二维码
                 var img2vm = document.getElementById('img-2vm');
-                ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, canvas.height - img2vm.height, img2vm.width, img2vm.height);
+                ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, canvas.height - img2vm.height, 50, 50);  //img2vm.width, img2vm.height);
             }
         }
     }

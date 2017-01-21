@@ -79,13 +79,13 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     }
 
     $scope.srcImg = '';
-    var coord = [[0, 0], [0, 0]];
+    var coord = [[0, 0], [0, 0]], width, height;
     if (window.location.href.indexOf('photo') != -1) {
         // 图片裁剪
         var srcimg = $("#src-img")[0];
         var imgCrops = [$("#img-crop-0")[0], $("#img-crop-1")[0]];
-        var width = parseInt($("#img-crop-0").css("width"));
-        var height = parseInt($("#img-crop-0").css("height"));
+        width = parseInt($("#img-crop-0").css("width"));
+        height = parseInt($("#img-crop-0").css("height"));
         var startX, startY, scale = 1;
         var changeX, changeY;
         $("#photo").on("change", function () {
@@ -93,7 +93,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             var file = this.files[0]
             //console.log(file);
             if (!/image\/\w+/.test(file.type)) {
-                alert(file.name + "不是图片文件！");
+                alert(file.name + "请上传图片文件！");
                 return;
             }
             console.log(file);
@@ -155,23 +155,13 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 'transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)'
             });
         }
-
-        //裁剪图片
-        function imageData($img, i) {
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
-            canvas.width = width;
-            canvas.height = height;
-            ctx.drawImage($img[i], coord[i][0], coord[i][1], width, width, 0, 0, width, height);
-            return canvas.toDataURL();
-        }
     }
 
     $scope.finish = function () {
-        var crop1 = imageData($("#src-img"), 0).replace(/\//g, '@');
-        var crop2 = null;
+        var crop1 = imageData($("#src-img"), 0);
+        var crop2 = '';
         if ($scope.ModelType == 'couple') {
-            crop2 = imageData($("#src-img"), 1).replace(/\//g, '@');
+            crop2 = imageData($("#src-img"), 1);
         }
         // console.log(crop1);
         // console.log(crop2);
@@ -187,16 +177,26 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         // //     crop2: crop2,
         // //     coord: coord
         // // });
-        $scope.createFacePoster(crop1, crop2);
+        $scope.createFacePoster(crop1, coord[0], crop2, coord[1]);
+
+        //裁剪图片
+        function imageData($img, i) {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage($img[i], coord[i][0], coord[i][1], width, width, 0, 0, width, height);
+            return canvas.toDataURL();
+        }
     };
 
-    $scope.createFacePoster = function(crop1, crop2) {
+    $scope.createFacePoster = function(crop1, coord1, crop2, coord2) {
         var faceUuid = generateUuid();
         var data = {
             "faceUuid": faceUuid,
             "type": type,
             "tags": [tag1, tag2, tag3, tag4, tag5, tag6].join('#'),
-            "crops": [crop1, crop2].join('#')
+            "crops": [crop1, coord1, crop2, coord2].join('#')
         };
         $.ajax({
             url: apiBase + '/api/face/create',
@@ -281,15 +281,17 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 ctx.fillText(tags[5] != '-' ? tags[0] : '', 16, 250 * (459 / canvas.height));
                 // 头像
                 var crops = faceObj.crops.split('#');
-                var crop1 = crops[0];
-                var crop2 = crops[1];
+                var crop1 = $("<img src='" + crops[0] + "'/>")[0];
+                var coord1 = crops[1];
                 ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, 0, 0, coord1.split(',')[0], coord1.split(',')[1]);
-                if (crop2) {
+                if (crops[2]) {
+                    var crop2 = $("<img src='" + crops[2] + "'/>")[0];
+                    var coord2 = crops[3];
                     ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, 0, 0, coord2.split(',')[0], coord2.split(',')[1]);
                 }
                 // 二维码
-                var $img2vm = $('#img-2vm');
-                ctx.drawImage($img2vm, 0, 0, $img2vm.width(), $img2vm.height(), 0, 0, 0, canvas.height - $img2vm.height());
+                var img2vm = $('#img-2vm')[0];
+                ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, 0, 0, canvas.height - img2vm.height);
             }
         }
     }

@@ -139,8 +139,10 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 imgCrops[idx].addEventListener("touchend", function (e) {
                     changeX = e.changedTouches[0].pageX - startX;// + x;
                     changeY = e.changedTouches[0].pageY - startY;// + y;
-                    coord[idx][0] = coord[idx][0] + e.changedTouches[0].pageX - startX;
-                    coord[idx][1] = coord[idx][1] + e.changedTouches[0].pageY - startY;
+                    coord[idx][0] = changeX;
+                    coord[idx][1] = changeY;
+                    // coord[idx][0] = coord[idx][0] + e.changedTouches[0].pageX - startX;
+                    // coord[idx][1] = coord[idx][1] + e.changedTouches[0].pageY - startY;
                     move($(this), changeX, changeY);
                     return;
 
@@ -163,20 +165,6 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         if ($scope.ModelType == 'couple') {
             crop2 = imageData($("#src-img")[0], 1);
         }
-        // console.log(crop1);
-        // console.log(crop2);
-        // // $cookieStore.put('cropped-img', {
-        // //     // type: type,
-        // //     // tag1: tag1,
-        // //     // tag2: tag2,
-        // //     // tag3: tag3,
-        // //     // tag4: tag4,
-        // //     // tag5: tag5,
-        // //     // tag6: tag6,
-        // //     crop1: crop1,
-        // //     crop2: crop2,
-        // //     coord: coord
-        // // });
         $scope.createFacePoster(crop1, coord[0], crop2, coord[1]);
 
         //裁剪图片
@@ -185,8 +173,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             var ctx = canvas.getContext('2d');
             canvas.width = width;
             canvas.height = height;
-            ctx.drawImage(img, coord[i][0], coord[i][1], width, width, 0, 0, 50, 50);
-            // ctx.drawImage(img[i], coord[i][0], coord[i][1], width, width, 0, 0, width, height);
+            ctx.drawImage(img, 0, 0, width, height, coord[i][0], coord[i][1], 50, 50);
             return canvas.toDataURL();
         }
     };

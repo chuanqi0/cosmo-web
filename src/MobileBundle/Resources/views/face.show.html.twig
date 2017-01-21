@@ -1,6 +1,6 @@
 {% extends 'base.mobile.html.twig' %}
 
-{% block title %}时尚致爱邀您制作新春封面 - 结果展示{% endblock %}
+{% block title %}时尚致爱邀您制作新春封面 - 我的封面{% endblock %}
 
 {% block body %}
     <div class="face-body show bg-white" ng-controller="SwapFaceCtrl">
@@ -17,7 +17,7 @@
         <div class="content text-center">
             {#<img class="w-full" src="{{ asset('img/mobile/face/img_model_1.png') }}"/>#}
             <canvas id="poster-canvas" class="w-full"></canvas>
-            <img id="img-2vm" src="{{ asset('img/mobile/face/img_2vm.jpg') }}" />
+            <img id="img-2vm" src="{{ asset('img/mobile/face/img_2vm.jpg') }}" style="width: 50px;height: 50px;"/>
         </div>
         <div class="advice">
             <a href=""><img class="w-full" src="{{ asset('img/mobile/face/img_ad_1.png') }}"/></a>

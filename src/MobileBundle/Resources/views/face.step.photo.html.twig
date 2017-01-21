@@ -15,12 +15,11 @@
 
         <div class="content text-center">
             <div class="img-holder">
+                {#<canvas id="poster-canvas" class="w-full"></canvas>#}
                 <img id="src-img" class="w-full" style="min-height: 300px;" src=""/>
                 <div id="img-crop-0" class="img-crop ic-0" ng-show="srcImg!=''"></div>
                 <div id="img-crop-1" class="img-crop ic-1" ng-show="ModelType=='couple'"></div>
             </div>
-
-            <div id="imgShow"></div>
 
             <div class="">
                 <button class="btn-upload" ng-click="uploadImage()">上传照片</button>

@@ -58,7 +58,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         document.getElementById("photo").click();
     };
 
-    if (window.location.href.indexOf('step') != -1 || window.location.href.indexOf('show') != -1) {
+    if (window.location.href.indexOf('step2fill') != -1 || window.location.href.indexOf('show') != -1) {
         // 初始化背景图片
         var img = new Image();
         if (type == 'woman') {
@@ -121,9 +121,9 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         }
     }
 
-    try {
+    $scope.srcImg = '';
+    if (window.location.href.indexOf('step2photo') != -1) {
         // 图片裁剪
-        $scope.srcImg = '';
         var srcimg = $("#src-img")[0];
         var imgCrops = [$("#img-crop-0")[0], $("#img-crop-1")[0]];
         var width = parseInt($("#img-crop-0").css("width"));
@@ -207,10 +207,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             ctx.drawImage($img[i], coord[i][0], coord[i][1], width, width, 0, 0, width, height);
             return canvas.toDataURL();
         }
-    } catch (e) {
-        console.log('not fit page');
     }
-
 
     $scope.finish = function () {
         var crop1 = imageData($("#src-img"), 0);

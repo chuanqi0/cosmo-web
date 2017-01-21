@@ -262,17 +262,17 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 ctx.fillText(tags[0] != '-' ? tags[0] : '', 16, 110 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (faceObj.type == 'woman') {
-                    ctx.fillStyle = "pink";
+                    ctx.fillStyle = "#FF3366";
                 }
                 ctx.fillText(tags[1] != '-' ? tags[1] : '', 16, 190 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (faceObj.type == 'woman') {
-                    ctx.fillStyle = "#FF99FF";
+                    ctx.fillStyle = "#FF3366";
                 }
                 ctx.fillText(tags[2] != '-' ? tags[2] : '', 16, 280 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (faceObj.type == 'woman') {
-                    ctx.fillStyle = "#FF99FF";
+                    ctx.fillStyle = "#FF3366";
                 }
                 ctx.fillText(tags[3] != '-' ? tags[3] : '', 16, 110 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
@@ -291,7 +291,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 // }
                 // 二维码
                 var img2vm = $('#img-2vm')[0];
-                ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, 0, 0, canvas.height - img2vm.height);
+                ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, canvas.height - img2vm.height, img2vm.width, img2vm.height);
             }
         }
     }

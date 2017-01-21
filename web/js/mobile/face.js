@@ -158,10 +158,10 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     }
 
     $scope.finish = function () {
-        var crop1 = imageData($("#src-img"), 0);
+        var crop1 = imageData($("#src-img")[0], 0);
         var crop2 = '';
         if ($scope.ModelType == 'couple') {
-            crop2 = imageData($("#src-img"), 1);
+            crop2 = imageData($("#src-img")[0], 1);
         }
         // console.log(crop1);
         // console.log(crop2);
@@ -180,12 +180,13 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         $scope.createFacePoster(crop1, coord[0], crop2, coord[1]);
 
         //裁剪图片
-        function imageData($img, i) {
+        function imageData(img, i) {
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
             canvas.width = width;
             canvas.height = height;
-            ctx.drawImage($img[i], coord[i][0], coord[i][1], width, width, 0, 0, width, height);
+            ctx.drawImage(img[i], coord[i][0], coord[i][1], width, width, 0, 0, 50, 50);
+            // ctx.drawImage(img[i], coord[i][0], coord[i][1], width, width, 0, 0, width, height);
             return canvas.toDataURL();
         }
     };
@@ -256,42 +257,42 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 // 绘制图片
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 // 文字
-                //ctx.font = "20px microsoft yahei";
+                ctx.font = "18px microsoft yahei";
                 var tags = faceObj.tags.split('#');
                 ctx.fillStyle = "#000000";
-                ctx.fillText(tags[0] != '-' ? tags[0] : '', 16, 110 * (canvas.height / 459));
+                ctx.fillText(tags[0] != '-' ? tags[0] : '', 16, 110 * (canvas.height / 412));
                 ctx.fillStyle = "#BA882A";
                 if (faceObj.type == 'woman') {
                     ctx.fillStyle = "#FF3366";
                 }
-                ctx.fillText(tags[1] != '-' ? tags[1] : '', 16, 190 * (canvas.height / 429));
+                ctx.fillText(tags[1] != '-' ? tags[1] : '', 16, 190 * (canvas.height / 412));
                 ctx.fillStyle = "#BA882A";
                 if (faceObj.type == 'woman') {
                     ctx.fillStyle = "#FF3366";
                 }
-                ctx.fillText(tags[2] != '-' ? tags[2] : '', 16, 280 * (canvas.height / 459));
+                ctx.fillText(tags[2] != '-' ? tags[2] : '', 16, 280 * (canvas.height / 412));
                 ctx.fillStyle = "#BA882A";
                 if (faceObj.type == 'woman') {
                     ctx.fillStyle = "#FF3366";
                 }
-                ctx.fillText(tags[3] != '-' ? tags[3] : '', 16, 110 * (canvas.height / 459));
+                ctx.fillText(tags[3] != '-' ? tags[3] : '', 235 * (canvas.width / 343), 110 * (canvas.height / 412), 90);
                 ctx.fillStyle = "#BA882A";
-                ctx.fillText(tags[4] != '-' ? tags[4] : '', 16, 180 * (canvas.height / 459));
+                ctx.fillText(tags[4] != '-' ? tags[4] : '', 216 * (canvas.width / 343), 180 * (canvas.height / 412), 120);
                 ctx.fillStyle = "#000000";
-                ctx.fillText(tags[5] != '-' ? tags[5] : '', 16, 250 * (canvas.height / 459));
+                ctx.fillText(tags[5] != '-' ? tags[5] : '', 124 * (canvas.width / 343), 250 * (canvas.height / 412), 100);
                 // 头像
-                // var crops = faceObj.crops.split('#');
-                // var crop1 = $("<img src='" + crops[0] + "'/>")[0];
-                // var coord1 = crops[1];
-                // ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, 0, 0, coord1.split(',')[0], coord1.split(',')[1]);
-                // if (crops[2]) {
-                //     var crop2 = $("<img src='" + crops[2] + "'/>")[0];
-                //     var coord2 = crops[3];
-                //     ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, 0, 0, coord2.split(',')[0], coord2.split(',')[1]);
-                // }
+                var crops = faceObj.crops.split('#');
+                var crop1 = $("<img src='" + crops[0] + "'/>")[0];
+                var coord1 = crops[1];
+                ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, coord1.split(',')[0], coord1.split(',')[1], 60, 60);
+                if (crops[2]) {
+                    var crop2 = $("<img src='" + crops[2] + "'/>")[0];
+                    var coord2 = crops[3];
+                    ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, coord2.split(',')[0], coord2.split(',')[1], 60, 60);
+                }
                 // 二维码
                 var img2vm = document.getElementById('img-2vm');
-                ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, canvas.height - 50, 50, 50);  //img2vm.width, img2vm.height);
+                ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 2, canvas.height - 50 + 2, 50, 50);  //img2vm.width, img2vm.height);
             }
         }
     }

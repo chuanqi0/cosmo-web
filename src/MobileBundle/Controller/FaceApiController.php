@@ -9,7 +9,7 @@
 namespace MobileBundle\Controller;
 
 use AppBundle\Common\LoveException;
-use FantasticBundle\Entity\Face;
+use MobileBundle\Entity\Face;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;

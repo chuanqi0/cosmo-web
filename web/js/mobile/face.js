@@ -254,7 +254,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 canvas.height = (img.height / img.width) * canvas.width;
                 var ctx = canvas.getContext("2d");
                 // 绘制图片
-                ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 // 文字
                 //ctx.font = "20px microsoft yahei";
                 var tags = faceObj.tags.split('#');

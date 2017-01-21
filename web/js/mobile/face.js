@@ -208,7 +208,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 if (response.status == 0) {
                     window.location.href = base + 'face/show/' + faceUuid;
                 } else {
-                    alert("生成成功");
+                    alert(response.message);
                 }
             },
             error: function (xhr, status, err) {
@@ -231,7 +231,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 if (response.status == 0) {
                     window.location.href = base + 'face/show/' + faceUuid;
                 } else {
-                    alert("生成成功");
+                    alert(response.message);
                 }
             },
             error: function (xhr, status, err) {

@@ -62,7 +62,7 @@ class FaceApiController extends BaseController
             $faceUuid = $request->get('faceUuid');
             // 处理业务
             $faceRepository = $this->getDoctrine()->getRepository('MobileBundle:Face');
-            $face = $faceRepository->findTicketByGuid($faceUuid);
+            $face = $faceRepository->findFaceByUuid($faceUuid);
             if (!$face) {
                 throw new LoveException(LoveConstant::MESSAGE_FAILED);
             }

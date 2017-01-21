@@ -98,22 +98,23 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 ctx.fillText(tag2 != '-' ? tag2 : '', 16, 190 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (type == 1) {
-                    ctx.fillStyle = "pink";
+                    ctx.fillStyle = "#FF99FF";
                 }
                 ctx.fillText(tag3 != '-' ? tag3 : '', 16, 280 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (type == 1) {
-                    ctx.fillStyle = "pink";
+                    ctx.fillStyle = "#FF99FF";
                 }
                 ctx.fillText(tag4 != '-' ? tag4 : '', 16, 110 * (459 / canvas.height));
-                ctx.fillStyle = "rgba(255,255,255,0.5)";
+                ctx.fillStyle = "#BA882A";
                 ctx.fillText(tag5 != '-' ? tag5 : '', 16, 180 * (459 / canvas.height));
-                ctx.fillStyle = "rgba(255,255,255,0.5)";
+                ctx.fillStyle = "#000000";
                 ctx.fillText(tag6 != '-' ? tag6 : '', 16, 250 * (459 / canvas.height));
                 // 头像
-                var crops = $cookieStore.get('cropped-img');
-                ctx.drawImage(crops.crop1, 0, 0, crops.crop1.width, crops.crop1.height, 0, 0, crops.coord[0][0], crops.coord[0][1]);
-                ctx.drawImage(crops.crop2, 0, 0, crops.crop2.width, crops.crop2.height, 0, 0, crops.coord[1][0], crops.coord[1][1]);
+                ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, 0, 0, coord1.split(',')[0], coord1.split(',')[1]);
+                if (crop2 != null) {
+                    ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, 0, 0, coord2.split(',')[0], coord2.split(',')[1]);
+                }
                 // 二维码
                 var $img2vm = $('#img-2vm');
                 ctx.drawImage($img2vm, 0, 0, $img2vm.width(), $img2vm.height(), 0, 0, 0, canvas.height - $img2vm.height());
@@ -122,6 +123,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     }
 
     $scope.srcImg = '';
+    var coord = [[0, 0], [0, 0]];
     if (window.location.href.indexOf('photo') != -1) {
         // 图片裁剪
         var srcimg = $("#src-img")[0];
@@ -129,7 +131,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         var width = parseInt($("#img-crop-0").css("width"));
         var height = parseInt($("#img-crop-0").css("height"));
         var startX, startY, scale = 1;
-        var coord = [[0, 0], [0, 0]], changeX, changeY;
+        var changeX, changeY;
         $("#photo").on("change", function () {
             var fr = new FileReader();
             var file = this.files[0]
@@ -217,23 +219,23 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         }
         console.log(crop1);
         console.log(crop2);
-
-        $cookieStore.put('cropped-img', {
-            // type: type,
-            // tag1: tag1,
-            // tag2: tag2,
-            // tag3: tag3,
-            // tag4: tag4,
-            // tag5: tag5,
-            // tag6: tag6,
-            crop1: crop1,
-            crop2: crop2,
-            coord: coord
-        });
+        // $cookieStore.put('cropped-img', {
+        //     // type: type,
+        //     // tag1: tag1,
+        //     // tag2: tag2,
+        //     // tag3: tag3,
+        //     // tag4: tag4,
+        //     // tag5: tag5,
+        //     // tag6: tag6,
+        //     crop1: crop1,
+        //     crop2: crop2,
+        //     coord: coord
+        // });
 
         // $("#imgShow").html("<img src=" + crop1 + " /><img src=" + crop2 + " />");
         window.location.href = base + 'face/show/' + type +
-            '/' + tag1 + '/' + tag2 + '/' + tag3 + '/' + tag4 + '/' + tag5 + '/' + tag6;
+            '/' + tag1 + '/' + tag2 + '/' + tag3 + '/' + tag4 + '/' + tag5 + '/' + tag6 +
+            '/' + crop1 + '/' + coord[0] + '/' + crop2 + '/' + coord[1];
     };
 
 

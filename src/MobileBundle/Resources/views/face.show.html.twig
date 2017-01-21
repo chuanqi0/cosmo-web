@@ -15,7 +15,9 @@
         </div>
 
         <div class="content text-center">
-            <img class="w-full" src="{{ asset('img/mobile/face/img_model_1.png') }}"/>
+            {#<img class="w-full" src="{{ asset('img/mobile/face/img_model_1.png') }}"/>#}
+            <canvas id="poster-canvas" class="w-full"></canvas>
+            <img id="img-2vm" src="{{ asset('img/mobile/face/img_2vm.gif') }}" />
         </div>
         <div class="advice">
             <a href=""><img class="w-full" src="{{ asset('img/mobile/face/img_ad_1.png') }}"/></a>
@@ -26,8 +28,14 @@
 {% endblock %}
 
 {% block javascripts %}
-    {#<script type="text/javascript">#}
-    {#app.value('photoUuid', '{{ photoUuid }}');#}
-    {#</script>#}
+    <script type="text/javascript">
+        var type = '{{ type }}';
+        var tag1 = '{{ tag1 }}';
+        var tag2 = '{{ tag2 }}';
+        var tag3 = '{{ tag3 }}';
+        var tag4 = '{{ tag4 }}';
+        var tag5 = '{{ tag5 }}';
+        var tag6 = '{{ tag6 }}';
+    </script>
     <script type="text/javascript" src="{{ asset('js/mobile/face.js') }}"></script>
 {% endblock %}

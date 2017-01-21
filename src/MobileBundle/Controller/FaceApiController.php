@@ -15,21 +15,21 @@ use AppBundle\Controller\BaseController;
 
 class FaceApiController extends BaseController
 {
-    /**
-     * @Route("/face/create")
-     * @Method({"POST"})
-     */
-    public function faceCreateAction(Request $request)
-    {
-        $faceUuid = $request->get('faceUuid');
-        $tags = $request->get('tags');
-        $crops = $request->get('crops');
-        // 处理业务
-        $faceRepository = $this->getDoctrine()->getRepository('MobileBundle:Face');
-
-        $face = new Face();
-        $jsonResponse = $this->makeJsonResponse();
-        return $jsonResponse;
-    }
+//    /**
+//     * @Route("/face/create")
+//     * @Method({"POST"})
+//     */
+//    public function faceCreateAction(Request $request)
+//    {
+//        $faceUuid = $request->get('faceUuid');
+//        $tags = $request->get('tags');
+//        $crops = $request->get('crops');
+//        // 处理业务
+//        $faceRepository = $this->getDoctrine()->getRepository('MobileBundle:Face');
+//
+//        $face = new Face();
+//        $jsonResponse = $this->makeJsonResponse();
+//        return $jsonResponse;
+//    }
 
 }

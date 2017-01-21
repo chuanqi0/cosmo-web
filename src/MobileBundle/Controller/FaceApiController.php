@@ -9,6 +9,7 @@
 namespace MobileBundle\Controller;
 
 use FantasticBundle\Entity\Face;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Controller\BaseController;

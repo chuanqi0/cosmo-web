@@ -19,7 +19,7 @@ class FaceApiController extends BaseController
      * @Route("/face/create")
      * @Method({"POST"})
      */
-    public function ticketCreateAction(Request $request)
+    public function faceCreateAction(Request $request)
     {
         $faceUuid = $request->get('faceUuid');
         $tags = $request->get('tags');

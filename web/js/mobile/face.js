@@ -90,26 +90,26 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 // 文字
                 //ctx.font = "20px microsoft yahei";
                 ctx.fillStyle = "#000000";
-                ctx.fillText(tag1, 16, 110 * (459 / canvas.height));
+                ctx.fillText(tag1 != '-' ? tag1 : '', 16, 110 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (type == 1) {
                     ctx.fillStyle = "pink";
                 }
-                ctx.fillText(tag2, 16, 190 * (459 / canvas.height));
+                ctx.fillText(tag2 != '-' ? tag2 : '', 16, 190 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (type == 1) {
                     ctx.fillStyle = "pink";
                 }
-                ctx.fillText(tag3, 16, 280 * (459 / canvas.height));
+                ctx.fillText(tag3 != '-' ? tag3 : '', 16, 280 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (type == 1) {
                     ctx.fillStyle = "pink";
                 }
-                ctx.fillText(tag4, 16, 110 * (459 / canvas.height));
+                ctx.fillText(tag4 != '-' ? tag4 : '', 16, 110 * (459 / canvas.height));
                 ctx.fillStyle = "rgba(255,255,255,0.5)";
-                ctx.fillText(tag5, 16, 180 * (459 / canvas.height));
+                ctx.fillText(tag5 != '-' ? tag5 : '', 16, 180 * (459 / canvas.height));
                 ctx.fillStyle = "rgba(255,255,255,0.5)";
-                ctx.fillText(tag6, 16, 250 * (459 / canvas.height));
+                ctx.fillText(tag6 != '-' ? tag6 : '', 16, 250 * (459 / canvas.height));
                 // 头像
                 var crops = $cookieStore.get('cropped-img');
                 ctx.drawImage(crops.crop1, 0, 0, crops.crop1.width, crops.crop1.height, 0, 0, crops.coord[0][0], crops.coord[0][1]);
@@ -121,90 +121,96 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         }
     }
 
-    $scope.srcImg = '';
-    var img = $("#src-img")[0];
-    var imgCrops = [$("#img-crop-0")[0], $("#img-crop-1")[0]];
-    var width = parseInt($("#img-crop-0").css("width"));
-    var height = parseInt($("#img-crop-0").css("height"));
-    var startX, startY, scale = 1;
-    var coord = [[0, 0], [0, 0]], changeX, changeY;
-    $("#photo").on("change", function () {
-        var fr = new FileReader();
-        var file = this.files[0]
-        //console.log(file);
-        if (!/image\/\w+/.test(file.type)) {
-            alert(file.name + "不是图片文件！");
-            return;
-        }
-        console.log(file);
-        fr.readAsDataURL(file);
-
-        fr.onload = function () {
-            img.src = fr.result;
-            $scope.$apply(function () {
-                $scope.srcImg = fr.result;
-            });
-            //var widthInit = img.width;
-            //if (img.width > img.height) {
-            //    img.height = height;
-            //    x = (width - img.width) / 2;
-            //    y = 0;
-            //} else {
-            //    img.width = width;
-            //    x = 0;
-            //    y = (height - img.height) / 2;
-            //}
-            //scale = img.width / $("#src-img").width();
-            //move(img, x, y);
-        };
-    });
-    for (var i = 0; i <= 1; i++) {
-        coord[i][0] = imgCrops[i].offsetLeft;
-        coord[i][1] = imgCrops[i].offsetTop;
-        (function (idx) {
-            imgCrops[idx].addEventListener("touchstart", function (e) {
-                startX = e.targetTouches[0].pageX;
-                startY = e.targetTouches[0].pageY;
+    try {
+        // 图片裁剪
+        $scope.srcImg = '';
+        var img = $("#src-img")[0];
+        var imgCrops = [$("#img-crop-0")[0], $("#img-crop-1")[0]];
+        var width = parseInt($("#img-crop-0").css("width"));
+        var height = parseInt($("#img-crop-0").css("height"));
+        var startX, startY, scale = 1;
+        var coord = [[0, 0], [0, 0]], changeX, changeY;
+        $("#photo").on("change", function () {
+            var fr = new FileReader();
+            var file = this.files[0]
+            //console.log(file);
+            if (!/image\/\w+/.test(file.type)) {
+                alert(file.name + "不是图片文件！");
                 return;
-            });
-            imgCrops[idx].addEventListener("touchmove", function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                changeX = e.changedTouches[0].pageX - startX;// + x;
-                changeY = e.changedTouches[0].pageY - startY;// + y;
-                move($(this), changeX, changeY);
-                return;
+            }
+            console.log(file);
+            fr.readAsDataURL(file);
 
-            });
-            imgCrops[idx].addEventListener("touchend", function (e) {
-                changeX = e.changedTouches[0].pageX - startX;// + x;
-                changeY = e.changedTouches[0].pageY - startY;// + y;
-                coord[idx][0] = coord[idx][0] + e.changedTouches[0].pageX - startX;
-                coord[idx][1] = coord[idx][1] + e.changedTouches[0].pageY - startY;
-                move($(this), changeX, changeY);
-                return;
-
-            });
-        })(i);
-    }
-    //确定目标图片的样式
-    function move(ele, x, y) {
-        console.log(x + '-' + y);
-        ele.css({
-            '-webkit-transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)',
-            'transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)'
+            fr.onload = function () {
+                img.src = fr.result;
+                $scope.$apply(function () {
+                    $scope.srcImg = fr.result;
+                });
+                //var widthInit = img.width;
+                //if (img.width > img.height) {
+                //    img.height = height;
+                //    x = (width - img.width) / 2;
+                //    y = 0;
+                //} else {
+                //    img.width = width;
+                //    x = 0;
+                //    y = (height - img.height) / 2;
+                //}
+                //scale = img.width / $("#src-img").width();
+                //move(img, x, y);
+            };
         });
+        for (var i = 0; i <= 1; i++) {
+            coord[i][0] = imgCrops[i].offsetLeft;
+            coord[i][1] = imgCrops[i].offsetTop;
+            (function (idx) {
+                imgCrops[idx].addEventListener("touchstart", function (e) {
+                    startX = e.targetTouches[0].pageX;
+                    startY = e.targetTouches[0].pageY;
+                    return;
+                });
+                imgCrops[idx].addEventListener("touchmove", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    changeX = e.changedTouches[0].pageX - startX;// + x;
+                    changeY = e.changedTouches[0].pageY - startY;// + y;
+                    move($(this), changeX, changeY);
+                    return;
+
+                });
+                imgCrops[idx].addEventListener("touchend", function (e) {
+                    changeX = e.changedTouches[0].pageX - startX;// + x;
+                    changeY = e.changedTouches[0].pageY - startY;// + y;
+                    coord[idx][0] = coord[idx][0] + e.changedTouches[0].pageX - startX;
+                    coord[idx][1] = coord[idx][1] + e.changedTouches[0].pageY - startY;
+                    move($(this), changeX, changeY);
+                    return;
+
+                });
+            })(i);
+        }
+        //确定目标图片的样式
+        function move(ele, x, y) {
+            console.log(x + '-' + y);
+            ele.css({
+                '-webkit-transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)',
+                'transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)'
+            });
+        }
+
+        //裁剪图片
+        function imageData($img, i) {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage($img[i], coord[i][0], coord[i][1], width, width, 0, 0, width, height);
+            return canvas.toDataURL();
+        }
+    } catch (e) {
+        console.log('not fit page');
     }
 
-    //裁剪图片
-    function imageData($img, i) {
-        var canvas = document.createElement('canvas');
-        var ctx = canvas.getContext('2d');
-        canvas.width = width;
-        canvas.height = height;
-        ctx.drawImage($img[i], coord[i][0], coord[i][1], width, width, 0, 0, width, height);
-        return canvas.toDataURL();
-    }
 
     $scope.finish = function () {
         var crop1 = imageData($("#src-img"), 0);

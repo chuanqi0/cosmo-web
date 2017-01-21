@@ -264,31 +264,31 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 if (faceObj.type == 'woman') {
                     ctx.fillStyle = "pink";
                 }
-                ctx.fillText(tags[1] != '-' ? tags[0] : '', 16, 190 * (459 / canvas.height));
+                ctx.fillText(tags[1] != '-' ? tags[1] : '', 16, 190 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (faceObj.type == 'woman') {
                     ctx.fillStyle = "#FF99FF";
                 }
-                ctx.fillText(tags[2] != '-' ? tags[0] : '', 16, 280 * (459 / canvas.height));
+                ctx.fillText(tags[2] != '-' ? tags[2] : '', 16, 280 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
                 if (faceObj.type == 'woman') {
                     ctx.fillStyle = "#FF99FF";
                 }
-                ctx.fillText(tags[3] != '-' ? tags[0] : '', 16, 110 * (459 / canvas.height));
+                ctx.fillText(tags[3] != '-' ? tags[3] : '', 16, 110 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
-                ctx.fillText(tags[4] != '-' ? tags[0] : '', 16, 180 * (459 / canvas.height));
+                ctx.fillText(tags[4] != '-' ? tags[4] : '', 16, 180 * (459 / canvas.height));
                 ctx.fillStyle = "#000000";
-                ctx.fillText(tags[5] != '-' ? tags[0] : '', 16, 250 * (459 / canvas.height));
+                ctx.fillText(tags[5] != '-' ? tags[5] : '', 16, 250 * (459 / canvas.height));
                 // 头像
-                var crops = faceObj.crops.split('#');
-                var crop1 = $("<img src='" + crops[0] + "'/>")[0];
-                var coord1 = crops[1];
-                ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, 0, 0, coord1.split(',')[0], coord1.split(',')[1]);
-                if (crops[2]) {
-                    var crop2 = $("<img src='" + crops[2] + "'/>")[0];
-                    var coord2 = crops[3];
-                    ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, 0, 0, coord2.split(',')[0], coord2.split(',')[1]);
-                }
+                // var crops = faceObj.crops.split('#');
+                // var crop1 = $("<img src='" + crops[0] + "'/>")[0];
+                // var coord1 = crops[1];
+                // ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, 0, 0, coord1.split(',')[0], coord1.split(',')[1]);
+                // if (crops[2]) {
+                //     var crop2 = $("<img src='" + crops[2] + "'/>")[0];
+                //     var coord2 = crops[3];
+                //     ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, 0, 0, coord2.split(',')[0], coord2.split(',')[1]);
+                // }
                 // 二维码
                 var img2vm = $('#img-2vm')[0];
                 ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, 0, 0, canvas.height - img2vm.height);

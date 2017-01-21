@@ -185,7 +185,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             var ctx = canvas.getContext('2d');
             canvas.width = width;
             canvas.height = height;
-            ctx.drawImage(img[i], coord[i][0], coord[i][1], width, width, 0, 0, 50, 50);
+            ctx.drawImage(img, coord[i][0], coord[i][1], width, width, 0, 0, 50, 50);
             // ctx.drawImage(img[i], coord[i][0], coord[i][1], width, width, 0, 0, width, height);
             return canvas.toDataURL();
         }
@@ -292,7 +292,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 }
                 // 二维码
                 var img2vm = document.getElementById('img-2vm');
-                ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 2, canvas.height - 50 + 2, 50, 50);  //img2vm.width, img2vm.height);
+                ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, canvas.height - 50, 50, 50);  //img2vm.width, img2vm.height);
             }
         }
     }

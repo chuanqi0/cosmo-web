@@ -111,8 +111,10 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 ctx.fillStyle = "#000000";
                 ctx.fillText(tag6 != '-' ? tag6 : '', 16, 250 * (459 / canvas.height));
                 // 头像
+                crop1.replace(/@/g, '/');
                 ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, 0, 0, coord1.split(',')[0], coord1.split(',')[1]);
                 if (crop2 != null) {
+                    crop2.replace(/@/g, '/');
                     ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, 0, 0, coord2.split(',')[0], coord2.split(',')[1]);
                 }
                 // 二维码
@@ -212,10 +214,10 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     }
 
     $scope.finish = function () {
-        var crop1 = imageData($("#src-img"), 0);
+        var crop1 = imageData($("#src-img"), 0).replace(/\//g, '@');
         var crop2 = null;
         if ($scope.ModelType == 'couple') {
-            crop2 = imageData($("#src-img"), 1);
+            crop2 = imageData($("#src-img"), 1).replace(/\//g, '@');
         }
         console.log(crop1);
         console.log(crop2);

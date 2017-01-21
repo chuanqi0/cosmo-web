@@ -40,4 +40,106 @@ class Face extends Base
      */
     private $crops;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set faceUuid
+     *
+     * @param guid $faceUuid
+     * @return Face
+     */
+    public function setFaceUuid($faceUuid)
+    {
+        $this->faceUuid = $faceUuid;
+
+        return $this;
+    }
+
+    /**
+     * Get faceUuid
+     *
+     * @return guid 
+     */
+    public function getFaceUuid()
+    {
+        return $this->faceUuid;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Face
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set tags
+     *
+     * @param string $tags
+     * @return Face
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return string 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Set crops
+     *
+     * @param string $crops
+     * @return Face
+     */
+    public function setCrops($crops)
+    {
+        $this->crops = $crops;
+
+        return $this;
+    }
+
+    /**
+     * Get crops
+     *
+     * @return string 
+     */
+    public function getCrops()
+    {
+        return $this->crops;
+    }
 }

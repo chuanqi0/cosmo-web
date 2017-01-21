@@ -1,6 +1,6 @@
 <?php
 
-namespace FantasticBundle\Entity;
+namespace MobileBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use AppBundle\Entity\Base;
 use UtilBundle\Service\UtilService;
 
 /**
- * @ORM\Entity(repositoryClass="FantasticBundle\Entity\FaceRepository")
+ * @ORM\Entity(repositoryClass="MobileBundle\Entity\FaceRepository")
  * @ORM\Table(name="swap_face")
  */
 class Face extends Base

@@ -30,6 +30,7 @@ class FaceApiController extends BaseController
         $faceRepository = $this->getDoctrine()->getRepository('MobileBundle:Face');
 
         $face = new Face();
+
         $jsonResponse = $this->makeJsonResponse();
         return $jsonResponse;
     }

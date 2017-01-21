@@ -58,7 +58,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         document.getElementById("photo").click();
     };
 
-    if (window.location.href.indexOf('step') != -1 || window.location.href.indexOf('show') != -1) {
+    if (window.location.href.indexOf('step2fill') != -1 || window.location.href.indexOf('show') != -1) {
         // 初始化背景图片
         var img = new Image();
         if (type == 'woman') {

@@ -17,7 +17,7 @@
         <div class="content text-center">
             {#<img class="w-full" src="{{ asset('img/mobile/face/img_model_1.png') }}"/>#}
             <canvas id="poster-canvas" class="w-full"></canvas>
-            <img id="img-2vm" src="{{ asset('img/mobile/face/img_2vm.gif') }}" />
+            <img id="img-2vm" src="{{ asset('img/mobile/face/img_2vm.jpg') }}" />
         </div>
         <div class="advice">
             <a href=""><img class="w-full" src="{{ asset('img/mobile/face/img_ad_1.png') }}"/></a>
@@ -36,6 +36,10 @@
         var tag4 = '{{ tag4 }}';
         var tag5 = '{{ tag5 }}';
         var tag6 = '{{ tag6 }}';
+        var crop1 = '{{ crop1 }}';
+        var coord1 = '{{ coord1 }}';
+        var crop2 = '{{ crop2 }}';
+        var coord2 = '{{ coord2 }}';
     </script>
     <script type="text/javascript" src="{{ asset('js/mobile/face.js') }}"></script>
 {% endblock %}

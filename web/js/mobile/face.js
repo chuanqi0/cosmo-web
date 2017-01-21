@@ -264,14 +264,14 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 }
                 ctx.fillText(tags[3] != '-' ? tags[3] : '', 235 * (canvas.width / 343), 110 * (canvas.height / 412), 90);
                 ctx.fillStyle = "#BA882A";
-                ctx.fillText(tags[4] != '-' ? tags[4] : '', 216 * (canvas.width / 343), 180 * (canvas.height / 412), 120);
+                ctx.fillText(tags[4] != '-' ? tags[4] : '', 216 * (canvas.width / 343), 180 * (canvas.height / 412), 110);
                 ctx.fillStyle = "#000000";
                 ctx.fillText(tags[5] != '-' ? tags[5] : '', 224 * (canvas.width / 343), 250 * (canvas.height / 412), 100);
                 // 头像
                 var crops = faceObj.crops.split('#');
                 var crop1 = $("<img src='" + crops[0] + "'/>")[0];
                 var coord1 = crops[1];
-                ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, parseInt(coord1.split(',')[0]), parseInt(coord1.split(',')[1]), 60, 60);
+                ctx.drawImage(crop1, parseInt(coord1.split(',')[0]), parseInt(coord1.split(',')[1]), crop1.width, crop1.height, 0, 0, 60, 60);
                 if (crops[2]) {
                     var crop2 = $("<img src='" + crops[2] + "'/>")[0];
                     var coord2 = crops[3];

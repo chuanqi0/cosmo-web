@@ -261,17 +261,17 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 ctx.fillStyle = "#000000";
                 ctx.fillText(tags[0] != '-' ? tags[0] : '', 16, 110 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
-                if (type == 1) {
+                if (faceObj.type == 'woman') {
                     ctx.fillStyle = "pink";
                 }
                 ctx.fillText(tags[1] != '-' ? tags[0] : '', 16, 190 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
-                if (type == 1) {
+                if (faceObj.type == 'woman') {
                     ctx.fillStyle = "#FF99FF";
                 }
                 ctx.fillText(tags[2] != '-' ? tags[0] : '', 16, 280 * (459 / canvas.height));
                 ctx.fillStyle = "#BA882A";
-                if (type == 1) {
+                if (faceObj.type == 'woman') {
                     ctx.fillStyle = "#FF99FF";
                 }
                 ctx.fillText(tags[3] != '-' ? tags[0] : '', 16, 110 * (459 / canvas.height));

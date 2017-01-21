@@ -236,8 +236,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
 
         // $("#imgShow").html("<img src=" + crop1 + " /><img src=" + crop2 + " />");
         window.location.href = base + 'face/show/' + type +
-            '/' + tag1 + '/' + tag2 + '/' + tag3 + '/' + tag4 + '/' + tag5 + '/' + tag6 +
-            '/' + crop1 + '/' + coord[0] + '/' + crop2 + '/' + coord[1];
+            '/' + tag1 + '/' + tag2 + '/' + tag3 + '/' + tag4 + '/' + tag5 + '/' + tag6;
+            // '/' + crop1 + '/' + coord[0] + '/' + crop2 + '/' + coord[1];
     };
 
 

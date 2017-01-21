@@ -1,6 +1,6 @@
 <?php
 
-namespace FantasticBundle\Entity;
+namespace MobileBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use UtilBundle\Service\UtilService;

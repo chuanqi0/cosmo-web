@@ -142,4 +142,13 @@ class Face extends Base
     {
         return $this->crops;
     }
+
+    public function toArray() {
+        return array(
+            "uuid" => $this->faceUuid,
+            "type" => $this->type,
+            "tags" => $this->tags,
+            "crops" => $this->crops
+        );
+    }
 }

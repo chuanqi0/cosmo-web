@@ -163,24 +163,14 @@ class MobileViewController extends BaseController
     }
 
     /**
-     * @Route("/face/show/{type}/{tag1}/{tag2}/{tag3}/{tag4}/{tag5}/{tag6}")
+     * @Route("/face/show/{uuid}")
      */
-    public function faceShowAction($type, $tag1, $tag2, $tag3, $tag4, $tag5, $tag6)
+    public function faceShowAction($uuid)
     {
         $dataOut = array(
             'base' => $this->base,
             'domain' => $this->domain,
-            'type' => $type,
-            'tag1' => $tag1,
-            'tag2' => $tag2,
-            'tag3' => $tag3,
-            'tag4' => $tag4,
-            'tag5' => $tag5,
-            'tag6' => $tag6,
-//            'crop1' => $crop1,
-//            'coord1' => $coord1,
-//            'crop2' => $crop2,
-//            'coord2' => $coord2
+            'uuid' => $uuid
         );
         return $this->render('MobileBundle::face.show.html.twig', $dataOut);
     }

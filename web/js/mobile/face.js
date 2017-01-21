@@ -79,8 +79,10 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     }
 
     $scope.srcImg = '';
+    $scope.ModelType = '';
     var coord = [[0, 0], [0, 0]], width, height;
     if (window.location.href.indexOf('photo') != -1) {
+        $scope.ModelType = type;
         // 图片裁剪
         var srcimg = $("#src-img")[0];
         var imgCrops = [$("#img-crop-0")[0], $("#img-crop-1")[0]];
@@ -158,7 +160,6 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             });
         }
     }
-
     $scope.finish = function () {
         var crop1 = imageData($("#src-img")[0], 0);
         var crop2 = '';
@@ -173,7 +174,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             var ctx = canvas.getContext('2d');
             canvas.width = width;
             canvas.height = height;
-            ctx.drawImage(img, coord[i][0], coord[i][1], width, height, 0, 0, 60, 60);
+            ctx.drawImage(img, coord[i][0]*2, coord[i][1]*2, width, height, 0, 0, 60, 60);
             return canvas.toDataURL();
         }
     };
@@ -271,7 +272,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 var crops = faceObj.crops.split('#');
                 var crop1 = $("<img src='" + crops[0] + "'/>")[0];
                 var coord1 = crops[1];
-                ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, parseInt(coord1.split(',')[0]), parseInt(coord1.split(',')[1]), 60, 60);
+                ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, parseInt(coord1.split(',')[0]) - 30, parseInt(coord1.split(',')[1]), 60, 60);
                 if (crops[2]) {
                     var crop2 = $("<img src='" + crops[2] + "'/>")[0];
                     var coord2 = crops[3];

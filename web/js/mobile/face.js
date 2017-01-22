@@ -149,6 +149,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     $scope.croppedImgUrl = '';
     var cropCount = 0;
     $scope.shiftImageArea = function (url) {
+        cropCount++;
         $scope.croppedImgUrl = url;
 
         $('.crop-tip-2').css('display', 'block');
@@ -167,9 +168,9 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         }
         var cropComponentState = $('.component').css('display');
         //
-        (function (state) {
+        (function (cnt) {
             var croppedImg = document.getElementById('cropped-img-1');
-            if (state == 'block') {
+            if (cnt >= 2) {
                 croppedImg = document.getElementById('cropped-img-2');
             }
             croppedImg.src = url;
@@ -191,7 +192,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             croppedImg.addEventListener("touchend", function (e) {
                 changeX = e.changedTouches[0].pageX - startX;
                 changeY = e.changedTouches[0].pageY - startY;
-                if (state == 'none') {
+                if (cnt == 1) {
                     coord[0][0] = changeX;
                     coord[0][1] = changeY;
                 } else { // 上传第二张图
@@ -201,8 +202,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 move($(this), changeX, changeY);
                 return;
             });
-        })(cropComponentState);
-        if (++cropCount >= 2) {  //第二次触发
+        })(cropCount);
+        if (cropCount >= 2) {  //第二次触发
             $('.component').css('display', 'none');
             $('.btn-upload').css('display', 'none');
             $('#js-crop').css('display', 'none');

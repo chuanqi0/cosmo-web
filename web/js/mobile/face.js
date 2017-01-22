@@ -276,11 +276,11 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                     var crops = faceObj.crops.split('#');
                     var crop1 = $("<img src='" + crops[0] + "'/>")[0];
                     var coord1 = crops[1];
-                    ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, parseInt(coord1.split(',')[0]), parseInt(coord1.split(',')[1]), cropWidth, cropHeight);
+                    ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, parseInt(coord1.split(',')[0]) - cropWidth / 2, parseInt(coord1.split(',')[1]), cropWidth, cropHeight);
                     if (crops[2]) {
                         var crop2 = $("<img src='" + crops[2] + "'/>")[0];
                         var coord2 = crops[3];
-                        ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, parseInt(coord2.split(',')[0]), parseInt(coord2.split(',')[1]), cropWidth, cropHeight);
+                        ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, parseInt(coord2.split(',')[0]) - cropWidth / 2, parseInt(coord2.split(',')[1]), cropWidth, cropHeight);
                     }
                 } catch (e) {
                     console.log(e);

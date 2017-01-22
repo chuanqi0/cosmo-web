@@ -141,8 +141,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 imgCrops[idx].addEventListener("touchend", function (e) {
                     changeX = e.changedTouches[0].pageX - startX;// + x;
                     changeY = e.changedTouches[0].pageY - startY;// + y;
-                    coord[idx][0] = changeX;
-                    coord[idx][1] = changeY;
+                    coord[idx][0] = changeX * (srcimg.naturalWidth / 341);
+                    coord[idx][1] = changeY * (srcimg.naturalWidth / 410);  // 对应调试图iphone6的比例
                     // coord[idx][0] = coord[idx][0] + e.changedTouches[0].pageX - startX;
                     // coord[idx][1] = coord[idx][1] + e.changedTouches[0].pageY - startY;
                     move($(this), changeX, changeY);
@@ -174,7 +174,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             var ctx = canvas.getContext('2d');
             canvas.width = width;
             canvas.height = height;
-            ctx.drawImage(img, coord[i][0]*2, coord[i][1]*2, width, height, 0, 0, 60, 60);
+            ctx.drawImage(img, coord[i][0], coord[i][1], width * (srcimg.naturalWidth / 341), height * (srcimg.naturalHeight / 410), 0, 0, width, height);
             return canvas.toDataURL();
         }
     };

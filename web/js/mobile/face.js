@@ -614,20 +614,21 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 width = $('.overlay').width(),
                 height = $('.overlay').height();
 
-            crop_canvas = document.createElement('canvas');
-            crop_canvas.width = width;
-            crop_canvas.height = height;
             var scale = 1;
             if (image_target.naturalWidth != image_target.width) {
                 scale = image_target.naturalWidth / image_target.width;
             }
+
             var modelImg = document.getElementById('model-img');
-            var aimWidth = 45 * (modelImg.width / 345);  // 实际想绘制的图片大小
+            var aimWidth = 50 * ((modelImg.width / modelImg.naturalWidth) * modelImg.width / 345);  // 实际想绘制的图片大小
             var aimHeight = aimWidth;
             if ($scope.ModelType != 'man') {
                 aimWidth *= 0.9;
                 aimHeight *= 0.9;
             }
+            crop_canvas = document.createElement('canvas');
+            crop_canvas.width = aimWidth;
+            crop_canvas.height = aimHeight;
             crop_canvas.getContext('2d').drawImage(image_target, left * scale, top * scale, width * scale, height * scale, 0, 0, aimWidth, aimHeight);
 
             var croppedImgUrl = crop_canvas.toDataURL("image/png");

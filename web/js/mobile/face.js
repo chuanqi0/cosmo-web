@@ -92,10 +92,10 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         // var imgCrops = [document.getElementById("img-crop-0"), document.getElementById("img-crop-1")];
         // var startX, startY, changeX, changeY;
         $("#photo").on("change", function () {
-            if ($('.component').css('display') == 'none') {
-                $('.component').css('display', 'block');
-                $('#js-crop').css('display', 'block');
-            }
+            // if ($('.component').css('display') == 'none') {
+            //     $('.component').css('display', 'block');
+            //     $('#js-crop').css('display', 'block');
+            // }
             var fr = new FileReader();
             var file = this.files[0]
             //console.log(file);
@@ -146,56 +146,68 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         //     })(i);
         // }
     }
-
+    $scope.croppedImgUrl = '';
     $scope.shiftImageArea = function (url) {
+        $scope.croppedImgUrl = url;
+
         $('.crop-tip-2').css('display', 'block');
         $('.target-area').css('display', 'block');
         $('.crop-tip-1').css('display', 'none');
 
+        console.log('------------------------->' + $scope.ModelType);
         if ($scope.ModelType == 'couple') {
-            $('.component').css('display', 'block')
+            $('.component').css('display', 'block');
+            $('.btn-upload').css('display', 'block');
+            $('#js-crop').css('display', 'block');
         } else {
-            $('.component').css('display', 'none')
-            $('#photo').css('display', 'none');
+            $('.component').css('display', 'none');
+            $('.btn-upload').css('display', 'none');
             $('#js-crop').css('display', 'none');
         }
         var cropComponentState = $('.component').css('display');
         //
-        var croppedImg = document.getElementById('cropped-img-1');
-        if (cropComponentState == 'block') {
-            croppedImg = document.getElementById('cropped-img-2');
-        }
-        croppedImg.src = url;
-        var startX, startY, changeX, changeY;
-        croppedImg.addEventListener("touchstart", function (e) {
-            startX = e.targetTouches[0].pageX;
-            startY = e.targetTouches[0].pageY;
-            return;
-        });
-        croppedImg.addEventListener("touchmove", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            changeX = e.changedTouches[0].pageX - startX;
-            changeY = e.changedTouches[0].pageY - startY;
-            move($(this), changeX, changeY);
-            return;
-
-        });
-        croppedImg.addEventListener("touchend", function (e) {
-            changeX = e.changedTouches[0].pageX - startX;
-            changeY = e.changedTouches[0].pageY - startY;
-            if (cropComponentState == 'none') {
-                coord[0][0] = changeX;
-                coord[0][1] = changeY;
-            } else { // 上传第二张图
-                coord[1][0] = changeX;
-                coord[1][1] = changeY;
+        (function (state) {
+            var croppedImg = document.getElementById('cropped-img-1');
+            if (state == 'block') {
+                croppedImg = document.getElementById('cropped-img-2');
             }
-            move($(this), changeX, changeY);
-            return;
-        });
+            croppedImg.src = url;
+            var startX, startY, changeX, changeY;
+            croppedImg.addEventListener("touchstart", function (e) {
+                startX = e.targetTouches[0].pageX;
+                startY = e.targetTouches[0].pageY;
+                return;
+            });
+            croppedImg.addEventListener("touchmove", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                changeX = e.changedTouches[0].pageX - startX;
+                changeY = e.changedTouches[0].pageY - startY;
+                move($(this), changeX, changeY);
+                return;
+
+            });
+            croppedImg.addEventListener("touchend", function (e) {
+                changeX = e.changedTouches[0].pageX - startX;
+                changeY = e.changedTouches[0].pageY - startY;
+                if (state == 'none') {
+                    coord[0][0] = changeX;
+                    coord[0][1] = changeY;
+                } else { // 上传第二张图
+                    coord[1][0] = changeX;
+                    coord[1][1] = changeY;
+                }
+                move($(this), changeX, changeY);
+                return;
+            });
+        })(cropComponentState);
+        if (cropComponentState == 'block') {
+            $('.component').css('display', 'none');
+            $('.btn-upload').css('display', 'none');
+            $('#js-crop').css('display', 'none');
+        }
     };
-    $scope.croppedImgUrl = '';
+
     $scope.finish = function () {
         $('.btn-ok').attr('disabled', true);
         // 图片裁剪
@@ -400,7 +412,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     }
 
     function move(ele, x, y) {
-        console.log(x + '-' + y);
+        // console.log(x + '-' + y);
         ele.css({
             '-webkit-transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)',
             'transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)'
@@ -603,7 +615,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
 
             var croppedImgUrl = crop_canvas.toDataURL("image/png");
-            $scope.croppedImgUrl = croppedImgUrl;
+
             $scope.shiftImageArea(croppedImgUrl);
             // window.open(crop_canvas.toDataURL("image/png"));
         }

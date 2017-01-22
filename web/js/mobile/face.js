@@ -158,6 +158,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         }
     }
     var cropWidth = 60, cropHeight = 60;
+    $scope.cropBtnText = '确认剪裁';
     $scope.finish = function () {
         // 图片裁剪
         cropWidth = parseInt($("#img-crop-0").css("width"));

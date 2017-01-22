@@ -201,7 +201,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 return;
             });
         })(cropComponentState);
-        if (cropComponentState == 'block') {
+        if (cropComponentState == 'block' && $scope.croppedImgUrl != '') {  //第二次触发
             $('.component').css('display', 'none');
             $('.btn-upload').css('display', 'none');
             $('#js-crop').css('display', 'none');

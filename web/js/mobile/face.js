@@ -440,11 +440,13 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             orig_src.src = image_target.src;
 
             // Wrap the image with the container and add resize handles
-            $(image_target).wrap('<div class="resize-container"></div>')
-                .before('<span class="resize-handle resize-handle-nw"></span>')
-                .before('<span class="resize-handle resize-handle-ne"></span>')
-                .after('<span class="resize-handle resize-handle-se"></span>')
-                .after('<span class="resize-handle resize-handle-sw"></span>');
+            if (cropCount == 0) {
+                $(image_target).wrap('<div class="resize-container"></div>')
+                    .before('<span class="resize-handle resize-handle-nw"></span>')
+                    .before('<span class="resize-handle resize-handle-ne"></span>')
+                    .after('<span class="resize-handle resize-handle-se"></span>')
+                    .after('<span class="resize-handle resize-handle-sw"></span>');
+            }
 
             // Assign the container to a variable
             $container = $(image_target).parent('.resize-container');

@@ -243,7 +243,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         // 头像
         try {
             var croppedImg = document.getElementById('cropped-img');
-            ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[0][0] - cropWidth / 2, coord[0][1], cropWidth, cropHeight);
+            ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[0][0], coord[0][1], cropWidth, cropHeight);
         } catch (e) {
             console.log(e);
         }
@@ -574,7 +574,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             $scope.croppedImgUrl = croppedImgUrl;
             $scope.shiftImageArea(croppedImgUrl);
             // window.open(crop_canvas.toDataURL("image/png"));
-            $('#js-crop').attr('disabled', true);
+            $('#js-crop').css('display', 'none');
+            $('#crop-tip').css('display', 'none');
         }
 
         init();

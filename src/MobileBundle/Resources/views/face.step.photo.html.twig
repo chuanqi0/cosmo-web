@@ -16,13 +16,15 @@
 
         <div class="content">
             <div class="target-area">
-                <img id="model-img" class="w-full" src=""/>
+                <div class="">
+                    <small class="gray-text"><b>Step2：</b>拖拽裁剪后的图片至目标区域</small>
+                </div>
+                <img id="model-img" class="w-full margin-t-sm" src=""/>
                 <img id="cropped-img" class="cropped-img" />
                 <img id="img-2vm" src="{{ asset('img/mobile/face/img_2vm.jpg') }}" style="width: 50px;height: 50px;display: none;"/>
-                <div class="margin-t-sm">
-                    <small class="gray-text"><b>Tip2：</b>拖拽裁剪后的图片至目标区域</small>
-                </div>
             </div>
+
+            <div id="crop-tip" class="margin-t-sm"><small class="gray-text"><b>Step1：</b>拖拽+缩放，将头像放至裁剪框内</small></div>
 
             <div class="component">
                 <div class="overlay">
@@ -31,8 +33,6 @@
                 </div>
                 <img id="resize-image" class="resize-image w-full" src="" />
             </div>
-
-            <div id="crop-tip" class="margin-t-sm"><small class="gray-text"><b>Tip1：</b>拖拽、缩放图片至裁剪区域</small></div>
 
             <div class="">
                 <button class="btn-upload" ng-click="uploadImage()">上传照片</button>

@@ -390,8 +390,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             constrain = false,
             min_width = 60, // Change as required
             min_height = 60,
-            max_width = 800, // Change as required
-            max_height = 900,
+            max_width = 400, // Change as required
+            max_height = 500,
             resize_canvas = document.createElement('canvas');
 
         init = function () {

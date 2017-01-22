@@ -195,7 +195,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 if (cnt == 1) {
                     coord[0][0] = changeX;
                     coord[0][1] = changeY;
-                } else { // 上传第二张图
+                } else if (cnt == 2) { // 上传第二张图
                     coord[1][0] = changeX;
                     coord[1][1] = changeY;
                 }
@@ -440,11 +440,13 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             orig_src.src = image_target.src;
 
             // Wrap the image with the container and add resize handles
-            $(image_target).wrap('<div class="resize-container"></div>')
-                .before('<span class="resize-handle resize-handle-nw"></span>')
-                .before('<span class="resize-handle resize-handle-ne"></span>')
-                .after('<span class="resize-handle resize-handle-se"></span>')
-                .after('<span class="resize-handle resize-handle-sw"></span>');
+            if (cropCount == 0) {
+                $(image_target).wrap('<div class="resize-container"></div>')
+                    .before('<span class="resize-handle resize-handle-nw"></span>')
+                    .before('<span class="resize-handle resize-handle-ne"></span>')
+                    .after('<span class="resize-handle resize-handle-se"></span>')
+                    .after('<span class="resize-handle resize-handle-sw"></span>');
+            }
 
             // Assign the container to a variable
             $container = $(image_target).parent('.resize-container');

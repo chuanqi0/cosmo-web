@@ -625,6 +625,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             width = 45 * (modelImg.width / 345);  // 实际想绘制的图片大小
             if ($scope.ModelType != 'man') {
                 width *= 0.8;
+                height = width;
             }
             crop_canvas.getContext('2d').drawImage(image_target, left * scale, top * scale, width * scale, height * scale, 0, 0, width, height);
 

@@ -80,16 +80,13 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
 
     $scope.srcImg = '';
     $scope.ModelType = '';
-    var coord = [[0, 0], [0, 0]], width, height;
+    var coord = [[0, 0], [0, 0]];
+    var srcimg = '';
     if (window.location.href.indexOf('photo') != -1) {
         $scope.ModelType = type;
-        // 图片裁剪
-        var srcimg = document.getElementById("src-img");
+        srcimg = document.getElementById("src-img");
         var imgCrops = [document.getElementById("img-crop-0"), document.getElementById("img-crop-1")];
-        width = parseInt($("#img-crop-0").css("width"));
-        height = parseInt($("#img-crop-0").css("height"));
-        var startX, startY, scale = 1;
-        var changeX, changeY;
+        var startX, startY, changeX, changeY;
         $("#photo").on("change", function () {
             var fr = new FileReader();
             var file = this.files[0]
@@ -141,8 +138,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 imgCrops[idx].addEventListener("touchend", function (e) {
                     changeX = e.changedTouches[0].pageX - startX;// + x;
                     changeY = e.changedTouches[0].pageY - startY;// + y;
-                    coord[idx][0] = changeX * (srcimg.naturalWidth / 341);
-                    coord[idx][1] = changeY * (srcimg.naturalHeight / 410);  // 对应调试图iphone6的比例
+                    coord[idx][0] = changeX;
+                    coord[idx][1] = changeY;
                     // coord[idx][0] = coord[idx][0] + e.changedTouches[0].pageX - startX;
                     // coord[idx][1] = coord[idx][1] + e.changedTouches[0].pageY - startY;
                     move($(this), changeX, changeY);
@@ -161,11 +158,15 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         }
     }
     $scope.finish = function () {
-        var cutImage = document.getElementById("src-img");
-        var crop1 = imageData(cutImage, 0);
+        // 图片裁剪
+        var width = parseInt($("#img-crop-0").css("width"));
+        var height = parseInt($("#img-crop-0").css("height"));
+        var scale = (srcimg.naturalWidth / srcimg.width)
+        console.log('---------------------------------->crop size:' + width + '-' + height);
+        var crop1 = imageData(srcimg, 0);
         var crop2 = '';
         if ($scope.ModelType == 'couple') {
-            crop2 = imageData(cutImage, 1);
+            crop2 = imageData(srcimg, 1);
         }
         $scope.createFacePoster(crop1, coord[0], crop2, coord[1]);
 
@@ -175,7 +176,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             var ctx = canvas.getContext('2d');
             canvas.width = width;
             canvas.height = height;
-            ctx.drawImage(img, coord[i][0], coord[i][1], width * (srcimg.naturalWidth / 341), height * (srcimg.naturalHeight / 410), 0, 0, width, height);
+            ctx.drawImage(img, coord[i][0] * scale, coord[i][1] * scale, width * scale, height * scale, 0, 0, width, height);
             return canvas.toDataURL();
         }
     };

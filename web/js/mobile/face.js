@@ -269,14 +269,18 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 ctx.fillStyle = "#000000";
                 ctx.fillText(tags[5] != '-' ? tags[5] : '', 224 * (canvas.width / 343), 250 * (canvas.height / 412), 100);
                 // 头像
-                var crops = faceObj.crops.split('#');
-                var crop1 = $("<img src='" + crops[0] + "'/>")[0];
-                var coord1 = crops[1];
-                ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, parseInt(coord1.split(',')[0]) - 15, parseInt(coord1.split(',')[1]), 30, 30);
-                if (crops[2]) {
-                    var crop2 = $("<img src='" + crops[2] + "'/>")[0];
-                    var coord2 = crops[3];
-                    ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, parseInt(coord2.split(',')[0]), parseInt(coord2.split(',')[1]), 30, 30);
+                try {
+                    var crops = faceObj.crops.split('#');
+                    var crop1 = $("<img src='" + crops[0] + "'/>")[0];
+                    var coord1 = crops[1];
+                    ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, parseInt(coord1.split(',')[0]) - 15, parseInt(coord1.split(',')[1]), 30, 30);
+                    if (crops[2]) {
+                        var crop2 = $("<img src='" + crops[2] + "'/>")[0];
+                        var coord2 = crops[3];
+                        ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, parseInt(coord2.split(',')[0]), parseInt(coord2.split(',')[1]), 30, 30);
+                    }
+                } catch (e) {
+                    console.log(e);
                 }
                 // 二维码
                 var img2vm = document.getElementById('img-2vm');

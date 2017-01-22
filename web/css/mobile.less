@@ -850,16 +850,146 @@ body {
   }
 
   &.step2photo {
+    // my content
     .content {
       position: relative;
       padding: 0px 16px;
       overflow: hidden;
-      .img-holder {
-        border: 1px dashed lightgray;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
+      .target-area {
+        position: relative;
+        min-height: 300px;
+        display: none;
+        .cropped-img {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+        }
       }
+      // crop
+      .component {
+        position: relative;
+        background: url(http://tympanus.net/Tutorials/ImageResizeCropCanvas/img/gridme.png) repeat center center;
+        padding: 16px;
+        height: 500px;
+        border: 2px solid lightgray;
+        max-width: 900px;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+      .resize-container {
+        position: relative;
+        display: inline-block;
+        cursor: move;
+        margin: 0 auto;
+      }
+      .resize-container img {
+        display: block;
+      }
+      .resize-container:hover img,
+      .resize-container:active img {
+        outline: 2px dashed rgba(222, 60, 80, .9);
+      }
+      .resize-handle-ne,
+      .resize-handle-se,
+      .resize-handle-nw,
+      .resize-handle-sw {
+        position: absolute;
+        display: block;
+        width: 10px;
+        height: 10px;
+        background: rgba(222, 60, 80, .9);
+        z-index: 999;
+      }
+      .resize-handle-nw {
+        top: -5px;
+        left: -5px;
+        cursor: nw-resize;
+      }
+      .resize-handle-sw {
+        bottom: -5px;
+        left: -5px;
+        cursor: sw-resize;
+      }
+      .resize-handle-ne {
+        top: -5px;
+        right: -5px;
+        cursor: ne-resize;
+      }
+      .resize-handle-se {
+        bottom: -5px;
+        right: -5px;
+        cursor: se-resize;
+      }
+      .overlay {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -25px;
+        margin-top: -100px;
+        z-index: 999;
+        width: 50px;
+        height: 50px;
+        border: solid 2px rgba(222, 60, 80, .9);
+        box-sizing: content-box;
+        pointer-events: none;
+      }
+      .overlay:after,
+      .overlay:before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 204px;
+        height: 40px;
+        border-left: dashed 2px rgba(222, 60, 80, .9);
+        border-right: dashed 2px rgba(222, 60, 80, .9);
+      }
+      .overlay:before {
+        top: 0;
+        margin-left: -2px;
+        margin-top: -40px;
+      }
+      .overlay:after {
+        bottom: 0;
+        margin-left: -2px;
+        margin-bottom: -40px;
+      }
+      .overlay-inner:after,
+      .overlay-inner:before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 40px;
+        height: 54px;
+        border-top: dashed 2px rgba(222, 60, 80, .9);
+        border-bottom: dashed 2px rgba(222, 60, 80, .9);
+      }
+      .overlay-inner:before {
+        left: 0;
+        margin-left: -40px;
+        margin-top: -2px;
+      }
+      .overlay-inner:after {
+        right: 0;
+        margin-right: -40px;
+        margin-top: -2px;
+      }
+      .btn-crop {
+        position: absolute;
+        vertical-align: bottom;
+        right: 5px;
+        bottom: 5px;
+        padding: 6px 10px;
+        z-index: 999;
+        background-color: #de3c50;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+      }
+      .btn-crop img {
+        vertical-align: middle;
+        margin-left: 8px;
+      }
+      // btn
       .btn-upload {
         float: left;
         background-color: @color-pink;
@@ -876,31 +1006,32 @@ body {
       .btn-ok {
         float: right;
         margin-top: 6px;
+        margin-left: 6px;
         border: 0;
         background-color: @color-pink;
         padding: 10px;
         border-radius: 6px;
-        color: green;
+        color: @color-gold;
       }
-      .img-crop {
-        position: absolute;
-        display: inline-block;
-        height: 60px;
-        width: 60px;
-        border: 3px dashed rgba(222, 60, 80, 0.9);
-        border-radius: 30px;
-        &.ic-0 {
-          left: 16px;
-          top: 0px;
-        }
-        &.ic-1 {
-          left: 16px;
-          top: 0px;
-        }
-        img {
-          position: absolute;
-        }
-      }
+      //.img-crop {
+      //  position: absolute;
+      //  display: inline-block;
+      //  height: 60px;
+      //  width: 60px;
+      //  border: 3px dotted rgba(222, 60, 80, 0.9);
+      //  border-radius: 30px;
+      //  &.ic-0 {
+      //    left: 16px;
+      //    top: 0px;
+      //  }
+      //  &.ic-1 {
+      //    left: 16px;
+      //    top: 0px;
+      //  }
+      //  img {
+      //    position: absolute;
+      //  }
+      //}
     }
     .advice {
       div {
@@ -916,11 +1047,6 @@ body {
   &.show {
     .content {
       padding: 16px;
-      img {
-        display: none;
-        width: 50px;
-        height: 50px;
-      }
     }
   }
 }

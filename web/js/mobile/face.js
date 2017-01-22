@@ -78,15 +78,19 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         }
     }
 
-    $scope.srcImg = '';
     $scope.ModelType = '';
     var coord = [[0, 0], [0, 0]];
-    var srcimg = null;
     if (window.location.href.indexOf('photo') != -1) {
         $scope.ModelType = type;
-        srcimg = document.getElementById("src-img");
-        var imgCrops = [document.getElementById("img-crop-0"), document.getElementById("img-crop-1")];
-        var startX, startY, changeX, changeY;
+        if (type == 'woman') {
+            document.getElementById('model-img').src = 'http://www.ccbride.com/pub/img/mobile/face/img_model_1.png';
+        } else if (type == 'man') {
+            document.getElementById('model-img').src = 'http://www.ccbride.com/pub/img/mobile/face/img_model_2.png';
+        } else {
+            document.getElementById('model-img').src = 'http://www.ccbride.com/pub/img/mobile/face/img_model_3.png';
+        }
+        // var imgCrops = [document.getElementById("img-crop-0"), document.getElementById("img-crop-1")];
+        // var startX, startY, changeX, changeY;
         $("#photo").on("change", function () {
             var fr = new FileReader();
             var file = this.files[0]
@@ -99,101 +103,163 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             fr.readAsDataURL(file);
 
             fr.onload = function () {
-                srcimg.src = fr.result;
-                $scope.$apply(function () {
-                    $scope.srcImg = fr.result;
-                });
-                //var widthInit = img.width;
-                //if (img.width > img.height) {
-                //    img.height = height;
-                //    x = (width - img.width) / 2;
-                //    y = 0;
-                //} else {
-                //    img.width = width;
-                //    x = 0;
-                //    y = (height - img.height) / 2;
-                //}
-                //scale = img.width / $("#src-img").width();
-                //move(img, x, y);
+                document.getElementById("resize-image").src = fr.result;
+                // $scope.$apply(function () {
+                //     $scope.srcImg = fr.result;
+                // });
+                resizeableImage($('.resize-image'));
             };
         });
-        for (var i = 0; i <= 1; i++) {
-            coord[i][0] = imgCrops[i].offsetLeft;
-            coord[i][1] = imgCrops[i].offsetTop;
-            (function (idx) {
-                imgCrops[idx].addEventListener("touchstart", function (e) {
-                    startX = e.targetTouches[0].pageX;
-                    startY = e.targetTouches[0].pageY;
-                    return;
-                });
-                imgCrops[idx].addEventListener("touchmove", function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    changeX = e.changedTouches[0].pageX - startX;// + x;
-                    changeY = e.changedTouches[0].pageY - startY;// + y;
-                    move($(this), changeX, changeY);
-                    return;
-
-                });
-                imgCrops[idx].addEventListener("touchend", function (e) {
-                    changeX = e.changedTouches[0].pageX - startX;// + x;
-                    changeY = e.changedTouches[0].pageY - startY;// + y;
-                    coord[idx][0] = changeX;
-                    coord[idx][1] = changeY;
-                    // coord[idx][0] = coord[idx][0] + e.changedTouches[0].pageX - startX;
-                    // coord[idx][1] = coord[idx][1] + e.changedTouches[0].pageY - startY;
-                    move($(this), changeX, changeY);
-                    return;
-
-                });
-            })(i);
-        }
-        //确定目标图片的样式
-        function move(ele, x, y) {
-            console.log(x + '-' + y);
-            ele.css({
-                '-webkit-transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)',
-                'transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)'
-            });
-        }
-    }
-    var cropWidth = 60, cropHeight = 60;
-    $scope.cropBtnText = '确认剪裁';
-    $scope.finish = function () {
-        // if ($scope.cropBtnText == '确认剪裁') {
-        //     $scope.cropBtnText = '制作封面';
-        //     return;
+        // for (var i = 0; i <= 1; i++) {
+        //     coord[i][0] = imgCrops[i].offsetLeft;
+        //     coord[i][1] = imgCrops[i].offsetTop;
+        //     (function (idx) {
+        //         imgCrops[idx].addEventListener("touchstart", function (e) {
+        //             startX = e.targetTouches[0].pageX;
+        //             startY = e.targetTouches[0].pageY;
+        //             return;
+        //         });
+        //         imgCrops[idx].addEventListener("touchmove", function (e) {
+        //             e.preventDefault();
+        //             e.stopPropagation();
+        //             changeX = e.changedTouches[0].pageX - startX;// + x;
+        //             changeY = e.changedTouches[0].pageY - startY;// + y;
+        //             move($(this), changeX, changeY);
+        //             return;
+        //
+        //         });
+        //         imgCrops[idx].addEventListener("touchend", function (e) {
+        //             changeX = e.changedTouches[0].pageX - startX;// + x;
+        //             changeY = e.changedTouches[0].pageY - startY;// + y;
+        //             coord[idx][0] = changeX;
+        //             coord[idx][1] = changeY;
+        //             // coord[idx][0] = coord[idx][0] + e.changedTouches[0].pageX - startX;
+        //             // coord[idx][1] = coord[idx][1] + e.changedTouches[0].pageY - startY;
+        //             move($(this), changeX, changeY);
+        //             return;
+        //
+        //         });
+        //     })(i);
         // }
-        // 图片裁剪
-        cropWidth = parseInt($("#img-crop-0").css("width"));
-        cropHeight = parseInt($("#img-crop-0").css("height"));
-        var scale = (srcimg.naturalWidth / srcimg.width)
-        console.log('---------------------------------->crop size:' + cropWidth + '-' + cropHeight);
-        var crop1 = imageData(srcimg, 0);
-        var crop2 = '';
-        if ($scope.ModelType == 'couple') {
-            crop2 = imageData(srcimg, 1);
-        }
-        $scope.createFacePoster(crop1, coord[0], crop2, coord[1]);
+    }
 
-        //裁剪图片
-        function imageData(img, i) {
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
-            canvas.width = cropWidth;
-            canvas.height = cropHeight;
-            ctx.drawImage(img, coord[i][0] * scale, coord[i][1] * scale, cropWidth * scale, cropHeight * scale, 0, 0, cropWidth, cropHeight);
-            return canvas.toDataURL();
-        }
+    $scope.shiftImageArea = function (url) {
+        $('.component').css('display', 'none');
+        $('.target-area').css('display', 'block');
+        var croppedImg = document.getElementById('cropped-img');
+        croppedImg.src = url;
+        var startX, startY, changeX, changeY;
+        croppedImg.addEventListener("touchstart", function (e) {
+            startX = e.targetTouches[0].pageX;
+            startY = e.targetTouches[0].pageY;
+            return;
+        });
+        croppedImg.addEventListener("touchmove", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            changeX = e.changedTouches[0].pageX - startX;// + x;
+            changeY = e.changedTouches[0].pageY - startY;// + y;
+            move($(this), changeX, changeY);
+            return;
+
+        });
+        croppedImg.addEventListener("touchend", function (e) {
+            changeX = e.changedTouches[0].pageX - startX;
+            changeY = e.changedTouches[0].pageY - startY;
+            coord[0][0] = changeX;
+            coord[0][1] = changeY;
+            move($(this), changeX, changeY);
+            return;
+        });
+    };
+    $scope.croppedImgUrl = '';
+    $scope.finish = function () {
+        // 图片裁剪
+        // var cropWidth = parseInt($("#cropped-img").css("width"));
+        // var cropHeight = parseInt($("#cropped-img").css("height"));
+        // var modelImg = document.getElementById('model-img')
+        // var scale = (modelImg.naturalWidth / modelImg.width)
+        //
+        // console.log('---------------------------------->crop size:' + cropWidth + '-' + cropHeight);
+        // var crop1 = imageData(srcimg, 0);
+        // var crop2 = '';
+        // if ($scope.ModelType == 'couple') {
+        //     crop2 = imageData(srcimg, 1);
+        // }
+        // $scope.createFacePoster(crop1, coord[0], crop2, coord[1]);
+        //
+        // //裁剪图片
+        // function imageData(img, i) {
+        //     var canvas = document.createElement('canvas');
+        //     var ctx = canvas.getContext('2d');
+        //     canvas.width = cropWidth;
+        //     canvas.height = cropHeight;
+        //     ctx.drawImage(img, coord[i][0] * scale, coord[i][1] * scale, cropWidth * scale, cropHeight * scale, 0, 0, cropWidth, cropHeight);
+        //     return canvas.toDataURL();
+        // }
+        var wholeImageDataUrl = $scope.generateWholeImageDataUrl();
+        $scope.createFacePoster(wholeImageDataUrl);
     };
 
-    $scope.createFacePoster = function(crop1, coord1, crop2, coord2) {
+    $scope.generateWholeImageDataUrl = function () {
+        var cropWidth = parseInt($("#cropped-img").css("width"));
+        var cropHeight = parseInt($("#cropped-img").css("height"));
+
+        var modelImg = document.getElementById('model-img');
+
+        var scale = (modelImg.naturalWidth / modelImg.width);
+
+        //准备canvas环境
+        var canvas = document.createElement('canvas');
+        canvas.width = modelImg.width;
+        canvas.height = modelImg.height;
+        var ctx = canvas.getContext("2d");
+        // 绘制图片
+        ctx.drawImage(modelImg, 0, 0, canvas.width, canvas.height);
+        // 文字
+        ctx.font = "18px microsoft yahei";
+        ctx.fillStyle = "#000000";
+        ctx.fillText(tag1 != '-' ? tag1 : '', 16, 110 * (canvas.height / 412));
+        ctx.fillStyle = "#BA882A";
+        if (type == 'woman') {
+            ctx.fillStyle = "#FF3366";
+        }
+        ctx.fillText(tag2 != '-' ? tag2 : '', 16, 190 * (canvas.height / 412));
+        ctx.fillStyle = "#BA882A";
+        if (type == 'woman') {
+            ctx.fillStyle = "#FF3366";
+        }
+        ctx.fillText(tag3 != '-' ? tag3 : '', 16, 280 * (canvas.height / 412));
+        ctx.fillStyle = "#BA882A";
+        if (type == 'woman') {
+            ctx.fillStyle = "#FF3366";
+        }
+        ctx.fillText(tag4 != '-' ? tag4 : '', 235 * (canvas.width / 343), 110 * (canvas.height / 412), 90);
+        ctx.fillStyle = "#BA882A";
+        ctx.fillText(tag5 != '-' ? tag5 : '', 216 * (canvas.width / 343), 180 * (canvas.height / 412), 110);
+        ctx.fillStyle = "#000000";
+        ctx.fillText(tag6 != '-' ? tag6 : '', 224 * (canvas.width / 343), 250 * (canvas.height / 412), 100);
+        // 头像
+        try {
+            var croppedImg = document.getElementById('cropped-img');
+            ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[0][0] * scale - cropWidth / 2, coord[0][1] * scale, cropWidth, cropHeight);
+        } catch (e) {
+            console.log(e);
+        }
+        // 二维码
+        var img2vm = document.getElementById('img-2vm');
+        ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, canvas.height - 50, 50, 50);
+        // 赶回合成之后的图片
+        return canvas.toDataURL("image/png");
+    };
+
+    $scope.createFacePoster = function (imageUrl) {
         var faceUuid = generateUuid();
         var data = {
             "faceUuid": faceUuid,
             "type": type,
             "tags": [tag1, tag2, tag3, tag4, tag5, tag6].join('#'),
-            "crops": [crop1, coord1, crop2, coord2].join('#')
+            "crops": imageUrl
         };
         $.ajax({
             url: apiBase + '/api/face/create',
@@ -226,7 +292,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             async: false,
             success: function (response) {
                 if (response.status == 0) {
-                    drawImage(response.data);
+                    // drawImage(response.data);
+                    showImage(response.data);
                 } else {
                     alert(response.message);
                 }
@@ -235,7 +302,9 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 console.error(err);
             }
         });
-
+        function showImage(imageObj) {
+            document.getElementById('show-img').src = imageObj.crops;
+        }
         function drawImage(faceObj) {
             var img = new Image();
             if (faceObj.type == 'woman') {
@@ -296,6 +365,218 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             }
         }
     }
+
+    function move(ele, x, y) {
+        console.log(x + '-' + y);
+        ele.css({
+            '-webkit-transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)',
+            'transform': 'translate3d(' + x + 'px, ' + y + 'px, 0)'
+        });
+    }
+
+    function resizeableImage(image_target) {
+        // Some variable and settings
+        var $container,
+            orig_src = new Image(),
+            image_target = $(image_target).get(0),
+            event_state = {},
+            constrain = false,
+            min_width = 60, // Change as required
+            min_height = 60,
+            max_width = 800, // Change as required
+            max_height = 900,
+            resize_canvas = document.createElement('canvas');
+
+        init = function () {
+
+            // When resizing, we will always use this copy of the original as the base
+            orig_src.src = image_target.src;
+
+            // Wrap the image with the container and add resize handles
+            $(image_target).wrap('<div class="resize-container"></div>')
+                .before('<span class="resize-handle resize-handle-nw"></span>')
+                .before('<span class="resize-handle resize-handle-ne"></span>')
+                .after('<span class="resize-handle resize-handle-se"></span>')
+                .after('<span class="resize-handle resize-handle-sw"></span>');
+
+            // Assign the container to a variable
+            $container = $(image_target).parent('.resize-container');
+
+            // Add events
+            $container.on('mousedown touchstart', '.resize-handle', startResize);
+            $container.on('mousedown touchstart', 'img', startMoving);
+            $('.js-crop').on('click', crop);
+        };
+
+        startResize = function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            saveEventState(e);
+            $(document).on('mousemove touchmove', resizing);
+            $(document).on('mouseup touchend', endResize);
+        };
+
+        endResize = function (e) {
+            e.preventDefault();
+            $(document).off('mouseup touchend', endResize);
+            $(document).off('mousemove touchmove', resizing);
+        };
+
+        saveEventState = function (e) {
+            // Save the initial event details and container state
+            event_state.container_width = $container.width();
+            event_state.container_height = $container.height();
+            event_state.container_left = $container.offset().left;
+            event_state.container_top = $container.offset().top;
+            event_state.mouse_x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft();
+            event_state.mouse_y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
+
+            // This is a fix for mobile safari
+            // For some reason it does not allow a direct copy of the touches property
+            if (typeof e.originalEvent.touches !== 'undefined') {
+                event_state.touches = [];
+                $.each(e.originalEvent.touches, function (i, ob) {
+                    event_state.touches[i] = {};
+                    event_state.touches[i].clientX = 0 + ob.clientX;
+                    event_state.touches[i].clientY = 0 + ob.clientY;
+                });
+            }
+            event_state.evnt = e;
+        };
+
+        resizing = function (e) {
+            var mouse = {},
+                width, height, left, top, offset = $container.offset();
+            mouse.x = (e.clientX || e.pageX || e.originalEvent.touches[0].clientX) + $(window).scrollLeft();
+            mouse.y = (e.clientY || e.pageY || e.originalEvent.touches[0].clientY) + $(window).scrollTop();
+
+            // Position image differently depending on the corner dragged and constraints
+            if ($(event_state.evnt.target).hasClass('resize-handle-se')) {
+                width = mouse.x - event_state.container_left;
+                height = mouse.y - event_state.container_top;
+                left = event_state.container_left;
+                top = event_state.container_top;
+            } else if ($(event_state.evnt.target).hasClass('resize-handle-sw')) {
+                width = event_state.container_width - (mouse.x - event_state.container_left);
+                height = mouse.y - event_state.container_top;
+                left = mouse.x;
+                top = event_state.container_top;
+            } else if ($(event_state.evnt.target).hasClass('resize-handle-nw')) {
+                width = event_state.container_width - (mouse.x - event_state.container_left);
+                height = event_state.container_height - (mouse.y - event_state.container_top);
+                left = mouse.x;
+                top = mouse.y;
+                if (constrain || e.shiftKey) {
+                    top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
+                }
+            } else if ($(event_state.evnt.target).hasClass('resize-handle-ne')) {
+                width = mouse.x - event_state.container_left;
+                height = event_state.container_height - (mouse.y - event_state.container_top);
+                left = event_state.container_left;
+                top = mouse.y;
+                if (constrain || e.shiftKey) {
+                    top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
+                }
+            }
+
+            // Optionally maintain aspect ratio
+            if (constrain || e.shiftKey) {
+                height = width / orig_src.width * orig_src.height;
+            }
+
+            if (width > min_width && height > min_height && width < max_width && height < max_height) {
+                // To improve performance you might limit how often resizeImage() is called
+                resizeImage(width, height);
+                // Without this Firefox will not re-calculate the the image dimensions until drag end
+                $container.offset({
+                    'left': left,
+                    'top': top
+                });
+            }
+        }
+
+        resizeImage = function (width, height) {
+            resize_canvas.width = width;
+            resize_canvas.height = height;
+            resize_canvas.getContext('2d').drawImage(orig_src, 0, 0, width, height);
+            $(image_target).attr('src', resize_canvas.toDataURL("image/png"));
+        };
+
+        startMoving = function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            saveEventState(e);
+            $(document).on('mousemove touchmove', moving);
+            $(document).on('mouseup touchend', endMoving);
+        };
+
+        endMoving = function (e) {
+            e.preventDefault();
+            $(document).off('mouseup touchend', endMoving);
+            $(document).off('mousemove touchmove', moving);
+        };
+
+        moving = function (e) {
+            var mouse = {},
+                touches;
+            e.preventDefault();
+            e.stopPropagation();
+
+            touches = e.originalEvent.touches;
+
+            mouse.x = (e.clientX || e.pageX || touches[0].clientX) + $(window).scrollLeft();
+            mouse.y = (e.clientY || e.pageY || touches[0].clientY) + $(window).scrollTop();
+            $container.offset({
+                'left': mouse.x - (event_state.mouse_x - event_state.container_left),
+                'top': mouse.y - (event_state.mouse_y - event_state.container_top)
+            });
+            // Watch for pinch zoom gesture while moving
+            if (event_state.touches && event_state.touches.length > 1 && touches.length > 1) {
+                var width = event_state.container_width,
+                    height = event_state.container_height;
+                var a = event_state.touches[0].clientX - event_state.touches[1].clientX;
+                a = a * a;
+                var b = event_state.touches[0].clientY - event_state.touches[1].clientY;
+                b = b * b;
+                var dist1 = Math.sqrt(a + b);
+
+                a = e.originalEvent.touches[0].clientX - touches[1].clientX;
+                a = a * a;
+                b = e.originalEvent.touches[0].clientY - touches[1].clientY;
+                b = b * b;
+                var dist2 = Math.sqrt(a + b);
+
+                var ratio = dist2 / dist1;
+
+                width = width * ratio;
+                height = height * ratio;
+                // To improve performance you might limit how often resizeImage() is called
+                resizeImage(width, height);
+            }
+        };
+
+        crop = function () {
+            //Find the part of the image that is inside the crop box
+            var crop_canvas,
+                left = $('.overlay').offset().left - $container.offset().left,
+                top = $('.overlay').offset().top - $container.offset().top,
+                width = $('.overlay').width(),
+                height = $('.overlay').height();
+
+            crop_canvas = document.createElement('canvas');
+            crop_canvas.width = width;
+            crop_canvas.height = height;
+
+            crop_canvas.getContext('2d').drawImage(image_target, left, top, width, height, 0, 0, width, height);
+
+            var croppedImgUrl = crop_canvas.toDataURL("image/png");
+            $scope.croppedImgUrl = croppedImgUrl;
+            $scope.shiftImageArea(croppedImgUrl);
+            // window.open(crop_canvas.toDataURL("image/png"));
+        }
+
+        init();
+    };
 
     function generateUuid(len, radix) {
         var CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');

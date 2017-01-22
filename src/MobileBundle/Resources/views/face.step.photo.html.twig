@@ -19,10 +19,9 @@
                 <img id="model-img" class="w-full" src=""/>
                 <img id="cropped-img" class="cropped-img" />
                 <img id="img-2vm" src="{{ asset('img/mobile/face/img_2vm.jpg') }}" style="width: 50px;height: 50px;display: none;"/>
-            </div>
-
-            <div class="margin-t-sm">
-                <small class="gray-text">拖拽裁剪后的图片至目标区域</small>
+                <div class="margin-t-sm">
+                    <small class="gray-text">拖拽裁剪后的图片至目标区域</small>
+                </div>
             </div>
 
             <div class="component">
@@ -72,5 +71,5 @@
         var tag5 = '{{ tag5 }}';
         var tag6 = '{{ tag6 }}';
     </script>
-    <script type="text/javascript" src="{{ asset('js/mobile/face.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/mobile/face.js?v=2') }}"></script>
 {% endblock %}

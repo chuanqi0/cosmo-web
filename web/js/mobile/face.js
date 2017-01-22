@@ -288,7 +288,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             var croppedImg = document.getElementById('cropped-img-1');
             ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[0][0], coord[0][1], cropWidth, cropHeight);
             var croppedImg = document.getElementById('cropped-img-2');
-            ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[0][0], coord[0][1], cropWidth, cropHeight);
+            ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[1][0], coord[1][1], cropWidth, cropHeight);
         } catch (e) {
             console.log(e);
         }

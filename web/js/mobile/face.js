@@ -174,6 +174,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     };
     $scope.croppedImgUrl = '';
     $scope.finish = function () {
+        $('.btn-ok').attr('disabled', true);
         // 图片裁剪
         // var cropWidth = parseInt($("#cropped-img").css("width"));
         // var cropHeight = parseInt($("#cropped-img").css("height"));
@@ -242,7 +243,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         // 头像
         try {
             var croppedImg = document.getElementById('cropped-img');
-            ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[0][0] * scale - cropWidth / 2, coord[0][1] * scale, cropWidth, cropHeight);
+            ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[0][0] - cropWidth / 2, coord[0][1], cropWidth, cropHeight);
         } catch (e) {
             console.log(e);
         }
@@ -573,6 +574,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             $scope.croppedImgUrl = croppedImgUrl;
             $scope.shiftImageArea(croppedImgUrl);
             // window.open(crop_canvas.toDataURL("image/png"));
+            $('#js-crop').attr('disabled', true);
         }
 
         init();

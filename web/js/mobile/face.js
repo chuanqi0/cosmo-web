@@ -149,7 +149,9 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     $scope.croppedImgUrl = '';
     var cropCount = 0;
     $scope.shiftImageArea = function (url) {
-        cropCount++;
+        if (++cropCount > 2) {
+            return;
+        }
         $scope.croppedImgUrl = url;
 
         $('.crop-tip-2').css('display', 'block');
@@ -170,7 +172,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         //
         (function (cnt) {
             var croppedImg = document.getElementById('cropped-img-1');
-            if (cnt >= 2) {
+            if (cnt == 2) {
                 croppedImg = document.getElementById('cropped-img-2');
             }
             croppedImg.src = url;

@@ -84,8 +84,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     if (window.location.href.indexOf('photo') != -1) {
         $scope.ModelType = type;
         // 图片裁剪
-        var srcimg = $("#src-img")[0];
-        var imgCrops = [$("#img-crop-0")[0], $("#img-crop-1")[0]];
+        var srcimg = document.getElementById("src-img");
+        var imgCrops = [document.getElementById("img-crop-0"), document.getElementById("img-crop-1")];
         width = parseInt($("#img-crop-0").css("width"));
         height = parseInt($("#img-crop-0").css("height"));
         var startX, startY, scale = 1;
@@ -142,7 +142,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                     changeX = e.changedTouches[0].pageX - startX;// + x;
                     changeY = e.changedTouches[0].pageY - startY;// + y;
                     coord[idx][0] = changeX * (srcimg.naturalWidth / 341);
-                    coord[idx][1] = changeY * (srcimg.naturalWidth / 410);  // 对应调试图iphone6的比例
+                    coord[idx][1] = changeY * (srcimg.naturalHeight / 410);  // 对应调试图iphone6的比例
                     // coord[idx][0] = coord[idx][0] + e.changedTouches[0].pageX - startX;
                     // coord[idx][1] = coord[idx][1] + e.changedTouches[0].pageY - startY;
                     move($(this), changeX, changeY);
@@ -161,10 +161,11 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         }
     }
     $scope.finish = function () {
-        var crop1 = imageData($("#src-img")[0], 0);
+        var cutImage = document.getElementById("src-img");
+        var crop1 = imageData(cutImage, 0);
         var crop2 = '';
         if ($scope.ModelType == 'couple') {
-            crop2 = imageData($("#src-img")[0], 1);
+            crop2 = imageData(cutImage, 1);
         }
         $scope.createFacePoster(crop1, coord[0], crop2, coord[1]);
 

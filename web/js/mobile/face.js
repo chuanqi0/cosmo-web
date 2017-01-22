@@ -165,6 +165,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             croppedImg.addEventListener("touchmove", function (e) {
                 e.preventDefault();
                 e.stopPropagation();
+                changeX = e.changedTouches[0].pageX - startX;
+                changeY = e.changedTouches[0].pageY - startY;
                 move($(this), changeX, changeY);
                 return;
 

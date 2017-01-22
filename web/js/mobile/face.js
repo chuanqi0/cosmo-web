@@ -405,7 +405,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             // Add events
             $container.on('mousedown touchstart', '.resize-handle', startResize);
             $container.on('mousedown touchstart', 'img', startMoving);
-            $('.js-crop').on('click', crop);
+            $('#js-crop').on('click', crop);
         };
 
         startResize = function (e) {

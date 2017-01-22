@@ -19,6 +19,7 @@
                 <img id="model-img" class="w-full" src=""/>
                 <img id="cropped-img" class="cropped-img" />
                 <img id="img-2vm" src="{{ asset('img/mobile/face/img_2vm.jpg') }}" style="width: 50px;height: 50px;display: none;"/>
+                <small class="margin-t-sm">拖拽裁剪后的图片至目标区域</small>
             </div>
 
             <div class="component">
@@ -27,12 +28,12 @@
                     </div>
                 </div>
                 <img id="resize-image" class="resize-image" src="" />
+                <small class="margin-t-sm">拖动、缩放图片至裁剪区域</small>
             </div>
-            <!-- /content -->
 
             <div class="">
                 <button class="btn-upload" ng-click="uploadImage()">上传照片</button>
-                <button class="btn-ok" ng-click="finish()">制作</button>
+                <button id="js-crop"  class="btn-ok">制作</button>
                 <button class="btn-ok" ng-click="finish()">裁剪&nbsp;<img class=""
                                                                         src="http://tympanus.net/Tutorials/ImageResizeCropCanvas/img/crop.svg">
                 </button>

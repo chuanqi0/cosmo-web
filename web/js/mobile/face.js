@@ -81,7 +81,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     $scope.srcImg = '';
     $scope.ModelType = '';
     var coord = [[0, 0], [0, 0]];
-    var srcimg = '';
+    var srcimg = null;
     if (window.location.href.indexOf('photo') != -1) {
         $scope.ModelType = type;
         srcimg = document.getElementById("src-img");
@@ -157,12 +157,13 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             });
         }
     }
+    var cropWidth = 60, cropHeight = 60;
     $scope.finish = function () {
         // 图片裁剪
-        var width = parseInt($("#img-crop-0").css("width"));
-        var height = parseInt($("#img-crop-0").css("height"));
+        cropWidth = parseInt($("#img-crop-0").css("width"));
+        cropHeight = parseInt($("#img-crop-0").css("height"));
         var scale = (srcimg.naturalWidth / srcimg.width)
-        console.log('---------------------------------->crop size:' + width + '-' + height);
+        console.log('---------------------------------->crop size:' + cropWidth + '-' + cropHeight);
         var crop1 = imageData(srcimg, 0);
         var crop2 = '';
         if ($scope.ModelType == 'couple') {
@@ -174,9 +175,9 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         function imageData(img, i) {
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
-            canvas.width = width;
-            canvas.height = height;
-            ctx.drawImage(img, coord[i][0] * scale, coord[i][1] * scale, width * scale, height * scale, 0, 0, width, height);
+            canvas.width = cropWidth;
+            canvas.height = cropHeight;
+            ctx.drawImage(img, coord[i][0] * scale, coord[i][1] * scale, cropWidth * scale, cropHeight * scale, 0, 0, cropWidth, cropHeight);
             return canvas.toDataURL();
         }
     };
@@ -275,11 +276,11 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                     var crops = faceObj.crops.split('#');
                     var crop1 = $("<img src='" + crops[0] + "'/>")[0];
                     var coord1 = crops[1];
-                    ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, parseInt(coord1.split(',')[0]) - 15, parseInt(coord1.split(',')[1]), 30, 30);
+                    ctx.drawImage(crop1, 0, 0, crop1.width, crop1.height, parseInt(coord1.split(',')[0]), parseInt(coord1.split(',')[1]), cropWidth, cropHeight);
                     if (crops[2]) {
                         var crop2 = $("<img src='" + crops[2] + "'/>")[0];
                         var coord2 = crops[3];
-                        ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, parseInt(coord2.split(',')[0]), parseInt(coord2.split(',')[1]), 30, 30);
+                        ctx.drawImage(crop2, 0, 0, crop2.width, crop2.height, parseInt(coord2.split(',')[0]), parseInt(coord2.split(',')[1]), cropWidth, cropHeight);
                     }
                 } catch (e) {
                     console.log(e);

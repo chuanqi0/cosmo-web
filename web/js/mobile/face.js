@@ -220,6 +220,9 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         // 文字
         ctx.font = "18px microsoft yahei";
         ctx.fillStyle = "#000000";
+        if (type == 'couple') {
+            ctx.fillStyle = "#FFFFFF";
+        }
         ctx.fillText(tag1 != '-' ? tag1 : '', 16, 110 * (canvas.height / 412));
         ctx.fillStyle = "#BA882A";
         if (type == 'woman') {
@@ -239,6 +242,9 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         ctx.fillStyle = "#BA882A";
         ctx.fillText(tag5 != '-' ? tag5 : '', 216 * (canvas.width / 343), 180 * (canvas.height / 412), 110);
         ctx.fillStyle = "#000000";
+        if (type == 'couple') {
+            ctx.fillStyle = "#FFFFFF";
+        }
         ctx.fillText(tag6 != '-' ? tag6 : '', 224 * (canvas.width / 343), 250 * (canvas.height / 412), 100);
         // 头像
         try {

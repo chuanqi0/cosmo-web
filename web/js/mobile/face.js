@@ -440,23 +440,18 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             orig_src.src = image_target.src;
 
             // Wrap the image with the container and add resize handles
-            if (cropCount == 0) {
-                $(image_target).wrap('<div class="resize-container"></div>')
-                    .before('<span class="resize-handle resize-handle-nw"></span>')
-                    .before('<span class="resize-handle resize-handle-ne"></span>')
-                    .after('<span class="resize-handle resize-handle-se"></span>')
-                    .after('<span class="resize-handle resize-handle-sw"></span>');
+            $(image_target).wrap('<div class="resize-container"></div>')
+                .before('<span class="resize-handle resize-handle-nw"></span>')
+                .before('<span class="resize-handle resize-handle-ne"></span>')
+                .after('<span class="resize-handle resize-handle-se"></span>')
+                .after('<span class="resize-handle resize-handle-sw"></span>');
 
-                // Assign the container to a variable
-                $container = $(image_target).parent('.resize-container');
-
-                // Add events
-                $container.on('mousedown touchstart', '.resize-handle', startResize);
-                $container.on('mousedown touchstart', 'img', startMoving);
-            }
             // Assign the container to a variable
             $container = $(image_target).parent('.resize-container');
 
+            // Add events
+            $container.on('mousedown touchstart', '.resize-handle', startResize);
+            $container.on('mousedown touchstart', 'img', startMoving);
             $('#js-crop').on('click', crop);
         };
 
@@ -464,10 +459,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             e.preventDefault();
             e.stopPropagation();
             saveEventState(e);
-            if (cropCount == 0) {
-                $(document).on('mousemove touchmove', resizing);
-                $(document).on('mouseup touchend', endResize);
-            }
+            $(document).on('mousemove touchmove', resizing);
+            $(document).on('mouseup touchend', endResize);
         };
 
         endResize = function (e) {
@@ -560,10 +553,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             e.preventDefault();
             e.stopPropagation();
             saveEventState(e);
-            if (cropCount == 0) {
-                $(document).on('mousemove touchmove', moving);
-                $(document).on('mouseup touchend', endMoving);
-            }
+            $(document).on('mousemove touchmove', moving);
+            $(document).on('mouseup touchend', endMoving);
         };
 
         endMoving = function (e) {

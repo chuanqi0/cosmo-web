@@ -622,12 +622,13 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 scale = image_target.naturalWidth / image_target.width;
             }
             var modelImg = document.getElementById('model-img');
-            width = 45 * (modelImg.width / 345);  // 实际想绘制的图片大小
+            var aimWidth = 45 * (modelImg.width / 345);  // 实际想绘制的图片大小
+            var aimHeight = aimWidth;
             if ($scope.ModelType != 'man') {
-                width *= 0.8;
-                height = width;
+                aimWidth *= 0.9;
+                aimHeight *= 0.9;
             }
-            crop_canvas.getContext('2d').drawImage(image_target, left * scale, top * scale, width * scale, height * scale, 0, 0, width, height);
+            crop_canvas.getContext('2d').drawImage(image_target, left * scale, top * scale, width * scale, height * scale, 0, 0, aimWidth, aimHeight);
 
             var croppedImgUrl = crop_canvas.toDataURL("image/png");
 

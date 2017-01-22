@@ -447,8 +447,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                     .after('<span class="resize-handle resize-handle-se"></span>')
                     .after('<span class="resize-handle resize-handle-sw"></span>');
 
-                // // Assign the container to a variable
-                // $container = $(image_target).parent('.resize-container');
+                // Assign the container to a variable
+                $container = $(image_target).parent('.resize-container');
 
                 // Add events
                 $container.on('mousedown touchstart', '.resize-handle', startResize);

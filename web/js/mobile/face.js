@@ -148,12 +148,16 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     }
 
     $scope.shiftImageArea = function (url) {
-        $('#crop-tip-2').css('display', 'block');
+        $('.crop-tip-2').css('display', 'block');
         $('.target-area').css('display', 'block');
+        $('.crop-tip-1').css('display', 'none');
+
         if ($scope.ModelType == 'couple') {
             $('.component').css('display', 'block')
         } else {
             $('.component').css('display', 'none')
+            $('#photo').css('display', 'none');
+            $('#js-crop').css('display', 'none');
         }
         var cropComponentState = $('.component').css('display');
         //
@@ -602,11 +606,6 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             $scope.croppedImgUrl = croppedImgUrl;
             $scope.shiftImageArea(croppedImgUrl);
             // window.open(crop_canvas.toDataURL("image/png"));
-            $('#js-crop').css('display', 'none');
-            if ($scope.ModelType != 'couple') {
-                $('#photo').css('display', 'none');
-            }
-            $('#crop-tip-1').css('display', 'none');
         }
 
         init();

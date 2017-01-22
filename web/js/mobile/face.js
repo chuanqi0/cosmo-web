@@ -621,6 +621,11 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             if (image_target.naturalWidth != image_target.width) {
                 scale = image_target.naturalWidth / image_target.width;
             }
+            var modelImg = document.getElementById('model-img');
+            width = width * (modelImg.width / 345)
+            if ($scope.ModelType != 'man') {
+                width *= 0.8;
+            }
             crop_canvas.getContext('2d').drawImage(image_target, left * scale, top * scale, width * scale, height * scale, 0, 0, width, height);
 
             var croppedImgUrl = crop_canvas.toDataURL("image/png");

@@ -15,18 +15,16 @@
         </div>
 
         <div class="content">
+            <div class="crop-tip-2"><small class="gray-text"><b>Step2：</b>拖拽裁剪后的图片至目标区域</small></div>
             <div class="target-area">
-                <div class="">
-                    <small class="gray-text"><b>Step2：</b>拖拽裁剪后的图片至目标区域</small>
-                </div>
                 <img id="model-img" class="w-full margin-t-sm" src=""/>
-                <img id="cropped-img" class="cropped-img" />
+                <img id="cropped-img-1" class="cropped-img" />
+                <img id="cropped-img-2" class="cropped-img" />
                 <img id="img-2vm" src="{{ asset('img/mobile/face/img_2vm.jpg') }}" style="width: 50px;height: 50px;display: none;"/>
             </div>
 
-            <div id="crop-tip" class="margin-t-sm"><small class="gray-text"><b>Step1：</b>拖拽+缩放，将头像放至裁剪框内</small></div>
-
-            <div class="component">
+            <div id="crop-tip-1" class=""><small class="gray-text"><b>Step1：</b>拖拽+缩放，将头像放至裁剪框内</small></div>
+            <div class="component margin-t-sm">
                 <div class="overlay">
                     <div class="overlay-inner">
                     </div>
@@ -37,9 +35,7 @@
             <div class="">
                 <button class="btn-upload" ng-click="uploadImage()">上传照片</button>
                 <button class="btn-ok" ng-click="finish()">制作</button>
-                <button id="js-crop" class="btn-ok">裁剪&nbsp;<img class=""
-                                                                        src="http://tympanus.net/Tutorials/ImageResizeCropCanvas/img/crop.svg">
-                </button>
+                <button id="js-crop" class="btn-ok">裁剪&nbsp;<img class="" src="http://tympanus.net/Tutorials/ImageResizeCropCanvas/img/crop.svg"></button>
             </div>
 
             <input type="file" id="photo" accept="image/*"/>

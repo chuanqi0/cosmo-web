@@ -92,10 +92,14 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         // var imgCrops = [document.getElementById("img-crop-0"), document.getElementById("img-crop-1")];
         // var startX, startY, changeX, changeY;
         $("#photo").on("change", function () {
+            if ($('.component').css('display') == 'none') {
+                $('.component').css('display', 'block');
+                $('#js-crop').css('display', 'block');
+            }
             var fr = new FileReader();
             var file = this.files[0]
             //console.log(file);
-            if (!/image\/\w+/.test(file.type)) {
+            if (!file || !/image\/\w+/.test(file.type)) {
                 alert(file.name + "请上传图片文件！");
                 return;
             }
@@ -144,33 +148,43 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     }
 
     $scope.shiftImageArea = function (url) {
-        $('.component').css('display', 'none');
         $('.target-area').css('display', 'block');
-        var croppedImg = document.getElementById('cropped-img');
-        croppedImg.src = url;
-        var startX, startY, changeX, changeY;
-        croppedImg.addEventListener("touchstart", function (e) {
-            startX = e.targetTouches[0].pageX;
-            startY = e.targetTouches[0].pageY;
-            return;
-        });
-        croppedImg.addEventListener("touchmove", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            changeX = e.changedTouches[0].pageX - startX;// + x;
-            changeY = e.changedTouches[0].pageY - startY;// + y;
-            move($(this), changeX, changeY);
-            return;
+        var cropComponentState = $('.component').css('display');
+        (function (state) {
+            var croppedImg = document.getElementById('cropped-img-1');
+            if (state == 'block') {
+                croppedImg = document.getElementById('cropped-img-2');
+            }
+            croppedImg.src = url;
+            var startX, startY, changeX, changeY;
+            croppedImg.addEventListener("touchstart", function (e) {
+                startX = e.targetTouches[0].pageX;
+                startY = e.targetTouches[0].pageY;
+                return;
+            });
+            croppedImg.addEventListener("touchmove", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                move($(this), changeX, changeY);
+                return;
 
-        });
-        croppedImg.addEventListener("touchend", function (e) {
-            changeX = e.changedTouches[0].pageX - startX;
-            changeY = e.changedTouches[0].pageY - startY;
-            coord[0][0] = changeX;
-            coord[0][1] = changeY;
-            move($(this), changeX, changeY);
-            return;
-        });
+            });
+            croppedImg.addEventListener("touchend", function (e) {
+                changeX = e.changedTouches[0].pageX - startX;
+                changeY = e.changedTouches[0].pageY - startY;
+                coord[0][0] = changeX;
+                coord[0][1] = changeY;
+                if (state == 'block') { // 上传第二张图
+                    coord[1][0] = changeX;
+                    coord[1][1] = changeY;
+                }
+                move($(this), changeX, changeY);
+                return;
+            });
+        })(cropComponentState);
+        if (cropComponentState == 'none') {
+            $('.component').css('display', 'block');
+        }
     };
     $scope.croppedImgUrl = '';
     $scope.finish = function () {
@@ -203,8 +217,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     };
 
     $scope.generateWholeImageDataUrl = function () {
-        var cropWidth = parseInt($("#cropped-img").css("width"));
-        var cropHeight = parseInt($("#cropped-img").css("height"));
+        var cropWidth = parseInt($("#cropped-img-1").css("width"));
+        var cropHeight = parseInt($("#cropped-img-1").css("height"));
 
         var modelImg = document.getElementById('model-img');
 
@@ -248,7 +262,9 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         ctx.fillText(tag6 != '-' ? tag6 : '', 224 * (canvas.width / 343), 250 * (canvas.height / 412), 100);
         // 头像
         try {
-            var croppedImg = document.getElementById('cropped-img');
+            var croppedImg = document.getElementById('cropped-img-1');
+            ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[0][0], coord[0][1], cropWidth, cropHeight);
+            var croppedImg = document.getElementById('cropped-img-2');
             ctx.drawImage(croppedImg, 0, 0, croppedImg.width, croppedImg.height, coord[0][0], coord[0][1], cropWidth, cropHeight);
         } catch (e) {
             console.log(e);
@@ -581,7 +597,10 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             $scope.shiftImageArea(croppedImgUrl);
             // window.open(crop_canvas.toDataURL("image/png"));
             $('#js-crop').css('display', 'none');
-            $('#crop-tip').css('display', 'none');
+            if ($scope.ModelType != 'couple') {
+                $('#photo').css('display', 'none');
+            }
+            $('#crop-tip-1').css('display', 'none');
         }
 
         init();

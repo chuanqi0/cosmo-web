@@ -168,7 +168,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             $('.component').css('display', 'none');
             $('.btn-upload').css('display', 'none');
             $('#js-crop').css('display', 'none');
-            $('.btn-crop').css('display', 'block');
+            $('.btn-ok').css('display', 'block');
         }
         var cropComponentState = $('.component').css('display');
         //
@@ -211,7 +211,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             $('.component').css('display', 'none');
             $('.btn-upload').css('display', 'none');
             $('#js-crop').css('display', 'none');
-            $('.btn-crop').css('display', 'block');
+            $('.btn-ok').css('display', 'block');
         }
     };
 

@@ -261,13 +261,15 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
         }
-        var toLeft4 = (canvas.width - 25 * (canvas.width / 343) * (tag4.length <= 5 ? tag4.length : 5));
+        var toLeft4 = (canvas.width - 20 * (canvas.width / 343) * 5);
         tag4 = tag4.substr(0, 5);
+        tag4 = giveBlanks(5 - tag4.length) + tag4;
         ctx.fillText(tag4 != '-' ? tag4 : '', toLeft4, 110 * (canvas.height / 412), 80 * (canvas.width / 343));
         // 文字5
         ctx.fillStyle = "#BA882A";
-        var toLeft5 = (canvas.width - 25 * (canvas.width / 343) * (tag5.length <= 6 ? tag5.length : 6));
+        var toLeft5 = (canvas.width - 20 * (canvas.width / 343) * 6);
         tag5 = tag5.substr(0, 6);
+        tag5 = giveBlanks(6 - tag5.length) + tag5;
         ctx.fillText(tag5 != '-' ? tag5 : '', toLeft5, 180 * (canvas.height / 412), 100 * (canvas.width / 343));
         // 文字6
         ctx.font = "22px microsoft yahei";
@@ -275,8 +277,9 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         if (type == 'couple') {
             ctx.fillStyle = "#FFFFFF";
         }
-        var toLeft6 = (canvas.width - 22 * (canvas.width / 343) * (tag6.length <= 7 ? tag6.length : 7));
+        var toLeft6 = (canvas.width - 22 * (canvas.width / 343) * 7);
         tag6 = tag6.substr(0, 7);
+        tag6 = giveBlanks(7 - tag6.length) + tag6;
         ctx.fillText(tag6 != '-' ? tag6 : '', toLeft6, 250 * (canvas.height / 412), 140 * (canvas.width / 343));
         // 头像
         try {
@@ -292,6 +295,13 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         ctx.drawImage(img2vm, 0, 0, img2vm.width, img2vm.height, 0, canvas.height - 50, 50, 50);
         // 赶回合成之后的图片
         return canvas.toDataURL("image/png");
+        function giveBlanks(num) {
+            var blanks = '';
+            while(num-- > 0) {
+                blanks += ' ';
+            }
+            return blanks;
+        }
     };
 
     $scope.createFacePoster = function (imageUrl) {

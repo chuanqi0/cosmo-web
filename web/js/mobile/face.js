@@ -619,7 +619,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 scale = image_target.naturalWidth / image_target.width;
             }
 
-            var aimWidth = 50 * ($('.target-area').width() / 343);  // 实际想绘制的图片大小
+            var aimWidth = 60 * ($('.target-area').width() / 343);  // 实际想绘制的图片大小
             var aimHeight = aimWidth;
             if ($scope.ModelType != 'man') {
                 aimWidth *= 0.9;

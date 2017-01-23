@@ -168,6 +168,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             $('.component').css('display', 'none');
             $('.btn-upload').css('display', 'none');
             $('#js-crop').css('display', 'none');
+            $('.btn-crop').css('display', 'block');
         }
         var cropComponentState = $('.component').css('display');
         //
@@ -206,10 +207,11 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 return;
             });
         })(cropCount);
-        if (cropCount >= 2) {  //第二次触发
+        if (cropCount == 2) {  //第二次触发
             $('.component').css('display', 'none');
             $('.btn-upload').css('display', 'none');
             $('#js-crop').css('display', 'none');
+            $('.btn-crop').css('display', 'block');
         }
     };
 
@@ -449,10 +451,12 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                     .before('<span class="resize-handle resize-handle-ne"></span>')
                     .after('<span class="resize-handle resize-handle-se"></span>')
                     .after('<span class="resize-handle resize-handle-sw"></span>');
+                $(image_target).parent('.resize-container');
             }
 
             // Assign the container to a variable
-            $container = $(image_target).parent('.resize-container');
+            $container = $('.resize-container');
+            // $container = $(image_target).parent('.resize-container');
 
             // Add events
             $container.on('mousedown touchstart', '.resize-handle', startResize);

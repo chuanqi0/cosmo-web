@@ -258,21 +258,18 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
         }
-        var toLeft = (16 + canvas.width - 20 * tag4.length);
-        // ctx.fillText(tag4 != '-' ? tag4 : '', 235 * (canvas.width / 343), 110 * (canvas.height / 412), 90);
-        ctx.fillText(tag4 != '-' ? tag4 : '', toLeft, 110 * (canvas.height / 412), 90);
+        var toLeft = (canvas.width - 20 * (tag4.length.length <= 5 ? tag4.length : 5));
+        ctx.fillText(tag4 != '-' ? tag4 : '', toLeft, 110 * (canvas.height / 412), 100);
         ctx.fillStyle = "#BA882A";
-        var toLeft = (16 + canvas.width - 20 * tag5.length);
-        // ctx.fillText(tag5 != '-' ? tag5 : '', 216 * (canvas.width / 343), 180 * (canvas.height / 412), 110);
-        ctx.fillText(tag5 != '-' ? tag5 : '', toLeft, 180 * (canvas.height / 412), 110);
+        var toLeft = (canvas.width - 20 * (tag5.length <= 6 ? tag6.length : 6));
+        ctx.fillText(tag5 != '-' ? tag5 : '', toLeft, 180 * (canvas.height / 412), 120);
         ctx.font = "22px microsoft yahei";
         ctx.fillStyle = "#000000";
         if (type == 'couple') {
             ctx.fillStyle = "#FFFFFF";
         }
-        var toLeft = (16 + canvas.width - 22 * tag6.length);
-        // ctx.fillText(tag6 != '-' ? tag6 : '', 224 * (canvas.width / 343), 250 * (canvas.height / 412), 100);
-        ctx.fillText(tag6 != '-' ? tag6 : '', toLeft, 250 * (canvas.height / 412), 100);
+        var toLeft = (canvas.width - 22 * (tag6.length <= 7 ? tag6.length : 7));
+        ctx.fillText(tag6 != '-' ? tag6 : '', toLeft, 250 * (canvas.height / 412), 140);
         // 头像
         try {
             var croppedImg = document.getElementById('cropped-img-1');

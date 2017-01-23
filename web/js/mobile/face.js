@@ -261,12 +261,12 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
         }
-        var toLeft4 = (canvas.width - 18 * (canvas.width / 343) * (tag4.length <= 5 ? tag4.length : 5));
+        var toLeft4 = (canvas.width - 25 * (canvas.width / 343) * (tag4.length <= 5 ? tag4.length : 5));
         tag4 = tag4.substr(0, 5);
         ctx.fillText(tag4 != '-' ? tag4 : '', toLeft4, 110 * (canvas.height / 412), 80 * (canvas.width / 343));
         // 文字5
         ctx.fillStyle = "#BA882A";
-        var toLeft5 = (canvas.width - 18 * (canvas.width / 343) * (tag5.length <= 6 ? tag5.length : 6));
+        var toLeft5 = (canvas.width - 25 * (canvas.width / 343) * (tag5.length <= 6 ? tag5.length : 6));
         tag5 = tag5.substr(0, 6);
         ctx.fillText(tag5 != '-' ? tag5 : '', toLeft5, 180 * (canvas.height / 412), 100 * (canvas.width / 343));
         // 文字6

@@ -259,9 +259,11 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             ctx.fillStyle = "#FF3366";
         }
         var toLeft = (canvas.width - 20 * (canvas.width / 343) * (tag4.length.length <= 5 ? tag4.length : 5));
+        tag4 = tag4.substr(0, 5);
         ctx.fillText(tag4 != '-' ? tag4 : '', toLeft, 110 * (canvas.height / 412), 80);
         ctx.fillStyle = "#BA882A";
         var toLeft = (canvas.width - 20 * (canvas.width / 343) * (tag5.length <= 6 ? tag6.length : 6));
+        tag5 = tag5.substr(0, 6);
         ctx.fillText(tag5 != '-' ? tag5 : '', toLeft, 180 * (canvas.height / 412), 100);
         ctx.font = "22px microsoft yahei";
         ctx.fillStyle = "#000000";
@@ -269,6 +271,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             ctx.fillStyle = "#FFFFFF";
         }
         var toLeft = (canvas.width - 22 * (canvas.width / 343) * (tag6.length <= 7 ? tag6.length : 7));
+        tag6 = tag6.substr(0, 7);
         ctx.fillText(tag6 != '-' ? tag6 : '', toLeft, 250 * (canvas.height / 412), 140);
         // 头像
         try {

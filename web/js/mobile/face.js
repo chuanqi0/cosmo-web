@@ -149,7 +149,8 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
     $scope.croppedImgUrl = '';
     var cropCount = 0;
     $scope.shiftImageArea = function (url) {
-        if (++cropCount > 2) {
+        cropCount++;
+        if ($scope.ModelType != 'couple' && cropCount > 1 || $scope.ModelType == 'couple' && cropCount > 2) {
             return;
         }
         $scope.croppedImgUrl = url;

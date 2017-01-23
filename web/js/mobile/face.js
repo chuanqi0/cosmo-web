@@ -237,7 +237,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         // 绘制图片
         ctx.drawImage(modelImg, 0, 0, canvas.width, canvas.height);
         // 文字
-        ctx.font = "18px microsoft yahei";
+        ctx.font = "22px microsoft yahei";
         ctx.fillStyle = "#000000";
         if (type == 'couple') {
             ctx.fillStyle = "#FFFFFF";
@@ -248,6 +248,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             ctx.fillStyle = "#FF3366";
         }
         ctx.fillText(tag2 != '-' ? tag2 : '', 16, 190 * (canvas.height / 412), 100);
+        ctx.font = "20px microsoft yahei";
         ctx.fillStyle = "#BA882A";
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
@@ -260,6 +261,7 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         ctx.fillText(tag4 != '-' ? tag4 : '', 235 * (canvas.width / 343), 110 * (canvas.height / 412), 90);
         ctx.fillStyle = "#BA882A";
         ctx.fillText(tag5 != '-' ? tag5 : '', 216 * (canvas.width / 343), 180 * (canvas.height / 412), 110);
+        ctx.font = "22px microsoft yahei";
         ctx.fillStyle = "#000000";
         if (type == 'couple') {
             ctx.fillStyle = "#FFFFFF";
@@ -601,11 +603,11 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 scale = image_target.naturalWidth / image_target.width;
             }
 
-            var aimWidth = 60 * ($('.target-area').width() / 343);  // 实际想绘制的图片大小
+            var aimWidth = 70 * ($('.target-area').width() / 343);  // 实际想绘制的图片大小
             var aimHeight = aimWidth;
             if ($scope.ModelType != 'man') {
-                aimWidth *= 0.9;
-                aimHeight *= 0.9;
+                aimWidth *= 0.8;
+                aimHeight *= 0.8;
             }
             crop_canvas = document.createElement('canvas');
             crop_canvas.width = aimWidth;

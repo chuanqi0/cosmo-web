@@ -217,29 +217,6 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
 
     $scope.finish = function () {
         $('.btn-ok').attr('disabled', true);
-        // 图片裁剪
-        // var cropWidth = parseInt($("#cropped-img").css("width"));
-        // var cropHeight = parseInt($("#cropped-img").css("height"));
-        // var modelImg = document.getElementById('model-img')
-        // var scale = (modelImg.naturalWidth / modelImg.width)
-        //
-        // console.log('---------------------------------->crop size:' + cropWidth + '-' + cropHeight);
-        // var crop1 = imageData(srcimg, 0);
-        // var crop2 = '';
-        // if ($scope.ModelType == 'couple') {
-        //     crop2 = imageData(srcimg, 1);
-        // }
-        // $scope.createFacePoster(crop1, coord[0], crop2, coord[1]);
-        //
-        // //裁剪图片
-        // function imageData(img, i) {
-        //     var canvas = document.createElement('canvas');
-        //     var ctx = canvas.getContext('2d');
-        //     canvas.width = cropWidth;
-        //     canvas.height = cropHeight;
-        //     ctx.drawImage(img, coord[i][0] * scale, coord[i][1] * scale, cropWidth * scale, cropHeight * scale, 0, 0, cropWidth, cropHeight);
-        //     return canvas.toDataURL();
-        // }
         var wholeImageDataUrl = $scope.generateWholeImageDataUrl();
         $scope.createFacePoster(wholeImageDataUrl);
     };
@@ -265,17 +242,17 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         if (type == 'couple') {
             ctx.fillStyle = "#FFFFFF";
         }
-        ctx.fillText(tag1 != '-' ? tag1 : '', 16, 110 * (canvas.height / 412));
+        ctx.fillText(tag1 != '-' ? tag1 : '', 16, 110 * (canvas.height / 412), 80);
         ctx.fillStyle = "#BA882A";
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
         }
-        ctx.fillText(tag2 != '-' ? tag2 : '', 16, 190 * (canvas.height / 412));
+        ctx.fillText(tag2 != '-' ? tag2 : '', 16, 190 * (canvas.height / 412), 100);
         ctx.fillStyle = "#BA882A";
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
         }
-        ctx.fillText(tag3 != '-' ? tag3 : '', 16, 280 * (canvas.height / 412));
+        ctx.fillText(tag3 != '-' ? tag3 : '', 16, 280 * (canvas.height / 412), 90);
         ctx.fillStyle = "#BA882A";
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";

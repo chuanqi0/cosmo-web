@@ -236,24 +236,27 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         var ctx = canvas.getContext("2d");
         // 绘制图片
         ctx.drawImage(modelImg, 0, 0, canvas.width, canvas.height);
-        // 文字
+        // 文字1
         ctx.font = "22px microsoft yahei";
         ctx.fillStyle = "#000000";
         if (type == 'couple') {
             ctx.fillStyle = "#FFFFFF";
         }
         ctx.fillText(tag1 != '-' ? tag1 : '', 16, 110 * (canvas.height / 412), 80);
+        // 文字2
         ctx.fillStyle = "#BA882A";
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
         }
         ctx.fillText(tag2 != '-' ? tag2 : '', 16, 190 * (canvas.height / 412), 100);
+        // 文字3
         ctx.font = "20px microsoft yahei";
         ctx.fillStyle = "#BA882A";
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
         }
         ctx.fillText(tag3 != '-' ? tag3 : '', 16, 280 * (canvas.height / 412), 90);
+        // 文字4
         ctx.fillStyle = "#BA882A";
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
@@ -261,10 +264,12 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         var toLeft = (canvas.width - 20 * (canvas.width / 343) * (tag4.length.length <= 5 ? tag4.length : 5));
         tag4 = tag4.substr(0, 5);
         ctx.fillText(tag4 != '-' ? tag4 : '', toLeft, 110 * (canvas.height / 412), 80 * (canvas.width / 343));
+        // 文字5
         ctx.fillStyle = "#BA882A";
-        var toLeft = (canvas.width - 20 * (canvas.width / 343) * (tag5.length <= 6 ? tag6.length : 6));
+        var toLeft = (canvas.width - 20 * (canvas.width / 343) * (tag5.length <= 6 ? tag5.length : 6));
         tag5 = tag5.substr(0, 6);
         ctx.fillText(tag5 != '-' ? tag5 : '', toLeft, 180 * (canvas.height / 412), 100 * (canvas.width / 343));
+        // 文字6
         ctx.font = "22px microsoft yahei";
         ctx.fillStyle = "#000000";
         if (type == 'couple') {

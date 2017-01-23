@@ -258,15 +258,21 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
         if (type == 'woman') {
             ctx.fillStyle = "#FF3366";
         }
-        ctx.fillText(tag4 != '-' ? tag4 : '', 235 * (canvas.width / 343), 110 * (canvas.height / 412), 90);
+        var toLeft = (16 + canvas.width - 20 * tag4.length);
+        // ctx.fillText(tag4 != '-' ? tag4 : '', 235 * (canvas.width / 343), 110 * (canvas.height / 412), 90);
+        ctx.fillText(tag4 != '-' ? tag4 : '', toLeft, 110 * (canvas.height / 412), 90);
         ctx.fillStyle = "#BA882A";
-        ctx.fillText(tag5 != '-' ? tag5 : '', 216 * (canvas.width / 343), 180 * (canvas.height / 412), 110);
+        var toLeft = (16 + canvas.width - 20 * tag5.length);
+        // ctx.fillText(tag5 != '-' ? tag5 : '', 216 * (canvas.width / 343), 180 * (canvas.height / 412), 110);
+        ctx.fillText(tag5 != '-' ? tag5 : '', toLeft, 180 * (canvas.height / 412), 110);
         ctx.font = "22px microsoft yahei";
         ctx.fillStyle = "#000000";
         if (type == 'couple') {
             ctx.fillStyle = "#FFFFFF";
         }
-        ctx.fillText(tag6 != '-' ? tag6 : '', 224 * (canvas.width / 343), 250 * (canvas.height / 412), 100);
+        var toLeft = (16 + canvas.width - 22 * tag6.length);
+        // ctx.fillText(tag6 != '-' ? tag6 : '', 224 * (canvas.width / 343), 250 * (canvas.height / 412), 100);
+        ctx.fillText(tag6 != '-' ? tag6 : '', toLeft, 250 * (canvas.height / 412), 100);
         // 头像
         try {
             var croppedImg = document.getElementById('cropped-img-1');
@@ -603,11 +609,11 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
                 scale = image_target.naturalWidth / image_target.width;
             }
 
-            var aimWidth = 70 * ($('.target-area').width() / 343);  // 实际想绘制的图片大小
+            var aimWidth = 80 * ($('.target-area').width() / 343);  // 实际想绘制的图片大小
             var aimHeight = aimWidth;
             if ($scope.ModelType != 'man') {
-                aimWidth *= 0.8;
-                aimHeight *= 0.8;
+                aimWidth *= 0.7;
+                aimHeight *= 0.7;
             }
             crop_canvas = document.createElement('canvas');
             crop_canvas.width = aimWidth;

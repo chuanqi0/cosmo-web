@@ -628,7 +628,10 @@ app.controller('SwapFaceCtrl', ['$scope', '$cookieStore', function ($scope, $coo
             crop_canvas = document.createElement('canvas');
             crop_canvas.width = aimWidth;
             crop_canvas.height = aimHeight;
-            crop_canvas.getContext('2d').drawImage(image_target, left * scale, top * scale, width * scale, height * scale, 0, 0, aimWidth, aimHeight);
+            var context = crop_canvas.getContext('2d');
+            context.arc(aimWidth / 2, aimWidth / 2, aimWidth / 2, 0, 2 * Math.PI);  // (x, y, point, 0, 180)
+            context.clip();
+            context.drawImage(image_target, left * scale, top * scale, width * scale, height * scale, 0, 0, aimWidth, aimHeight);
 
             var croppedImgUrl = crop_canvas.toDataURL("image/png");
 

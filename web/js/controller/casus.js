@@ -8,6 +8,8 @@ app.controller('CasusController', function($scope, $sce, casus, cbwaUser) {
     $scope.contentHtml = $sce.trustAsHtml($scope.casus.content);
 
     $scope.vote = function() {
+	alert("投票已截止，请关注接下来的婚尚盛典暨颁奖典礼哦～");
+	return;
         // 查看所有的奖项
         var data = {
             "casusGuid": $scope.casus.guid

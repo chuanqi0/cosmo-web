@@ -19,6 +19,8 @@ app.controller('WorksController', function($scope, $cookies) {
     };
 
     $scope.vote = function($index) {
+        alert("投票已截止，请关注接下来的婚尚盛典暨颁奖典礼哦～");
+	return;
         var casus = $scope.casusList[$index];
         // 查看所有的奖项
         var data = {
